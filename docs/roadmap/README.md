@@ -47,6 +47,12 @@ The roadmap contains 75 increments across 16 tracks, including the optional comp
 
 Milestones inherit every transitive dependency. A release cannot skip a dependency because its direct list is short. None of M0–M6 requires the optional CIR track. A release that separately advertises a CIRCT-backed profile must also satisfy CIR-03 for that profile; omitting an optional backend is not the same as qualifying it.
 
+## Early verification gates
+
+[Early fabric baseline and assumption contract](../verification-early-baseline.md) strengthens existing leaves without adding a late-track dependency to Foundation. FND-02 reviews the common subset and assumption ledger; FND-06 runs independent fixtures against pinned FABulous-generated reference resources before the production generator exists. RTL-01–03 compare actual generated primitives/tiles/small fabrics, and RTL-04 adds comparison through each real configuration loader. VER-05 remains the full toolchain comparison, not the first external check.
+
+DB-01–04 and DB-06 require semantic invariance checks for permitted renaming/reordering, template compression, partitioning, reader paths and incremental rebuilds. Only small reference fixtures need exhaustive expansion. Each owning increment must supply its evidence before its parent closes; missing reference runs or unresolved critical common-subset mismatches are not successful skips. These obligations are inherited by existing milestones without changing their dependency declarations.
+
 ## Compiler-framework boundary
 
 [ADR 0001](../adr/0001-optional-circt-backend.md) preserves Scala construction and Rust architecture/device compilation without a required MLIR/CIRCT dependency. `nodal-hdl` retains its existing compiler pipeline. An optional adapter may reuse CIRCT for fabric RTL generation or supplemental verification, not as the authoritative ArchIR, DeviceDB or configuration model.

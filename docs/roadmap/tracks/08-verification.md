@@ -4,9 +4,11 @@
 
 Global blocker: FND-08. Modules: `verify/{spec-model,formal,differential,simulation,coverage,fixtures}` and `adapters/fabulous`. Expected behavior must not be copied from the same emitter/encoder being checked. FABulous is one comparison source, not the sole oracle.
 
+The [early-baseline contract](../../verification-early-baseline.md) puts reference preparation in FND-02/FND-06 and actual generated-resource/fabric comparisons in RTL-01–04. VER-05 extends that baseline to full toolchain qualification; it is not the first external check. Existing dependencies are unchanged, and this track does not retroactively become a Foundation prerequisite.
+
 - [ ] VER-01 — Independent executable reference model
   Depends on: FND-08.
-  - [ ] VER-01.a Implement a small slow model from primitive/configuration specifications, avoiding production lowering and RTL-emission helpers.
+  - [ ] VER-01.a Implement a small slow model from primitive/configuration specifications and the reviewed Foundation assumption ledger, avoiding production lowering, configuration-allocation, topology-normalization and RTL-emission helpers.
   - [ ] VER-01.b Model legal selected connectivity, LUT truth tables, sequential state and declared reset/initial-state behavior.
   - [ ] VER-01.c Keep independent hand-authored fixtures and explicit abstraction limits for unsupported analog/timing behavior.
   - [ ] VER-01.d Validate the model with exhaustive tiny examples and mutation cases before using it as an oracle.
@@ -25,7 +27,7 @@ Global blocker: FND-08. Modules: `verify/{spec-model,formal,differential,simulat
   - [ ] VER-03.a Check DeviceDB endpoints and legal modes against generated RTL and configuration-map semantics.
   - [ ] VER-03.b Compose primitive/tile contracts with explicit assumptions; validate interface wiring and shared-control restrictions separately.
   - [ ] VER-03.c Compare configuration-driven RTL behavior with the independent model for small tiles and fabrics.
-  - [ ] VER-03.d Test edge/corner/sparse layouts and deliberate mismatches between DB, RTL and bitstream mapping.
+  - [ ] VER-03.d Test edge/corner/sparse layouts and deliberate mismatches between DB, RTL and bitstream mapping; replay compact/expanded, partitioned/unpartitioned and permitted-renaming cases against independent expectations, including corrupted correspondence maps.
   - [ ] VER-03.e Record compositional proof scope, structural checks and final-head generated-view consistency evidence.
 
 - [ ] VER-04 — End-to-end user-design equivalence
@@ -38,11 +40,11 @@ Global blocker: FND-08. Modules: `verify/{spec-model,formal,differential,simulat
 
 - [ ] VER-05 — Pinned FABulous differential baseline
   Depends on: VER-04.
-  - [ ] VER-05.a Pin FABulous and its complete toolchain and document a precisely matched architecture/primitive/configuration subset.
-  - [ ] VER-05.b Build independently specified comparable small fabrics; compare normalized connectivity, resource modes and observable behavior.
-  - [ ] VER-05.c Compare bitstream bytes only where address/encoding contracts intentionally match; otherwise decode semantic configuration before comparison.
-  - [ ] VER-05.d Separate functional failures from differing legal placements or PPA trends; investigate disagreements against the independent model.
-  - [ ] VER-05.e Archive both tool revisions, fixtures, correspondence maps and final-head results, including intentional incompatibilities.
+  - [ ] VER-05.a Carry forward and revalidate the pinned Foundation/RTL FABulous baseline; pin the complete synthesis/P&R/simulation toolchain and extend the independently reviewed common-subset and assumption/correspondence manifests. A changed upstream version requires differential requalification, not blind golden regeneration.
+  - [ ] VER-05.b Build independently specified comparable small fabrics and retain both actual generated RTL sets; compare normalized connectivity, resource modes and observable behavior. Keep separate hand-configured generator tests and full user-RTL-through-toolchain tests, comparing each configured fabric to the original design or independent specification.
+  - [ ] VER-05.c Compare bitstream bytes only where address/encoding contracts intentionally match; otherwise use independently checked semantic correspondence plus observable behavior through each real loader. Record reset/activation alignment and transport differences; decoder round trips, text equality and forced/preloaded state cannot substitute for runtime evidence.
+  - [ ] VER-05.d Separate functional failures from differing legal placements or PPA trends; minimize disagreements and investigate against the independent model, vectors and assumption ledger. Test checker mutations and shared-tool blind spots; never alter the expected specification just to match either generator.
+  - [ ] VER-05.e Archive both tool revisions, actual source/RTL/bitstreams, fixtures, correspondence and assumption hashes, and final-head results, including intentional incompatibilities and affected early-gate replays. Missing references or unresolved common-subset correctness mismatches block closure; Nodal-only capabilities retain independent obligations.
 
 - [ ] VER-06 — Coverage, fuzzing and fault containment
   Depends on: VER-04, CFG-05.
@@ -56,8 +58,8 @@ Global blocker: FND-08. Modules: `verify/{spec-model,formal,differential,simulat
   Depends on: VER-05, VER-06, RTL-05.
   - [ ] VER-07.a Run the pinned cross-language, property, simulation, formal, differential and synthesis-equivalence suites for each released profile.
   - [ ] VER-07.b Check assumptions and tool independence; record mixed-level/black-box boundaries and confidence limitations explicitly.
-  - [ ] VER-07.c Produce immutable artifact manifests and trace requirements to tests/proofs/coverage records.
-  - [ ] VER-07.d Exercise clean reproduction and deliberately missing/stale evidence; block a release with unresolved critical correctness obligations.
+  - [ ] VER-07.c Produce immutable artifact manifests and trace requirements and assumption IDs to tests/proofs/coverage records, including Foundation/early-RTL baselines and representation-invariance evidence. Record shared dependencies between purportedly independent checkers.
+  - [ ] VER-07.d Exercise clean reproduction and deliberately missing/stale evidence, changed assumptions, missing FABulous artifacts and invalid correspondence maps; block a release with unresolved critical correctness obligations and reopen affected gates when baseline semantics change.
   - [ ] VER-07.e Publish final-head verification evidence and supported scope; physical, emulation and silicon claims require their own later gates.
 
 Main risk: correlated oracle bugs and overstated proof coverage. Do not attempt a monolithic all-configurations formal proof of a giant FPGA as the first verification milestone. [S1–S3](../../sources.md#s1), [S8/S9](../../sources.md#s8) motivate complementary checking strategies.

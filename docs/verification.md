@@ -37,6 +37,20 @@ A FABulous fixture must pin generator and toolchain revisions and define the sam
 
 New Nodal-only modes, clocking, hard macros or configuration features require their own specifications and tests; no FABulous comparison is possible until a genuine common subset exists. If tools disagree, minimize the case and use independent semantics to decide which result is wrong. Do not change expected output merely to match the current generator.
 
+## Early acceptance gates and assumptions
+
+Follow [the early-baseline contract](verification-early-baseline.md). FND-02 owns a reviewed common-subset specification and stable-ID assumption ledger. FND-06 bootstraps independent expected vectors and pinned FABulous reference runs without requiring the production Nodal generator. RTL-01–03 must compare actual generated resources/fabrics before closure; RTL-04 must use the real configuration loaders. VER-05 extends, rather than starts, this work with complete toolchain comparison. The same artifact identities are replayed or explicitly requalified as implementations change.
+
+Expected semantics, resource correspondence and comparison inputs require independent review; generating them all from production lowering would preserve common-mode bugs. A matched-subset claim must include exact behavior and connectivity, not just resource counts. Record unsupported modes and intentional differences without forcing future Nodal-only features to reproduce FABulous restrictions. Required reference failures or missing tools/artifacts block the owning gate; they do not become passes by being called optional comparisons.
+
+Keep assumption decisions separate from their verification status. An accepted design convention is not a passed proof. Trace changes in assumptions, reference versions or correspondence maps to affected generators, encoders, databases, tests and device-package revisions; reopen invalidated evidence under the progress policy.
+
+## Representation-invariance checks
+
+DB-01–04 and DB-06 compare permitted declaration reordering/internal renaming, compact versus independently expanded tiny graphs, partitioned versus unpartitioned views, portable versus mmap readers, and full versus incremental builds. Check selected connectivity, legal modes, shared controls and configuration meaning, not only counts or hashes. VER-03 and VER-07 replay these obligations against generated-view behavior and release manifests.
+
+Use explicit semantic identity mappings: dense IDs, section order and bitstream bytes need not survive a representation change. Preserve or rebind physical configuration addresses under a new package identity, rejecting incompatible prior bitstreams. The reference expander/checker must not call the production compression or partitioning transformations. Large-device performance tests do not substitute for these tiny semantic checks, and tiny exhaustive expansion must not become a mandatory large-device storage format.
+
 ## Proof and simulation layers
 
 Primitive properties cover LUT indexing, mux selection, register control priorities and declared memory/arithmetic behavior. Legal configuration constraints are explicit. Many arbitrary raw bit patterns are unsafe or meaningless; do not prove only an overconstrained legal subset while claiming every possible bitstream is safe.
@@ -76,4 +90,4 @@ Reuse immutable corpus identities across original RTL, fabric RTL, gate netlists
 
 ## Acceptance artifacts
 
-Each completion report records source and generated-artifact hashes, architecture/library/technology identity, simulator/formal/CAD versions, solver/depth/assumptions, seeds and worker policy, exact commands, positive and negative results, coverage ledger and limits. Store large artifacts by content hash, not as unverifiable statements in a PR body. Archive enough information to reproduce historical device releases even after core/library refactoring.
+Each completion report records source and generated-artifact hashes, architecture/library/technology identity, simulator/formal/CAD versions, solver/depth/assumptions, seeds and worker policy, exact commands, positive and negative results, coverage ledger and limits. Store large artifacts by content hash, not as unverifiable statements in a PR body. Archive enough information to reproduce historical device releases even after core/library refactoring. Include the applicable assumption-ledger revision, reference specification and correspondence hashes, both generated fabric artifacts, configuration-loading method and evidence of replay after relevant baseline changes.

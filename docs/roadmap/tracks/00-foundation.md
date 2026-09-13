@@ -6,6 +6,8 @@ Purpose: establish executable contracts, minimal test infrastructure and a small
 
 Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under `frontend/scala/`, `schemas/`, `verify/fixtures/`, `docs/adr/` and development tooling. Do not scaffold every future crate.
 
+Early verification follows [the baseline contract](../../verification-early-baseline.md). Foundation owns only reference specifications, a minimal external-fixture harness and bootstrap checks; it must not wait for the production generator, CAD flow or VER track. FABulous remains a test-environment dependency, never a reusable-core/default-runtime dependency.
+
 - [ ] FND-01 — Bootstrap the repository and ownership boundaries
   Depends on: none.
   - [ ] FND-01.a Create the minimal Rust workspace, pinned Rust toolchain and formatter/linter/test entrypoints; prove an unprivileged installation path.
@@ -17,16 +19,16 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
 - [ ] FND-02 — Freeze the initial architecture and project contracts
   Depends on: FND-01.
   - [ ] FND-02.a Write ADRs for Scala-to-Rust exchange, ArchIR versus DeviceDB versus customer DesignDB, and external-CAD-first ownership; apply [ADR 0001](../../adr/0001-optional-circt-backend.md) without treating its optional backend as implemented.
-  - [ ] FND-02.b Specify primitive/mode semantics, hierarchical templates, shared routing/configuration resources and the explicit unsupported-feature policy.
+  - [ ] FND-02.b Specify primitive/mode semantics, hierarchical templates, shared routing/configuration resources and the explicit unsupported-feature policy; create the stable-ID assumption ledger defined in the early-baseline contract, including owners, affected consumers and stage-specific verification obligations.
   - [ ] FND-02.c Specify overlapping clock/power/configuration domains, technology bindings and device-package identity without implementing advanced devices.
-  - [ ] FND-02.d Define the nf-tiny profile and hand-calculated boundary fixtures, including legal and illegal configuration examples.
-  - [ ] FND-02.e Review contracts against all later track boundaries; record accepted ADRs and unresolved nonblocking choices without claiming implementation.
+  - [ ] FND-02.d Define the nf-tiny profile and hand-calculated boundary fixtures, including legal and illegal configuration examples; independently review a pinned FABulous-compatible subset, its reference input and the intended Nodal-side mapping, with explicit LUT/pin ordering, register controls, routing/configuration semantics and intentional differences. This contract review does not require the later executable Scala DSL.
+  - [ ] FND-02.e Review contracts against all later track boundaries; record accepted ADRs, the assumption ledger and the common-subset correspondence contract. Resolve critical semantic ambiguities before closing; label scheduled execution evidence as not run and retain genuinely nonblocking choices without claiming implementation.
 
 - [ ] FND-03 — Enforce resumable nested progress and evidence
   Depends on: FND-02.
   - [ ] FND-03.a Implement a roadmap parser that ignores fenced examples and checks unique increment/leaf IDs and consistent nesting.
   - [ ] FND-03.b Validate dependency references, cycles, the global FND-08 blocker, and the rule that a completed parent has no open descendant.
-  - [ ] FND-03.c Add completion-report templates for source head, tool/device hashes, commands, results, limitations and actual generated examples.
+  - [ ] FND-03.c Add completion-report templates for source head, tool/device hashes, commands, results, limitations and actual generated examples, plus assumption IDs, reference-corpus/correspondence hashes, mutation outcomes and configuration-loading mode.
   - [ ] FND-03.d Test partial completion, reopened regressions, missing evidence, stale heads, invalid checked parents and a dependency-cycle fixture.
   - [ ] FND-03.e Run the validator on the repository and its negative fixtures; retain evidence that partial child completion is accepted correctly.
 
@@ -48,11 +50,11 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
 
 - [ ] FND-06 — Bootstrap independent verification before generator development
   Depends on: FND-05.
-  - [ ] FND-06.a Write independent truth-table, mux-selection and configuration-vector specifications for the tiny fixture; do not derive expected values from production emitters.
-  - [ ] FND-06.b Wire minimal Rust property testing, RTL simulation and formal-tool smoke tests with pinned tool identities.
-  - [ ] FND-06.c Define reset, initial-state, X/Z, legal-configuration and clock assumptions explicitly for the first profile.
-  - [ ] FND-06.d Inject a wrong mux index, swapped LUT bit and bad config address and demonstrate the bootstrap tests detect each defect.
-  - [ ] FND-06.e Archive executable fixtures, proof status and assumptions; distinguish bounded checks from unbounded proofs and coverage witnesses.
+  - [ ] FND-06.a Write independent truth-table, mux-selection and configuration-vector specifications for the tiny fixture; create hand-calculated expected behavior and a simple reference tile graph without production emitters, configuration allocators or topology-normalization helpers.
+  - [ ] FND-06.b Wire minimal Rust property testing, RTL simulation and formal-tool smoke tests with pinned tool identities; generate the declared FABulous LUT/register/switch/tiny-tile reference subset and run it against independent vectors in an isolated bootstrap harness, without requiring Nodal-generated RTL or Yosys/nextpnr integration.
+  - [ ] FND-06.c Define reset, initial-state, X/Z, legal-configuration and clock assumptions explicitly for the first profile; bind each fixture and correspondence mapping to the assumption ledger, record unsupported cases, and label static configuration/unit shortcuts separately from future real-loader checks.
+  - [ ] FND-06.d Inject a wrong mux index, swapped LUT bit and bad config address and demonstrate the intended bootstrap check detects each defect; include a faulty correspondence map and an overconstrained/vacuous-case witness so agreement or an unrelated crash cannot count as success.
+  - [ ] FND-06.e Archive executable fixtures, both hand-authored specifications and generated FABulous artifacts, pinned revisions, commands, correspondence hashes, mutation results and assumptions. Distinguish bounded checks, unbounded proofs and cover witnesses; missing reference runs block this gate and no Nodal-fabric qualification is claimed yet.
 
 - [ ] FND-07 — Establish dependency, security and benchmark policy
   Depends on: FND-06.
@@ -65,9 +67,9 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
 - [ ] FND-08 — Release the Foundation gate
   Depends on: FND-07.
   - [ ] FND-08.a Audit completion evidence for FND-01 through FND-07 and confirm Foundation has no dependency on blocked tracks.
-  - [ ] FND-08.b Run clean Rust/Scala builds, schema conformance, negative fixtures, roadmap validation and independent test smoke suites.
+  - [ ] FND-08.b Run clean Rust/Scala builds, schema conformance, negative fixtures, roadmap validation and independent test smoke suites; replay the pinned FND-06 reference corpus in its separate test environment and reject unresolved critical baseline mismatches.
   - [ ] FND-08.c Run the default Rust-build, saved-package-runtime and Scala-authoring profiles from ADR 0001 separately; confirm reusable core has no concrete-device, external-CAD or optional-adapter dependency. Keep the ordinary Rust toolchain intact and distinguish its internal components from application SDK/runtime dependencies.
-  - [ ] FND-08.d Freeze the initial contract baseline and explicitly list supported and rejected capabilities plus benchmark measurement procedures.
+  - [ ] FND-08.d Freeze the initial contract baseline, assumption ledger and reference/correspondence manifests; explicitly list supported and rejected capabilities plus benchmark measurement procedures, and identify which later checks cannot run until their owning RTL/DB/VER increments exist.
   - [ ] FND-08.e Record final-head evidence and open the downstream-track gate only after every required Foundation leaf is complete.
 
 Main risk: replacing a tested foundation with a large paper-only abstraction framework. Exit requires executable minimal contracts, not a full fabric. Do not build native synthesis/P&R, analog IP, GUI or multi-die algorithms in Foundation.
