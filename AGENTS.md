@@ -24,3 +24,5 @@ Record the source commit, tool/device/configuration hashes, commands, results, l
 ## Ownership
 
 Reusable engine code must not depend on concrete device libraries, Scala, MLIR, nextpnr internals, or proprietary PDK files. Keep library generators, device definitions, external adapters, applications, and verification oracles separate. Do not turn `nodal-fpga` into the `nodal-eda` GUI or a second high-level Nodal compiler.
+
+Follow `docs/adr/0001-optional-circt-backend.md`: CIRCT is an optional isolated adapter, not a core/default dependency. The ordinary Rust compiler toolchain is allowed; do not require a separately installed LLVM/MLIR/CIRCT SDK for default builds. Keep the focused emitter small and review alternatives before building a general HDL compiler. CIR proceed/adopt decisions are additional gates; dormant implementation checkboxes stay open. No selected backend may specialize the manufactured fabric to one test bitstream or bypass configuration-preservation verification.

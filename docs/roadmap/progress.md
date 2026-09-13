@@ -39,6 +39,10 @@ All non-Foundation tracks inherit `FND-08`. No checked child overrides that bloc
 
 A required task cannot be silently deleted or marked done as not applicable. A genuine scope change requires an explicit roadmap amendment, rationale and impact review; it must not disguise missing verification. Keep optional experiments out of required closure checklists unless formally adopted.
 
+## Optional-track decisions
+
+Assessment, prototype and adoption are separate deliverables. A completed assessment may conclude retain-default or defer, but it cannot mark unperformed implementation or qualification items `[x]`. Keep those items unchecked and record their dormant reason. Explicit proceed/adopt conditions are additional blockers, not substitutes for checkbox dependencies. For the CIR track, CIR-02 requires CIR-01's proceed decision and CIR-03 requires CIR-02's adopt decision. An advertised optional backend must pass its own qualification; a default-only release need not implement dormant optional tracks.
+
 ## Planned enforcement
 
 FND-03 will add a roadmap validator that ignores fenced examples, checks unique increment/sub-item IDs, indentation, parent/descendant state consistency, dependency existence and cycles, and required completion evidence. It must include negative fixtures with an incorrectly closed parent. This planning commit does not claim that validator already exists.

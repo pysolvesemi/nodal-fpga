@@ -2,7 +2,7 @@
 
 This is the controlling implementation plan. Its target is a Scala architecture frontend plus a Rust device/fabric backend that can evolve from an experimental FPGA to qualified commercial families. High-end silicon remains a product-development objective, not a capability implied by this plan.
 
-Baseline observed before this documentation change: `dev` and `main` both at `1b28e5cbcc064455a73600ab311f6f9bf071e3fc`, with only `README.md`. No implementation completion is inferred from earlier conversations.
+Original planning baseline: `dev` and `main` both at `1b28e5cbcc064455a73600ab311f6f9bf071e3fc`, with only `README.md`. No implementation completion is inferred from earlier conversations.
 
 ## How to execute
 
@@ -10,7 +10,7 @@ Each track file contains the authoritative parent and child checkboxes. This ind
 
 **Global blocker:** every non-Foundation increment requires `FND-08` complete. Other `Depends on:` entries are additional blockers. A track can proceed in parallel after its blockers clear; no track must wait for all unrelated tracks. Foundation includes minimal tests and schema fixtures so the dependency graph is not circular.
 
-All 72 implementation increments start `[ ]`. Completing this planning commit does not complete Foundation.
+The roadmap contains 75 increments across 16 tracks, including the optional compiler-backend evaluation track. All increments start `[ ]`. Completing or amending planning documentation does not complete Foundation or implement a backend.
 
 ## Tracks
 
@@ -31,6 +31,7 @@ All 72 implementation increments start `[ ]`. Completing this planning commit do
 | PROD | [12 Commercial qualification](tracks/12-commercial-qualification.md) | PROD-01–04 | Product requirements, silicon correlation, device SDK and production support |
 | NAT | [13 Native CAD](tracks/13-native-cad.md) | NAT-01–04 | Optional native Rust pack/place/route, only after measured need |
 | ADV | [14 Advanced families](tracks/14-advanced-families.md) | ADV-01–04 | Heterogeneous devices, regional configuration, multi-die and high-end qualification |
+| CIR | [15 Compiler-backend evaluation](tracks/15-compiler-backend-evaluation.md) | CIR-01–03 | Optional CIRCT assessment, comparative prototype and conditional opt-in qualification |
 
 ## Milestones, not duplicate task lists
 
@@ -44,7 +45,13 @@ All 72 implementation increments start `[ ]`. Completing this planning commit do
 | M5 Small commercial device | PROD-03 | Silicon-correlated, explicitly qualified product and supported SDK |
 | M6 Advanced-family qualification | ADV-04 | Qualified advanced profile, not merely large database generation |
 
-Milestones inherit every transitive dependency. A release cannot skip a dependency because its direct list is short.
+Milestones inherit every transitive dependency. A release cannot skip a dependency because its direct list is short. None of M0–M6 requires the optional CIR track. A release that separately advertises a CIRCT-backed profile must also satisfy CIR-03 for that profile; omitting an optional backend is not the same as qualifying it.
+
+## Compiler-framework boundary
+
+[ADR 0001](../adr/0001-optional-circt-backend.md) preserves Scala construction and Rust architecture/device compilation without a required MLIR/CIRCT dependency. `nodal-hdl` retains its existing compiler pipeline. An optional adapter may reuse CIRCT for fabric RTL generation or supplemental verification, not as the authoritative ArchIR, DeviceDB or configuration model.
+
+Keep the initial structured emitter focused. Before expanding it into a general HDL compiler/optimizer, perform CIR-01's alternatives review; it may retain the default immediately. CIR-02/CIR-03 remain off the initial-fabric critical path. Proceed/adopt decisions require recorded evidence, not an assumption that either implementation language or framework is automatically more scalable. Deferred or rejected implementation items remain unchecked under the progress policy.
 
 ## First-device scope
 
@@ -64,4 +71,4 @@ Do not initially build another MLIR stack, arbitrary RTL synthesis, analog layou
 
 ## Evidence and research
 
-The [source register](../sources.md) separates capabilities documented by FABulous, OpenFPGA, nextpnr, VTR and formal tools from this project's design proposals. Published tool features are not acceptance evidence for Nodal-FPGA. Pin and qualify the exact versions used for implementation.
+The [source register](../sources.md) separates capabilities documented by FABulous, OpenFPGA, nextpnr, VTR and formal tools from this project's design proposals. [ADR 0001 sources](../adr/0001-optional-circt-backend.md#sources) document the optional compiler-framework assessment. Published tool features are not acceptance evidence for Nodal-FPGA. Pin and qualify the exact versions used for implementation.

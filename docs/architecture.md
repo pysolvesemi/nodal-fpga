@@ -25,6 +25,14 @@ Yosys / other qualified synthesis --> same contract
 
 Keep generic HDL compilation and MLIR in `nodal-hdl`. MLIR is not required by `nodal-fpga`; Rust can interoperate with other languages, so this is an ownership decision, not a claim of language incompatibility. Initial Yosys/nextpnr adapters implement the customer flow. `nodal-eda` owns projects, UI and whole-product orchestration; this repository provides headless APIs and commands, not a second IDE.
 
+## Optional compiler backends
+
+[ADR 0001](adr/0001-optional-circt-backend.md) records the selected Scala/Rust core and the evidence-gated CIRCT option. Default architecture compilation, fabric RTL emission and device tooling require no additional LLVM/MLIR/CIRCT SDK or application linkage. This does not exclude LLVM components used internally by the ordinary Rust compiler toolchain.
+
+Keep the initial emitter focused and structured. A separate adapter may consume a bounded hierarchical hardware-emission contract and invoke CIRCT for RTL generation or supplemental verification. It must not replace ArchIR, DeviceDB, the configuration model or the mapped-customer-design handoff, nor expose live MLIR objects through core APIs. Preserve templates rather than forcing full routing-graph expansion.
+
+The [CIR track](roadmap/tracks/15-compiler-backend-evaluation.md) separates alternatives review, comparative prototype and conditional opt-in qualification. Review alternatives before extending the emitter into a general HDL compiler; do not make the optional experiment a prerequisite for the initial fabric or existing milestones. Adoption requires configuration-preserving correctness, measured benefit and dependency isolation. A selected backend must retain provenance and declared configuration semantics; an unavailable or unsupported backend fails explicitly rather than silently falling back.
+
 ## Proposed directory structure
 
 These are intended boundaries, not a claim that the directories or implementations already exist. Start with only the modules needed for the active increment.
@@ -57,6 +65,7 @@ adapters/
   nextpnr/                 exporter plus necessary C++/Python bridge
   fabulous/                reference conversion/comparison harness
   vtr/                     architecture exploration adapter
+  circt/                   optional isolated RTL/verification adapter
   physical/                external ASIC synthesis/P&R/signoff drivers
   macros/                  hard-macro view and capability adapters
 cad/rust/                  optional later pack/place/route/STA engines
@@ -71,6 +80,7 @@ verify/
   fixtures/                fixed valid and malformed examples
 bench/scale/               representation and query scale fixtures
 bench/qor/                 routability, timing, power/area experiments
+bench/compiler-backends/   optional emitter/framework comparisons
 devices/reference/nf-tiny/  public/test device profile
 devices/experimental/nf1/   later candidate, not frozen now
 technology/schema/         PDK/macro binding contracts

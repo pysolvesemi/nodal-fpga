@@ -4,9 +4,11 @@
 
 Global blocker: FND-08. Modules: `compiler/rust/fabric-rtl`, `library/rtl`, `devices/reference/nf-tiny` and simulation fixtures. Generated fabric RTL implements the programmable silicon; it is not the customer's mapped design RTL.
 
+Backend policy: keep a focused structured Rust emitter behind a small hardware-emission interface, with no required MLIR/CIRCT dependency. [ADR 0001](../../adr/0001-optional-circt-backend.md) permits an isolated optional backend, controlled by the [CIR track](15-compiler-backend-evaluation.md). None of RTL-01–05 depends on that track. Perform CIR-01's alternatives review before expanding the emitter into a general HDL parser/compiler/optimizer; that scope review may retain the baseline without a CIRCT prototype. Both paths must preserve supported configuration semantics, not specialize the manufactured fabric to an example bitstream.
+
 - [ ] RTL-01 — Structured primitive emission
   Depends on: LIB-01, DB-02.
-  - [ ] RTL-01.a Implement a structured Verilog emission layer with explicit widths, signedness, identifier handling and deterministic ordering.
+  - [ ] RTL-01.a Implement a structured Verilog emission layer with explicit widths, signedness, identifier handling and deterministic ordering; expose a small backend-neutral interface without creating a second general HDL compiler.
   - [ ] RTL-01.b Generate LUT4, DFF and mux instances from primitive contracts, not ad-hoc textual reconstruction of source expressions.
   - [ ] RTL-01.c Preserve hierarchy and source/configuration correspondence in a sidecar manifest.
   - [ ] RTL-01.d Run lint, simulator checks and primitive assertions across parameter boundaries and invalid-mode rejection.
@@ -39,7 +41,7 @@ Global blocker: FND-08. Modules: `compiler/rust/fabric-rtl`, `library/rtl`, `dev
 - [ ] RTL-05 — Synthesis-safe fabric qualification
   Depends on: RTL-04, VER-03, TMC-02.
   - [ ] RTL-05.a Run the intended ASIC synthesis front end on the generated fabric with declared clock/reset/configuration constraints.
-  - [ ] RTL-05.b Check unintended latch/loop inference, unsupported constructs and preservation of required programmable resources.
+  - [ ] RTL-05.b Check unintended latch/loop inference, unsupported constructs and preservation of required programmable resources across supported legal configurations, not only a fixed customer design.
   - [ ] RTL-05.c Compare synthesized primitive/tile implementations to RTL with explicit initialization and black-box assumptions.
   - [ ] RTL-05.d Run representative post-synthesis configured-fabric tests and audit missing or unconstrained timing paths.
   - [ ] RTL-05.e Record netlist/RTL hashes, equivalence scope, timing limitations and final-head qualification evidence.
