@@ -10,7 +10,7 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
   Depends on: none.
   - [ ] FND-01.a Create the minimal Rust workspace, pinned Rust toolchain and formatter/linter/test entrypoints; prove an unprivileged installation path.
   - [ ] FND-01.b Select and pin one Scala build tool/JDK/Scala combination; add a tiny frontend smoke build without requiring MLIR.
-  - [ ] FND-01.c Document core/library/device/adapter/application dependency directions and license/proprietary-IP policy; add dependency-boundary checks, including no LLVM/MLIR/CIRCT dependency in reusable core or the default Rust compiler/emitter.
+  - [ ] FND-01.c Document core/library/device/adapter/application dependency directions and license/proprietary-IP policy; add dependency-boundary checks for reusable core and the default Rust compiler/emitter, with no separately installed LLVM/MLIR/CIRCT SDK or application linkage to those frameworks. Apply the ADR 0001 dependency-isolation matrix; ordinary Rust compiler components are allowed.
   - [ ] FND-01.d Test clean checkout builds and docs-only path handling; distinguish genuinely skipped hardware jobs from passed checks.
   - [ ] FND-01.e Record reproducible commands and final-head bootstrap evidence; confirm no application or concrete device is imported by core.
 
@@ -44,7 +44,7 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
   - [ ] FND-05.b Implement a minimal Scala fixture writer and Rust reader plus canonical text dumps; retain hierarchy instead of fully expanding arrays.
   - [ ] FND-05.c Specify canonical hashing, unknown-version behavior, bounded reads, error paths and migration rules; do not serialize Rust memory layouts.
   - [ ] FND-05.d Test round trips, truncated/malformed inputs, unsupported required features, field ordering and cross-language semantic equality.
-  - [ ] FND-05.e Record the conformance corpus and compatibility matrix; demonstrate Rust tools can consume saved packages with no JVM or LLVM/MLIR/CIRCT present.
+  - [ ] FND-05.e Record the conformance corpus and compatibility matrix; generate the Scala fixture in its pinned authoring environment, then demonstrate consumption by prebuilt Rust tools without Scala/JVM, Rust build tools or LLVM/MLIR/CIRCT application dependencies in the separate saved-package runtime profile.
 
 - [ ] FND-06 — Bootstrap independent verification before generator development
   Depends on: FND-05.
@@ -66,7 +66,7 @@ Modules: initial Rust workspace under `core/rust/`, a minimal Scala build under 
   Depends on: FND-07.
   - [ ] FND-08.a Audit completion evidence for FND-01 through FND-07 and confirm Foundation has no dependency on blocked tracks.
   - [ ] FND-08.b Run clean Rust/Scala builds, schema conformance, negative fixtures, roadmap validation and independent test smoke suites.
-  - [ ] FND-08.c Confirm saved ArchIR loads without Scala/JVM/LLVM/MLIR/CIRCT and reusable core compiles without device libraries or external CAD tools; audit default runtime dependencies separately from the Rust build toolchain.
+  - [ ] FND-08.c Run the default Rust-build, saved-package-runtime and Scala-authoring profiles from ADR 0001 separately; confirm reusable core has no concrete-device, external-CAD or optional-adapter dependency. Keep the ordinary Rust toolchain intact and distinguish its internal components from application SDK/runtime dependencies.
   - [ ] FND-08.d Freeze the initial contract baseline and explicitly list supported and rejected capabilities plus benchmark measurement procedures.
   - [ ] FND-08.e Record final-head evidence and open the downstream-track gate only after every required Foundation leaf is complete.
 

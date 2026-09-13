@@ -13,7 +13,7 @@ Start the CIR-01 review after the minimal emitter exists and before proposing a 
   - [ ] CIR-01.a Identify a concrete emitter-maintenance, transformation or verification need; compare the focused Rust emitter, verified module generation through existing `nodal-hdl`, and an external CIRCT adapter.
   - [ ] CIR-01.b Specify the minimal hierarchical hardware-emission/verification contract, capability negotiation, diagnostics and provenance; keep ArchIR, DeviceDB and mapped-customer-design contracts independent of MLIR objects.
   - [ ] CIR-01.c Select a bounded fixture corpus and pin candidate tools; set correctness, memory/runtime, output-quality and maintenance acceptance criteria before benchmarking, using FND-07 measurement policy.
-  - [ ] CIR-01.d Review no-LLVM/no-JVM default operation, explicit opt-in, process isolation, missing-tool behavior and configuration preservation; record checks needed for each alternative without claiming they have run.
+  - [ ] CIR-01.d Review the ADR 0001 build/runtime isolation matrix, explicit opt-in, process isolation, missing-tool behavior and configuration preservation; distinguish Scala authoring and the ordinary Rust build toolchain from saved-package runtime requirements. Record checks needed for each alternative without claiming they have run.
   - [ ] CIR-01.e Record an evidence-backed proceed-with-experiment, retain-default or defer decision, scope and final-head review report; close only the assessment and leave unperformed prototype/adoption items open.
 
 - [ ] CIR-02 — Prototype and compare without replacing the default
@@ -27,7 +27,7 @@ Start the CIR-01 review after the minimal emitter exists and before proposing a 
 - [ ] CIR-03 — Qualify an adopted adapter as an opt-in backend
   Depends on: CIR-02, RTL-05, VER-07.
   - [ ] CIR-03.a Require the recorded CIR-02 adopt decision; define the supported profile/version matrix and separately packaged adapter/toolchain, with no implicit default or core dependency changes.
-  - [ ] CIR-03.b Run default build/runtime tests with LLVM/MLIR/CIRCT and the JVM absent, plus selected-adapter positive/negative tests; audit transitive dependencies, installation and reproducible manifests.
+  - [ ] CIR-03.b Run the ADR 0001 isolation matrix: default Rust build without separately installed LLVM/MLIR/CIRCT SDKs or Scala/JDK, saved-package runtime without authoring/compiler frameworks, separate Scala-authoring conformance, and selected-adapter positive/negative tests. Keep ordinary Rust compiler components intact; audit application linkage, invoked tools, transitive dependencies, installation and reproducible manifests.
   - [ ] CIR-03.c Apply the existing formal/differential/runtime-configuration and synthesis-equivalence obligations to each advertised profile; assess configuration-map identity and trigger affected physical/timing requalification for changed implementations.
   - [ ] CIR-03.d Test explicit backend selection, failure/cancellation, unavailable/unsupported versions and upgrade/rollback compatibility; require selected-adapter CI for releases that advertise it and retain an independently checked default path.
   - [ ] CIR-03.e Publish exact final-head/profile evidence, actual generation examples, artifact identities and support limits; activate only the qualified opt-in profiles, never blanket MLIR/CIRCT adoption.

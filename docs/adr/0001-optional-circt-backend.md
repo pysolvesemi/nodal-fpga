@@ -4,7 +4,7 @@ Status: accepted architecture direction; implementation and evaluation remain un
 
 ## Decision
 
-Keep the Scala architecture frontend and Rust architecture compiler. ArchIR is a versioned, language-neutral contract, not an MLIR dialect. Rust owns architecture validation, resolved device semantics, DeviceDB and configuration mapping. The default architecture compiler, RTL emitter and device tools must build and run without LLVM, MLIR or CIRCT. Saved packages must also remain usable without Scala or a JVM.
+Keep the Scala architecture frontend and Rust architecture compiler. ArchIR is a versioned, language-neutral contract, not an MLIR dialect. Rust owns architecture validation, resolved device semantics, DeviceDB and configuration mapping. The default Rust architecture compiler, RTL emitter and device tools must not require a separately installed LLVM/MLIR/CIRCT SDK or application linkage to those frameworks. The ordinary pinned Rust compiler toolchain is allowed, including its own internal components. Saved ArchIR and device packages must remain usable without Scala or a JVM; this does not remove the toolchain needed to author Scala architecture sources.
 
 Keep the existing high-level Nodal compiler and its MLIR pipeline in `nodal-hdl`. That project and qualified synthesis tools hand off through the mapped-design contract. Sharing MLIR-based source compilation does not require a second MLIR dependency in the FPGA fabric generator.
 
@@ -39,6 +39,21 @@ The backend contract describes a bounded, hierarchical hardware-emission subset:
 Possible future locations are `adapters/circt/`, `verify/differential/circt/` and `bench/compiler-backends/`. They are adapter/test packages, not dependencies of reusable core or device libraries. Do not scaffold these directories or add an LLVM toolchain merely because they appear in this plan.
 
 An explicitly requested unavailable backend must fail with a useful diagnostic. Do not silently substitute a different backend or claim its qualification. Default tool invocations must not discover, download or invoke CIRCT implicitly. Record backend/tool versions, options, input hashes and capability coverage in artifact manifests.
+
+## Dependency-isolation test matrix
+
+Test the build environment and the delivered runtime separately. The following checks apply to the named component, not to every executable in the complete EDA flow.
+
+| Profile | Allowed inputs/toolchain | Required isolation |
+| --- | --- | --- |
+| Default Rust build | Pinned Rust/Cargo, host build essentials and declared core dependencies | No Scala/JDK, separately installed LLVM/MLIR/CIRCT SDK, adapter download, or application linkage to those frameworks. Do not remove components bundled inside the ordinary Rust compiler to satisfy this check. |
+| Saved-package runtime | Prebuilt Rust compiler/emitter/device commands, saved ArchIR/device package, declared OS/runtime dependencies | No Scala/JVM, Rust build tools, or LLVM/MLIR/CIRCT application libraries/executables required. Prove package loading, supported RTL emission and device/configuration inspection without invoking an authoring compiler. |
+| Scala architecture authoring | Pinned Scala build tool, Scala and JDK selected in FND-01 | Produce the portable ArchIR package without a mandatory MLIR/CIRCT SDK; validate consumption in the separate saved-package runtime profile. This profile is not claimed to be JVM-free. |
+| Explicitly selected CIRCT adapter | Separately pinned adapter and its declared CIRCT/LLVM/MLIR tools | Dependencies stay confined to the opt-in profile; test absent/unsupported tools, no implicit fallback, and unchanged default-profile operation. |
+
+Record build commands, dependency manifests, runtime library dependencies and invoked child processes. Checking that an executable named `mlir-opt` is missing is not sufficient evidence of dependency isolation; do not replace these checks with a blanket ban on LLVM files inside the host or Rust toolchain. External Yosys/nextpnr tools and the existing `nodal-hdl` compiler retain their own declared requirements; this matrix does not claim the entire user-design flow has no external dependencies.
+
+FND-01, FND-05 and FND-08 establish the applicable baseline profiles using only their bootstrap fixture/package-reader capabilities. RTL-emission and device/configuration-inspection checks activate when their owning tracks implement those capabilities; they must not create a Foundation dependency on blocked tracks or be counted as passed while unavailable. CIR-01 reviews the matrix for the proposed adapter, and CIR-03 reruns the default and selected-adapter profiles before any opt-in release claim. This matrix is an acceptance specification, not evidence that builds or runtime tests have already passed.
 
 ## Correctness and adoption gates
 
