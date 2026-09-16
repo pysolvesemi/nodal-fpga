@@ -43,6 +43,12 @@ A required task cannot be silently deleted or marked done as not applicable. A g
 
 Assessment, prototype and adoption are separate deliverables. A completed assessment may conclude retain-default or defer, but it cannot mark unperformed implementation or qualification items `[x]`. Keep those items unchecked and record their dormant reason. Explicit proceed/adopt conditions are additional blockers, not substitutes for checkbox dependencies. For the CIR track, CIR-02 requires CIR-01's proceed decision and CIR-03 requires CIR-02's adopt decision. An advertised optional backend must pass its own qualification; a default-only release need not implement dormant optional tracks.
 
+## External silicon and production gates
+
+[DFT-06/07](tracks/16-dft-manufacturing-test.md) and silicon/product gates require actual fabricated-device or selected-tester measurements, with sample, device/process/package, fixture, pattern, model and tool revisions plus raw-result provenance and uncertainty. A runnable adapter, mocked dataset, simulation, emulation or exported ATE file cannot stand in for those measurements. Preparatory test software/interface work belongs to the pre-silicon DFT increments and can be delivered without claiming silicon qualification.
+
+Labs/manufacturing partners may produce the evidence externally. This repository records requirements, portable artifacts, correlation and qualification decisions; it does not require equipment ownership or factory operation. Missing samples, access or partner evidence keeps the affected gate open, but does not block earlier software/generator releases that do not depend on it. Per-profile absent hardware must be explicitly declared and its applicability checked; do not silently mark an unsupported required feature complete. The ordinary nested-checklist and regression rules still apply.
+
 ## Planned enforcement
 
 FND-03 will add a roadmap validator that ignores fenced examples, checks unique increment/sub-item IDs, indentation, parent/descendant state consistency, dependency existence and cycles, and required completion evidence. It must include negative fixtures with an incorrectly closed parent. This planning commit does not claim that validator already exists.

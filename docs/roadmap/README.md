@@ -10,7 +10,7 @@ Each track file contains the authoritative parent and child checkboxes. This ind
 
 **Global blocker:** every non-Foundation increment requires `FND-08` complete. Other `Depends on:` entries are additional blockers. A track can proceed in parallel after its blockers clear; no track must wait for all unrelated tracks. Foundation includes minimal tests and schema fixtures so the dependency graph is not circular.
 
-The roadmap contains 75 increments across 16 tracks, including the optional compiler-backend evaluation track. All increments start `[ ]`. Completing or amending planning documentation does not complete Foundation or implement a backend.
+The roadmap contains 82 increments across 17 tracks, including the optional compiler-backend evaluation track. All increments start `[ ]`. Completing or amending planning documentation does not complete Foundation or implement a backend.
 
 ## Tracks
 
@@ -32,6 +32,7 @@ The roadmap contains 75 increments across 16 tracks, including the optional comp
 | NAT | [13 Native CAD](tracks/13-native-cad.md) | NAT-01–04 | Optional native Rust pack/place/route, only after measured need |
 | ADV | [14 Advanced families](tracks/14-advanced-families.md) | ADV-01–04 | Heterogeneous devices, regional configuration, multi-die and high-end qualification |
 | CIR | [15 Compiler-backend evaluation](tracks/15-compiler-backend-evaluation.md) | CIR-01–03 | Optional CIRCT assessment, comparative prototype and conditional opt-in qualification |
+| DFT | [16 DFT and manufacturing test](tracks/16-dft-manufacturing-test.md) | DFT-01–07 | Pre-silicon test architecture/generation/acceptance, then external silicon and production-test evidence |
 
 ## Milestones, not duplicate task lists
 
@@ -41,8 +42,8 @@ The roadmap contains 75 increments across 16 tracks, including the optional comp
 | M1 Generated tiny fabric | DSL-04, DB-05, LIB-02, RTL-04, CFG-04, VER-03 | Scala-to-device/RTL/configuration works on a small supported profile |
 | M2 Complete verified tool flow | CAD-06, CFG-05, VER-07, PERF-03 | Both supported HDL entry paths produce independently checked working configurations |
 | M3 Hardware emulation | EMU-03 | Configured fabric works on the selected emulation board |
-| M4 Tapeout readiness | PHY-04 | Frozen signoff/test evidence; not authorization to submit a tapeout |
-| M5 Small commercial device | PROD-03 | Silicon-correlated, explicitly qualified product and supported SDK |
+| M4 Tapeout readiness | PHY-04 | Frozen signoff and DFT-01–05 evidence; not authorization to submit a tapeout |
+| M5 Small commercial device | PROD-03 | Silicon-correlated product/SDK, including DFT-06/07 actual-silicon and production-test qualification |
 | M6 Advanced-family qualification | ADV-04 | Qualified advanced profile, not merely large database generation |
 
 Milestones inherit every transitive dependency. A release cannot skip a dependency because its direct list is short. None of M0–M6 requires the optional CIR track. A release that separately advertises a CIRCT-backed profile must also satisfy CIR-03 for that profile; omitting an optional backend is not the same as qualifying it.
@@ -52,6 +53,14 @@ Milestones inherit every transitive dependency. A release cannot skip a dependen
 [Early fabric baseline and assumption contract](../verification-early-baseline.md) strengthens existing leaves without adding a late-track dependency to Foundation. FND-02 reviews the common subset and assumption ledger; FND-06 runs independent fixtures against pinned FABulous-generated reference resources before the production generator exists. RTL-01–03 compare actual generated primitives/tiles/small fabrics, and RTL-04 adds comparison through each real configuration loader. VER-05 remains the full toolchain comparison, not the first external check.
 
 DB-01–04 and DB-06 require semantic invariance checks for permitted renaming/reordering, template compression, partitioning, reader paths and incremental rebuilds. Only small reference fixtures need exhaustive expansion. Each owning increment must supply its evidence before its parent closes; missing reference runs or unresolved critical common-subset mismatches are not successful skips. These obligations are inherited by existing milestones without changing their dependency declarations.
+
+## DFT and external silicon evidence
+
+[Track 16](tracks/16-dft-manufacturing-test.md) separates pre-silicon development (DFT-01–05) from externally executed silicon correlation and production-test qualification (DFT-06/07). Nodal-FPGA generates test architecture/artifacts and consumes measured results; it does not own laboratory equipment, manufacturing operations or procurement. No Nodal-HDL implementation or additional repository is required.
+
+DFT-01 establishes test/fault and bench/ATE interface contracts before PHY-01 closure. DFT-02/03 supply test structures before PHY-02 closure; DFT-04 generates fabric diagnostics. PHY-03 supplies implemented-netlist/electrical evidence to DFT-05, and PHY-04 requires DFT-05. DFT-06 feeds PROD-02; DFT-07 consumes PROD-02 and feeds PROD-03. These additional edges intentionally strengthen M4/M5 without adding DFT or actual-silicon blockers to M0–M3 or creating backward dependencies into Foundation.
+
+FABulous comparisons are required for the declared common subset, with independent expected semantics and fault checks; absent comparator capabilities do not waive Nodal test requirements. Keep configuration shift chains distinct from ASIC scan, resource coverage distinct from manufacturing-fault coverage, and test-program generation distinct from measured silicon qualification. Tester feasibility and handoff planning occur before tapeout, even though actual ATE correlation occurs afterward.
 
 ## Compiler-framework boundary
 
