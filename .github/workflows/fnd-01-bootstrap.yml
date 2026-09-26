@@ -67,8 +67,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p artifacts .cache/cargo .cache/rustup .cache/toolchains
-          docker build --pull --file ci/rust.Dockerfile --tag nf-fnd01-rust . 2>&1 | tee artifacts/rust-image-build.log
+          docker pull rust:1.98.1-bookworm 2>&1 | tee artifacts/rust-base-pull.log
           docker image inspect rust:1.98.1-bookworm > artifacts/rust-base-image.json
+          docker build --pull --file ci/rust.Dockerfile --tag nf-fnd01-rust . 2>&1 | tee artifacts/rust-image-build.log
+          docker image inspect nf-fnd01-rust > artifacts/rust-build-image.json
       - name: Unprivileged Rust installation, ownership, checks and clean repeats
         shell: bash
         run: |
