@@ -1,63 +1,30 @@
-name: FND-01 workflow inventory
+name: FND-01 targeted dispatch
 on:
   push:
     branches: ['ci-control/fnd-01-pr1-5b13c40']
-    paths: ['.github/workflows/fnd-01-control.yml']
+    paths: ['.github/workflows/fnd-01-control.yml', '.github/scripts/fnd_01_dispatch.py']
 permissions:
   contents: read
-  actions: read
+  actions: write
 concurrency:
   group: fnd-01-pr1-5b13c40-controller
   cancel-in-progress: false
 jobs:
-  inventory:
+  dispatch:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    env:
-      GH_TOKEN: ${{ github.token }}
+    timeout-minutes: 10
     steps:
-      - name: Validate live identities and inspect workflow registration without dispatch
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import base64, hashlib, json, os, urllib.request
-          REPO = "pysolvesemi/nodal-fpga"
-          HEAD = "5b13c40f820952434d406d3e4d9ed50e22dde772"
-          TREE = "9ee303a536ac50aa81cbd758a26fc3dcfc4c127c"
-          BASE = "cd6ec64e7f25e60ac4277159b76279c08d5d8210"
-          PATH = ".github/workflows/fnd-01-bootstrap.yml"
-          BLOB = "f0113e4cdefb72a759745e34ee2b2bd8754057a5"
-          def get(path):
-              request = urllib.request.Request("https://api.github.com/repos/" + REPO + path,
-                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"],
-                           "Accept": "application/vnd.github+json",
-                           "X-GitHub-Api-Version": "2022-11-28"})
-              with urllib.request.urlopen(request, timeout=30) as response:
-                  return json.load(response)
-          assert os.environ["GITHUB_REPOSITORY"] == REPO
-          assert get("/git/ref/heads/dev")["object"]["sha"] == BASE
-          assert get("/git/ref/heads/increment/fnd-01-bootstrap")["object"]["sha"] == HEAD
-          assert get("/git/commits/" + HEAD)["tree"]["sha"] == TREE
-          pr = get("/pulls/1")
-          assert pr["state"] == "open" and pr["draft"] and pr["head"]["sha"] == HEAD
-          assert pr["base"]["ref"] == "dev" and pr["base"]["sha"] == BASE
-          source = get("/contents/" + PATH + "?ref=" + HEAD)
-          raw = base64.b64decode(source["content"], validate=False)
-          assert source["sha"] == BLOB
-          assert hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest() == BLOB
-          workflows = []
-          for page in range(1, 21):
-              data = get("/actions/workflows?per_page=100&page=" + str(page))
-              workflows.extend(data["workflows"])
-              if len(workflows) >= data["total_count"]:
-                  break
-          else:
-              raise RuntimeError("workflow inventory exceeded bound")
-          matches = [w for w in workflows if w["path"] == PATH]
-          print(json.dumps({"kind":"read-only-workflow-inventory", "candidate":HEAD,
-              "tree":TREE, "workflow_blob":BLOB,
-              "workflows":[{"id":w["id"],"path":w["path"],"state":w["state"]} for w in workflows],
-              "matches":len(matches)}, sort_keys=True))
-          assert len(matches) == 1 and matches[0]["state"] == "active", "candidate workflow is not registered/active"
-          print("READ_ONLY_DISCOVERY_COMPLETE; no dispatch or source qualification performed")
-          PY
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Dispatch only the allowlisted exact-head lanes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/fnd_01_dispatch.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: fnd-01-dispatch-ledger-5b13c40-${{ github.run_attempt }}
+          path: dispatch-ledger.jsonl
+          if-no-files-found: error
