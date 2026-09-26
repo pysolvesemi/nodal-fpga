@@ -1,0 +1,148 @@
+name: FND-01 bootstrap
+run-name: FND-01 ${{ inputs.lane || 'all' }} / ${{ github.event.pull_request.head.sha || github.sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      lane:
+        description: 'Affected bootstrap lane; all is reserved for full qualification'
+        required: true
+        default: contracts
+        type: choice
+        options: [contracts, rust, scala, all]
+  push:
+    branches: [dev]
+    paths: ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'core/**', 'frontend/**', 'tools/**', 'toolchains/**', 'tests/bootstrap/**', 'ci/**', 'nf', '.github/workflows/fnd-01-bootstrap.yml']
+  pull_request:
+    branches: [dev]
+    paths: ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'core/**', 'frontend/**', 'tools/**', 'toolchains/**', 'tests/bootstrap/**', 'ci/**', 'nf', '.github/workflows/fnd-01-bootstrap.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fnd-01-${{ github.event.pull_request.head.sha || github.sha }}-${{ inputs.lane || 'all' }}
+  cancel-in-progress: false
+
+env:
+  NF_EXPECT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  contracts:
+    if: github.event_name != 'workflow_dispatch' || inputs.lane == 'contracts' || inputs.lane == 'all'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Source identity and ownership controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          ./nf identity > artifacts/contracts-source.json
+          ./nf check contracts 2>&1 | tee artifacts/contracts.log
+          git diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: fnd-01-contracts-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: artifacts/
+          if-no-files-found: error
+
+  rust:
+    if: github.event_name != 'workflow_dispatch' || inputs.lane == 'rust' || inputs.lane == 'all'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Build separate Rust environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts .cache/cargo .cache/rustup .cache/toolchains
+          docker pull rust:1.98.1-bookworm 2>&1 | tee artifacts/rust-base-pull.log
+          docker image inspect rust:1.98.1-bookworm > artifacts/rust-base-image.json
+          docker build --pull --file ci/rust.Dockerfile --tag nf-fnd01-rust . 2>&1 | tee artifacts/rust-image-build.log
+          docker image inspect nf-fnd01-rust > artifacts/rust-build-image.json
+      - name: Unprivileged Rust installation, ownership, checks and clean repeats
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --user "$(id -u):$(id -g)" --cap-drop=ALL --security-opt no-new-privileges:true \
+            --volume "$GITHUB_WORKSPACE:/work" --workdir /work \
+            --env NF_EXPECT_SHA --env PYTHONUNBUFFERED=1 \
+            --env CARGO_HOME=/work/.cache/cargo --env RUSTUP_HOME=/work/.cache/rustup \
+            --env NF_TOOL_CACHE=/work/.cache/toolchains nf-fnd01-rust bash -c '
+              set -euo pipefail
+              python3 tools/core_profile.py
+              ./nf bootstrap rust
+              ./nf identity > artifacts/rust-source.json
+              ./nf check rust
+              ./nf reproduce rust
+              git diff --exit-code
+            ' 2>&1 | tee artifacts/rust.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: fnd-01-rust-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: artifacts/
+          if-no-files-found: error
+
+  scala:
+    if: github.event_name != 'workflow_dispatch' || inputs.lane == 'scala' || inputs.lane == 'all'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Unprivileged pinned JDK/sbt setup, compile and clean repeats
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          ./nf identity > artifacts/scala-source.json
+          ./nf bootstrap scala 2>&1 | tee artifacts/scala-setup.log
+          ./nf check scala 2>&1 | tee artifacts/scala.log
+          ./nf reproduce scala 2>&1 | tee artifacts/scala-reproduce.log
+          git diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: fnd-01-scala-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: artifacts/
+          if-no-files-found: error
+
+  required:
+    if: always()
+    needs: [contracts, rust, scala]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      EVENT: ${{ github.event_name }}
+      LANE: ${{ inputs.lane }}
+      CONTRACTS_RESULT: ${{ needs.contracts.result }}
+      RUST_RESULT: ${{ needs.rust.result }}
+      SCALA_RESULT: ${{ needs.scala.result }}
+    steps:
+      - name: Require every selected lane
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          lane = os.environ['LANE'] if os.environ['EVENT'] == 'workflow_dispatch' else 'all'
+          assert lane in {'contracts', 'rust', 'scala', 'all'}, lane
+          for name in ['contracts', 'rust', 'scala']:
+              result = os.environ[name.upper() + '_RESULT']
+              expected = 'success' if lane in {name, 'all'} else 'skipped'
+              print(name, result, 'required' if expected == 'success' else 'outside selected lane; no test credit')
+              assert result == expected, (name, result, expected)
+          PY
