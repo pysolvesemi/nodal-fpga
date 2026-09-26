@@ -90,32 +90,33 @@ must not claim later emission, loader, device inspection or physical validation.
 
 ## Increment checklists
 
-- [ ] FND-01 — Bootstrap the repository and ownership boundaries
+- [x] FND-01 — Bootstrap the repository and ownership boundaries
   Depends on: none.
-  - [ ] FND-01.a Create the minimal Rust workspace, pinned Rust toolchain and formatter/linter/test entrypoints; prove an unprivileged installation path.
-    - [ ] FND-01.a.1 Create only the Rust workspace/crates needed for the bootstrap, with the selected Rust/Cargo versions and checked-in dependency lock.
-    - [ ] FND-01.a.2 Provide formatter, lint and test commands; run the installation/bootstrap path as an unprivileged user and retain the actual commands and results.
-  - [ ] FND-01.b Select and pin one Scala build tool/JDK/Scala combination; add a tiny frontend smoke build without requiring MLIR.
-    - [ ] FND-01.b.1 Select and record one compatible Scala/build-tool/JDK set and its reproducible bootstrap procedure; do not maintain parallel build systems without an approved reason.
-    - [ ] FND-01.b.2 Compile and run a tiny Scala frontend smoke fixture without requiring an LLVM/MLIR/CIRCT SDK; label it as bootstrap rather than the production architecture DSL.
-  - [ ] FND-01.c Document core/library/device/adapter/application dependency directions and license/proprietary-IP policy; add dependency-boundary checks for reusable core and the default Rust compiler/emitter, with no separately installed LLVM/MLIR/CIRCT SDK or application linkage to those frameworks. Apply the ADR 0001 dependency-isolation matrix; ordinary Rust compiler components are allowed.
-    - [ ] FND-01.c.1 Document one-way core, library, device, adapter and application dependencies plus license and proprietary-content boundaries against the architecture and ADR.
-    - [ ] FND-01.c.2 Implement dependency-boundary checks for the existing bootstrap modules; include an intentionally forbidden import/dependency that the intended check rejects.
-    - [ ] FND-01.c.3 Verify the default Rust-build profile without Scala/JDK or optional compiler SDK/application linkage; retain dependency and invoked-process evidence while allowing normal Rust toolchain components.
-  - [ ] FND-01.d Test clean checkout builds and docs-only path handling; distinguish genuinely skipped hardware jobs from passed checks.
-    - [ ] FND-01.d.1 Run clean-checkout Rust and Scala bootstrap checks in their separate declared environments, including useful failure diagnostics for missing prerequisites.
-    - [ ] FND-01.d.2 Establish the minimal CI checks/triggers needed for bootstrap qualification under AGENTS.md; verify targeted execution is available without changing main or launching unrelated suites.
-    - [ ] FND-01.d.3 Check documentation-only path/skip behavior and explicit not-yet-applicable hardware lanes; no absent or skipped lane receives execution credit.
-  - [ ] FND-01.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-01.f.1 Review the build and ownership evidence independently of the smoke fixtures; verify that passing compilation did not bypass dependency checks.
-    - [ ] FND-01.f.2 Record why generated-fabric simulation, synthesis and formal qualification are outside this bootstrap profile, with FND-06 and the later RTL/VER owners retained.
-  - [ ] FND-01.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
-    - [ ] FND-01.g.1 Review workspace size, dependency burden and command clarity; remove unnecessary scaffolding only when no required boundary or evidence is lost.
-    - [ ] FND-01.g.2 Repeat the bootstrap in clean working directories; compare lockfiles and declared outputs, recording reproducibility limits and observed build costs without a production-scale claim.
-  - [ ] FND-01.e Record reproducible commands and final-head bootstrap evidence; confirm no application or concrete device is imported by core.
-    - [ ] FND-01.e.1 Retain bootstrap commands, exact source/tree and tool identities, dependency evidence, positive/negative results and profile limitations in the completion report.
-    - [ ] FND-01.e.2 Complete applicable targeted-first/full-CI qualification, review and verified integration under AGENTS.md; distinguish executed checks from suppressed post-merge CI.
-    - [ ] FND-01.e.3 Confirm every required descendant and closure obligation is complete before checking FND-01; report the actual Scala smoke example and the absence of generated-Verilog effects.
+  Evidence: [FND-01 completion report](../../completion/FND-01.md), exact CI/artifacts and verified implementation integration; documentation closure qualified separately.
+  - [x] FND-01.a Create the minimal Rust workspace, pinned Rust toolchain and formatter/linter/test entrypoints; prove an unprivileged installation path.
+    - [x] FND-01.a.1 Create only the Rust workspace/crates needed for the bootstrap, with the selected Rust/Cargo versions and checked-in dependency lock.
+    - [x] FND-01.a.2 Provide formatter, lint and test commands; run the installation/bootstrap path as an unprivileged user and retain the actual commands and results.
+  - [x] FND-01.b Select and pin one Scala build tool/JDK/Scala combination; add a tiny frontend smoke build without requiring MLIR.
+    - [x] FND-01.b.1 Select and record one compatible Scala/build-tool/JDK set and its reproducible bootstrap procedure; do not maintain parallel build systems without an approved reason.
+    - [x] FND-01.b.2 Compile and run a tiny Scala frontend smoke fixture without requiring an LLVM/MLIR/CIRCT SDK; label it as bootstrap rather than the production architecture DSL.
+  - [x] FND-01.c Document core/library/device/adapter/application dependency directions and license/proprietary-IP policy; add dependency-boundary checks for reusable core and the default Rust compiler/emitter, with no separately installed LLVM/MLIR/CIRCT SDK or application linkage to those frameworks. Apply the ADR 0001 dependency-isolation matrix; ordinary Rust compiler components are allowed.
+    - [x] FND-01.c.1 Document one-way core, library, device, adapter and application dependencies plus license and proprietary-content boundaries against the architecture and ADR.
+    - [x] FND-01.c.2 Implement dependency-boundary checks for the existing bootstrap modules; include an intentionally forbidden import/dependency that the intended check rejects.
+    - [x] FND-01.c.3 Verify the default Rust-build profile without Scala/JDK or optional compiler SDK/application linkage; retain dependency and invoked-process evidence while allowing normal Rust toolchain components.
+  - [x] FND-01.d Test clean checkout builds and docs-only path handling; distinguish genuinely skipped hardware jobs from passed checks.
+    - [x] FND-01.d.1 Run clean-checkout Rust and Scala bootstrap checks in their separate declared environments, including useful failure diagnostics for missing prerequisites.
+    - [x] FND-01.d.2 Establish the minimal CI checks/triggers needed for bootstrap qualification under AGENTS.md; verify targeted execution is available without changing main or launching unrelated suites.
+    - [x] FND-01.d.3 Check documentation-only path/skip behavior and explicit not-yet-applicable hardware lanes; no absent or skipped lane receives execution credit.
+  - [x] FND-01.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
+    - [x] FND-01.f.1 Review the build and ownership evidence independently of the smoke fixtures; verify that passing compilation did not bypass dependency checks.
+    - [x] FND-01.f.2 Record why generated-fabric simulation, synthesis and formal qualification are outside this bootstrap profile, with FND-06 and the later RTL/VER owners retained.
+  - [x] FND-01.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
+    - [x] FND-01.g.1 Review workspace size, dependency burden and command clarity; remove unnecessary scaffolding only when no required boundary or evidence is lost.
+    - [x] FND-01.g.2 Repeat the bootstrap in clean working directories; compare lockfiles and declared outputs, recording reproducibility limits and observed build costs without a production-scale claim.
+  - [x] FND-01.e Record reproducible commands and final-head bootstrap evidence; confirm no application or concrete device is imported by core.
+    - [x] FND-01.e.1 Retain bootstrap commands, exact source/tree and tool identities, dependency evidence, positive/negative results and profile limitations in the completion report.
+    - [x] FND-01.e.2 Complete applicable targeted-first/full-CI qualification, review and verified integration under AGENTS.md; distinguish executed checks from suppressed post-merge CI.
+    - [x] FND-01.e.3 Confirm every required descendant and closure obligation is complete before checking FND-01; report the actual Scala smoke example and the absence of generated-Verilog effects.
 
 - [ ] FND-02 — Freeze the initial architecture and project contracts
   Depends on: FND-01.

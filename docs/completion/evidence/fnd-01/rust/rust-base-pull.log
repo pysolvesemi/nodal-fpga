@@ -1,0 +1,26 @@
+1.98.1-bookworm: Pulling from library/rust
+eaac70c68abd: Pulling fs layer
+7b2de2423ebd: Pulling fs layer
+81578410df16: Pulling fs layer
+de9e8d0a0071: Pulling fs layer
+47495189b361: Pulling fs layer
+de9e8d0a0071: Waiting
+47495189b361: Waiting
+7b2de2423ebd: Verifying Checksum
+7b2de2423ebd: Download complete
+eaac70c68abd: Verifying Checksum
+eaac70c68abd: Download complete
+81578410df16: Verifying Checksum
+81578410df16: Download complete
+de9e8d0a0071: Verifying Checksum
+de9e8d0a0071: Download complete
+47495189b361: Verifying Checksum
+47495189b361: Download complete
+eaac70c68abd: Pull complete
+7b2de2423ebd: Pull complete
+81578410df16: Pull complete
+de9e8d0a0071: Pull complete
+47495189b361: Pull complete
+Digest: sha256:93ce27a88655056a51dbdd8f5f2d7ddc071c7b0070fb288a37b5a285fc83971e
+Status: Downloaded newer image for rust:1.98.1-bookworm
+docker.io/library/rust:1.98.1-bookworm

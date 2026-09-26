@@ -1,0 +1,87 @@
+{
+  "scope": "FND-01 build-only; no hardware qualification",
+  "source": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+  "tree": "31ad3cf3767020c584066d9d133b606ea91b6826",
+  "workflow": {
+    "id": 367539769,
+    "path": ".github/workflows/fnd-01-bootstrap.yml",
+    "git_blob": "a721884b8daa6fa16f7867988a2273fc02288c96"
+  },
+  "lanes": {
+    "contracts": {
+      "run_id": 36226115767,
+      "attempt": 1,
+      "artifact_id": 10901221076,
+      "archive_sha256": "ce0913b514ff29b903eecf4fb06525bc3da2e98ff944c953ff19055d90d30a86",
+      "source": {
+        "head": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826",
+        "dirty": false,
+        "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+        "python": "3.12.3",
+        "uid": 1001,
+        "scope": "FND-01 build-only; no fabric or Verilog qualification"
+      },
+      "retained_files": {
+        "contracts/contracts-source.json": "51697688918b76582b496252136f0e452b59b53c6262ca7aaef301d3cfd574ea",
+        "contracts/contracts.log": "a6357bb2edc5bb44f0195316cb48b38df8617b9f0ddf39da00461c715aac9a08"
+      }
+    },
+    "rust": {
+      "run_id": 36226119663,
+      "attempt": 1,
+      "artifact_id": 10901230972,
+      "archive_sha256": "52700057dc1a8c732bc6b6b1ae4dc27a097d2a2273eb32c431ee5d9273fe9040",
+      "source": {
+        "head": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826",
+        "dirty": false,
+        "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.36",
+        "python": "3.11.2",
+        "uid": 1001,
+        "scope": "FND-01 build-only; no fabric or Verilog qualification"
+      },
+      "retained_files": {
+        "rust/rust-base-image.json": "8b272ebf4208c3826d495003f9509abc005cb14ca41894af0fd6195ade8cac31",
+        "rust/rust-base-pull.log": "fb57390580df86dcc6bd0cf87004164a5cb0148c63c50024ffc4e4910516753b",
+        "rust/rust-build-image.json": "061af47556e654b8cb658b1dc77b5ff490d22439629133be086b6eb8807caf20",
+        "rust/rust-image-build.log": "086556d87b4f2af9aa360618f357e58d3eb44d8642577fd4bd36a6ee73e78c61",
+        "rust/rust-source.json": "65f110bc54309d809787c2b5af467c918249addc0a7c9dd99015e038e0eb66a5",
+        "rust/rust.log": "914dfc37af55413c791fad2db13fbf90e753908ca0dc597eae0ba56d99ac78f4"
+      }
+    },
+    "scala": {
+      "run_id": 36226124675,
+      "attempt": 1,
+      "artifact_id": 10900857115,
+      "archive_sha256": "3cec3b52fe7229dc7875037887719caa0c70f3498734b219a75917569c6898d1",
+      "source": {
+        "head": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826",
+        "dirty": false,
+        "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+        "python": "3.12.3",
+        "uid": 1001,
+        "scope": "FND-01 build-only; no fabric or Verilog qualification"
+      },
+      "retained_files": {
+        "scala/scala-reproduce.log": "4ded3b0e5fee264f150db73acb7a051803c87d4fa6d7035e62fceeb5681e7aa6",
+        "scala/scala-source.json": "51697688918b76582b496252136f0e452b59b53c6262ca7aaef301d3cfd574ea",
+        "scala/scala-setup.log": "d7e2029e44e49a017213922f1ab63562ab287969eac63d256898c2bf57a89d76",
+        "scala/scala.log": "7703e0049c49007d93c518526e65e89c32e177a825c193aefdf5ce53526304c8"
+      }
+    }
+  },
+  "integration": {
+    "pr": 1,
+    "merge": "15485fbf1a90c56ecc574d18e389e9c65de86347",
+    "tree": "31ad3cf3767020c584066d9d133b606ea91b6826",
+    "parents": [
+      "cd6ec64e7f25e60ac4277159b76279c08d5d8210",
+      "c3e2a789db06c90bc1534f0483b100810b4e7a8b"
+    ],
+    "post_merge_ci": "skipped",
+    "reason": "qualified-identical-tree-merge",
+    "observed_post_merge_runs": 0
+  }
+}
