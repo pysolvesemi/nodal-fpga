@@ -1,0 +1,30 @@
+name: FND-01 targeted dispatch
+on:
+  push:
+    branches: ['ci-control/fnd-01-pr1-c3e2a78']
+    paths: ['.github/workflows/fnd-01-control.yml', '.github/scripts/fnd_01_dispatch.py']
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: fnd-01-pr1-c3e2a78-controller
+  cancel-in-progress: false
+jobs:
+  dispatch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Dispatch only the allowlisted exact-head lanes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/fnd_01_dispatch.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: fnd-01-dispatch-ledger-c3e2a78-${{ github.run_attempt }}
+          path: dispatch-ledger.jsonl
+          if-no-files-found: error
