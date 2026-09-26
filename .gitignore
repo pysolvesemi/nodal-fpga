@@ -1,0 +1,7 @@
+.cache/
+artifacts/
+target/
+__pycache__/
+*.pyc
+.bsp/
+.metals/

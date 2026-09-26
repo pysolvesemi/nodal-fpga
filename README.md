@@ -23,6 +23,15 @@ MLIR/CIRCT is not a foundational dependency. A separate [optional evaluation tra
 
 ## Current status
 
-Planning only. All implementation increments and sub-items start unchecked. This documentation does not claim that a frontend, backend, fabric, passing verification suite, or silicon implementation already exists.
+FND-01's build-only Rust/Scala bootstrap is in development on its increment
+branch. Qualification and closure remain tracked by the authoritative checklist;
+no production frontend, backend, fabric or silicon implementation is claimed.
 
 Development planning is on `dev`. Do not modify or merge into `main` without explicit authorization.
+
+## Bootstrap development
+
+The FND-01 branch introduces a minimal Rust/Scala build baseline. See
+[developer bootstrap](docs/development/bootstrap.md) for pinned tools, commands,
+ownership checks and qualification boundaries. Its smoke programs do not
+generate FPGA hardware or implement the production architecture DSL.

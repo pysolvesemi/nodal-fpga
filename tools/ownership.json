@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "core_members": ["core/rust/bootstrap"],
+  "core_registry_allowlist": [],
+  "scope": "FND-01 bootstrap; extend explicitly when an owning increment adds a module"
+}
