@@ -87,7 +87,7 @@ def bootstrap(profile: str, p: dict) -> None:
         raise BootstrapError("NF-ROOT-SETUP: run bootstrap as an ordinary user")
     if profile == "rust":
         run([require_tool("rustup"), "toolchain", "install", p["rust"], "--profile", "minimal",
-             "--component", "rustfmt", "--component", "clippy"])
+             "--component", "rustfmt", "--component", "clippy", "--no-self-update"])
     else:
         if platform.system() != "Linux" or platform.machine() != "x86_64":
             raise BootstrapError("NF-PLATFORM: automated JDK setup currently qualifies Linux x86_64")

@@ -27,6 +27,24 @@ The shared workflow definition changes, so fresh contracts, Rust and Scala
 targeting is required on the repair head; prior successes remain historical.
 No full qualification, integration or checklist closure is claimed.
 
+The image-inspection repair was published as
+`53db34f9185aa28bd50fd36d4d3c677cdc52ad39`, tree
+`5c9a17ac8dd5c57b6776575b390e999adf538e16`. Contracts run `36225887257`
+passed. Scala run `36225896635` executed successfully. Rust run `36225891888`
+passed image setup and the absent-SDK/unprivileged-user guard, then rustup
+installed the pinned compiler but failed its automatic self-update because the
+installer is managed outside the fresh writable Cargo cache. The next repair
+uses the [documented rustup option](https://rust-lang.github.io/rustup/basics.html)
+`--no-self-update`. This preserves exact toolchain installation and every check.
+Shared command changes require fresh three-lane targeting on the new head.
+
+Controller `36225879068` accepted all three dispatches, then failed closed while
+GitHub briefly exposed the registration workflow's title for the queued Scala
+run. The existing Scala run was reconciled by its exact SHA/ref/workflow and
+actual executed job; no duplicate dispatch was sent. A subsequent controller
+may wait within its existing bounded read-only observation loop for queued title
+materialization, while refusing to send any additional POST on ambiguity.
+
 Read-only registration run `36225216557` established the workflow after discovery
 run `36225086334` found it unregistered. Isolated controller run `36225633141`
 dispatched the three runs on the exact candidate; controllers are not test credit.

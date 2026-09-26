@@ -26,8 +26,10 @@ unqualified until independently exercised; do not infer cross-platform support.
 
 Run from the repository root as an ordinary user. The Rust setup command requires
 an existing [rustup installation](https://rust-lang.github.io/rustup/installation/index.html)
-and installs the exact toolchain into the user's selected rustup home. It never
-uses sudo or edits the shell startup files. Python and the ordinary host C linker
+and installs the exact toolchain into the user's selected rustup home. It uses
+rustup's documented `--no-self-update` option so this command installs the pinned
+toolchain without updating the separately managed installer. It never uses sudo
+or edits the shell startup files. Python and the ordinary host C linker
 are prerequisites; they are not FPGA/MLIR SDKs.
 
 ```sh
