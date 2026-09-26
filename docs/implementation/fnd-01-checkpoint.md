@@ -1,14 +1,38 @@
 # FND-01 durable checkpoint
 
-Phase: targeted CI repair; Rust qualification remains open.
+Phase: implementation qualified and integrated; documentation closure in progress.
 Repository: `pysolvesemi/nodal-fpga`.
 Target: `dev` at `cd6ec64e7f25e60ac4277159b76279c08d5d8210`.
 Feature: `increment/fnd-01-bootstrap`.
 Scope: [readiness review](fnd-01-readiness.md) and Foundation FND-01 only.
 
-An interactive worker is currently qualifying this increment. Before automated
+An interactive worker is currently closing this increment. Before automated
 writes, inspect the latest PR checkpoint and refs for current activity. Preserve
 ancestry and do not create a second worker branch, PR or monitor.
+
+## Current accepted implementation
+
+Implementation `c3e2a789db06c90bc1534f0483b100810b4e7a8b`, tree
+`31ad3cf3767020c584066d9d133b606ea91b6826`, passed contracts `36226115767`,
+Rust `36226119663` and Scala `36226124675`, all attempt 1, with selected aggregates
+and downloaded/hashed artifacts inspected. Full-scope inventory reused those
+same-head runs: there are no additional applicable implemented suites.
+Codex source/evidence review completed; no external human approval is claimed.
+Implementation PR #1 merged as `15485fbf1a90c56ecc574d18e389e9c65de86347` into
+unchanged original target `cd6ec64e7f25e60ac4277159b76279c08d5d8210`.
+Actual merged flag, parents, target ref, `[skip ci]` message and exact tree equality
+were verified. Post-merge CI was skipped for the qualified identical-tree merge;
+zero merge-head runs were observed.
+
+The [completion report](../completion/FND-01.md) retains exact raw artifact bytes,
+all acceptance mappings and actual executable output. Only the documentation
+closure branch `closure/fnd-01-evidence` remains: qualify contracts, review docs,
+verify unchanged implementation, merge with `[skip ci]`, verify the actual merge
+tree and suppression, then disable the existing hourly continuation. Closure PR
+metadata records its final SHA/tree/run/merge identities without self-referential
+source hashes. No second implementation increment or monitor was created.
+
+## Historical targeting and repairs
 
 The first candidate was `5b13c40f820952434d406d3e4d9ed50e22dde772`, tree
 `9ee303a536ac50aa81cbd758a26fc3dcfc4c127c`. Its exact-head remote targeting used
