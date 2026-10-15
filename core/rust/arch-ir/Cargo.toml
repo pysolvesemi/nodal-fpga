@@ -1,0 +1,13 @@
+[package]
+name = "nf-arch-ir"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Bounded hierarchical architecture declarations and semantic validation"
+
+[dependencies]
+nf-types = { path = "../types" }
+
+[lints]
+workspace = true
