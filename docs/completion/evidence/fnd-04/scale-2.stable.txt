@@ -1,0 +1,15 @@
+FND04-SCALE selection_instances=1
+FND04-SCALE instances=1 templates=1 shallow_instance_capacity_bytes=200 instance_name_payload_bytes=5 stats=ValidationStats { declarations: 11, references: 4, work: 220, hierarchy_depth: 1 }
+FND04-SCALE selection_instances=16
+FND04-SCALE instances=16 templates=1 shallow_instance_capacity_bytes=3200 instance_name_payload_bytes=86 stats=ValidationStats { declarations: 26, references: 19, work: 883, hierarchy_depth: 1 }
+FND04-SCALE selection_instances=256
+FND04-SCALE instances=256 templates=1 shallow_instance_capacity_bytes=51200 instance_name_payload_bytes=1682 stats=ValidationStats { declarations: 266, references: 259, work: 12391, hierarchy_depth: 1 }
+FND04-SCALE selection_instances=4096
+FND04-SCALE instances=4096 templates=1 shallow_instance_capacity_bytes=819200 instance_name_payload_bytes=31658 stats=ValidationStats { declarations: 4106, references: 4099, work: 209839, hierarchy_depth: 1 }
+FND04-SCALE hierarchy_depth=1 templates=1 stats=ValidationStats { declarations: 11, references: 4, work: 211, hierarchy_depth: 1 }
+FND04-SCALE hierarchy_depth=8 templates=8 stats=ValidationStats { declarations: 25, references: 11, work: 1086, hierarchy_depth: 8 }
+FND04-SCALE hierarchy_depth=32 templates=32 stats=ValidationStats { declarations: 73, references: 35, work: 10262, hierarchy_depth: 32 }
+FND04-SCALE hierarchy_depth=64 templates=64 stats=ValidationStats { declarations: 137, references: 67, work: 36886, hierarchy_depth: 64 }
+FND04-SCALE partitions=1 links=7 cross_partition_links=0
+FND04-SCALE partitions=2 links=7 cross_partition_links=7
+FND04-SCALE partitions=4 links=7 cross_partition_links=7

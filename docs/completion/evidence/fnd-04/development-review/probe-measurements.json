@@ -1,0 +1,10 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "binary_process_wall_seconds": 0.04988696700092987,
+  "binary_process_peak_rss_kib_linux": 10496,
+  "high_fanout_output": "highfanout virtual_instances=1162219258676257 templates=11 child_instance_declarations=320 leaf_instances=1125899906842624 accounted_declarations=336 elapsed_ms=44 diagnostic=[Diagnostic(DiagnosticData { code: Limit, stage: Architecture, message: \"validation capability exceeded: work\", primary: Provenance { span: None, display: None }, key: None, related: [], actual: Some(\"exceeded\"), expected: Some(\"1000000\"), remedy: \"Reduce the input or select a separately reviewed implementation profile; no partial result is valid.\" })]",
+  "probe_source_sha256": "e98b56497aa18cd2582a3c67ce53316de5e4242fd6dc301a06de5b444785f9ea",
+  "probe_manifest_sha256": "f739bee3ceb726c782f4249ff2f9f52a587406105d476df87ed6056a03233c76",
+  "output_sha256": "a71b60ff3e60f9d74abe9646b07ce94d2e9f47c285b9c72607884d829b8bd78a"
+}

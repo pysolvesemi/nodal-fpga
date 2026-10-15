@@ -1,0 +1,37 @@
+use nf_arch_ir::*;
+use nf_types::{BitCount, Code, Key, Name, PartitionId, Provenance, Stage};
+fn n(s: &str) -> Name { Name::new(s).unwrap() }
+fn main() {
+    let namespace = "abcdefghijk"; // 11 UTF-8 bytes
+    let mut a = Architecture::new(n(namespace));
+    let type_key = Key::new(namespace, vec![], "R").unwrap();
+    a.resource_types.push(ResourceType {
+        key: type_key.clone(), kind: ResourceKind::Bel,
+        pins: vec![
+            Pin { name: n("I"), direction: Direction::Input, width: BitCount::new(1), provenance: Provenance::default() },
+            Pin { name: n("O"), direction: Direction::Output, width: BitCount::new(1), provenance: Provenance::default() },
+        ], modes: vec![], provenance: Provenance::default(),
+    });
+    let mut t = Template::new(Key::new(namespace, vec![], "T").unwrap());
+    t.resources.push(Resource { name: n("r"), kind: ResourceKind::Bel, resource_type: type_key,
+        alias_of: None, domains: vec![], provenance: Provenance::default() });
+    a.roots.push(Instance { name: n("i"), template: t.key.clone(), partition: Some(PartitionId::new(0)),
+        domains: vec![], provenance: Provenance::default() });
+    a.templates.push(t);
+    a.partitions.push(PartitionId::new(0));
+    let endpoint = |pin: &str| Endpoint {
+        resource: ResourceRef { path: vec![n("i")], name: n("r"), kind: ResourceKind::Bel, provenance: Provenance::default() },
+        pin: n(pin), provenance: Provenance::default(),
+    };
+    a.connections.push(Connection { name: n("abcdefghijklmnopqrstuvwxy"), // 25 bytes; Pip key total 36
+        sources: vec![endpoint("O")], destination: endpoint("I"), selector: None, provenance: Provenance::default() });
+    validate_architecture(&a, &ValidationLimits { max_key_bytes: 36, ..ValidationLimits::default() }).unwrap();
+    let result = validate_architecture(&a, &ValidationLimits { max_key_bytes: 30, ..ValidationLimits::default() });
+    println!("namespace_bytes=11 connection_name_bytes=25 complete_key_bytes=36 limit=30 accepted={}", result.is_ok());
+    let errors = result.expect_err("top-level connection Pip key must honor combined namespace/name bound");
+    assert_eq!(errors.len(), 1);
+    assert_eq!(errors[0].code, Code::Limit);
+    assert_eq!(errors[0].stage, Stage::Architecture);
+    assert_eq!(errors[0].expected.as_deref(), Some("30"));
+    println!("top_level_connection_key_limit=correctly_rejected");
+}

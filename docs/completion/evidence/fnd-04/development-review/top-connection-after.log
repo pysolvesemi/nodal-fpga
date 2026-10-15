@@ -1,0 +1,2 @@
+namespace_bytes=11 connection_name_bytes=25 complete_key_bytes=36 limit=30 accepted=false
+top_level_connection_key_limit=correctly_rejected

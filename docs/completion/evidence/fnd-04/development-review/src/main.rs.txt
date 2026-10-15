@@ -1,0 +1,101 @@
+use nf_arch_ir::*;
+use nf_types::{Name, Key, Provenance, PartitionId, BitCount, BitOffset, BitRange, Width};
+fn n(s:&str)->Name { Name::new(s).unwrap() }
+fn p(s:&str)->Provenance { Provenance::new(None,Some(s.into())).unwrap() }
+fn rr()->ResourceRef { ResourceRef { path:vec![], name:n("r"),kind:ResourceKind::Bel,provenance:p("ref")} }
+fn base()->Architecture {
+ let mut a=Architecture::new(n("a"));
+ a.partitions.push(PartitionId::new(0));
+ a.resource_types.push(ResourceType{key:Key::new("a",vec![],"R").unwrap(),kind:ResourceKind::Bel,pins:vec![],modes:vec![n("x"),n("y")],provenance:p("type")});
+ let mut t=Template::new(Key::new("a",vec![],"TTT").unwrap());
+ t.resources.push(Resource{name:n("r"),kind:ResourceKind::Bel,resource_type:a.resource_types[0].key.clone(),alias_of:None,domains:vec![],provenance:p("resource")});
+ a.roots.push(Instance{name:n("i"),template:t.key.clone(),partition:Some(PartitionId::new(0)),domains:vec![],provenance:p("instance")});
+ a.templates.push(t);a
+}
+fn main() {
+ let mut a=base();let mut alias=a.templates[0].resources[0].clone();alias.name=n("rAlias");alias.alias_of=Some(rr());a.templates[0].resources.push(alias);
+ let mut alias_ref=rr();alias_ref.name=n("rAlias");
+ a.templates[0].mode_groups.push(ModeGroup{name:n("g"),resources:vec![rr(),alias_ref],modes:vec![n("x")],provenance:p("group")});
+ let e1=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();a.templates[0].mode_groups[0].resources.reverse();let e2=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();
+ println!("mode alias membership permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+
+ let a=base();let l=ValidationLimits{max_depth:1,max_key_component_bytes:10,..ValidationLimits::default()};let v=validate_architecture(&a,&l).unwrap();
+ let mut s=Selection{modes:vec![ModeSetting{path:vec![n("i"),n("i")],group:n("g"),mode:n("x"),provenance:p("deep")},ModeSetting{path:vec![n("i")],group:n("12345678901"),mode:n("x"),provenance:p("long")}],features:vec![]};
+ let e1=validate_selection(&v,&s).unwrap_err();s.modes.reverse();let e2=validate_selection(&v,&s).unwrap_err();
+ println!("selection preflight permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+
+ let mut a=base();
+ a.resource_types[0].kind=ResourceKind::Field;
+ a.templates[0].resources[0].kind=ResourceKind::Field;
+ let mut owner=rr();owner.kind=ResourceKind::Field;
+ a.templates[0].storage.push(Storage{name:n("s"),owner:owner.clone(),bits:BitCount::new(1),provenance:p("storage")});
+ a.templates[0].features.push(Feature{name:n("r"),owner,storage:n("s"),range:BitRange::new(BitOffset::new(0),BitCount::new(1)).unwrap(),width:Width::new(1).unwrap(),domain:ValueDomain::Any,guard:vec![],alias_of:None,provenance:p("feature r")});
+ println!("field resource-feature collision={:?}",validate_architecture(&a,&ValidationLimits::default()).map(|_|()));
+
+ let mut a=base();a.templates[0].resources.clear();
+ for level in 0..10 {
+  let previous=a.templates.last().unwrap().key.clone();
+  let mut t=Template::new(Key::new("a",vec![],format!("L{level}")).unwrap());
+  for i in 0..32 {t.children.push(Instance{name:n(&format!("i{i}")),template:previous.clone(),partition:None,domains:vec![],provenance:Provenance::default()});}
+  a.templates.push(t);
+ }
+ a.roots[0].template=a.templates.last().unwrap().key.clone();
+ let now=std::time::Instant::now();
+ let e=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();
+ println!("highfanout virtual_instances=1162219258676257 templates=11 child_instance_declarations=320 leaf_instances=1125899906842624 accounted_declarations=336 elapsed_ms={} diagnostic={:?}",now.elapsed().as_millis(),e);
+
+ let mut a=base();
+ let victim=Template::new(Key::new("a",vec![],"aaVictim").unwrap());
+ let mut ca=Template::new(Key::new("a",vec![],"mmCycleA").unwrap());
+ let mut cb=Template::new(Key::new("a",vec![],"zzCycleB").unwrap());
+ let mut edge=a.roots[0].clone(); edge.partition=None;
+ edge.name=n("a_to_b");edge.template=cb.key.clone();ca.children.push(edge.clone());
+ edge.name=n("a_to_victim");edge.template=victim.key.clone();ca.children.push(edge.clone());
+ edge.name=n("b_to_a");edge.template=ca.key.clone();cb.children.push(edge);
+ a.roots[0].template=ca.key.clone();a.templates=vec![victim,ca,cb];
+ println!("cycle primary={:?}",validate_architecture(&a,&ValidationLimits::default()).unwrap_err());
+
+ let mut a=base();
+ let mut bad=Template::new(Key::new("a",vec![],"long").unwrap());
+ let mut other=Template::new(Key::new("a",vec![],"b").unwrap());
+ other.children=vec![a.roots[0].clone();3];
+ bad.resources.clear();
+ a.templates=vec![bad,other];
+ let l=ValidationLimits{max_key_component_bytes:3,max_collection:2,..ValidationLimits::default()};
+ let e1=validate_architecture(&a,&l).unwrap_err();a.templates.reverse();
+ let e2=validate_architecture(&a,&l).unwrap_err();
+ println!("preflight permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+
+ let a=base();
+ let v=validate_architecture(&a,&ValidationLimits::default()).unwrap();
+ let s=Selection{modes:vec![], features:vec![FeatureSetting{field:FieldRef{path:vec![n("i")],name:n("missing"),provenance:p("bad field")},value:0,provenance:p("bad setting")}]};
+ println!("missing selection field={:?}",validate_selection(&v,&s));
+ let l=ValidationLimits{max_key_bytes:4,..ValidationLimits::default()};
+ println!("qualified limit4 result={:?}",validate_architecture(&a,&l).map(|_|()));
+ let mut a=base(); let dk=Key::new("a",vec![],"D").unwrap();
+ a.domains.push(Domain{key:dk.clone(),kind:DomainClass::Clock,provenance:p("domain")});
+ a.roots[0].domains=vec![DomainRef{key:dk.clone(),kind:DomainClass::Clock,provenance:p("first")},DomainRef{key:dk,kind:DomainClass::Clock,provenance:p("second")}];
+ let e1=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();a.roots[0].domains.reverse();
+ let e2=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();
+ println!("domain permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+ let mut a=base();
+ a.templates[0].mode_groups.push(ModeGroup{name:n("g"),resources:vec![rr()],modes:vec![n("x"),n("y")],provenance:p("group")});
+ a.templates[0].storage.push(Storage{name:n("s"),owner:rr(),bits:BitCount::new(1),provenance:p("storage")});
+ a.templates[0].features.push(Feature{name:n("f"),owner:rr(),storage:n("s"),range:BitRange::new(BitOffset::new(0),BitCount::new(1)).unwrap(),width:Width::new(1).unwrap(),domain:ValueDomain::Any,guard:vec![ModeChoice{group:n("g"),mode:n("x"),provenance:p("first")},ModeChoice{group:n("g"),mode:n("y"),provenance:p("second")}],alias_of:None,provenance:p("feature")});
+ let e1=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();a.templates[0].features[0].guard.reverse();
+ let e2=validate_architecture(&a,&ValidationLimits::default()).unwrap_err();
+ println!("guard permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+
+ a.templates[0].features[0].guard.clear();
+ a.templates[0].storage[0].bits=BitCount::new(2);
+ a.templates[0].features[0].width=Width::new(2).unwrap();
+ a.templates[0].features[0].range=BitRange::new(BitOffset::new(0),BitCount::new(2)).unwrap();
+ a.templates[0].features[0].domain=ValueDomain::Set(vec![0,1]);
+ let s=Selection{modes:vec![ModeSetting{path:vec![n("i")],group:n("g"),mode:n("x"),provenance:p("setting")}], features:vec![FeatureSetting{field:FieldRef{path:vec![n("i")],name:n("f"),provenance:p("field")},value:2,provenance:p("setting")}]};
+ let v=validate_architecture(&a,&ValidationLimits::default()).unwrap();
+ let e1=validate_selection(&v,&s).unwrap_err();
+ a.templates[0].features[0].domain=ValueDomain::Set(vec![1,0]);
+ let v=validate_architecture(&a,&ValidationLimits::default()).unwrap();
+ let e2=validate_selection(&v,&s).unwrap_err();
+ println!("set permutation same={} first={:?} reverse={:?}",e1==e2,e1,e2);
+}

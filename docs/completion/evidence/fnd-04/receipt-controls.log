@@ -1,0 +1,10 @@
+test_hand_authored_negative_evidence (test_evidence.EvidenceTests.test_hand_authored_negative_evidence) ... ok
+test_explicit_expected_candidate_rejects_stale_receipt (test_evidence.EvidenceTests.test_explicit_expected_candidate_rejects_stale_receipt) ... ok
+test_authoritative_profile_required (test_evidence.EvidenceTests.test_authoritative_profile_required) ... ok
+test_stale_raw_execution_identity_cannot_be_relabelled (test_evidence.EvidenceTests.test_stale_raw_execution_identity_cannot_be_relabelled) ... ok
+test_dirty_execution_cannot_qualify (test_evidence.EvidenceTests.test_dirty_execution_cannot_qualify) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.143s
+
+OK

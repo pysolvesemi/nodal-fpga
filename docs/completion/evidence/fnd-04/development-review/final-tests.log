@@ -1,0 +1,140 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running unittests src/lib.rs (target/debug/deps/nf_arch_ir-d3b535c918d60648)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/independent_contract.rs (target/debug/deps/independent_contract-d6be13293ea652fa)
+
+running 40 tests
+test caller_and_exhausted_limits_fail_closed_deterministically ... ok
+test competing_preflight_limits_do_not_depend_on_template_order ... ok
+FND04-SCALE selection_instances=1 elapsed_ns=41513
+FND04-SCALE instances=1 templates=1 shallow_instance_capacity_bytes=200 instance_name_payload_bytes=5 elapsed_ns=118218 stats=ValidationStats { declarations: 11, references: 4, work: 220, hierarchy_depth: 1 }
+FND04-SCALE selection_instances=16 elapsed_ns=151538
+FND04-SCALE instances=16 templates=1 shallow_instance_capacity_bytes=3200 instance_name_payload_bytes=86 elapsed_ns=123246 stats=ValidationStats { declarations: 26, references: 19, work: 883, hierarchy_depth: 1 }
+test architecture_connection_whole_key_exact_bound_overflow_and_order ... ok
+test duplicate_domain_memberships_keep_both_origins_under_permutation ... ok
+test completely_inactive_owner_class_requires_no_default_or_write ... ok
+test a_resource_cannot_acquire_two_mode_owners_through_an_alias ... ok
+test cycle_diagnostic_names_a_cycle_member_not_an_acyclic_descendant ... ok
+test field_resource_and_feature_cannot_share_one_typed_portable_identity ... ok
+test alias_and_guard_single_defect_mutations_require_the_intended_categories ... ok
+test compact_high_fanout_hierarchy_obeys_declared_work_budget ... ok
+test endpoint_single_defect_mutations_are_source_aware ... ok
+test finite_template_hierarchy_is_distinct_from_legal_routing_cycle ... ok
+test independent_domain_memberships_overlap_without_conflating_kinds ... ok
+test huge_storage_positions_do_not_materialize_bit_arrays ... ok
+test finite_value_sets_preserve_set_semantics_and_reject_out_of_domain_values ... ok
+test independently_enumerated_line_sparse_and_partitioned_ownership ... ok
+test lowered_key_bound_applies_to_definition_qualified_resource_and_field_keys ... ok
+test ordered_three_way_mux_rejects_reserved_code_and_preserves_source_order ... ok
+test keyed_reordering_keeps_diagnostics_and_original_declarations ... ok
+test lowered_key_bound_checks_instance_path_plus_long_feature_name ... ok
+test oversized_reference_paths_reject_before_semantic_resolution ... ok
+test pip_resource_and_connection_cannot_share_one_typed_portable_identity ... ok
+test malformed_feature_ranges_domains_and_storage_references_reject_specifically ... ok
+test reordered_contradictory_guards_keep_both_origins ... ok
+test reordered_duplicate_domain_declarations_keep_both_origins ... ok
+test qualified_destinations_reject_drivers_from_different_containment_scopes ... ok
+test selection_competing_path_and_component_limits_are_order_independent ... ok
+test separate_storage_objects_remain_independent_even_for_equal_offsets ... ok
+test resource_aliases_require_direct_scoped_owners_and_do_not_own_storage ... ok
+FND04-SCALE selection_instances=256 elapsed_ns=3842500
+FND04-SCALE instances=256 templates=1 shallow_instance_capacity_bytes=51200 instance_name_payload_bytes=1682 elapsed_ns=5884157 stats=ValidationStats { declarations: 266, references: 259, work: 12391, hierarchy_depth: 1 }
+test set_permutation_does_not_change_invalid_value_diagnostics ... ok
+test storage_and_mode_group_diagnostics_use_distinct_nominal_key_kinds ... ok
+test unknown_selected_feature_reports_selection_stage_and_instance_identity ... ok
+test selection_completeness_alias_only_values_and_exclusive_modes ... ok
+test undeclared_overlap_follows_tiny_bitsets_even_under_exclusive_guards ... ok
+test reproducible_generated_single_defect_models_have_specific_mutation_witnesses ... ok
+test mode_group_permutation_preserves_duplicate_diagnostics_across_work_budgets ... ok
+test exhaustive_guard_masks_and_bit_writes_are_an_independent_oracle ... ok
+FND04-SCALE selection_instances=4096 elapsed_ns=76943445
+FND04-SCALE instances=4096 templates=1 shallow_instance_capacity_bytes=819200 instance_name_payload_bytes=31658 elapsed_ns=23409926 stats=ValidationStats { declarations: 4106, references: 4099, work: 209839, hierarchy_depth: 1 }
+FND04-SCALE hierarchy_depth=1 templates=1 elapsed_ns=96095 stats=ValidationStats { declarations: 11, references: 4, work: 211, hierarchy_depth: 1 }
+FND04-SCALE hierarchy_depth=8 templates=8 elapsed_ns=240813 stats=ValidationStats { declarations: 25, references: 11, work: 1086, hierarchy_depth: 8 }
+FND04-SCALE hierarchy_depth=32 templates=32 elapsed_ns=956962 stats=ValidationStats { declarations: 73, references: 35, work: 10262, hierarchy_depth: 32 }
+FND04-SCALE hierarchy_depth=64 templates=64 elapsed_ns=2079103 stats=ValidationStats { declarations: 137, references: 67, work: 36886, hierarchy_depth: 64 }
+FND04-SCALE partitions=1 links=7 cross_partition_links=0 elapsed_ns=214263
+FND04-SCALE partitions=2 links=7 cross_partition_links=7 elapsed_ns=236166
+FND04-SCALE partitions=4 links=7 cross_partition_links=7 elapsed_ns=205359
+test bounded_count_depth_partition_observations_preserve_compact_declarations ... ok
+test mode_name_permutation_preserves_diagnostics_at_every_small_work_budget ... ok
+test owner_alias_mode_membership_order_preserves_full_diagnostics ... ok
+
+test result: ok. 40 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.45s
+
+     Running unittests examples/model.rs (target/debug/examples/model-16d35898e400b48e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/nf_bootstrap-d8cbed9db23d31db)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/identity.rs (target/debug/examples/identity-19ee348a1b714efa)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/nf_types-83df7a9022de2c82)
+
+running 1 test
+test identity::tests::declaration_categories_have_distinct_portable_identity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/independent_contract.rs (target/debug/deps/independent_contract-619b0ca285d9287d)
+
+running 8 tests
+test all_seven_public_resource_id_families_remain_nominal ... ok
+test checked_arithmetic_matches_wider_integer_oracle ... ok
+test explicit_correspondence_is_total_one_to_one_and_partition_qualified ... ok
+test dense_ids_require_build_partition_kind_and_bound_before_indexing ... ok
+test scoped_identity_is_structured_exact_and_typed ... ok
+test source_spans_are_checked_half_open_utf8_bytes ... ok
+test widths_have_no_host_shift_or_truncation_shortcut ... ok
+test half_open_ranges_match_independent_tiny_sets_and_huge_bounds ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+   Doc-tests nf_arch_ir
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests nf_bootstrap
+
+running 1 test
+test core/rust/bootstrap/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.15s; merged doctests compilation took 0.14s
+   Doc-tests nf_types
+
+running 3 tests
+test core/rust/types/src/lib.rs - (line 9) - compile fail ... ok
+test core/rust/types/src/lib.rs - (line 19) - compile fail ... ok
+test core/rust/types/src/lib.rs - (line 14) - compile fail ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+............................................................
+----------------------------------------------------------------------
+Ran 60 tests in 4.173s
+
+OK
+ownership_members=3 core_internal_dependencies=1 core_external_dependencies=0
+resolved_core_packages=3 resolved_core_edges=1 core_external_dependencies=0
+ownership_members=3 core_internal_dependencies=1 core_external_dependencies=0

@@ -1,0 +1,62 @@
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/cargo/bin/rustc --version
+rustc 1.98.1 (48a229cea 2026-09-01)
+elapsed_seconds=0.030
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/cargo/bin/cargo --version
+cargo 1.98.1 (797e8a9bc 2026-08-05)
+elapsed_seconds=0.030
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/cargo/bin/rustfmt --version
+rustfmt 1.9.0-stable (48a229ceae 2026-09-01)
+elapsed_seconds=0.029
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/cargo/bin/clippy-driver --version
+clippy 0.1.98 (48a229ceae 2026-09-01)
+elapsed_seconds=0.026
++ cargo build --locked --offline -p nf-bootstrap --example identity
+   Compiling nf-bootstrap v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-0/core/rust/bootstrap)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s
+elapsed_seconds=0.120
++ ldd /tmp/nf-reproduce-gb4lquq7/checkout-0/target/debug/examples/identity
+	linux-vdso.so.1 (0x00007f15b03b7000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f15b0306000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f15b0112000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f15b03b9000)
+elapsed_seconds=0.006
++ cargo build --locked --offline -p nf-arch-ir --example model
+   Compiling nf-types v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-0/core/rust/types)
+   Compiling nf-arch-ir v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-0/core/rust/arch-ir)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.60s
+elapsed_seconds=2.629
++ ldd /tmp/nf-reproduce-gb4lquq7/checkout-0/target/debug/examples/model
+	linux-vdso.so.1 (0x00007f1378347000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f1377fec000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f1377df8000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f1378349000)
+elapsed_seconds=0.006
++ cargo build --locked --offline -p nf-bootstrap --example identity
+   Compiling nf-bootstrap v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-1/core/rust/bootstrap)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
+elapsed_seconds=0.114
++ ldd /tmp/nf-reproduce-gb4lquq7/checkout-1/target/debug/examples/identity
+	linux-vdso.so.1 (0x00007f223c50f000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f223c45e000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f223c26a000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f223c511000)
+elapsed_seconds=0.005
++ cargo build --locked --offline -p nf-arch-ir --example model
+   Compiling nf-types v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-1/core/rust/types)
+   Compiling nf-arch-ir v0.1.0 (/tmp/nf-reproduce-gb4lquq7/checkout-1/core/rust/arch-ir)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.53s
+elapsed_seconds=2.554
++ ldd /tmp/nf-reproduce-gb4lquq7/checkout-1/target/debug/examples/model
+	linux-vdso.so.1 (0x00007f40acf80000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f40acc25000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f40aca31000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f40acf82000)
+elapsed_seconds=0.030
+{
+  "profile": "rust",
+  "clean_builds": 2,
+  "stdout": "nodal-fpga/bootstrap/1\nprofile=build-only\n",
+  "stdout_sha256": "60a627efa85a969c4628f3a7f13820e8f96c00d65bffb492029f707d5529faab",
+  "model_stdout": "nodal-fpga/arch-ir/1\nprofile=structural-selection\ntemplates=1 instances=3 connections=2\ninstance=t0 template=tile partition=0 mode=normal setting=0\ninstance=t1 template=tile partition=0 mode=alternate setting=1\ninstance=t2 template=tile partition=0 mode=normal setting=2\nlink=edge0 source=t0/cell.O destination=t1/cell.I\nlink=edge1 source=t1/cell.O destination=t2/cell.I\nselection=valid\nrejected=value\nstage=selection namespace=example scope=t1 field=setting\nprimary=selection-input:61..62 actual=3\nrelated=architecture-input:40..41\nmessage=feature value is outside its width or legal domain\nThis increment does not affect generated Verilog.\n",
+  "model_stdout_sha256": "1615356294a3728c68d2bb9fe76c296dfd5c4ecd3daa73340cdc76ccd4868bd2"
+}

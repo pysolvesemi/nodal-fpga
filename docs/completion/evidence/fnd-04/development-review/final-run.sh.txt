@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source .cache/toolchains/env.sh
+export TZ=UTC
+python3 - <<'PY'
+from pathlib import Path
+import hashlib
+paths = [Path(p) for p in ['Cargo.toml','Cargo.lock','tools/check_boundaries.py','tools/ownership.json','tools/nf.py','tests/bootstrap/test_contracts.py','docs/development/core-api.md','docs/implementation/fnd-04-readiness.md']]
+for root in ('core/rust/types','core/rust/arch-ir','verify/fixtures/fnd-04'):
+    paths += [p for p in Path(root).rglob('*') if p.is_file()]
+manifest = ''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p}\n' for p in sorted(paths))
+Path('/tmp/fnd04-review/source-before.sha256').write_text(manifest)
+PY
+{ date -u +%FT%TZ; rustc --version; cargo --version; python3 --version; uname -srmo; cargo fmt --all -- --check; } > /tmp/fnd04-review/fmt-tools.log 2>&1
+{ cargo clippy --locked --offline --workspace --all-targets -- -D warnings; cargo test --locked --offline --workspace --all-targets -- --nocapture; cargo test --locked --offline --workspace --doc; python3 -m unittest discover -s tests/bootstrap -p test_contracts.py; } > /tmp/fnd04-review/final-tests.log 2>&1
+cargo metadata --locked --offline --format-version 1 > /tmp/fnd04-review/metadata.json
+python3 - <<'PY' > /tmp/fnd04-review/metadata-check.log
+import json, sys
+from pathlib import Path
+sys.path.insert(0,'tools')
+from check_boundaries import check_metadata
+check_metadata(Path('.').resolve(), json.loads(Path('/tmp/fnd04-review/metadata.json').read_text()))
+PY
+cargo run --quiet --locked --offline -p nf-arch-ir --example model > /tmp/fnd04-review/model.stdout
+python3 - <<'PY' > /tmp/fnd04-review/model-check.log
+from pathlib import Path
+import hashlib,re
+stdout=Path('/tmp/fnd04-review/model.stdout').read_bytes()
+doc=Path('docs/development/core-api.md').read_text()
+expected=re.search(r'The model.s deterministic stdout is:\n\n```text\n(.*?)```',doc,re.S).group(1).encode()
+assert stdout==expected
+print('Model stdout matches docs byte for byte, sha256='+hashlib.sha256(stdout).hexdigest())
+PY
+cargo build --offline --manifest-path /tmp/fnd04-review-probe/Cargo.toml --bins > /tmp/fnd04-review/probe-build.log 2>&1
+python3 /tmp/fnd04-review/run-probes.py /tmp/fnd04-review-probe /tmp/fnd04-review > /tmp/fnd04-review/probe-check.log
+sha256sum --check /tmp/fnd04-review/source-before.sha256 > /tmp/fnd04-review/source-after-check.log
+cat /tmp/fnd04-review/fmt-tools.log /tmp/fnd04-review/metadata-check.log /tmp/fnd04-review/model-check.log /tmp/fnd04-review/probe-check.log
