@@ -1,0 +1,6 @@
+TILE,NF_LEFT
+EAST,E,1,0,NULL,1,
+BEL,../../BEL/LUT4c_frame_config_dffesr.v,L_
+BEL,../../BEL/nf_tiny_io.v,P_
+MATRIX,./NF_LEFT_switch_matrix.csv
+EndTILE

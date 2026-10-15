@@ -1,0 +1,5 @@
+TILE,NF_SINGLE
+BEL,../../BEL/LUT4c_frame_config_dffesr.v,L_
+BEL,../../BEL/nf_tiny_io.v,P_
+MATRIX,./NF_SINGLE_switch_matrix.csv
+EndTILE

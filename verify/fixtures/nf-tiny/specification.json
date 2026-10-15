@@ -1,0 +1,988 @@
+{
+  "format_version": 1,
+  "profile": "nf-tiny-foundation/1",
+  "decision_state": "accepted-for-profile",
+  "evidence_state": "not-run",
+  "scope": "Independent executable reference input and expected contract; no production Nodal generator, simulation, proof, runtime loader or CAD qualification is claimed.",
+  "assumptions": [
+    "ASM-0001",
+    "ASM-0002",
+    "ASM-0003",
+    "ASM-0004",
+    "ASM-0005",
+    "ASM-0006",
+    "ASM-0007",
+    "ASM-0008",
+    "ASM-0009",
+    "ASM-0010"
+  ],
+  "primitive": {
+    "name": "lut4_en_sr",
+    "address": "I0 + 2*I1 + 4*I2 + 8*I3",
+    "truth": "INIT[address]",
+    "register": "On rising UserCLK: if EN=0 hold; else if SR=1 load reset_value; else load LUT result. Other clock events hold.",
+    "output": "ff=0 selects combinational LUT; ff=1 selects register. Register continues updating in either mode.",
+    "initial_state": "unconstrained",
+    "carry_input": "Ci=0; I0 carry bypass disabled (bit 17=0)",
+    "carry_output": "Co not matched/observed; it is an excluded majority carry function, not assumed zero",
+    "binary_only": true
+  },
+  "configuration": {
+    "width": 20,
+    "features": [
+      {
+        "id": "init",
+        "bits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "legal": "unsigned 16-bit truth vector"
+      },
+      {
+        "id": "ff",
+        "bits": [
+          16
+        ],
+        "legal": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "carry_i0",
+        "bits": [
+          17
+        ],
+        "legal": [
+          0
+        ]
+      },
+      {
+        "id": "reset_value",
+        "bits": [
+          18
+        ],
+        "legal": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "source",
+        "bits": [
+          19
+        ],
+        "legal": [
+          0,
+          1
+        ]
+      }
+    ],
+    "aliases": [],
+    "defaults": "none; every bit must be explicitly supplied",
+    "physical_reference": "frame0 FrameData[31:12] maps ConfigBits[19:0]; other bits/frames are padding with no state cell",
+    "activation": "With UserCLK low, set all declared frame data and pulse FrameStrobe[0]; deassert before observation. This is a static/unit frame-memory setup, not a bitstream controller or runtime-loader claim. Registered observations require EN=SR=1 on one later UserCLK rising edge.",
+    "unknown_policy": "Reject unknown/Z stimuli and any unknown observed result after initialization; never coerce to 0."
+  },
+  "lut_witness": {
+    "id": "asymmetric-a6d3",
+    "init_hex": "A6D3",
+    "inputs_order": "I3 I2 I1 I0",
+    "rows": [
+      {
+        "address": 0,
+        "input": "0000",
+        "expected": 1
+      },
+      {
+        "address": 1,
+        "input": "0001",
+        "expected": 1
+      },
+      {
+        "address": 2,
+        "input": "0010",
+        "expected": 0
+      },
+      {
+        "address": 3,
+        "input": "0011",
+        "expected": 0
+      },
+      {
+        "address": 4,
+        "input": "0100",
+        "expected": 1
+      },
+      {
+        "address": 5,
+        "input": "0101",
+        "expected": 0
+      },
+      {
+        "address": 6,
+        "input": "0110",
+        "expected": 1
+      },
+      {
+        "address": 7,
+        "input": "0111",
+        "expected": 1
+      },
+      {
+        "address": 8,
+        "input": "1000",
+        "expected": 0
+      },
+      {
+        "address": 9,
+        "input": "1001",
+        "expected": 1
+      },
+      {
+        "address": 10,
+        "input": "1010",
+        "expected": 1
+      },
+      {
+        "address": 11,
+        "input": "1011",
+        "expected": 0
+      },
+      {
+        "address": 12,
+        "input": "1100",
+        "expected": 0
+      },
+      {
+        "address": 13,
+        "input": "1101",
+        "expected": 1
+      },
+      {
+        "address": 14,
+        "input": "1110",
+        "expected": 0
+      },
+      {
+        "address": 15,
+        "input": "1111",
+        "expected": 1
+      }
+    ],
+    "additional_one_hot": {
+      "init_hex": "0812",
+      "ones_at_addresses": [
+        1,
+        4,
+        11
+      ],
+      "zeros_at_addresses": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "scope": "16 addresses for each listed fixed INIT. FND06-LUT-EXHAUSTIVE additionally checks all 65536 INIT values x 16 addresses or an explicitly reported symbolic proof."
+  },
+  "mux_witness": {
+    "ordered_inputs": [
+      "local A0",
+      "ALT for NF_SINGLE/NF_LEFT; west W for NF_MID/NF_RIGHT"
+    ],
+    "rows": [
+      {
+        "a0": 0,
+        "a1": 0,
+        "select": 0,
+        "expected": 0
+      },
+      {
+        "a0": 0,
+        "a1": 0,
+        "select": 1,
+        "expected": 0
+      },
+      {
+        "a0": 0,
+        "a1": 1,
+        "select": 0,
+        "expected": 0
+      },
+      {
+        "a0": 0,
+        "a1": 1,
+        "select": 1,
+        "expected": 1
+      },
+      {
+        "a0": 1,
+        "a1": 0,
+        "select": 0,
+        "expected": 1
+      },
+      {
+        "a0": 1,
+        "a1": 0,
+        "select": 1,
+        "expected": 0
+      },
+      {
+        "a0": 1,
+        "a1": 1,
+        "select": 0,
+        "expected": 1
+      },
+      {
+        "a0": 1,
+        "a1": 1,
+        "select": 1,
+        "expected": 1
+      }
+    ]
+  },
+  "register_witnesses": [
+    {
+      "reset_value": 0,
+      "ff": 1,
+      "initial_q": null,
+      "steps": [
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 1,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "none",
+          "en": 1,
+          "sr": 0,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "fall",
+          "en": 1,
+          "sr": 0,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "rise",
+          "en": 0,
+          "sr": 0,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 0,
+          "d": 1,
+          "q": 1
+        },
+        {
+          "edge": "rise",
+          "en": 0,
+          "sr": 1,
+          "d": 0,
+          "q": 1
+        },
+        {
+          "edge": "none",
+          "en": 1,
+          "sr": 1,
+          "d": 1,
+          "q": 1
+        },
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 1,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 0,
+          "d": 0,
+          "q": 0
+        }
+      ]
+    },
+    {
+      "reset_value": 1,
+      "ff": 1,
+      "initial_q": null,
+      "steps": [
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 1,
+          "d": 0,
+          "q": 1
+        },
+        {
+          "edge": "rise",
+          "en": 0,
+          "sr": 0,
+          "d": 0,
+          "q": 1
+        },
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 0,
+          "d": 0,
+          "q": 0
+        },
+        {
+          "edge": "rise",
+          "en": 0,
+          "sr": 1,
+          "d": 1,
+          "q": 0
+        },
+        {
+          "edge": "rise",
+          "en": 1,
+          "sr": 1,
+          "d": 0,
+          "q": 1
+        }
+      ]
+    }
+  ],
+  "register_d_drive": "For INIT=A6D3, address 0000 drives d=1 and 0010 drives d=0. ff=0 must show d immediately while q still follows the same state equation.",
+  "tile_graph": {
+    "common_pins": [
+      "a0",
+      "a1",
+      "a2",
+      "a3",
+      "alt",
+      "enable",
+      "reset",
+      "y",
+      "const0",
+      "mux.a0",
+      "mux.a1",
+      "mux.y",
+      "lut.i0",
+      "lut.i1",
+      "lut.i2",
+      "lut.i3",
+      "lut.ci",
+      "lut.en",
+      "lut.sr",
+      "lut.o",
+      "clk",
+      "lut.clk"
+    ],
+    "common_fixed_edges": [
+      [
+        "a0",
+        "mux.a0"
+      ],
+      [
+        "a1",
+        "lut.i1"
+      ],
+      [
+        "a2",
+        "lut.i2"
+      ],
+      [
+        "a3",
+        "lut.i3"
+      ],
+      [
+        "enable",
+        "lut.en"
+      ],
+      [
+        "reset",
+        "lut.sr"
+      ],
+      [
+        "const0",
+        "lut.ci"
+      ],
+      [
+        "mux.y",
+        "lut.i0"
+      ],
+      [
+        "lut.o",
+        "y"
+      ],
+      [
+        "clk",
+        "lut.clk"
+      ]
+    ],
+    "configurable_edges": [
+      {
+        "from": "mux.a0",
+        "to": "mux.y",
+        "feature": "source",
+        "value": 0
+      },
+      {
+        "from": "mux.a1",
+        "to": "mux.y",
+        "feature": "source",
+        "value": 1
+      }
+    ],
+    "variants": {
+      "NF_SINGLE": {
+        "additional_pins": [],
+        "additional_fixed_edges": [
+          [
+            "alt",
+            "mux.a1"
+          ]
+        ],
+        "unused_pins": []
+      },
+      "NF_LEFT": {
+        "additional_pins": [
+          "e"
+        ],
+        "additional_fixed_edges": [
+          [
+            "alt",
+            "mux.a1"
+          ],
+          [
+            "lut.o",
+            "e"
+          ]
+        ],
+        "unused_pins": []
+      },
+      "NF_MID": {
+        "additional_pins": [
+          "w",
+          "e"
+        ],
+        "additional_fixed_edges": [
+          [
+            "w",
+            "mux.a1"
+          ],
+          [
+            "lut.o",
+            "e"
+          ]
+        ],
+        "unused_pins": [
+          "alt"
+        ]
+      },
+      "NF_RIGHT": {
+        "additional_pins": [
+          "w"
+        ],
+        "additional_fixed_edges": [
+          [
+            "w",
+            "mux.a1"
+          ]
+        ],
+        "unused_pins": [
+          "alt"
+        ]
+      }
+    },
+    "edge_semantics": "Unidirectional buffered logical links; no analog/pass-switch equivalence. Mux permits exactly one selected input. LUT internal dependency and register state transition are primitive semantics, not extra routing edges.",
+    "clock": "One shared logical UserCLK to every register; ideal digital buffer only.",
+    "shape_coordinate_order": "x increases east; y increases south; each shape lists all present instances and all intertile edges."
+  },
+  "shapes": [
+    {
+      "id": "one",
+      "width": 1,
+      "height": 1,
+      "tiles": [
+        {
+          "id": "t00",
+          "x": 0,
+          "y": 0,
+          "type": "NF_SINGLE"
+        }
+      ],
+      "intertile_edges": []
+    },
+    {
+      "id": "square",
+      "width": 2,
+      "height": 2,
+      "tiles": [
+        {
+          "id": "t00",
+          "x": 0,
+          "y": 0,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t10",
+          "x": 1,
+          "y": 0,
+          "type": "NF_RIGHT"
+        },
+        {
+          "id": "t01",
+          "x": 0,
+          "y": 1,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t11",
+          "x": 1,
+          "y": 1,
+          "type": "NF_RIGHT"
+        }
+      ],
+      "intertile_edges": [
+        [
+          "t00.e",
+          "t10.w"
+        ],
+        [
+          "t01.e",
+          "t11.w"
+        ]
+      ]
+    },
+    {
+      "id": "odd",
+      "width": 3,
+      "height": 2,
+      "tiles": [
+        {
+          "id": "t00",
+          "x": 0,
+          "y": 0,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t10",
+          "x": 1,
+          "y": 0,
+          "type": "NF_MID"
+        },
+        {
+          "id": "t20",
+          "x": 2,
+          "y": 0,
+          "type": "NF_RIGHT"
+        },
+        {
+          "id": "t01",
+          "x": 0,
+          "y": 1,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t11",
+          "x": 1,
+          "y": 1,
+          "type": "NF_MID"
+        },
+        {
+          "id": "t21",
+          "x": 2,
+          "y": 1,
+          "type": "NF_RIGHT"
+        }
+      ],
+      "intertile_edges": [
+        [
+          "t00.e",
+          "t10.w"
+        ],
+        [
+          "t10.e",
+          "t20.w"
+        ],
+        [
+          "t01.e",
+          "t11.w"
+        ],
+        [
+          "t11.e",
+          "t21.w"
+        ]
+      ]
+    },
+    {
+      "id": "sparse",
+      "width": 3,
+      "height": 3,
+      "tiles": [
+        {
+          "id": "t00",
+          "x": 0,
+          "y": 0,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t10",
+          "x": 1,
+          "y": 0,
+          "type": "NF_RIGHT"
+        },
+        {
+          "id": "t11",
+          "x": 1,
+          "y": 1,
+          "type": "NF_LEFT"
+        },
+        {
+          "id": "t21",
+          "x": 2,
+          "y": 1,
+          "type": "NF_RIGHT"
+        },
+        {
+          "id": "t02",
+          "x": 0,
+          "y": 2,
+          "type": "NF_SINGLE"
+        },
+        {
+          "id": "t22",
+          "x": 2,
+          "y": 2,
+          "type": "NF_SINGLE"
+        }
+      ],
+      "intertile_edges": [
+        [
+          "t00.e",
+          "t10.w"
+        ],
+        [
+          "t11.e",
+          "t21.w"
+        ]
+      ],
+      "holes": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    }
+  ],
+  "shape_witness": {
+    "id": "three-stage-asymmetric-row",
+    "shape": "odd",
+    "row": 0,
+    "configuration": [
+      {
+        "tile": "t00",
+        "init_hex": "AAAA",
+        "ff": 0,
+        "source": 0,
+        "reset_value": 0
+      },
+      {
+        "tile": "t10",
+        "init_hex": "5555",
+        "ff": 0,
+        "source": 1,
+        "reset_value": 0
+      },
+      {
+        "tile": "t20",
+        "init_hex": "AAAA",
+        "ff": 0,
+        "source": 1,
+        "reset_value": 0
+      }
+    ],
+    "inputs": "All unused data/control inputs explicitly 0; independently drive t00.a0. Other rows configured and checked separately.",
+    "rows": [
+      {
+        "t00.a0": 0,
+        "t00.y": 0,
+        "t10.y": 1,
+        "t20.y": 1
+      },
+      {
+        "t00.a0": 1,
+        "t00.y": 1,
+        "t10.y": 0,
+        "t20.y": 0
+      }
+    ],
+    "negative_witness": "Deleting or reversing either east link, or selecting local 0 at t10/t20, must fail at least one listed observation."
+  },
+  "legal_configurations": [
+    {
+      "id": "comb",
+      "logical": {
+        "init": "A6D3",
+        "ff": 0,
+        "carry_i0": 0,
+        "reset_value": 0,
+        "source": 0
+      },
+      "config_hex": "0A6D3",
+      "frame0_hex": "0A6D3000"
+    },
+    {
+      "id": "registered-reset0",
+      "logical": {
+        "init": "A6D3",
+        "ff": 1,
+        "carry_i0": 0,
+        "reset_value": 0,
+        "source": 0
+      },
+      "config_hex": "1A6D3",
+      "frame0_hex": "1A6D3000"
+    },
+    {
+      "id": "registered-reset1",
+      "logical": {
+        "init": "A6D3",
+        "ff": 1,
+        "carry_i0": 0,
+        "reset_value": 1,
+        "source": 0
+      },
+      "config_hex": "5A6D3",
+      "frame0_hex": "5A6D3000"
+    },
+    {
+      "id": "source1",
+      "logical": {
+        "init": "A6D3",
+        "ff": 0,
+        "carry_i0": 0,
+        "reset_value": 0,
+        "source": 1
+      },
+      "config_hex": "8A6D3",
+      "frame0_hex": "8A6D3000"
+    }
+  ],
+  "illegal_configurations": [
+    {
+      "id": "carry-enabled",
+      "change": {
+        "carry_i0": 1
+      },
+      "diagnostic": "unsupported-mode"
+    },
+    {
+      "id": "source-out-of-range",
+      "change": {
+        "source": 2
+      },
+      "diagnostic": "invalid-mux-selection"
+    },
+    {
+      "id": "init-too-wide",
+      "change": {
+        "init": "10000"
+      },
+      "diagnostic": "feature-width-overflow"
+    },
+    {
+      "id": "undeclared-field",
+      "change": {
+        "async_reset": true
+      },
+      "diagnostic": "unsupported-feature"
+    },
+    {
+      "id": "missing-field",
+      "change": "omit reset_value",
+      "diagnostic": "missing-config-feature"
+    },
+    {
+      "id": "undeclared-overlap",
+      "change": "map source and ff onto physical bit 16",
+      "diagnostic": "config-field-overlap"
+    },
+    {
+      "id": "unknown-select",
+      "change": {
+        "source": "X"
+      },
+      "diagnostic": "non-binary-stimulus"
+    },
+    {
+      "id": "wrong-package",
+      "change": "apply a different package identity",
+      "diagnostic": "package-identity-mismatch"
+    },
+    {
+      "id": "unmapped-address",
+      "change": "attempt to set a logical feature through frame 1 or data bit 0",
+      "diagnostic": "invalid-config-address"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "FND06-LUT-EXHAUSTIVE",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "All LUT addresses and configurations, with stated exhaustive or formal scope; include asymmetric and one-hot vectors."
+    },
+    {
+      "id": "FND06-REGISTER",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Both reset values; enabled sampling; EN=0 dominates SR; no-edge and falling-edge hold; both ff output modes."
+    },
+    {
+      "id": "FND06-MUX",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "All eight binary 2-input mux cases; Nodal-only invalid 3-input selection rejection."
+    },
+    {
+      "id": "FND06-CONFIG",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "All twenty independent physical reference bindings, preservation while strobe low, padding behavior; legal and illegal semantic encodings."
+    },
+    {
+      "id": "FND06-TILE",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Generated tile with actual upstream LUT/register source, generated switches/configmem, and both output modes; no Nodal fabrication claim."
+    },
+    {
+      "id": "FND06-GRAPH",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Total pin/resource/config correspondence and all declared edges for one, square, odd and sparse shapes; missing/extra/reversed edges fail."
+    },
+    {
+      "id": "FND06-COVER-STATE",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Nonvacuous witnesses reach q=0 and q=1, both mux selections, both ff modes, both reset values, and each declared link."
+    },
+    {
+      "id": "FND06-XZ-REJECTION",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Reject X/Z stimulus and unknown post-initialization outputs; do not coerce unknown state to zero."
+    },
+    {
+      "id": "FND06-MUT-LUT-BIT",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Swap I0/I3 address significance or corrupt one LUT INIT binding; asymmetric witness must detect."
+    },
+    {
+      "id": "FND06-MUT-PRIORITY",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Move SR above EN; EN=0 SR=1 opposite-q/reset_value witness must detect."
+    },
+    {
+      "id": "FND06-MUT-MUX-INDEX",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Invert mux select/input order; a0!=a1 witness must detect."
+    },
+    {
+      "id": "FND06-MUT-CONFIG-ADDRESS",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Shift frame bit mapping by one; per-bit binding witness must detect."
+    },
+    {
+      "id": "FND06-MUT-CORRESPONDENCE",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Swap mapped I0/I3 or omit a mapped output; correspondence check must fail independently of RTL."
+    },
+    {
+      "id": "FND06-MUT-ENDPOINT",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Omit or reverse t00.e -> t10.w; topology and row behavior checks must detect."
+    },
+    {
+      "id": "FND06-MUT-FIELD-ALIAS",
+      "owner": "FND-06",
+      "evidence_state": "not-run",
+      "requirement": "Bind source and ff to same config bit without alias; reject overlapping ownership."
+    }
+  ],
+  "invalidation": "Changing semantics, input ordering, physical bindings, shapes, library/source revision or correspondence requires independent review and replay, new hashes and appropriate profile/package revision. Never replace expected values with generator results.",
+  "nodal_only_obligations": {
+    "three_input_mux": {
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "legal_selects": [
+        0,
+        1,
+        2
+      ],
+      "illegal_selects": [
+        3
+      ],
+      "why_unmatched": "Reference intentionally uses a power-of-two 2:1 mux; upstream custom mux padding is physical 0, which is not permission to accept invalid Nodal values."
+    },
+    "alias_consistency": "No aliases in this tiny reference; independent negative/additional fixtures must reject inconsistent aliases and undeclared overlap.",
+    "unsupported_modes": [
+      "asynchronous reset",
+      "bidirectional/pass switches",
+      "carry mode",
+      "fractured LUT",
+      "multiclock/CDC",
+      "power switching/isolation",
+      "supertile",
+      "runtime bitstream transport/controller",
+      "timing or physical implementation"
+    ]
+  }
+}
