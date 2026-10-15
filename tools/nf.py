@@ -159,7 +159,7 @@ def validate_pins(root: Path = ROOT) -> None:
 
 
 def docs_check(root: Path = ROOT) -> None:
-    # Proportionate bootstrap link/whitespace check, not the FND-03 status validator.
+    # Link/whitespace checks complement, rather than replace, the roadmap validator.
     files = [root / "README.md", root / "AGENTS.md", *sorted((root / "docs").rglob("*.md"))]
     count = 0
     for path in files:
@@ -213,6 +213,9 @@ def check(profile: str, root: Path = ROOT) -> None:
         from check_foundation_contracts import check as foundation_contracts
         print(json.dumps(foundation_contracts(root, accepted=True), sort_keys=True))
         run([sys.executable, "-m", "unittest", "discover", "-s", "tests/foundation", "-v"], root)
+        from roadmap import check as roadmap_check
+        print(json.dumps(roadmap_check(root), sort_keys=True))
+        run([sys.executable, "-m", "unittest", "discover", "-s", "tests/roadmap", "-v"], root)
     elif profile == "rust":
         doctor("rust", pins(root))
         from check_boundaries import check as boundaries
@@ -272,6 +275,11 @@ def main() -> int:
     fmt.add_argument("profile", choices=["rust", "scala"])
     fmt.add_argument("--check", action="store_true")
     sub.add_parser("identity")
+    roadmap = sub.add_parser("roadmap", help="validate authoritative nested progress and evidence")
+    roadmap.add_argument("--write-view", type=Path, help="write a disposable deterministic derived JSON view")
+    roadmap.add_argument("--check-view", type=Path, help="reject a conflicting previously generated view")
+    roadmap.add_argument("--expect-source", action="append", default=[], metavar="ID=SHA")
+    roadmap.add_argument("--check-anchor", action="append", default=[], metavar="ID=CANDIDATE_SHA")
     args = parser.parse_args()
     try:
         if args.command in {"bootstrap", "doctor"}:
@@ -280,6 +288,28 @@ def main() -> int:
             check(args.profile)
         elif args.command == "reproduce":
             reproduce(args.profile)
+        elif args.command == "roadmap":
+            from roadmap import load, validate, check as roadmap_check, render, verify_derived, read_json, verify_source_anchor, write_view, validate_evidence
+            expectations = {}
+            for value in args.expect_source:
+                identifier, separator, sha = value.partition("=")
+                if not separator or identifier in expectations:
+                    raise BootstrapError("RM-EVIDENCE-SOURCE: use unique ID=SHA expectations")
+                expectations[identifier] = sha
+            data = load(ROOT)
+            validate(data, ROOT, expected_sources=expectations)
+            for value in args.check_anchor:
+                identifier, separator, candidate = value.partition("=")
+                if not separator or identifier not in data.increments:
+                    raise BootstrapError("RM-EVIDENCE-SOURCE: use known ID=CANDIDATE_SHA")
+                validate_evidence(data, identifier, ROOT)
+                receipt = read_json(ROOT / f"docs/completion/{identifier}.evidence.json")
+                verify_source_anchor(ROOT, receipt["source"]["commit"], candidate)
+            if args.check_view:
+                verify_derived(data, args.check_view)
+            if args.write_view:
+                write_view(data, ROOT, args.write_view)
+            print(json.dumps(roadmap_check(ROOT, expected_sources=expectations), sort_keys=True))
         elif args.command == "format":
             doctor(args.profile, pins())
             if args.profile == "rust":

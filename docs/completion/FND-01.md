@@ -198,3 +198,10 @@ contracts result and full-scope reuse decision, document review, actual final
 candidate/merge/tree and suppressed post-merge CI. It does not relabel the Rust
 or Scala runs as execution on the documentation head. The checklist becomes the
 accepted `dev` status only after that documentation qualification and integration.
+
+## Machine-checkable evidence references
+
+[Evidence metadata](FND-01.evidence.json) maps the existing accepted
+leaf evidence to source/profile-bound observations for FND-03 validation.
+It adds no execution claim and does not alter the original retained logs or
+acceptance. Checkbox status remains solely in the owning Markdown track.

@@ -95,27 +95,27 @@ must not claim later emission, loader, device inspection or physical validation.
   Evidence: [FND-01 completion report](../../completion/FND-01.md), exact CI/artifacts and verified implementation integration; documentation closure qualified separately.
   - [x] FND-01.a Create the minimal Rust workspace, pinned Rust toolchain and formatter/linter/test entrypoints; prove an unprivileged installation path.
     - [x] FND-01.a.1 Create only the Rust workspace/crates needed for the bootstrap, with the selected Rust/Cargo versions and checked-in dependency lock.
-    - [x] FND-01.a.2 Provide formatter, lint and test commands; run the installation/bootstrap path as an unprivileged user and retain the actual commands and results.
+    - [x] FND-01.a.2 Provide formatter, lint and test commands; run the installation/bootstrap path as an unprivileged user and retain the actual commands and results. <!-- requires: execution -->
   - [x] FND-01.b Select and pin one Scala build tool/JDK/Scala combination; add a tiny frontend smoke build without requiring MLIR.
     - [x] FND-01.b.1 Select and record one compatible Scala/build-tool/JDK set and its reproducible bootstrap procedure; do not maintain parallel build systems without an approved reason.
-    - [x] FND-01.b.2 Compile and run a tiny Scala frontend smoke fixture without requiring an LLVM/MLIR/CIRCT SDK; label it as bootstrap rather than the production architecture DSL.
+    - [x] FND-01.b.2 Compile and run a tiny Scala frontend smoke fixture without requiring an LLVM/MLIR/CIRCT SDK; label it as bootstrap rather than the production architecture DSL. <!-- requires: execution -->
   - [x] FND-01.c Document core/library/device/adapter/application dependency directions and license/proprietary-IP policy; add dependency-boundary checks for reusable core and the default Rust compiler/emitter, with no separately installed LLVM/MLIR/CIRCT SDK or application linkage to those frameworks. Apply the ADR 0001 dependency-isolation matrix; ordinary Rust compiler components are allowed.
     - [x] FND-01.c.1 Document one-way core, library, device, adapter and application dependencies plus license and proprietary-content boundaries against the architecture and ADR.
-    - [x] FND-01.c.2 Implement dependency-boundary checks for the existing bootstrap modules; include an intentionally forbidden import/dependency that the intended check rejects.
-    - [x] FND-01.c.3 Verify the default Rust-build profile without Scala/JDK or optional compiler SDK/application linkage; retain dependency and invoked-process evidence while allowing normal Rust toolchain components.
+    - [x] FND-01.c.2 Implement dependency-boundary checks for the existing bootstrap modules; include an intentionally forbidden import/dependency that the intended check rejects. <!-- requires: execution -->
+    - [x] FND-01.c.3 Verify the default Rust-build profile without Scala/JDK or optional compiler SDK/application linkage; retain dependency and invoked-process evidence while allowing normal Rust toolchain components. <!-- requires: execution -->
   - [x] FND-01.d Test clean checkout builds and docs-only path handling; distinguish genuinely skipped hardware jobs from passed checks.
-    - [x] FND-01.d.1 Run clean-checkout Rust and Scala bootstrap checks in their separate declared environments, including useful failure diagnostics for missing prerequisites.
-    - [x] FND-01.d.2 Establish the minimal CI checks/triggers needed for bootstrap qualification under AGENTS.md; verify targeted execution is available without changing main or launching unrelated suites.
-    - [x] FND-01.d.3 Check documentation-only path/skip behavior and explicit not-yet-applicable hardware lanes; no absent or skipped lane receives execution credit.
+    - [x] FND-01.d.1 Run clean-checkout Rust and Scala bootstrap checks in their separate declared environments, including useful failure diagnostics for missing prerequisites. <!-- requires: execution -->
+    - [x] FND-01.d.2 Establish the minimal CI checks/triggers needed for bootstrap qualification under AGENTS.md; verify targeted execution is available without changing main or launching unrelated suites. <!-- requires: execution -->
+    - [x] FND-01.d.3 Check documentation-only path/skip behavior and explicit not-yet-applicable hardware lanes; no absent or skipped lane receives execution credit. <!-- requires: execution -->
   - [x] FND-01.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
     - [x] FND-01.f.1 Review the build and ownership evidence independently of the smoke fixtures; verify that passing compilation did not bypass dependency checks.
     - [x] FND-01.f.2 Record why generated-fabric simulation, synthesis and formal qualification are outside this bootstrap profile, with FND-06 and the later RTL/VER owners retained.
   - [x] FND-01.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [x] FND-01.g.1 Review workspace size, dependency burden and command clarity; remove unnecessary scaffolding only when no required boundary or evidence is lost.
-    - [x] FND-01.g.2 Repeat the bootstrap in clean working directories; compare lockfiles and declared outputs, recording reproducibility limits and observed build costs without a production-scale claim.
+    - [x] FND-01.g.2 Repeat the bootstrap in clean working directories; compare lockfiles and declared outputs, recording reproducibility limits and observed build costs without a production-scale claim. <!-- requires: execution -->
   - [x] FND-01.e Record reproducible commands and final-head bootstrap evidence; confirm no application or concrete device is imported by core.
     - [x] FND-01.e.1 Retain bootstrap commands, exact source/tree and tool identities, dependency evidence, positive/negative results and profile limitations in the completion report.
-    - [x] FND-01.e.2 Complete applicable targeted-first/full-CI qualification, review and verified integration under AGENTS.md; distinguish executed checks from suppressed post-merge CI.
+    - [x] FND-01.e.2 Complete applicable targeted-first/full-CI qualification, review and verified integration under AGENTS.md; distinguish executed checks from suppressed post-merge CI. <!-- requires: execution -->
     - [x] FND-01.e.3 Confirm every required descendant and closure obligation is complete before checking FND-01; report the actual Scala smoke example and the absence of generated-Verilog effects.
 
 - [x] FND-02 — Freeze the initial architecture and project contracts
@@ -143,10 +143,10 @@ must not claim later emission, loader, device inspection or physical validation.
     - [x] FND-02.g.2 Walk the contracts through small/boundary and repeated-template examples; document compatibility and expected scaling boundaries without claiming measured compiler performance.
   - [x] FND-02.e Review contracts against all later track boundaries; record accepted ADRs, the assumption ledger and the common-subset correspondence contract. Resolve critical semantic ambiguities before closing; label scheduled execution evidence as not run and retain genuinely nonblocking choices without claiming implementation.
     - [x] FND-02.e.1 Audit all later track boundaries and retain accepted ADRs, ledger revision, independent fixture specification and correspondence hashes with rationale.
-    - [x] FND-02.e.2 Resolve critical semantic ambiguities, qualify applicable contract/document checks, and complete review and verified integration under AGENTS.md; scheduled executions remain not run.
+    - [x] FND-02.e.2 Resolve critical semantic ambiguities, qualify applicable contract/document checks, and complete review and verified integration under AGENTS.md; scheduled executions remain not run. <!-- requires: execution -->
     - [x] FND-02.e.3 Check FND-02 only after every required descendant and FND-01 are complete; deliver the bounded architecture-contract completion report without invented generated output.
 
-- [ ] FND-03 — Enforce resumable nested progress and evidence
+- [ ] FND-03 — Enforce resumable nested progress and evidence <!-- profile: foundation-progress/1 -->
   Depends on: FND-02.
   - [ ] FND-03.a Implement a roadmap parser that ignores fenced examples and checks unique increment/leaf IDs and consistent nesting.
     - [ ] FND-03.a.1 Parse authoritative Markdown checkboxes at arbitrary supported nesting depth with two spaces per level, ignoring fenced examples and non-status prose.
@@ -159,18 +159,18 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-03.c.1 Add completion templates for source/tree, artifacts, tool/device/configuration identity, commands, seeds, results, coverage, limitations and actual applicable examples.
     - [ ] FND-03.c.2 Include assumption IDs, reference/correspondence hashes, mutation outcomes, load mode, review and actual merge identity; distinguish executed CI from verified post-merge suppression.
   - [ ] FND-03.d Test partial completion, reopened regressions, missing evidence, stale heads, invalid checked parents and a dependency-cycle fixture.
-    - [ ] FND-03.d.1 Create fixtures for nested partial completion, valid closure, reopened regressions, fenced examples and the Foundation document format introduced here.
-    - [ ] FND-03.d.2 Reject duplicate IDs, bad nesting, missing/stale evidence, checked ancestors with open required descendants, unknown dependencies and dependency cycles.
-    - [ ] FND-03.d.3 Verify the intended diagnostic for each negative case, including an attempt to treat not-applicable review as required execution or to maintain conflicting generated status.
+    - [ ] FND-03.d.1 Create fixtures for nested partial completion, valid closure, reopened regressions, fenced examples and the Foundation document format introduced here. <!-- requires: execution -->
+    - [ ] FND-03.d.2 Reject duplicate IDs, bad nesting, missing/stale evidence, checked ancestors with open required descendants, unknown dependencies and dependency cycles. <!-- requires: execution -->
+    - [ ] FND-03.d.3 Verify the intended diagnostic for each negative case, including an attempt to treat not-applicable review as required execution or to maintain conflicting generated status. <!-- requires: execution -->
   - [ ] FND-03.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-03.f.1 Compare parser output with a small hand-authored expectation independent of the parser and production roadmap renderer; do not generate expected status with the code under test.
+    - [ ] FND-03.f.1 Compare parser output with a small hand-authored expectation independent of the parser and production roadmap renderer; do not generate expected status with the code under test. <!-- requires: execution -->
     - [ ] FND-03.f.2 Review applicable document/evidence checks separately from HDL tools; this validator produces no fabric and cannot qualify generated-Verilog behavior.
   - [ ] FND-03.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-03.g.1 Review parsing/graph traversal for unnecessary repeated scans and clear, stable diagnostics; justify no additional optimization when appropriate.
-    - [ ] FND-03.g.2 Exercise nested and many-increment synthetic documents within declared bounds; compare deterministic results and measure relevant time/memory without requiring the PERF track.
+    - [ ] FND-03.g.2 Exercise nested and many-increment synthetic documents within declared bounds; compare deterministic results and measure relevant time/memory without requiring the PERF track. <!-- requires: execution -->
   - [ ] FND-03.e Run the validator on the repository and its negative fixtures; retain evidence that partial child completion is accepted correctly.
-    - [ ] FND-03.e.1 Run the validator on the actual roadmap and independent positive/negative fixtures; retain proof that valid partial child completion is accepted.
-    - [ ] FND-03.e.2 Publish reproducible source/artifact and diagnostic evidence, qualify affected checks, and complete review and verified integration under AGENTS.md.
+    - [ ] FND-03.e.1 Run the validator on the actual roadmap and independent positive/negative fixtures; retain proof that valid partial child completion is accepted. <!-- requires: execution -->
+    - [ ] FND-03.e.2 Publish reproducible source/artifact and diagnostic evidence, qualify affected checks, and complete review and verified integration under AGENTS.md. <!-- requires: execution -->
     - [ ] FND-03.e.3 Check FND-03 only after every required descendant and FND-02 are complete; document enforcement limits and avoid claiming semantic validation of hardware.
 
 - [ ] FND-04 — Implement foundational types and semantic validation
@@ -183,20 +183,20 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-04.b.2 Implement checked local/cross-partition and length/offset conversions; exercise near-limit values without giant allocations or unchecked layout assumptions.
   - [ ] FND-04.c Add an initial `arch-ir` model with resource types, interfaces, references, legal modes and configuration-feature declarations.
     - [ ] FND-04.c.1 Implement the initial ArchIR resources, interfaces, references, legal modes and logical configuration-feature declarations needed by the Foundation fixtures.
-    - [ ] FND-04.c.2 Verify ownership, type/reference legality and declared sharing/mode constraints while retaining hierarchy and source provenance.
+    - [ ] FND-04.c.2 Verify ownership, type/reference legality and declared sharing/mode constraints while retaining hierarchy and source provenance. <!-- requires: execution -->
   - [ ] FND-04.d Property-test invalid references, overflow, illegal modes, undeclared shared-bit conflicts and deterministic diagnostics on tiny fixtures.
-    - [ ] FND-04.d.1 Property-test valid/boundary tiny models, invalid references, overflow and illegal modes against independently stated expectations.
-    - [ ] FND-04.d.2 Reject undeclared shared-bit conflicts and malformed ownership with stable diagnostics; preserve legal explicitly declared sharing.
-    - [ ] FND-04.d.3 Exercise selected FND-02 semantic and FND-03 evidence/diagnostic interactions, recording selection rationale rather than an all-features Cartesian product.
+    - [ ] FND-04.d.1 Property-test valid/boundary tiny models, invalid references, overflow and illegal modes against independently stated expectations. <!-- requires: execution -->
+    - [ ] FND-04.d.2 Reject undeclared shared-bit conflicts and malformed ownership with stable diagnostics; preserve legal explicitly declared sharing. <!-- requires: execution -->
+    - [ ] FND-04.d.3 Exercise selected FND-02 semantic and FND-03 evidence/diagnostic interactions, recording selection rationale rather than an all-features Cartesian product. <!-- requires: execution -->
   - [ ] FND-04.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-04.f.1 Cross-check tiny model legality and conversions with hand-calculated expectations independent of the implementation validator.
+    - [ ] FND-04.f.1 Cross-check tiny model legality and conversions with hand-calculated expectations independent of the implementation validator. <!-- requires: execution -->
     - [ ] FND-04.f.2 Record the structural/type-validation acceptance profile and later DB/RTL consumers; no RTL simulator, production DeviceDB or fabric-equivalence result is implied.
   - [ ] FND-04.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-04.g.1 Review unnecessary model duplication, hierarchy expansion and lost provenance; any normalization added must preserve declared resource/configuration meaning.
-    - [ ] FND-04.g.2 Vary resource counts, reference depth and partition boundaries in bounded fixtures; retain deterministic diagnostics and measured size/time observations.
+    - [ ] FND-04.g.2 Vary resource counts, reference depth and partition boundaries in bounded fixtures; retain deterministic diagnostics and measured size/time observations. <!-- requires: execution -->
   - [ ] FND-04.e Publish the tested core contracts and final-head evidence; no unchecked pointer/file-layout assumptions may enter public APIs.
     - [ ] FND-04.e.1 Publish core API/contracts, supported/rejected cases, reproduction commands and exact source/artifact identities; show actual model/diagnostic examples.
-    - [ ] FND-04.e.2 Complete affected correctness/regression checks, targeted/full CI, review and verified integration under AGENTS.md; audit pointer and file-layout assumptions at public boundaries.
+    - [ ] FND-04.e.2 Complete affected correctness/regression checks, targeted/full CI, review and verified integration under AGENTS.md; audit pointer and file-layout assumptions at public boundaries. <!-- requires: execution -->
     - [ ] FND-04.e.3 Check FND-04 only after every required descendant and FND-03 are complete; retain explicit limits on hardware-generation and device-compiler claims.
 
 - [ ] FND-05 — Establish cross-language serialization and compatibility
@@ -212,18 +212,18 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-05.c.2 Implement bounded reads, version/feature negotiation and actionable errors for unsupported inputs; define explicit migration behavior.
     - [ ] FND-05.c.3 Keep the wire representation independent of Rust memory layout, endianness/alignment assumptions and unchecked integer conversions.
   - [ ] FND-05.d Test round trips, truncated/malformed inputs, unsupported required features, field ordering and cross-language semantic equality.
-    - [ ] FND-05.d.1 Test Scala-to-Rust semantic equality, supported round trips and canonical field-order permutations against independent fixture expectations.
-    - [ ] FND-05.d.2 Reject truncated/malformed inputs, excessive declared sizes, incompatible identities/versions and unsupported required features before unsafe allocation or interpretation.
-    - [ ] FND-05.d.3 Exercise FND-04 ID/unit/diagnostic boundaries and preserve hierarchy/provenance across serialization.
+    - [ ] FND-05.d.1 Test Scala-to-Rust semantic equality, supported round trips and canonical field-order permutations against independent fixture expectations. <!-- requires: execution -->
+    - [ ] FND-05.d.2 Reject truncated/malformed inputs, excessive declared sizes, incompatible identities/versions and unsupported required features before unsafe allocation or interpretation. <!-- requires: execution -->
+    - [ ] FND-05.d.3 Exercise FND-04 ID/unit/diagnostic boundaries and preserve hierarchy/provenance across serialization. <!-- requires: execution -->
   - [ ] FND-05.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
     - [ ] FND-05.f.1 Retain hand-authored known inputs/semantic expectations so a shared writer/reader bug cannot be hidden by round-trip agreement alone.
-    - [ ] FND-05.f.2 Generate the fixture with pinned Scala tools, then consume it with prebuilt Rust tools in the separate saved-package runtime profile without Scala/JVM, Rust build tools or optional compiler SDK/application dependencies.
+    - [ ] FND-05.f.2 Generate the fixture with pinned Scala tools, then consume it with prebuilt Rust tools in the separate saved-package runtime profile without Scala/JVM, Rust build tools or optional compiler SDK/application dependencies. <!-- requires: execution -->
   - [ ] FND-05.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-05.g.1 Review canonical dump readability, duplicate payload and premature expansion; record justified no-change decisions or preservation evidence for introduced transformations.
-    - [ ] FND-05.g.2 Vary nesting, repeated-template count and bounded payload lengths; compare stable semantic hashes and supported compatibility behavior while recording size/time limits.
+    - [ ] FND-05.g.2 Vary nesting, repeated-template count and bounded payload lengths; compare stable semantic hashes and supported compatibility behavior while recording size/time limits. <!-- requires: execution -->
   - [ ] FND-05.e Record the conformance corpus and compatibility matrix; generate the Scala fixture in its pinned authoring environment, then demonstrate consumption by prebuilt Rust tools without Scala/JVM, Rust build tools or LLVM/MLIR/CIRCT application dependencies in the separate saved-package runtime profile.
     - [ ] FND-05.e.1 Publish the conformance corpus, compatibility matrix, source/schema/artifact hashes and actual Scala-input/canonical-output example with executable commands.
-    - [ ] FND-05.e.2 Retain authoring and runtime isolation evidence as separate results, complete applicable qualification/review, and verify integration under AGENTS.md.
+    - [ ] FND-05.e.2 Retain authoring and runtime isolation evidence as separate results, complete applicable qualification/review, and verify integration under AGENTS.md. <!-- requires: execution -->
     - [ ] FND-05.e.3 Check FND-05 only after every required descendant and FND-04 are complete; do not claim later RTL emission or full device inspection from the bootstrap reader.
 
 - [ ] FND-06 — Bootstrap independent verification before generator development
@@ -232,25 +232,25 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-06.a.1 Author asymmetric LUT truth tables, mux selections and configuration vectors independently of production emitters, allocators and topology-normalization helpers.
     - [ ] FND-06.a.2 Build a simple independently enumerated tiny tile graph with hand-calculated behavior, legal/illegal configurations and explicit pin/resource correspondence.
   - [ ] FND-06.b Wire minimal Rust property testing, RTL simulation and formal-tool smoke tests with pinned tool identities; generate the declared FABulous LUT/register/switch/tiny-tile reference subset and run it against independent vectors in an isolated bootstrap harness, without requiring Nodal-generated RTL or Yosys/nextpnr integration.
-    - [ ] FND-06.b.1 Integrate minimal Rust property testing and external RTL simulation/formal smoke tools with pinned executable/solver identities and reproducible commands.
-    - [ ] FND-06.b.2 Generate the declared FABulous LUT/register/switch/tiny-tile subset from its independently authored input; preserve actual generated reference RTL and logs.
-    - [ ] FND-06.b.3 Run the generated reference resources against the independent vectors/graph in the isolated bootstrap harness without requiring production Nodal RTL or integrated Yosys/nextpnr CAD.
+    - [ ] FND-06.b.1 Integrate minimal Rust property testing and external RTL simulation/formal smoke tools with pinned executable/solver identities and reproducible commands. <!-- requires: execution -->
+    - [ ] FND-06.b.2 Generate the declared FABulous LUT/register/switch/tiny-tile subset from its independently authored input; preserve actual generated reference RTL and logs. <!-- requires: execution -->
+    - [ ] FND-06.b.3 Run the generated reference resources against the independent vectors/graph in the isolated bootstrap harness without requiring production Nodal RTL or integrated Yosys/nextpnr CAD. <!-- requires: execution -->
   - [ ] FND-06.c Define reset, initial-state, X/Z, legal-configuration and clock assumptions explicitly for the first profile; bind each fixture and correspondence mapping to the assumption ledger, record unsupported cases, and label static configuration/unit shortcuts separately from future real-loader checks.
     - [ ] FND-06.c.1 Bind fixture/profile and correspondence records to explicit reset, initial-state, clock, X/Z and legal-configuration assumptions and ledger IDs.
     - [ ] FND-06.c.2 Document unsupported modes/shapes and exact result scope; distinguish static/unit setup from actual runtime-loader checks owned by RTL-04.
   - [ ] FND-06.d Inject a wrong mux index, swapped LUT bit and bad config address and demonstrate the intended bootstrap check detects each defect; include a faulty correspondence map and an overconstrained/vacuous-case witness so agreement or an unrelated crash cannot count as success.
-    - [ ] FND-06.d.1 Inject wrong mux indexing, swapped LUT bits and bad configuration addresses; require the intended semantic/bootstrap check to reject each defect.
-    - [ ] FND-06.d.2 Inject a faulty correspondence map and verify that independent mapping checks expose it rather than normalizing away the mismatch.
-    - [ ] FND-06.d.3 Include an overconstrained/vacuous-case witness and useful cover checks; timeouts, unrelated crashes and agreement under invalid assumptions are not mutation-detection passes.
+    - [ ] FND-06.d.1 Inject wrong mux indexing, swapped LUT bits and bad configuration addresses; require the intended semantic/bootstrap check to reject each defect. <!-- requires: execution -->
+    - [ ] FND-06.d.2 Inject a faulty correspondence map and verify that independent mapping checks expose it rather than normalizing away the mismatch. <!-- requires: execution -->
+    - [ ] FND-06.d.3 Include an overconstrained/vacuous-case witness and useful cover checks; timeouts, unrelated crashes and agreement under invalid assumptions are not mutation-detection passes. <!-- requires: execution -->
   - [ ] FND-06.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-06.f.1 Retain separate results for reference generation/compile, behavioral simulation, property/formal smoke checks and cover/mutation witnesses with tools, commands, bounds and artifacts.
+    - [ ] FND-06.f.1 Retain separate results for reference generation/compile, behavioral simulation, property/formal smoke checks and cover/mutation witnesses with tools, commands, bounds and artifacts. <!-- requires: execution -->
     - [ ] FND-06.f.2 Review independent expectations and common-mode risks; missing required reference runs or unresolved critical subset mismatches keep this gate open, with no Nodal-fabric qualification claimed.
   - [ ] FND-06.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-06.g.1 Review harness reuse and oracle separation; never regenerate expected semantics from candidate lowering or specialize a programmable resource to the demonstration bitstream.
-    - [ ] FND-06.g.2 Exercise supported boundary/asymmetric tiny cases and repeat pinned runs; record seeds, deterministic artifact/graph correspondence and observed resource costs without full-flow/PPA claims.
+    - [ ] FND-06.g.2 Exercise supported boundary/asymmetric tiny cases and repeat pinned runs; record seeds, deterministic artifact/graph correspondence and observed resource costs without full-flow/PPA claims. <!-- requires: execution -->
   - [ ] FND-06.e Archive executable fixtures, both hand-authored specifications and generated FABulous artifacts, pinned revisions, commands, correspondence hashes, mutation results and assumptions. Distinguish bounded checks, unbounded proofs and cover witnesses; missing reference runs block this gate and no Nodal-fabric qualification is claimed yet.
     - [ ] FND-06.e.1 Archive executable fixtures, both independently authored specifications, generated FABulous artifacts, tool/reference revisions, correspondence hashes, assumptions and mutation results.
-    - [ ] FND-06.e.2 Distinguish bounded checks, unbounded proofs and cover witnesses; complete required targeted/full-CI qualification, review and verified integration under AGENTS.md.
+    - [ ] FND-06.e.2 Distinguish bounded checks, unbounded proofs and cover witnesses; complete required targeted/full-CI qualification, review and verified integration under AGENTS.md. <!-- requires: execution -->
     - [ ] FND-06.e.3 Check FND-06 only after every required descendant and FND-05 are complete; show actual reference input/output and clearly identify the absence of production Nodal fabric generation.
 
 - [ ] FND-07 — Establish dependency, security and benchmark policy
@@ -265,17 +265,17 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-07.c.1 Define workload/corpus identity, runner/tool identity and separate time, memory, storage and throughput measurements with a reviewed baseline-update procedure.
     - [ ] FND-07.c.2 Describe future small/medium/large synthetic profiles and their PERF ownership; do not claim backend or production-scale measurements before those implementations exist.
   - [ ] FND-07.d Test lockfile drift detection, missing-tool diagnostics, deterministic fixture hashes and oversized input rejection.
-    - [ ] FND-07.d.1 Detect altered lockfiles/checksums and missing required tools with the intended useful diagnostics rather than silent fallback.
-    - [ ] FND-07.d.2 Repeat fixture hashing and reject oversized inputs within declared bounds; exercise the existing FND-05 reader and FND-06 tool assumptions.
+    - [ ] FND-07.d.1 Detect altered lockfiles/checksums and missing required tools with the intended useful diagnostics rather than silent fallback. <!-- requires: execution -->
+    - [ ] FND-07.d.2 Repeat fixture hashing and reject oversized inputs within declared bounds; exercise the existing FND-05 reader and FND-06 tool assumptions. <!-- requires: execution -->
   - [ ] FND-07.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-07.f.1 Independently verify a representative pinned artifact/checksum and input-limit expectation; retain failure evidence for deliberately mismatched metadata.
+    - [ ] FND-07.f.1 Independently verify a representative pinned artifact/checksum and input-limit expectation; retain failure evidence for deliberately mismatched metadata. <!-- requires: execution -->
     - [ ] FND-07.f.2 Separate policy review, executed bootstrap checks and future adapter/performance qualifications; record genuine applicability without relabeling missing required tools as optional.
   - [ ] FND-07.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-07.g.1 Review unnecessary downloads/dependency duplication and cost of policy enforcement while preserving integrity and input-safety guarantees.
-    - [ ] FND-07.g.2 Measure the bootstrap workloads under recorded runner/tool/input identities and repeat deterministic hashes; document the reproducibility envelope and limits of extrapolation.
+    - [ ] FND-07.g.2 Measure the bootstrap workloads under recorded runner/tool/input identities and repeat deterministic hashes; document the reproducibility envelope and limits of extrapolation. <!-- requires: execution -->
   - [ ] FND-07.e Record verified baseline commands and review exact adapter assumptions; no claim of full backend integration is made here.
     - [ ] FND-07.e.1 Record verified commands, pin/license inventory, profile boundaries, benchmark procedures and exact adapter assumptions with reproducible source/artifact identities.
-    - [ ] FND-07.e.2 Complete applicable policy/tooling/regression qualification, review and verified integration under AGENTS.md without claiming full backend integration.
+    - [ ] FND-07.e.2 Complete applicable policy/tooling/regression qualification, review and verified integration under AGENTS.md without claiming full backend integration. <!-- requires: execution -->
     - [ ] FND-07.e.3 Check FND-07 only after every required descendant and FND-06 are complete; provide actual policy/check outputs and a bounded no-new-Verilog-effects statement.
 
 - [ ] FND-08 — Release the Foundation gate
@@ -284,24 +284,24 @@ must not claim later emission, loader, device inspection or physical validation.
     - [ ] FND-08.a.1 Audit every FND-01–07 parent/descendant and its own accepted deliverables, review, source/artifact identity and evidence limits.
     - [ ] FND-08.a.2 Verify dependency direction and the unchanged global FND-08 gate; reject any circular reliance on blocked production, optional-backend or physical/silicon tracks.
   - [ ] FND-08.b Run clean Rust/Scala builds, schema conformance, negative fixtures, roadmap validation and independent test smoke suites; replay the pinned FND-06 reference corpus in its separate test environment and reject unresolved critical baseline mismatches.
-    - [ ] FND-08.b.1 Run clean pinned Rust/Scala builds, schema conformance, malformed/negative fixtures and roadmap/evidence validation on the release candidate.
-    - [ ] FND-08.b.2 Replay the required independent property/simulation/formal smoke and mutation checks plus the pinned FND-06 reference corpus in its separate test environment.
+    - [ ] FND-08.b.1 Run clean pinned Rust/Scala builds, schema conformance, malformed/negative fixtures and roadmap/evidence validation on the release candidate. <!-- requires: execution -->
+    - [ ] FND-08.b.2 Replay the required independent property/simulation/formal smoke and mutation checks plus the pinned FND-06 reference corpus in its separate test environment. <!-- requires: execution -->
     - [ ] FND-08.b.3 Resolve critical baseline mismatches and missing required runs; preserve genuine non-applicable classifications and actual proof/simulation limits.
   - [ ] FND-08.c Run the default Rust-build, saved-package-runtime and Scala-authoring profiles from ADR 0001 separately; confirm reusable core has no concrete-device, external-CAD or optional-adapter dependency. Keep the ordinary Rust toolchain intact and distinguish its internal components from application SDK/runtime dependencies.
-    - [ ] FND-08.c.1 Run default Rust-build, saved-package runtime and Scala-authoring profiles independently using the Foundation capabilities that actually exist.
-    - [ ] FND-08.c.2 Retain dependency and process evidence that reusable core does not import concrete devices, external CAD or optional adapters; allow ordinary Rust compiler internal components.
+    - [ ] FND-08.c.1 Run default Rust-build, saved-package runtime and Scala-authoring profiles independently using the Foundation capabilities that actually exist. <!-- requires: execution -->
+    - [ ] FND-08.c.2 Retain dependency and process evidence that reusable core does not import concrete devices, external CAD or optional adapters; allow ordinary Rust compiler internal components. <!-- requires: execution -->
     - [ ] FND-08.c.3 Identify later emission/inspection and opt-in-adapter checks by owning track, without claiming them passed or introducing a reverse Foundation dependency.
   - [ ] FND-08.d Freeze the initial contract baseline, assumption ledger and reference/correspondence manifests; explicitly list supported and rejected capabilities plus benchmark measurement procedures, and identify which later checks cannot run until their owning RTL/DB/VER increments exist.
     - [ ] FND-08.d.1 Freeze the reviewed contract, schema, assumption-ledger, reference/correspondence and toolchain manifests with immutable identity and change/invalidation rules.
     - [ ] FND-08.d.2 Publish supported/rejected capabilities, benchmark procedures, reproducible commands and exact later DSL/DB/RTL/CFG/CAD/VER/PERF ownership for unimplemented capabilities.
   - [ ] FND-08.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
     - [ ] FND-08.f.1 Independently review the release dossier against original contracts and retained expected vectors; verify that regenerated goldens or shared implementation helpers have not substituted for independent evidence.
-    - [ ] FND-08.f.2 Keep clean-build, conformance, reference generation, simulation, formal, cover/mutation and dependency-isolation results distinct and bound to the qualified source/profile.
+    - [ ] FND-08.f.2 Keep clean-build, conformance, reference generation, simulation, formal, cover/mutation and dependency-isolation results distinct and bound to the qualified source/profile. <!-- requires: execution -->
   - [ ] FND-08.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
     - [ ] FND-08.g.1 Review remaining abstraction/dependency burden and output/diagnostic quality without pulling a full fabric, native CAD or general HDL compiler into Foundation.
-    - [ ] FND-08.g.2 Repeat applicable bounded scale/determinism checks from prior increments; document measured baseline observations, compatibility limits and explicitly unqualified production behavior.
+    - [ ] FND-08.g.2 Repeat applicable bounded scale/determinism checks from prior increments; document measured baseline observations, compatibility limits and explicitly unqualified production behavior. <!-- requires: execution -->
   - [ ] FND-08.e Record final-head evidence and open the downstream-track gate only after every required Foundation leaf is complete.
-    - [ ] FND-08.e.1 Complete the exact final-head targeted-first/full-CI and review gates, then verify the actual integration/tree and post-merge suppression under AGENTS.md.
+    - [ ] FND-08.e.1 Complete the exact final-head targeted-first/full-CI and review gates, then verify the actual integration/tree and post-merge suppression under AGENTS.md. <!-- requires: execution -->
     - [ ] FND-08.e.2 Integrate the completion dossier and authoritative checklist consistently, retaining all required evidence and actual applicable Scala/schema/reference demonstrations.
     - [ ] FND-08.e.3 Check FND-08 and open downstream eligibility only after every required Foundation descendant, dependency and closure obligation is complete; stop its monitor only after the completion report is delivered.
 
