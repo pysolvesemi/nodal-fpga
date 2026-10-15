@@ -146,32 +146,33 @@ must not claim later emission, loader, device inspection or physical validation.
     - [x] FND-02.e.2 Resolve critical semantic ambiguities, qualify applicable contract/document checks, and complete review and verified integration under AGENTS.md; scheduled executions remain not run. <!-- requires: execution -->
     - [x] FND-02.e.3 Check FND-02 only after every required descendant and FND-01 are complete; deliver the bounded architecture-contract completion report without invented generated output.
 
-- [ ] FND-03 — Enforce resumable nested progress and evidence <!-- profile: foundation-progress/1 -->
+- [x] FND-03 — Enforce resumable nested progress and evidence <!-- profile: foundation-progress/1 -->
   Depends on: FND-02.
-  - [ ] FND-03.a Implement a roadmap parser that ignores fenced examples and checks unique increment/leaf IDs and consistent nesting.
-    - [ ] FND-03.a.1 Parse authoritative Markdown checkboxes at arbitrary supported nesting depth with two spaces per level, ignoring fenced examples and non-status prose.
-    - [ ] FND-03.a.2 Recognize existing IDs and numeric descendants, reject duplicates/malformed ownership, and retain stable IDs rather than deriving status from display order.
-  - [ ] FND-03.b Validate dependency references, cycles, the global FND-08 blocker, and the rule that a completed parent has no open descendant.
-    - [ ] FND-03.b.1 Validate dependency existence and cycles, including the inherited FND-08 gate; references to future evidence consumers must not create implicit reverse edges.
-    - [ ] FND-03.b.2 Enforce checked-parent/required-descendant consistency at every level and the final closure child, while allowing evidenced partial completion under open ancestors.
-    - [ ] FND-03.b.3 Validate linked completion evidence and declared source/profile applicability; Markdown remains the sole editable status source for any generated view.
-  - [ ] FND-03.c Add completion-report templates for source head, tool/device hashes, commands, results, limitations and actual generated examples, plus assumption IDs, reference-corpus/correspondence hashes, mutation outcomes and configuration-loading mode.
-    - [ ] FND-03.c.1 Add completion templates for source/tree, artifacts, tool/device/configuration identity, commands, seeds, results, coverage, limitations and actual applicable examples.
-    - [ ] FND-03.c.2 Include assumption IDs, reference/correspondence hashes, mutation outcomes, load mode, review and actual merge identity; distinguish executed CI from verified post-merge suppression.
-  - [ ] FND-03.d Test partial completion, reopened regressions, missing evidence, stale heads, invalid checked parents and a dependency-cycle fixture.
-    - [ ] FND-03.d.1 Create fixtures for nested partial completion, valid closure, reopened regressions, fenced examples and the Foundation document format introduced here. <!-- requires: execution -->
-    - [ ] FND-03.d.2 Reject duplicate IDs, bad nesting, missing/stale evidence, checked ancestors with open required descendants, unknown dependencies and dependency cycles. <!-- requires: execution -->
-    - [ ] FND-03.d.3 Verify the intended diagnostic for each negative case, including an attempt to treat not-applicable review as required execution or to maintain conflicting generated status. <!-- requires: execution -->
-  - [ ] FND-03.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-03.f.1 Compare parser output with a small hand-authored expectation independent of the parser and production roadmap renderer; do not generate expected status with the code under test. <!-- requires: execution -->
-    - [ ] FND-03.f.2 Review applicable document/evidence checks separately from HDL tools; this validator produces no fabric and cannot qualify generated-Verilog behavior.
-  - [ ] FND-03.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
-    - [ ] FND-03.g.1 Review parsing/graph traversal for unnecessary repeated scans and clear, stable diagnostics; justify no additional optimization when appropriate.
-    - [ ] FND-03.g.2 Exercise nested and many-increment synthetic documents within declared bounds; compare deterministic results and measure relevant time/memory without requiring the PERF track. <!-- requires: execution -->
-  - [ ] FND-03.e Run the validator on the repository and its negative fixtures; retain evidence that partial child completion is accepted correctly.
-    - [ ] FND-03.e.1 Run the validator on the actual roadmap and independent positive/negative fixtures; retain proof that valid partial child completion is accepted. <!-- requires: execution -->
-    - [ ] FND-03.e.2 Publish reproducible source/artifact and diagnostic evidence, qualify affected checks, and complete review and verified integration under AGENTS.md. <!-- requires: execution -->
-    - [ ] FND-03.e.3 Check FND-03 only after every required descendant and FND-02 are complete; document enforcement limits and avoid claiming semantic validation of hardware.
+  Evidence: [FND-03 completion report](../../completion/FND-03.md), exact-source local checks and independent review, verified implementation integration; documentation closure qualified separately and final combined Foundation CI remains due.
+  - [x] FND-03.a Implement a roadmap parser that ignores fenced examples and checks unique increment/leaf IDs and consistent nesting.
+    - [x] FND-03.a.1 Parse authoritative Markdown checkboxes at arbitrary supported nesting depth with two spaces per level, ignoring fenced examples and non-status prose.
+    - [x] FND-03.a.2 Recognize existing IDs and numeric descendants, reject duplicates/malformed ownership, and retain stable IDs rather than deriving status from display order.
+  - [x] FND-03.b Validate dependency references, cycles, the global FND-08 blocker, and the rule that a completed parent has no open descendant.
+    - [x] FND-03.b.1 Validate dependency existence and cycles, including the inherited FND-08 gate; references to future evidence consumers must not create implicit reverse edges.
+    - [x] FND-03.b.2 Enforce checked-parent/required-descendant consistency at every level and the final closure child, while allowing evidenced partial completion under open ancestors.
+    - [x] FND-03.b.3 Validate linked completion evidence and declared source/profile applicability; Markdown remains the sole editable status source for any generated view.
+  - [x] FND-03.c Add completion-report templates for source head, tool/device hashes, commands, results, limitations and actual generated examples, plus assumption IDs, reference-corpus/correspondence hashes, mutation outcomes and configuration-loading mode.
+    - [x] FND-03.c.1 Add completion templates for source/tree, artifacts, tool/device/configuration identity, commands, seeds, results, coverage, limitations and actual applicable examples.
+    - [x] FND-03.c.2 Include assumption IDs, reference/correspondence hashes, mutation outcomes, load mode, review and actual merge identity; distinguish executed CI from verified post-merge suppression.
+  - [x] FND-03.d Test partial completion, reopened regressions, missing evidence, stale heads, invalid checked parents and a dependency-cycle fixture.
+    - [x] FND-03.d.1 Create fixtures for nested partial completion, valid closure, reopened regressions, fenced examples and the Foundation document format introduced here. <!-- requires: execution -->
+    - [x] FND-03.d.2 Reject duplicate IDs, bad nesting, missing/stale evidence, checked ancestors with open required descendants, unknown dependencies and dependency cycles. <!-- requires: execution -->
+    - [x] FND-03.d.3 Verify the intended diagnostic for each negative case, including an attempt to treat not-applicable review as required execution or to maintain conflicting generated status. <!-- requires: execution -->
+  - [x] FND-03.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
+    - [x] FND-03.f.1 Compare parser output with a small hand-authored expectation independent of the parser and production roadmap renderer; do not generate expected status with the code under test. <!-- requires: execution -->
+    - [x] FND-03.f.2 Review applicable document/evidence checks separately from HDL tools; this validator produces no fabric and cannot qualify generated-Verilog behavior.
+  - [x] FND-03.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
+    - [x] FND-03.g.1 Review parsing/graph traversal for unnecessary repeated scans and clear, stable diagnostics; justify no additional optimization when appropriate.
+    - [x] FND-03.g.2 Exercise nested and many-increment synthetic documents within declared bounds; compare deterministic results and measure relevant time/memory without requiring the PERF track. <!-- requires: execution -->
+  - [x] FND-03.e Run the validator on the repository and its negative fixtures; retain evidence that partial child completion is accepted correctly.
+    - [x] FND-03.e.1 Run the validator on the actual roadmap and independent positive/negative fixtures; retain proof that valid partial child completion is accepted. <!-- requires: execution -->
+    - [x] FND-03.e.2 Publish reproducible source/artifact and diagnostic evidence, qualify affected checks, and complete review and verified integration under AGENTS.md. <!-- requires: execution -->
+    - [x] FND-03.e.3 Check FND-03 only after every required descendant and FND-02 are complete; document enforcement limits and avoid claiming semantic validation of hardware.
 
 - [ ] FND-04 — Implement foundational types and semantic validation
   Depends on: FND-03.

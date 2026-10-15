@@ -1,0 +1,304 @@
+{
+  "artifacts": {
+    "docs/completion/FND-03.md": "5268ef0ff72f2fc7bd89ed3a10416d12f6f74c99c329f7cc99bbc9715f41f4d5",
+    "docs/completion/evidence/fnd-03/contracts.log": "791721cb6dcddaa741de13d6d91319f2f14095e98cab050f71d4ecc08dff6fa2",
+    "docs/completion/evidence/fnd-03/index.json": "a10363242cb5d9e2e4afadfd5904261e46f163e64aaa77fade24ceea984f62e6",
+    "docs/completion/evidence/fnd-03/roadmap.json": "491b806332efee68404103d7824eaa88758546c4ba99aaa5b87a5e3bbe5f46ab",
+    "docs/completion/evidence/fnd-03/roadmap.log": "cfaf8ae443843d28bce056ac774f49f1258433155c1a73a4bfac1f15f0859f62",
+    "docs/completion/evidence/fnd-03/rust.log": "cbd08c6bf06ea2319c5236f7880d4861b11b6b636e108f9a74428a77cc1700f5",
+    "docs/completion/evidence/fnd-03/scala.log": "d0ef65a1614484ea059293f7ec5ab5366e10b35dd2cb2c7ff2d42a7e34711711",
+    "docs/completion/evidence/fnd-03/scale.json": "6851780e2153e37a1499f1c467e0e837d8d97e06f03b8b425923e6ec709c5b6e",
+    "docs/completion/evidence/fnd-03/source.json": "1b680eb71db160fbc0e3eece3a7e9648683c04c9883ea29b80bfb752176493f5",
+    "docs/implementation/fnd-03-closure-local-review.md": "3070c94932f52e4a91f9570e1031d2c3644dfd50ae70d1a6181d0d39a3e7cd8b",
+    "docs/implementation/fnd-03-independent-review.md": "1d84e08f5b8a482b7578ca65e8016bd77ed4f859dbef97eb82ad8aa37f83401f"
+  },
+  "ci": {
+    "post_merge": {
+      "reason": "user-directed-local-qualification-identical-tree-merge",
+      "runs": [],
+      "state": "skipped"
+    },
+    "qualification": "not-run",
+    "reason": "Explicit user instruction: required local checks before increment merge; final combined Foundation CI at FND-08. No required protection check bypassed.",
+    "runs": []
+  },
+  "context": {
+    "assumptions": {
+      "prior_ledger": "FND-02 accepted contract retained unchanged; required FND-06 execution remains not-run.",
+      "scope": "Reviewed roadmap/evidence policies and explicit selected profile. No new hardware assumption execution."
+    },
+    "configuration": {
+      "reason": "Document validator only; no generated hardware, manufactured device or configuration loader.",
+      "state": "not-applicable"
+    },
+    "correspondence": {
+      "reason": "No hardware pin/resource mapping; stable task IDs map directly to observations.",
+      "state": "not-applicable"
+    },
+    "coverage": {
+      "companion_tests": 35,
+      "independent_tests": 57,
+      "predecessor_tests": 63,
+      "real_roadmap": "82 increments,648 nodes",
+      "roadmap_tests": 92,
+      "scale": "6000 nodes and nesting192"
+    },
+    "device": {
+      "reason": "Document validator only; no generated hardware, manufactured device or configuration loader.",
+      "state": "not-applicable"
+    },
+    "examples": {
+      "actual_frontend": "Markdown/JSON consumed by Python",
+      "artifact": "docs/completion/evidence/fnd-03/roadmap.log",
+      "generated_verilog": "This increment does not affect generated Verilog."
+    },
+    "limitations": [
+      "Preclosure roadmap.json is an immutable snapshot at the tested source, not current editable status.",
+      "Index source-file hashes bind the tested source; later live source may legitimately change.",
+      "Final documentation candidate qualification/merge is recorded separately; no future identity invented.",
+      "No hardware or remote-CI execution credit.",
+      "Independent human review is not claimed.",
+      "Local Rust/Scala regressions are not fresh isolated-build/saved-package qualification.",
+      "Shape/hash checks do not prove arbitrary prose requirements or remote-CI truth."
+    ],
+    "loading_mode": {
+      "reason": "Document validator only; no generated hardware, manufactured device or configuration loader.",
+      "state": "not-applicable"
+    },
+    "mutations": {
+      "artifact": "docs/completion/evidence/fnd-03/contracts.log",
+      "scope": "92 roadmap tests, intended diagnostics for malformed structure/evidence/source/profile/anchors/output paths; not hardware mutations.",
+      "state": "passed validator negative controls"
+    },
+    "reference_corpus": {
+      "index_sha256": "a10363242cb5d9e2e4afadfd5904261e46f163e64aaa77fade24ceea984f62e6",
+      "inventory": "docs/completion/evidence/fnd-03/index.json",
+      "scope": "Independent hand-authored Markdown/JSON expectations; source-file SHA256 inventory."
+    },
+    "schemas": {
+      "derived_view_format": 1,
+      "evidence_format": 1,
+      "hardware_schema": "not-applicable: document feature"
+    },
+    "seeds": {
+      "reason": "Deterministic document fixtures, no random generator.",
+      "state": "not-applicable"
+    },
+    "tools": {
+      "Python": "3.12.14",
+      "Rust/Cargo": "1.98.1",
+      "Scala": "3.3.8",
+      "Temurin": "21.0.12.1+1-LTS/Eclipse Adoptium",
+      "clippy": "0.1.98",
+      "rustfmt": "1.9.0-stable",
+      "sbt": "1.12.11",
+      "timezone": "TZ=UTC",
+      "tool_pins_sha256": "c07b5abd45439ecee724e96a866d86e869d704f2cf2119f9553f73dca426aea3",
+      "validator_sha256": "e97709a5926d7447374fa2a1df0ed31e469b214e7fa90968d6817c64edccb704"
+    }
+  },
+  "format_version": 1,
+  "increment": "FND-03",
+  "integration": {
+    "commit": "d928c0009119728d87a6ca25a8487739a784bb4e",
+    "parents": [
+      "8902cf29b104e27c66ffbbb58f566eddbe33c1f1",
+      "10c8e7f1304bc2ea06ca789e116c9555a029e371"
+    ],
+    "state": "merged",
+    "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+  },
+  "items": {
+    "FND-03.a.1": [
+      "deliverables",
+      "contracts"
+    ],
+    "FND-03.a.2": [
+      "deliverables",
+      "contracts"
+    ],
+    "FND-03.b.1": [
+      "contracts",
+      "review"
+    ],
+    "FND-03.b.2": [
+      "contracts",
+      "review"
+    ],
+    "FND-03.b.3": [
+      "contracts",
+      "review"
+    ],
+    "FND-03.c.1": [
+      "deliverables",
+      "review"
+    ],
+    "FND-03.c.2": [
+      "deliverables",
+      "review"
+    ],
+    "FND-03.d.1": [
+      "contracts"
+    ],
+    "FND-03.d.2": [
+      "contracts"
+    ],
+    "FND-03.d.3": [
+      "contracts"
+    ],
+    "FND-03.e.1": [
+      "roadmap",
+      "contracts"
+    ],
+    "FND-03.e.2": [
+      "contracts",
+      "rust",
+      "scala",
+      "review",
+      "closure"
+    ],
+    "FND-03.e.3": [
+      "closure"
+    ],
+    "FND-03.f.1": [
+      "contracts",
+      "review"
+    ],
+    "FND-03.f.2": [
+      "review"
+    ],
+    "FND-03.g.1": [
+      "review"
+    ],
+    "FND-03.g.2": [
+      "scale"
+    ]
+  },
+  "observations": {
+    "closure": {
+      "artifacts": [
+        "docs/completion/FND-03.md",
+        "docs/completion/evidence/fnd-03/index.json",
+        "docs/implementation/fnd-03-closure-local-review.md"
+      ],
+      "kind": "review",
+      "profile": "foundation-progress/1",
+      "result": "accepted",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      }
+    },
+    "contracts": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-03/contracts.log",
+        "docs/completion/evidence/fnd-03/source.json"
+      ],
+      "command": "./nf check contracts",
+      "kind": "execution",
+      "profile": "foundation-progress/1",
+      "result": "passed",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      },
+      "source_record": "docs/completion/evidence/fnd-03/source.json"
+    },
+    "deliverables": {
+      "artifacts": [
+        "docs/completion/FND-03.md",
+        "docs/completion/evidence/fnd-03/index.json"
+      ],
+      "kind": "artifact",
+      "profile": "foundation-progress/1",
+      "result": "inspected",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      }
+    },
+    "review": {
+      "artifacts": [
+        "docs/implementation/fnd-03-independent-review.md"
+      ],
+      "kind": "review",
+      "profile": "foundation-progress/1",
+      "result": "accepted",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      }
+    },
+    "roadmap": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-03/roadmap.log",
+        "docs/completion/evidence/fnd-03/roadmap.json",
+        "docs/completion/evidence/fnd-03/source.json"
+      ],
+      "command": "./nf roadmap --write-view artifacts/fnd03-qualified/roadmap.json; ./nf roadmap --check-view artifacts/fnd03-qualified/roadmap.json",
+      "kind": "execution",
+      "profile": "foundation-progress/1",
+      "result": "passed",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      },
+      "source_record": "docs/completion/evidence/fnd-03/source.json"
+    },
+    "rust": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-03/rust.log",
+        "docs/completion/evidence/fnd-03/source.json"
+      ],
+      "command": "./nf check rust",
+      "kind": "execution",
+      "profile": "foundation-progress/1",
+      "result": "passed",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      },
+      "source_record": "docs/completion/evidence/fnd-03/source.json"
+    },
+    "scala": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-03/scala.log",
+        "docs/completion/evidence/fnd-03/source.json"
+      ],
+      "command": "./nf check scala",
+      "kind": "execution",
+      "profile": "foundation-progress/1",
+      "result": "passed",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      },
+      "source_record": "docs/completion/evidence/fnd-03/source.json"
+    },
+    "scale": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-03/scale.json",
+        "docs/completion/evidence/fnd-03/source.json"
+      ],
+      "command": "python3 tools/roadmap_scale.py --increments 2000 --depth 192",
+      "kind": "execution",
+      "profile": "foundation-progress/1",
+      "result": "passed",
+      "source": {
+        "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+        "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+      },
+      "source_record": "docs/completion/evidence/fnd-03/source.json"
+    }
+  },
+  "profile": "foundation-progress/1",
+  "report": "docs/completion/FND-03.md",
+  "review": {
+    "artifact": "docs/implementation/fnd-03-independent-review.md",
+    "kind": "agent"
+  },
+  "source": {
+    "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+    "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+  }
+}

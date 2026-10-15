@@ -1,0 +1,9 @@
+{
+  "head": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+  "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4",
+  "dirty": false,
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "uid": 1000,
+  "scope": "Foundation contracts/build profiles; no Nodal fabric or Verilog qualification"
+}
