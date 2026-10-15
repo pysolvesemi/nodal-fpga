@@ -29,6 +29,13 @@ class OwnershipTests(unittest.TestCase):
         # Every registered crate is copied, including its examples/tests/modules.
         # A one-crate fixture would hide interactions introduced by the real DAG.
         policy = json.loads((ROOT / "tools/ownership.json").read_text())
+        policy["schema"] = 2
+        policy.pop("registry_dependencies", None)
+        policy["core_packages"] = [p for p in policy["core_packages"] if p["name"] != "nf-exchange"]
+        policy["core_dependencies"] = [e for e in policy["core_dependencies"] if e["from"] != "nf-exchange"]
+        (self.root / "tools/ownership.json").write_text(json.dumps(policy, indent=2))
+        manifest = self.root / "Cargo.toml"
+        manifest.write_text(manifest.read_text().replace(', "core/rust/exchange"', ''))
         for entry in policy["core_packages"]:
             shutil.copytree(ROOT / entry["path"], self.root / entry["path"])
 

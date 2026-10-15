@@ -1,0 +1,1 @@
+{"keys":[{"kind":"wire","local":"z","namespace":"n","scope":[]},{"kind":"wire","local":"z","namespace":"n","scope":["a"]},{"kind":"wire","local":"a","namespace":"n","scope":["a","b"]}]}

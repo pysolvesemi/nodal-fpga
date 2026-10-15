@@ -1,5 +1,5 @@
 [workspace]
-members = ["core/rust/bootstrap", "core/rust/types", "core/rust/arch-ir"]
+members = ["core/rust/bootstrap", "core/rust/types", "core/rust/arch-ir", "core/rust/exchange"]
 resolver = "3"
 
 [workspace.package]

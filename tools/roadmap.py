@@ -256,10 +256,115 @@ def source_identity(root: Path, source: dict) -> None:
         fail("RM-EVIDENCE-SOURCE", f"{source['commit']}: tree does not match recorded source")
 
 
+def validate_artifacts(manifest: dict, identifier: str, root: Path, source: dict) -> dict:
+    artifacts = manifest["artifacts"]
+    if not isinstance(artifacts, dict) or not artifacts:
+        fail("RM-EVIDENCE-MISSING", f"{identifier}: empty artifact inventory")
+    total_bytes = 0
+    if len(artifacts) > 10_000:
+        fail("RM-LIMIT", f"{identifier}: artifact count exceeds 10000")
+    for name, digest in sorted(artifacts.items()):
+        path = local_file(root, name)
+        size = path.stat().st_size
+        total_bytes += size
+        if size > ARTIFACT_BYTES or total_bytes > TOTAL_ARTIFACT_BYTES:
+            fail("RM-LIMIT", f"{identifier}: evidence artifact byte limit exceeded")
+        hasher = hashlib.sha256()
+        read_bytes = 0
+        with path.open("rb") as stream:
+            while chunk := stream.read(1024 * 1024):
+                read_bytes += len(chunk)
+                if read_bytes > ARTIFACT_BYTES:
+                    fail("RM-LIMIT", f"{identifier}: growing artifact exceeds limit")
+                hasher.update(chunk)
+        total_bytes += read_bytes - size
+        if total_bytes > TOTAL_ARTIFACT_BYTES:
+            fail("RM-LIMIT", f"{identifier}: total artifact byte limit exceeded")
+        actual = hasher.hexdigest()
+        if not isinstance(digest, str) or not DIGEST.fullmatch(digest) or actual != digest:
+            fail("RM-EVIDENCE-HASH", f"{identifier}: missing/stale digest for {name}")
+    report = manifest["report"]
+    if report != f"docs/completion/{identifier}.md" or report not in artifacts:
+        fail("RM-EVIDENCE-MISSING", f"{identifier}: completion report must be hashed")
+    if local_file(root, report).stat().st_size > JSON_BYTES:
+        fail("RM-LIMIT", f"{identifier}: completion report too large")
+    report_text = local_file(root, report).read_text()
+    if f"]({identifier}.evidence.json)" not in report_text:
+        fail("RM-EVIDENCE-MISSING", f"{identifier}: report must link its evidence metadata")
+    for value in source.values():
+        if value not in report_text:
+            fail("RM-EVIDENCE-SOURCE", f"{identifier}: report/source identity disagreement")
+    return artifacts
+
+
+def validate_items(manifest: dict, roadmap: Roadmap, identifier: str, profile: str, observations: dict) -> None:
+    items = manifest["items"]
+    for item, references in items.items():
+        if item not in roadmap.nodes or item.split(".", 1)[0] != identifier:
+            fail("RM-EVIDENCE-ITEM", f"{identifier}: evidence for unknown/foreign ID {item}")
+        if not isinstance(references, list) or not references or any(ref not in observations for ref in references):
+            fail("RM-EVIDENCE-MISSING", f"{item}: unknown/missing observation")
+    pending = [(identifier, None)]
+    while pending:
+        node_id, inherited_profile = pending.pop()
+        node = roadmap.nodes[node_id]
+        if node.profile and inherited_profile and node.profile != inherited_profile:
+            fail("RM-EVIDENCE-PROFILE", f"{node.id}: conflicting ancestor profile")
+        effective_profile = node.profile or inherited_profile
+        pending.extend((child, effective_profile) for child in reversed(node.children))
+        if not node.checked:
+            continue
+        if effective_profile and effective_profile != profile:
+            fail("RM-EVIDENCE-PROFILE", f"{node.id}: authoritative profile mismatch")
+        if not node.children or node.requires != "delivery":
+            if node.id not in items:
+                fail("RM-EVIDENCE-MISSING", f"{node.id}: checked obligation has no evidence")
+            kinds = {observations[ref]["kind"] for ref in items[node.id]}
+            if node.requires != "delivery" and node.requires not in kinds:
+                fail("RM-EVIDENCE-EXECUTION", f"{node.id}: required {node.requires} cannot be replaced by applicability review")
+
+
+def validate_context(manifest: dict, identifier: str) -> None:
+    context = manifest["context"]
+    required = {"tools", "device", "configuration", "schemas", "seeds", "assumptions", "reference_corpus", "correspondence", "mutations", "loading_mode", "coverage", "limitations", "examples"}
+    if not isinstance(context, dict) or set(context) != required or any(not isinstance(value, (str, list, dict)) or not value or (isinstance(value, str) and not value.strip()) for value in context.values()):
+        fail("RM-EVIDENCE-CONTEXT", f"{identifier}: complete explicit identities/applicability/limits required")
+
+
+def validate_integration(manifest: dict, identifier: str, root: Path, source: dict, *, closed: bool) -> None:
+    integration = manifest["integration"]
+    if integration["state"] not in {"pending", "merged"}:
+        fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: invalid integration state")
+    if closed and integration["state"] != "merged":
+        fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: closed increment must have actual merged evidence")
+    if integration["state"] == "merged":
+        source_identity(root, {"commit": integration["commit"], "tree": integration["tree"]})
+        git(root, "merge-base", "--is-ancestor", integration["commit"], "HEAD")
+        actual_parents = git(root, "show", "-s", "--format=%P", integration["commit"]).split()
+        if len(actual_parents) != 2 or len(set(actual_parents)) != 2 or integration["parents"] != actual_parents or source["commit"] != actual_parents[1] or integration["tree"] != source["tree"]:
+            fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: actual merge parents/tree differ from qualified source")
+
+
+def validate_ci(manifest: dict, identifier: str) -> None:
+    ci = manifest["ci"]
+    if ci["qualification"] not in {"executed", "not-run"} or not isinstance(ci.get("reason"), str) or not ci["reason"].strip():
+        fail("RM-EVIDENCE-CI", f"{identifier}: explicit CI disposition/reason required")
+    if not isinstance(ci["runs"], list) or any(not isinstance(run, str) or not run.startswith("https://") for run in ci["runs"]) or bool(ci["runs"]) != (ci["qualification"] == "executed"):
+        fail("RM-EVIDENCE-CI", f"{identifier}: executed CI needs real run references; not-run has none")
+    post = ci["post_merge"]
+    if post["state"] not in {"executed", "skipped", "pending"} or not isinstance(post.get("reason"), str) or not post["reason"].strip() or not isinstance(post["runs"], list) or any(not isinstance(run, str) or not run.startswith("https://") for run in post["runs"]) or bool(post["runs"]) != (post["state"] == "executed"):
+        fail("RM-EVIDENCE-CI", f"{identifier}: distinguish post-merge execution from suppression")
+    if post["state"] == "skipped" and manifest["integration"]["state"] != "merged":
+        fail("RM-EVIDENCE-CI", f"{identifier}: cannot verify suppression before merge")
+
+
 def validate_evidence(roadmap: Roadmap, identifier: str, root: Path, *, expected_source: str | None = None) -> None:
     """Evidence maps IDs to observations, never stores a second checkbox state."""
     manifest_name = f"docs/completion/{identifier}.evidence.json"
     manifest = read_json(local_file(root, manifest_name))
+    if type(manifest.get("format_version")) is int and manifest["format_version"] == 2:
+        validate_summary_evidence(manifest, roadmap, identifier, root, expected_source=expected_source)
+        return
     try:
         if type(manifest["format_version"]) is not int or manifest["format_version"] != 1 or manifest["increment"] != identifier:
             fail("RM-EVIDENCE-FORMAT", f"{identifier}: unsupported version or wrong owner")
@@ -273,43 +378,7 @@ def validate_evidence(roadmap: Roadmap, identifier: str, root: Path, *, expected
         profile = manifest["profile"]
         if not isinstance(profile, str) or not profile.strip():
             fail("RM-EVIDENCE-PROFILE", f"{identifier}: explicit nonempty profile required")
-        artifacts = manifest["artifacts"]
-        if not isinstance(artifacts, dict) or not artifacts:
-            fail("RM-EVIDENCE-MISSING", f"{identifier}: empty artifact inventory")
-        total_bytes = 0
-        if len(artifacts) > 10_000:
-            fail("RM-LIMIT", f"{identifier}: artifact count exceeds 10000")
-        for name, digest in sorted(artifacts.items()):
-            path = local_file(root, name)
-            size = path.stat().st_size
-            total_bytes += size
-            if size > ARTIFACT_BYTES or total_bytes > TOTAL_ARTIFACT_BYTES:
-                fail("RM-LIMIT", f"{identifier}: evidence artifact byte limit exceeded")
-            hasher = hashlib.sha256()
-            read_bytes = 0
-            with path.open("rb") as stream:
-                while chunk := stream.read(1024 * 1024):
-                    read_bytes += len(chunk)
-                    if read_bytes > ARTIFACT_BYTES:
-                        fail("RM-LIMIT", f"{identifier}: growing artifact exceeds limit")
-                    hasher.update(chunk)
-            total_bytes += read_bytes - size
-            if total_bytes > TOTAL_ARTIFACT_BYTES:
-                fail("RM-LIMIT", f"{identifier}: total artifact byte limit exceeded")
-            actual = hasher.hexdigest()
-            if not isinstance(digest, str) or not DIGEST.fullmatch(digest) or actual != digest:
-                fail("RM-EVIDENCE-HASH", f"{identifier}: missing/stale digest for {name}")
-        report = manifest["report"]
-        if report != f"docs/completion/{identifier}.md" or report not in artifacts:
-            fail("RM-EVIDENCE-MISSING", f"{identifier}: completion report must be hashed")
-        if local_file(root, report).stat().st_size > JSON_BYTES:
-            fail("RM-LIMIT", f"{identifier}: completion report too large")
-        report_text = local_file(root, report).read_text()
-        if f"]({identifier}.evidence.json)" not in report_text:
-            fail("RM-EVIDENCE-MISSING", f"{identifier}: report must link its evidence metadata")
-        for value in source.values():
-            if value not in report_text:
-                fail("RM-EVIDENCE-SOURCE", f"{identifier}: report/source identity disagreement")
+        artifacts = validate_artifacts(manifest, identifier, root, source)
         observations = manifest["observations"]
         if not isinstance(observations, dict) or not observations:
             fail("RM-EVIDENCE-MISSING", f"{identifier}: no observations")
@@ -336,60 +405,141 @@ def validate_evidence(roadmap: Roadmap, identifier: str, root: Path, *, expected
                     fail("RM-EVIDENCE-SOURCE", f"{identifier}/{key}: execution source record is stale or dirty")
                 if "profile" in record and record["profile"] != profile:
                     fail("RM-EVIDENCE-PROFILE", f"{identifier}/{key}: execution profile record disagrees")
-        items = manifest["items"]
-        for item, references in items.items():
-            if item not in roadmap.nodes or item.split(".", 1)[0] != identifier:
-                fail("RM-EVIDENCE-ITEM", f"{identifier}: evidence for unknown/foreign ID {item}")
-            if not isinstance(references, list) or not references or any(ref not in observations for ref in references):
-                fail("RM-EVIDENCE-MISSING", f"{item}: unknown/missing observation")
-        pending = [(identifier, None)]
-        while pending:
-            node_id, inherited_profile = pending.pop()
-            node = roadmap.nodes[node_id]
-            if node.profile and inherited_profile and node.profile != inherited_profile:
-                fail("RM-EVIDENCE-PROFILE", f"{node.id}: conflicting ancestor profile")
-            effective_profile = node.profile or inherited_profile
-            pending.extend((child, effective_profile) for child in reversed(node.children))
-            if not node.checked:
-                continue
-            if effective_profile and effective_profile != profile:
-                fail("RM-EVIDENCE-PROFILE", f"{node.id}: authoritative profile mismatch")
-            if not node.children or node.requires != "delivery":
-                if node.id not in items:
-                    fail("RM-EVIDENCE-MISSING", f"{node.id}: checked obligation has no evidence")
-                kinds = {observations[ref]["kind"] for ref in items[node.id]}
-                if node.requires != "delivery" and node.requires not in kinds:
-                    fail("RM-EVIDENCE-EXECUTION", f"{node.id}: required {node.requires} cannot be replaced by applicability review")
-        context = manifest["context"]
-        required = {"tools", "device", "configuration", "schemas", "seeds", "assumptions", "reference_corpus", "correspondence", "mutations", "loading_mode", "coverage", "limitations", "examples"}
-        if not isinstance(context, dict) or set(context) != required or any(not isinstance(value, (str, list, dict)) or not value or (isinstance(value, str) and not value.strip()) for value in context.values()):
-            fail("RM-EVIDENCE-CONTEXT", f"{identifier}: complete explicit identities/applicability/limits required")
+        validate_items(manifest, roadmap, identifier, profile, observations)
+        validate_context(manifest, identifier)
         if manifest["review"].get("artifact") not in artifacts or manifest["review"].get("kind") not in {"agent", "human"}:
             fail("RM-EVIDENCE-MISSING", f"{identifier}: retained review identity required")
-        integration = manifest["integration"]
-        if integration["state"] not in {"pending", "merged"}:
-            fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: invalid integration state")
-        if roadmap.nodes[identifier].checked and integration["state"] != "merged":
-            fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: closed increment must have actual merged evidence")
-        if integration["state"] == "merged":
-            source_identity(root, {"commit": integration["commit"], "tree": integration["tree"]})
-            git(root, "merge-base", "--is-ancestor", integration["commit"], "HEAD")
-            actual_parents = git(root, "show", "-s", "--format=%P", integration["commit"]).split()
-            if len(actual_parents) != 2 or len(set(actual_parents)) != 2 or integration["parents"] != actual_parents or source["commit"] != actual_parents[1] or integration["tree"] != source["tree"]:
-                fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: actual merge parents/tree differ from qualified source")
-        ci = manifest["ci"]
-        if ci["qualification"] not in {"executed", "not-run"} or not isinstance(ci.get("reason"), str) or not ci["reason"].strip():
-            fail("RM-EVIDENCE-CI", f"{identifier}: explicit CI disposition/reason required")
-        if not isinstance(ci["runs"], list) or any(not isinstance(run, str) or not run.startswith("https://") for run in ci["runs"]) or bool(ci["runs"]) != (ci["qualification"] == "executed"):
-            fail("RM-EVIDENCE-CI", f"{identifier}: executed CI needs real run references; not-run has none")
-        post = ci["post_merge"]
-        if post["state"] not in {"executed", "skipped", "pending"} or not isinstance(post.get("reason"), str) or not post["reason"].strip() or not isinstance(post["runs"], list) or any(not isinstance(run, str) or not run.startswith("https://") for run in post["runs"]) or bool(post["runs"]) != (post["state"] == "executed"):
-            fail("RM-EVIDENCE-CI", f"{identifier}: distinguish post-merge execution from suppression")
-        if post["state"] == "skipped" and integration["state"] != "merged":
-            fail("RM-EVIDENCE-CI", f"{identifier}: cannot verify suppression before merge")
+        validate_integration(manifest, identifier, root, source, closed=roadmap.nodes[identifier].checked)
+        validate_ci(manifest, identifier)
     except (KeyError, TypeError, AttributeError, UnicodeError, OSError) as exc:
         fail("RM-EVIDENCE-FORMAT", f"{identifier}: malformed evidence: {exc}")
 
+
+
+def summary_text(value: object) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def summary_identity(value: object) -> bool:
+    return summary_text(value) and value == value.strip()
+
+
+def summary_limits(value: object) -> bool:
+    return summary_text(value) or (isinstance(value, list) and bool(value)
+                                   and all(summary_text(item) for item in value))
+
+
+def summary_references(value: object, available: dict | set) -> bool:
+    return (isinstance(value, list) and bool(value) and all(summary_text(item) for item in value)
+            and len(set(value)) == len(value) and all(item in available for item in value))
+
+
+def validate_summary_evidence(manifest: dict, roadmap: Roadmap, identifier: str, root: Path,
+                              *, expected_source: str | None = None) -> None:
+    """Validate a reviewed execution attestation, without requiring raw-log upload.
+
+    This does not execute commands or authenticate assertions. The independent
+    reviewer must inspect actual observations before accepting the summary.
+    Source, artifact, obligation and integration guards are shared with v1.
+    """
+    try:
+        allowed = {"format_version", "evidence_mode", "increment", "source", "profile", "report",
+                   "artifacts", "observations", "items", "context", "review", "integration", "ci"}
+        if (set(manifest) != allowed or type(manifest["format_version"]) is not int or manifest["format_version"] != 2
+                or manifest["evidence_mode"] != "summary" or manifest["increment"] != identifier):
+            fail("RM-EVIDENCE-FORMAT", f"{identifier}: explicit v2 summary mode and exact fields required")
+        source = manifest["source"]
+        source_identity(root, source)
+        if expected_source is not None and source["commit"] != expected_source:
+            fail("RM-EVIDENCE-SOURCE", f"{identifier}: stale source; expected {expected_source}")
+        profile = manifest["profile"]
+        if not summary_text(profile):
+            fail("RM-EVIDENCE-PROFILE", f"{identifier}: explicit nonempty profile required")
+        artifacts = validate_artifacts(manifest, identifier, root, source)
+        observations = manifest["observations"]
+        if not isinstance(observations, dict) or not observations:
+            fail("RM-EVIDENCE-MISSING", f"{identifier}: no summary observations")
+        if len(observations) > 10_000:
+            fail("RM-LIMIT", f"{identifier}: observation count exceeds 10000")
+        common = {"source", "profile", "kind", "result", "observer", "summary", "limitations"}
+        additions = {"execution": {"command", "executed", "dirty", "exit_code", "checks"},
+                     "review": set(), "artifact": {"artifacts"}}
+        executed = False
+        for key, observation in observations.items():
+            location = f"{identifier}/{key}"
+            if not summary_identity(key) or not isinstance(observation, dict):
+                fail("RM-EVIDENCE-FORMAT", f"{location}: named observation object required")
+            kind = observation.get("kind")
+            if kind not in additions or set(observation) != common | additions[kind]:
+                fail("RM-EVIDENCE-FORMAT", f"{location}: wrong summary observation fields")
+            if observation["source"] != source:
+                fail("RM-EVIDENCE-SOURCE", f"{location}: stale observation source")
+            if observation["profile"] != profile:
+                fail("RM-EVIDENCE-PROFILE", f"{location}: profile mismatch")
+            if observation["result"] != {"execution": "passed", "review": "accepted", "artifact": "inspected"}[kind]:
+                fail("RM-EVIDENCE-EXECUTION", f"{location}: incomplete/failed observations cannot close work")
+            if not summary_identity(observation["observer"]) or not summary_text(observation["summary"]) or not summary_limits(observation["limitations"]):
+                fail("RM-EVIDENCE-FORMAT", f"{location}: observer, concrete outcome and limits required")
+            if kind == "execution":
+                if observation["dirty"] is not False:
+                    fail("RM-EVIDENCE-SOURCE", f"{location}: dirty or unverified source cannot qualify")
+                checks = observation["checks"]
+                if (not summary_text(observation["command"]) or observation["executed"] is not True
+                        or type(observation["exit_code"]) is not int or observation["exit_code"] != 0
+                        or not isinstance(checks, dict) or set(checks) != {"required", "executed", "passed", "failed", "skipped"}
+                        or any(type(value) is not int for value in checks.values())
+                        or not (checks["required"] == checks["executed"] == checks["passed"] > 0)
+                        or checks["failed"] != 0 or checks["skipped"] != 0):
+                    fail("RM-EVIDENCE-EXECUTION", f"{location}: actual complete passing checks and command required")
+                executed = True
+            elif kind == "artifact":
+                deliverables = set(artifacts) - {manifest["report"]}
+                if not summary_references(observation["artifacts"], deliverables):
+                    fail("RM-EVIDENCE-MISSING", f"{location}: inspected hashed deliverables required")
+        if not executed:
+            fail("RM-EVIDENCE-EXECUTION", f"{identifier}: applicable source verification must actually run")
+        items = manifest["items"]
+        if not isinstance(items, dict) or any(not summary_references(refs, observations) for refs in items.values()):
+            fail("RM-EVIDENCE-MISSING", f"{identifier}: unique known observation references required")
+        validate_items(manifest, roadmap, identifier, profile, observations)
+        validate_context(manifest, identifier)
+        review = manifest["review"]
+        fields = {"kind", "identity", "authors", "source", "result", "observations", "dimensions", "limitations"}
+        if not isinstance(review, dict) or set(review) != fields:
+            fail("RM-EVIDENCE-REVIEW", f"{identifier}: independent review summary required")
+        authors = review["authors"]
+        if (review["kind"] not in {"agent", "human"} or not summary_identity(review["identity"])
+                or not isinstance(authors, list) or not authors or not all(summary_identity(author) for author in authors)
+                or len(set(authors)) != len(authors) or review["identity"] in authors
+                or review["result"] != "accepted" or not summary_limits(review["limitations"])):
+            fail("RM-EVIDENCE-REVIEW", f"{identifier}: accepted review by an identified non-author required")
+        if review["source"] != source:
+            fail("RM-EVIDENCE-SOURCE", f"{identifier}: stale review source")
+        if not summary_references(review["observations"], observations) or set(review["observations"]) != set(observations):
+            fail("RM-EVIDENCE-REVIEW", f"{identifier}: review must cover every observation exactly once")
+        dimensions = review["dimensions"]
+        if not isinstance(dimensions, dict) or set(dimensions) != {"architecture", "independence", "quality"}:
+            fail("RM-EVIDENCE-REVIEW", f"{identifier}: architecture, independence and quality review required")
+        for dimension in dimensions.values():
+            if (not isinstance(dimension, dict) or set(dimension) != {"result", "summary"}
+                    or dimension["result"] != "accepted" or not summary_text(dimension["summary"])):
+                fail("RM-EVIDENCE-REVIEW", f"{identifier}: every review dimension needs an accepted finding")
+        integration = manifest["integration"]
+        if not isinstance(integration, dict) or set(integration) != ({"state", "commit", "tree", "parents"}
+                if integration.get("state") == "merged" else {"state"}):
+            fail("RM-EVIDENCE-INTEGRATION", f"{identifier}: explicit integration identity/disposition required")
+        closure = roadmap.nodes[identifier].children[-1]
+        validate_integration(manifest, identifier, root, source,
+                             closed=roadmap.nodes[identifier].checked or roadmap.nodes[closure].checked)
+        ci = manifest["ci"]
+        if (not isinstance(ci, dict) or set(ci) != {"qualification", "reason", "runs", "post_merge"}
+                or not isinstance(ci["post_merge"], dict) or set(ci["post_merge"]) != {"state", "reason", "runs"}):
+            fail("RM-EVIDENCE-CI", f"{identifier}: explicit qualification and post-merge dispositions required")
+        validate_ci(manifest, identifier)
+        if ci["post_merge"]["state"] != "pending" and integration["state"] != "merged":
+            fail("RM-EVIDENCE-CI", f"{identifier}: post-merge execution/suppression requires actual integration")
+    except (KeyError, TypeError, AttributeError, UnicodeError, OSError) as exc:
+        fail("RM-EVIDENCE-FORMAT", f"{identifier}: malformed summary evidence: {exc}")
 
 
 def verify_source_anchor(root: Path, source: str, candidate: str) -> None:
