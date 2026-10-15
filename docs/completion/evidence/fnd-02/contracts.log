@@ -1,0 +1,81 @@
+ownership_members=1 core_external_dependencies=0
+documentation_files=37 local_links=183; no hardware test credit
++ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests/bootstrap -v
+test_corrupt_cached_launcher_is_never_executed_or_silently_replaced (test_contracts.CommandTests.test_corrupt_cached_launcher_is_never_executed_or_silently_replaced) ... ok
+test_declared_tool_pins_match_build_files (test_contracts.CommandTests.test_declared_tool_pins_match_build_files) ... ok
+test_document_changes_only_select_contracts (test_contracts.CommandTests.test_document_changes_only_select_contracts) ... ok
+test_invalid_command_fails (test_contracts.CommandTests.test_invalid_command_fails) ... ok
+test_invalid_scope_path_is_rejected (test_contracts.CommandTests.test_invalid_scope_path_is_rejected) ... ok
+test_missing_offline_launcher_is_reported (test_contracts.CommandTests.test_missing_offline_launcher_is_reported) ... ok
+test_missing_rust_prerequisite_has_actionable_failure (test_contracts.CommandTests.test_missing_rust_prerequisite_has_actionable_failure) ... ok
+test_source_identity_mismatch_is_rejected (test_contracts.CommandTests.test_source_identity_mismatch_is_rejected) ... ok
+test_toolchain_drift_is_rejected (test_contracts.CommandTests.test_toolchain_drift_is_rejected) ... ok
+test_workflow_or_unknown_change_selects_both_languages (test_contracts.CommandTests.test_workflow_or_unknown_change_selects_both_languages) ... ok
+test_actual_dependency_free_core_is_accepted (test_contracts.OwnershipTests.test_actual_dependency_free_core_is_accepted) ... ok
+test_build_script_is_rejected (test_contracts.OwnershipTests.test_build_script_is_rejected) ... ok
+test_core_cannot_import_application_device_or_adapter (test_contracts.OwnershipTests.test_core_cannot_import_application_device_or_adapter) ... ok
+test_dev_dependency_cannot_bypass_ownership (test_contracts.OwnershipTests.test_dev_dependency_cannot_bypass_ownership) ... ok
+test_include_or_native_link_requires_review (test_contracts.OwnershipTests.test_include_or_native_link_requires_review) ... ok
+test_publishing_is_disabled (test_contracts.OwnershipTests.test_publishing_is_disabled) ... ok
+test_renamed_optional_target_dependency_is_not_hidden (test_contracts.OwnershipTests.test_renamed_optional_target_dependency_is_not_hidden) ... ok
+test_symlink_to_device_source_is_rejected (test_contracts.OwnershipTests.test_symlink_to_device_source_is_rejected) ... ok
+test_unregistered_core_manifest_is_rejected (test_contracts.OwnershipTests.test_unregistered_core_manifest_is_rejected) ... ok
+test_unsafe_policy_cannot_be_removed (test_contracts.OwnershipTests.test_unsafe_policy_cannot_be_removed) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.121s
+
+OK
+ownership_members=1 core_external_dependencies=0
+elapsed_seconds=0.236
+{"assumptions": 12, "config_bits": 20, "contract_review_only": true, "hardware_execution": "not-run", "lut_addresses": 16, "mux_cases": 8, "reference_inputs": 22, "shapes": 4}
++ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests/foundation -v
+test_current_contracts (test_contracts.LedgerControls.test_current_contracts) ... ok
+test_duplicate_assumption (test_contracts.LedgerControls.test_duplicate_assumption) ... ok
+test_duplicate_json_key (test_contracts.LedgerControls.test_duplicate_json_key) ... ok
+test_duplicate_obligation (test_contracts.LedgerControls.test_duplicate_obligation) ... ok
+test_execution_not_implied_by_acceptance (test_contracts.LedgerControls.test_execution_not_implied_by_acceptance) ... ok
+test_formal_claim_not_invented (test_contracts.LedgerControls.test_formal_claim_not_invented) ... ok
+test_future_obligation_not_passed (test_contracts.LedgerControls.test_future_obligation_not_passed) ... ok
+test_missing_claim (test_contracts.LedgerControls.test_missing_claim) ... ok
+test_missing_expected_examples (test_contracts.LedgerControls.test_missing_expected_examples) ... ok
+test_pending_review_cannot_close (test_contracts.LedgerControls.test_pending_review_cannot_close) ... ok
+test_proposal_cannot_close (test_contracts.LedgerControls.test_proposal_cannot_close) ... ok
+test_unknown_superseded_id (test_contracts.LedgerControls.test_unknown_superseded_id) ... ok
+test_corrupt_input_hash (test_contracts.ReferenceControls.test_corrupt_input_hash) ... ok
+test_escape_input (test_contracts.ReferenceControls.test_escape_input) ... ok
+test_hash_inventory (test_contracts.ReferenceControls.test_hash_inventory) ... ok
+test_missing_input (test_contracts.ReferenceControls.test_missing_input) ... ok
+test_proposed_reference_not_accepted (test_contracts.ReferenceControls.test_proposed_reference_not_accepted) ... ok
+test_ambiguous_pin (test_contracts.SubsetControls.test_ambiguous_pin) ... ok
+test_empty_negatives (test_contracts.SubsetControls.test_empty_negatives) ... ok
+test_empty_obligations (test_contracts.SubsetControls.test_empty_obligations) ... ok
+test_empty_register_witnesses (test_contracts.SubsetControls.test_empty_register_witnesses) ... ok
+test_empty_shapes (test_contracts.SubsetControls.test_empty_shapes) ... ok
+test_illegal_legal_configuration (test_contracts.SubsetControls.test_illegal_legal_configuration) ... ok
+test_independent_vectors (test_contracts.SubsetControls.test_independent_vectors) ... ok
+test_missing_hole (test_contracts.SubsetControls.test_missing_hole) ... ok
+test_missing_link (test_contracts.SubsetControls.test_missing_link) ... ok
+test_missing_lut_address (test_contracts.SubsetControls.test_missing_lut_address) ... ok
+test_missing_pin (test_contracts.SubsetControls.test_missing_pin) ... ok
+test_mux_polarity (test_contracts.SubsetControls.test_mux_polarity) ... ok
+test_nonexistent_output (test_contracts.SubsetControls.test_nonexistent_output) ... ok
+test_overlap_field (test_contracts.SubsetControls.test_overlap_field) ... ok
+test_reset_priority (test_contracts.SubsetControls.test_reset_priority) ... ok
+test_reverse_link (test_contracts.SubsetControls.test_reverse_link) ... ok
+test_swapped_lut_bit (test_contracts.SubsetControls.test_swapped_lut_bit) ... ok
+test_swapped_pin_map (test_contracts.SubsetControls.test_swapped_pin_map) ... ok
+test_unaccepted_subset (test_contracts.SubsetControls.test_unaccepted_subset) ... ok
+test_unknown_assumption (test_contracts.SubsetControls.test_unknown_assumption) ... ok
+test_variant_direction (test_contracts.SubsetControls.test_variant_direction) ... ok
+test_variant_reference (test_contracts.SubsetControls.test_variant_reference) ... ok
+test_wrong_address (test_contracts.SubsetControls.test_wrong_address) ... ok
+test_wrong_config_vector (test_contracts.SubsetControls.test_wrong_config_vector) ... ok
+test_wrong_logical_index (test_contracts.SubsetControls.test_wrong_logical_index) ... ok
+test_wrong_output_direction (test_contracts.SubsetControls.test_wrong_output_direction) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.022s
+
+OK
+elapsed_seconds=0.094

@@ -1,0 +1,51 @@
+{
+  "format_version": 1,
+  "increment": "FND-02",
+  "qualification_mode": "local-tests-per-explicit-user-instruction",
+  "source_head": "d312b58ea53d62b5c396b8355c5f2bda8e2afe62",
+  "source_tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc",
+  "integration_head": "c8920b77f1d96d9cc47ab41047c9d6b353fadd0a",
+  "integration_tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc",
+  "base_head": "83394f265499c4158e22d9a2014552091db0eb1b",
+  "pr": 3,
+  "commands": [
+    "./nf identity",
+    "./nf check contracts",
+    "./nf check rust",
+    "./nf check scala",
+    "git diff --exit-code"
+  ],
+  "results": {
+    "contracts": "passed; 20 predecessor and 43 Foundation controls",
+    "rust": "passed",
+    "scala": "passed",
+    "reference_generation": "not-run; FND-06 owner",
+    "simulation": "not-run; FND-06 owner",
+    "formal": "not-run; FND-06 owner",
+    "remote_ci": "not-run; deferred to final combined Foundation by user instruction",
+    "post_merge_ci": "skipped; user-directed-local-qualification-identical-tree-merge"
+  },
+  "artifact_sha256": {
+    "scala.log": "f938320e6453e63960a9d8e6b1bdfa6925b36b15c93a51732728f7c59440c8a4",
+    "contracts.log": "53fdbaece8ee98e68f2529c127e84a453e6b41d4b8f98b5f58d6eb25e245da96",
+    "rust.log": "299eb1c8fd2ad53eed1eef21a28bcc371794f4012939252a56b4423e2296f122",
+    "source.json": "1be9b675c56deb2726155ab12590b1a311d9b86895e78a466541b1c03a5604d7"
+  },
+  "contract_sha256": {
+    "verify/fixtures/assumptions/ledger.json": "d99d066bb836de9600ae4cecf24ad0cd91dce43c71946419329196f86dccb7f8",
+    "verify/fixtures/nf-tiny/correspondence.json": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+    "verify/fixtures/nf-tiny/reference.json": "649716da9d708e509ab2437cf9b4976da5468ed471fe1ef822bd0cf9fe4e4738",
+    "verify/fixtures/nf-tiny/specification.json": "0e58761faed7d2d3ea6154ed605262a9fd4a8d6a13ca7de33d06f70a7a88ef32",
+    "docs/adr/0002-portable-architecture-exchange.md": "5f535b22c8571d415c15e132780306912263476b060e414c9b28b7730a8becf7",
+    "docs/adr/0003-device-design-ownership.md": "2dc7f340a62047b18217e299963d9683e19781b3261726e191529bbe97c1d63e",
+    "docs/contracts/foundation.md": "427b5baaae32a4514f5afca5e55a7ca683945971535ef9732a9a1ffe58b4beaf",
+    "docs/contracts/nf-tiny.md": "6358f3a90a795a77167d549b7c3b04f61ba570534008b0102d68c7b27c6a3b1b",
+    "docs/implementation/fnd-02-independent-review.md": "39e097116d7d7fbb607805a078fbfe19bab83447c9a297e0d39db8cb432eb0c7"
+  },
+  "limitations": [
+    "Contract acceptance is not hardware execution.",
+    "Local Rust/Scala runs are build regression, not new dependency-isolation qualification.",
+    "JSON metadata checker is not the FND-05 hostile-input exchange parser.",
+    "Full Foundation qualification remains due at FND-08."
+  ]
+}
