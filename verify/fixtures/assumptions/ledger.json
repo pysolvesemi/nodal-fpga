@@ -1,0 +1,664 @@
+{
+  "format_version": 1,
+  "profile": "nf-tiny-foundation/1",
+  "status": "accepted-for-profile following independent FND-02 review",
+  "execution_claim": "No RTL simulation, formal proof, production Nodal generation or runtime loader execution is claimed.",
+  "records": [
+    {
+      "id": "ASM-0001",
+      "title": "LUT input significance",
+      "claim": "For LUT4, address = I0 + 2*I1 + 4*I2 + 8*I3; INIT[address] is the combinational result. INIT is a logical vector indexed from zero, not a host-endian integer layout.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "d2fc49dade524a4f78062a3a38b213e9c08d6b04",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-06",
+        "FND-08",
+        "LIB",
+        "RTL",
+        "CFG",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "I3..I0=0001 selects INIT[1]; 1000 selects INIT[8].",
+        "INIT with only bits 1, 4 and 11 set returns 1 at addresses 1, 4, 11 and 0 otherwise."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-LUT-EXHAUSTIVE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-LUT-BIT",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0002",
+      "title": "Register controls",
+      "claim": "The matched FABulous LUT4 register samples on rising UserCLK. EN=0 holds state regardless of SR. EN=1 and SR=1 loads configured reset value; EN=1 and SR=0 samples the LUT result. Initial state is unconstrained; asynchronous reset is unsupported in the matched subset.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "d2fc49dade524a4f78062a3a38b213e9c08d6b04",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-06",
+        "FND-08",
+        "LIB",
+        "RTL",
+        "TMC",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "q=1, EN=0, SR=1, reset_value=0 -> q_next=1.",
+        "q=1, EN=1, SR=1, reset_value=0 -> q_next=0.",
+        "q=0, EN=1, SR=0, LUT=1 -> q_next=1."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-REGISTER",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-PRIORITY",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-COVER-STATE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0003",
+      "title": "Mux ordering and legal values",
+      "claim": "Ordered mux inputs are semantic. A selection index addresses the corresponding declared input; illegal unused encodings are rejected, not silently reduced modulo input count. Fixed links have no writable selection feature.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-06",
+        "FND-08",
+        "DB",
+        "LIB",
+        "RTL",
+        "CFG",
+        "CAD",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "Three ordered inputs [A,B,C] and select=2 produce C; select=3 is illegal.",
+        "Reordering [A,B,C] to [B,A,C] without rebinding select changes semantics and is incompatible."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-MUX",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-MUX-INDEX",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0004",
+      "title": "Configuration ownership",
+      "claim": "Logical features are separate from physical configuration bits and transport. Every physical overlap requires a declared alias and a consistency constraint; undeclared overlap and inconsistent alias values are rejected. No initial configuration value is assumed from power-up.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-06",
+        "FND-08",
+        "DB",
+        "RTL",
+        "CFG",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "Two independently owned features mapped to bit 4 without an alias are illegal.",
+        "Aliases denoting the same bit cannot request both 0 and 1."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-CONFIG",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-CONFIG-ADDRESS",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-FIELD-ALIAS",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0005",
+      "title": "Reference observation mode",
+      "claim": "Foundation reference comparison uses explicitly labelled static/unit configuration and user-clock observations. It does not qualify a runtime loader. Observe registered outputs only after a declared initialization sequence or under a symbolic related initial-state relation.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-06",
+        "FND-08",
+        "RTL",
+        "CFG",
+        "VER",
+        "EMU"
+      ],
+      "independent_expected_examples": [
+        "With reset_value=0, one rising UserCLK with EN=1 and SR=1 establishes q=0.",
+        "No observation before that edge is asserted to equal a known q value."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-REGISTER",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-COVER-STATE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "RTL04-LOADER",
+          "owner": "RTL-04",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0006",
+      "title": "Two-state reference boundary",
+      "claim": "Matched behavioral observations require binary user inputs and stable binary configuration at observation points. X/Z are unsupported stimuli, not coerced to zero. Four-state simulation must detect unknown observed outputs after the declared initialization sequence.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-06",
+        "FND-08",
+        "RTL",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "X on mux select is outside the legal input domain and must not count as a passing binary result.",
+        "An unknown q before initialization does not establish a mismatch against a known initial q."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-XZ-REJECTION",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-COVER-STATE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0007",
+      "title": "Clock separation",
+      "claim": "UserCLK determines user state updates. Configuration transport clocks, when later implemented, are a separate domain; their edges do not substitute for user-clock samples. Foundation static setup does not exercise transport.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-06",
+        "FND-08",
+        "RTL",
+        "CFG",
+        "TMC",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "No UserCLK rising edge means the register holds, regardless of a static configuration assignment."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-REGISTER",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "RTL04-CLOCK-SEPARATION",
+          "owner": "RTL-04",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0008",
+      "title": "Package identity",
+      "claim": "Portable semantic keys name meanings; dense IDs are qualified by an immutable package build identity. Configuration, timing, library, pin map, physical revision, schema and tool identities bind a package; incompatible old bitstreams fail closed. Checksums identify content but do not authenticate publishers.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-07",
+        "FND-08",
+        "DB",
+        "CFG",
+        "CAD",
+        "TMC",
+        "PHY",
+        "PROD"
+      ],
+      "independent_expected_examples": [
+        "A dense wire index 3 from package A cannot be interpreted as package B wire 3.",
+        "Changing a physical config binding creates a new package identity even if logical feature names are unchanged."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND05-PACKAGE-MISMATCH",
+          "owner": "FND-05",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND07-INTEGRITY",
+          "owner": "FND-07",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0009",
+      "title": "Hierarchy and graph transformations",
+      "claim": "Repeated templates may remain compact. Sparse exceptions, directed edges and ordered mux inputs retain semantic identity. Routing cycles are permitted in the architectural graph; enabled electrical contention and unsupported customer combinational loops are rejected by profile policy.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-06",
+        "FND-08",
+        "DB",
+        "DSL",
+        "RTL",
+        "CAD",
+        "PERF",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "Two template instances have distinct portable instance paths even when their type is shared.",
+        "Removing a boundary edge changes the graph; equal resource counts do not prove correspondence."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-GRAPH",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-CORRESPONDENCE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "DB06-INVARIANCE",
+          "owner": "DB-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-ENDPOINT",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-TILE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0010",
+      "title": "Correspondence",
+      "claim": "The matched subset mapping is total and one-to-one unless an explicit reviewed alias or exclusion explains multiplicity. Pin direction, state controls and configuration significance are preserved. A count-only match or mapping produced by Nodal lowering is not independent evidence.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-06",
+        "FND-08",
+        "DB",
+        "RTL",
+        "CFG",
+        "VER"
+      ],
+      "independent_expected_examples": [
+        "Swapping logical I0 and I3 without translating INIT is a faulty correspondence.",
+        "An unmapped observed output blocks the comparison even if other outputs agree."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND06-GRAPH",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-MUT-CORRESPONDENCE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND06-TILE",
+          "owner": "FND-06",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0011",
+      "title": "Overlapping domains and technology",
+      "claim": "Clock, power and configuration memberships are independent sets and may overlap; they are not inferred from a single containment tree. Logical architecture references technology capabilities through versioned bindings; no PDK or analog behavior is inferred from a digital model.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-08",
+        "DB",
+        "TMC",
+        "PHY",
+        "ADV",
+        "DFT"
+      ],
+      "independent_expected_examples": [
+        "One tile may belong to power P0, user clock C1 and configuration region R2 simultaneously.",
+        "A missing physical timing view remains unknown, never a zero-delay characterization."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND04-DOMAIN-REFERENCES",
+          "owner": "FND-04",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND05-CONFORMANCE",
+          "owner": "FND-05",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    },
+    {
+      "id": "ASM-0012",
+      "title": "Portable exchange and fail-closed parsing",
+      "claim": "The inspectable JSON exchange is versioned and bounded. Unknown required capabilities, unsupported versions, duplicate keys and malformed/nonintegral numeric fields are rejected. Runtime loading does not invoke Scala or a compiler backend.",
+      "profile": {
+        "id": "nf-tiny-foundation",
+        "version": "1"
+      },
+      "decision_state": "accepted-for-profile",
+      "evidence_state": "not-run",
+      "rationale": "Explicit Foundation acceptance boundary; reviewed against architecture, early-baseline contract and pinned FABulous source where applicable.",
+      "source_revision": "FND-02 proposed contracts",
+      "owner": "FND-02 contract author (agent)",
+      "reviewer": "independent contract-review agent; docs/implementation/fnd-02-independent-review.md",
+      "affected_consumers": [
+        "FND-04",
+        "FND-05",
+        "FND-07",
+        "FND-08",
+        "DSL",
+        "DB",
+        "CAD",
+        "PROD"
+      ],
+      "independent_expected_examples": [
+        "A package requiring an unknown feature fails with a named unsupported-capability diagnostic.",
+        "A repeated JSON key is rejected rather than selecting one value silently."
+      ],
+      "owning_increment": "FND-02",
+      "required_obligations": [
+        {
+          "id": "FND05-CONFORMANCE",
+          "owner": "FND-05",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND05-MALFORMED",
+          "owner": "FND-05",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        },
+        {
+          "id": "FND05-RUNTIME-ISOLATION",
+          "owner": "FND-05",
+          "evidence_state": "not-run",
+          "scope": "Stage-specific execution; contract review is not execution credit."
+        }
+      ],
+      "change_policy": "Preserve this stable ID and supersession history; changing the claim requires explicit review, a profile revision and invalidation/replay of every affected fixture, correspondence, package and evidence record.",
+      "supersedes": [],
+      "formal_scope": {
+        "kind": "not-run",
+        "bound": null,
+        "assumptions": []
+      }
+    }
+  ]
+}

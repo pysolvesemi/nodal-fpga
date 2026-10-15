@@ -40,32 +40,34 @@ Review the reference source independently of Nodal lowering (none exists), and
 review vectors/maps independently of their author. Retain upstream revision,
 input hashes, exact pin/config semantics and intentional differences. Unknown
 critical reference behavior blocks acceptance rather than becoming an assumed
-compatibility claim. Contract decisions are proposals until review records
-resolve them; future execution evidence remains `not-run`.
+compatibility claim. Contract decisions were proposals until the [independent review](fnd-02-independent-review.md)
+resolved them; future execution evidence remains `not-run`.
 
 Local baseline `./nf check contracts` passed 20 controls with Python 3.12.14.
 This is baseline local evidence only. No remote FND-02 run has occurred. Current
 cloud filesystem has Python and Java but no Rust/Cargo, sbt, simulator or formal
 executable on PATH; later required checks need pinned setup or isolated CI.
 
-Before qualification, publish a clean `[skip ci]` candidate and record its
-SHA/tree. Inventory exact workflow identities, definition hashes and live
-registration. Extend only necessary contract checks; use targeted dispatch
-before full applicable inventory, reuse exact-head runs, retain logs and
-artifacts. Do not count unselected Rust/Scala lanes as executed. Any tooling
-change requires review of both bootstrap profiles and fresh affected coverage.
-No production schema implementation is authorized by this readiness record.
+## Current checkpoint and user-directed qualification cadence
 
-## Current checkpoint
+Draft [PR #3](https://github.com/pysolvesemi/nodal-fpga/pull/3) records the
+readiness audit and initial source. Current phase: contract implementation and independent review complete;
+preparing exact-head local qualification and verified integration.
 
-Phase: preparing contract documentation and independent reference research.
-User approved increment publication and verified integration into dev after
-required checks on 2026-10-15. Run required targeted checks per increment; defer
-the all-tests/full-suite run to the combined Foundation candidate, as explicitly
-requested. Avoid duplicate post-merge CI. This latest instruction overrides the
-older per-increment full-CI cadence but not required checks or protections.
-No remote branch, draft PR, CI launch or merge has yet been performed. Publish
-this durable audit and create the single draft PR, then record its identity.
+Latest user instruction (2026-10-15): add and run required local tests for each
+increment, then merge to dev when those pass. Do not run pre-merge or post-merge
+remote CI. Run the full all-tests CI suite only after the complete Foundation is
+implemented, then fix failures before claiming the roadmap done. This overrides
+the older per-increment remote-CI cadence. Do not weaken assertions or bypass
+branch protection. Flag missing local required execution or CI-required branch
+protection before merging. Publish ordinary-ancestry `[skip ci]` candidates and
+verify actual merge trees. No CI has been dispatched for this increment.
+
+FND-02 is contract-only. Execute contract validation and bootstrap predecessor
+checks locally, retain exact commands/results and independent review. Reference
+RTL execution stays not-run until FND-06. Other required runtime/build profiles
+need actual pinned tools at their owning increments.
+
 Keep qualification and verified integration outstanding until actually done.
 
 This increment does not affect generated Verilog.

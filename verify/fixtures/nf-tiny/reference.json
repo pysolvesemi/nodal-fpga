@@ -1,0 +1,271 @@
+{
+  "format_version": 1,
+  "profile": "nf-tiny-foundation/1",
+  "decision_state": "accepted-for-profile",
+  "evidence_state": "not-run",
+  "upstream": {
+    "repository": "https://github.com/FPGA-Research/FABulous",
+    "tag": "v2.0.0",
+    "commit": "d2fc49dade524a4f78062a3a38b213e9c08d6b04",
+    "tree": "6af48dacbfaf6a77617e11ab00ab4966f77711ba",
+    "commit_date": "2026-07-01T18:31:53+02:00",
+    "license": "Apache-2.0",
+    "license_copy": "fabulous/LICENSE.FABulous",
+    "notice_file": null,
+    "source_files": [
+      {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/LICENSE"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "ba9d360a5a64123e24d8a241d2b32fd89ec7d66c70dc4c5fd521cd282bbd8e56",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/pyproject.toml"
+      },
+      {
+        "path": "uv.lock",
+        "sha256": "3a10b5d9c4b4c6f80705d77560621f50bff62da89eff38057efb27937a84d8d7",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/uv.lock"
+      },
+      {
+        "path": "fabulous/fabric_files/FABulous_project_template_verilog/Tile/LUT4AB/LUT4c_frame_config_dffesr.v",
+        "sha256": "0fa68bcff99930a0337aa0667db914d9eee597c6e5d5dc2613443a4c3685c8f1",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_files/FABulous_project_template_verilog/Tile/LUT4AB/LUT4c_frame_config_dffesr.v",
+        "materialize_as": "BEL/LUT4c_frame_config_dffesr.v"
+      },
+      {
+        "path": "fabulous/fabric_files/FABulous_project_template_verilog/Fabric/models_pack.v",
+        "sha256": "9df107b9169d334faece5f52ce98e4e47a6d963122c280ce6eb9b3d731c08a69",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_files/FABulous_project_template_verilog/Fabric/models_pack.v",
+        "materialize_as": "Fabric/models_pack.v"
+      },
+      {
+        "path": "fabulous/fabric_generator/parser/parse_csv.py",
+        "sha256": "aabba52289ab9171577a9c52988475d2cc6a3291279bacbf5715ce70fb88740c",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/parser/parse_csv.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/parser/parse_hdl.py",
+        "sha256": "dea712f412878f84ae73a31cf78e4de56968cd8bf2e2638610bc15768ca90d60",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/parser/parse_hdl.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/parser/parse_switchmatrix.py",
+        "sha256": "851a0eb0886e56538eb3338707a148e7ee86db67c680b492806e3fee9e706ded",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/parser/parse_switchmatrix.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/parser/parse_configmem.py",
+        "sha256": "f9158196b2c01c095dc265c09c5126ca2efee24ec0fe0b7fbed774c22d1daa21",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/parser/parse_configmem.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/gen_fabric/gen_switchmatrix.py",
+        "sha256": "1c6a1fbacbc5b0f8a2c3a1b6f43335d101c1ebc9e0c4fcf856685ef0c3518752",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/gen_fabric/gen_switchmatrix.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/gen_fabric/gen_tile.py",
+        "sha256": "de4aa1eaf2783a96614ca7faffbc3f989e655eb27e91f7eb8a243317c426b812",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/gen_fabric/gen_tile.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/gen_fabric/gen_fabric.py",
+        "sha256": "b25387314b456e5346ee0483a6d710ade8718030f448b22b68071e30331e1fae",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/gen_fabric/gen_fabric.py"
+      },
+      {
+        "path": "fabulous/fabric_generator/gen_fabric/gen_configmem.py",
+        "sha256": "7d8ff6d8ad2f3731938dbdcd93a52653d35e5147e65d0f6b20fe3dbea21de6ac",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_generator/gen_fabric/gen_configmem.py"
+      },
+      {
+        "path": "fabulous/fabric_definition/fabric.py",
+        "sha256": "829161310a960c417934bf12a7eb6d4bd1754226e9864137dc5324d40e0666d6",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_definition/fabric.py"
+      },
+      {
+        "path": "fabulous/fabric_definition/yosys_obj.py",
+        "sha256": "1d2cd62dc5d3b26fad6540acc741a1dc12ec9cc5f549d52a20edf31d902bbdb5",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_definition/yosys_obj.py"
+      },
+      {
+        "path": "fabulous/fabric_definition/port.py",
+        "sha256": "1630fe6b59806572e0256fc7d3900655069eefdc1c7dfe09304bf1c26706e7b1",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabric_definition/port.py"
+      },
+      {
+        "path": "fabulous/fabulous_settings.py",
+        "sha256": "8836b92046cadcf67e3aaabc111b4b3b169c94c7a0fae23ff38f192d710eb7bf",
+        "url": "https://github.com/FPGA-Research/FABulous/blob/d2fc49dade524a4f78062a3a38b213e9c08d6b04/fabulous/fabulous_settings.py"
+      }
+    ]
+  },
+  "input_files": [
+    {
+      "path": "correspondence.json",
+      "sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/BEL/nf_tiny_io.v",
+      "sha256": "b115310a513f2a39ac33cfa8f22631653d88d2da06d7ccc8c9976fb2b0629482",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/LICENSE.FABulous",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "origin": "unmodified-upstream-license"
+    },
+    {
+      "path": "fabulous/Tile/NF_LEFT/NF_LEFT.csv",
+      "sha256": "1405e8bc9ab8f3dae6c8e302fe8d7e5e01257387ebc405d11e6466d2dd5a1a6b",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_LEFT/NF_LEFT_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_LEFT/NF_LEFT_switch_matrix.csv",
+      "sha256": "89957143ca688caa1104457bf86d33f72385d609e6197e52fd32d4f68855a287",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_MID/NF_MID.csv",
+      "sha256": "6d49ec3bf656287b9f600cc0695b4c25a72345e13c54b4afda0395df9dc4ba6a",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_MID/NF_MID_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_MID/NF_MID_switch_matrix.csv",
+      "sha256": "23a70fd35e8161dd746c9beea78637019b3b76619b899aa6156568802c7f43ee",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_RIGHT/NF_RIGHT.csv",
+      "sha256": "2cd2ae3e51d41b47e271e404be4b8e50da857116854d52e71ecddf9ffd66ee5c",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_RIGHT/NF_RIGHT_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_RIGHT/NF_RIGHT_switch_matrix.csv",
+      "sha256": "80b870a14c856b02342582bad298d6c740ad962c753dc7f47e94894ba609567d",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_SINGLE/NF_SINGLE.csv",
+      "sha256": "d325de5bebb4b15fba56f5936bc11468b59e8fdb3e9d77cd946283b9c2353d5c",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_SINGLE/NF_SINGLE_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/Tile/NF_SINGLE/NF_SINGLE_switch_matrix.csv",
+      "sha256": "53e210a2a902c85895d5b96bae8cd40cfc40fa5b051c1fd5975752cdcd0e8c2f",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/UPSTREAM.md",
+      "sha256": "ab97a968b7d4cc497713d063e195a27e71750f51f5d2daad2c2cac11aaaf7912",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/generate.py",
+      "sha256": "158197e2fcd82ea8fbdcf11115a26e425113e2a91d5fc73574d1006443d3e0cd",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/odd.csv",
+      "sha256": "ca3c13ea714249246938bd4eec4b86a7c905d67f4342aa163323e82fea7e73e4",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/one.csv",
+      "sha256": "2c7394405754475eec9c8f9c2f23c21ad5c5fd6fdbfd3c1e8a7523fd7efb0803",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/sparse.csv",
+      "sha256": "e2631dc1067f219970807099bd08a2e361d9d43d7333fadbfa4e282e19ea8180",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "fabulous/square.csv",
+      "sha256": "32aae8759435a75903faa3d8eae46495b5d7a55c7757bc51b2657ea9a81ca2d9",
+      "origin": "independently-authored"
+    },
+    {
+      "path": "specification.json",
+      "sha256": "0e58761faed7d2d3ea6154ed605262a9fd4a8d6a13ca7de33d06f70a7a88ef32",
+      "origin": "independently-authored"
+    }
+  ],
+  "generation": {
+    "entrypoint": "fabulous/generate.py",
+    "shapes": [
+      "one",
+      "square",
+      "odd",
+      "sparse"
+    ],
+    "command_template": "uv run --project <pinned-upstream> --frozen --no-dev python <fixture>/fabulous/generate.py --upstream <pinned-upstream> --output <fresh-output> --shape <shape>",
+    "must_preserve": [
+      "actual command and stdout/stderr",
+      "generation.json",
+      "all generated RTL",
+      "copied upstream sources and license",
+      "authored inputs and hashes",
+      "sources.f",
+      "resolved dependency versions and licenses",
+      "simulation/proof results, bounds and solver identity",
+      "mutation detection results and graph/pin correspondence check"
+    ],
+    "generated_rtl_status": "not-run",
+    "generated_artifact_hashes": null,
+    "source_primitive_status": "upstream source, not generated output",
+    "configuration_observation_mode": "static/unit frame-memory interface; not a runtime-loader qualification"
+  },
+  "toolchain": {
+    "python_requirement": ">=3.12",
+    "dependency_lock": "upstream uv.lock at the pinned commit and SHA-256 above",
+    "exact_python_build": null,
+    "exact_yosys_build": null,
+    "exact_simulator_build": null,
+    "exact_solver_build": null,
+    "evidence_state": "not-run",
+    "owner": "FND-06 pins and executes; FND-07 carries the qualified environment into CI",
+    "yosys_role": "BEL HDL port parsing only; no customer-design synthesis flow",
+    "nextpnr_required": false,
+    "runtime_transport_claim": false,
+    "default_build_dependency": false,
+    "limitations": "Generator imports package dependencies including physical-flow libraries. Isolate them from Nodal core/default builds; full dependency/license/tool-build qualification is not FND-02 evidence."
+  },
+  "common_mode_sources": [
+    "upstream LUT/register and models_pack are shared reference implementation inputs, not independent expected semantics",
+    "FABulous generation and BEL parser share Python/Yosys infrastructure",
+    "future simulators/solvers may be shared between candidate and reference; record this explicitly",
+    "transparent authored I/O helper is source plumbing, not a behavioral oracle"
+  ],
+  "ownership": {
+    "contract": "FND-02",
+    "generation_vectors_mutations": "FND-06",
+    "ci_reference_replay": "FND-08",
+    "actual_nodal_emitted_hardware": "RTL-01 through RTL-04",
+    "full_customer_toolchain": "VER-05"
+  },
+  "invalidation": "Changing the pin, input hashes, expected graph/semantics or correspondence requires independent review and affected replay; never regenerate golden expected values from the candidate."
+}

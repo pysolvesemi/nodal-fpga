@@ -200,7 +200,7 @@ def metadata(root: Path = ROOT) -> dict:
     return {"head": head, "tree": tree, "dirty": dirty,
             "platform": platform.platform(), "python": platform.python_version(),
             "uid": os.geteuid() if hasattr(os, "geteuid") else None,
-            "scope": "FND-01 build-only; no fabric or Verilog qualification"}
+            "scope": "Foundation contracts/build profiles; no Nodal fabric or Verilog qualification"}
 
 
 def check(profile: str, root: Path = ROOT) -> None:
@@ -210,6 +210,9 @@ def check(profile: str, root: Path = ROOT) -> None:
         boundaries(root)
         docs_check(root)
         run([sys.executable, "-m", "unittest", "discover", "-s", "tests/bootstrap", "-v"], root)
+        from check_foundation_contracts import check as foundation_contracts
+        print(json.dumps(foundation_contracts(root, accepted=True), sort_keys=True))
+        run([sys.executable, "-m", "unittest", "discover", "-s", "tests/foundation", "-v"], root)
     elif profile == "rust":
         doctor("rust", pins(root))
         from check_boundaries import check as boundaries

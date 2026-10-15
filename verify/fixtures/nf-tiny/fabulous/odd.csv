@@ -1,0 +1,17 @@
+FabricBegin
+NF_LEFT,NF_MID,NF_RIGHT
+NF_LEFT,NF_MID,NF_RIGHT
+FabricEnd
+ParametersBegin
+ConfigBitMode,frame_based
+FrameBitsPerRow,32
+MaxFramesPerCol,20
+GenerateDelayInSwitchMatrix,0
+MultiplexerStyle,custom
+SuperTileEnable,FALSE
+DisableUserCLK,FALSE
+Tile,./Tile/NF_SINGLE/NF_SINGLE.csv
+Tile,./Tile/NF_LEFT/NF_LEFT.csv
+Tile,./Tile/NF_MID/NF_MID.csv
+Tile,./Tile/NF_RIGHT/NF_RIGHT.csv
+ParametersEnd

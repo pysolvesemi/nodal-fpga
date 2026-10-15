@@ -1,0 +1,370 @@
+{
+  "format_version": 1,
+  "profile": "nf-tiny-foundation/1",
+  "decision_state": "accepted-for-profile",
+  "evidence_state": "not-run",
+  "assumptions": [
+    "ASM-0001",
+    "ASM-0002",
+    "ASM-0003",
+    "ASM-0004",
+    "ASM-0009",
+    "ASM-0010"
+  ],
+  "kind": "Independent expected correspondence, not extracted from generated output",
+  "tile_instance": "Tile_X{x}Y{y}_{type}",
+  "switch_instance": "Inst_{type}_switch_matrix",
+  "resource_map": {
+    "lut": "Inst_L_LUT4c_frame_config_dffesr",
+    "lut.register": "Inst_L_LUT4c_frame_config_dffesr.LUT_flop",
+    "mux": "Inst_{type}_switch_matrix.inst_cus_mux21_L_I0",
+    "config_memory": "Inst_{type}_ConfigMem"
+  },
+  "pin_map": {
+    "a0": {
+      "direction": "input",
+      "reference": "P_A0",
+      "aliases": [
+        "P_X0",
+        "Inst_{type}_switch_matrix.P_X0"
+      ]
+    },
+    "a1": {
+      "direction": "input",
+      "reference": "P_A1",
+      "aliases": [
+        "P_X1",
+        "Inst_{type}_switch_matrix.P_X1"
+      ]
+    },
+    "a2": {
+      "direction": "input",
+      "reference": "P_A2",
+      "aliases": [
+        "P_X2",
+        "Inst_{type}_switch_matrix.P_X2"
+      ]
+    },
+    "a3": {
+      "direction": "input",
+      "reference": "P_A3",
+      "aliases": [
+        "P_X3",
+        "Inst_{type}_switch_matrix.P_X3"
+      ]
+    },
+    "alt": {
+      "direction": "input",
+      "reference": "P_ALT",
+      "aliases": [
+        "P_XA",
+        "Inst_{type}_switch_matrix.P_XA"
+      ]
+    },
+    "enable": {
+      "direction": "input",
+      "reference": "P_ENABLE",
+      "aliases": [
+        "P_XE",
+        "Inst_{type}_switch_matrix.P_XE"
+      ]
+    },
+    "reset": {
+      "direction": "input",
+      "reference": "P_RESET",
+      "aliases": [
+        "P_XR",
+        "Inst_{type}_switch_matrix.P_XR"
+      ]
+    },
+    "y": {
+      "direction": "output",
+      "reference": "P_Y",
+      "aliases": [
+        "P_RESULT",
+        "Inst_{type}_switch_matrix.P_RESULT"
+      ]
+    },
+    "const0": {
+      "direction": "source",
+      "reference": "Inst_{type}_switch_matrix.GND0"
+    },
+    "mux.a0": {
+      "direction": "input",
+      "reference": "Inst_{type}_switch_matrix.L_I0_input[0]"
+    },
+    "mux.a1": {
+      "direction": "input",
+      "reference": "Inst_{type}_switch_matrix.L_I0_input[1]"
+    },
+    "mux.y": {
+      "direction": "output",
+      "reference": "Inst_{type}_switch_matrix.L_I0"
+    },
+    "lut.i0": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[0]"
+    },
+    "lut.i1": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[1]"
+    },
+    "lut.i2": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[2]"
+    },
+    "lut.i3": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[3]"
+    },
+    "lut.ci": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.Ci"
+    },
+    "lut.en": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.EN"
+    },
+    "lut.sr": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.SR"
+    },
+    "lut.o": {
+      "direction": "output",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.O"
+    },
+    "clk": {
+      "direction": "input",
+      "reference": "UserCLK"
+    },
+    "lut.clk": {
+      "direction": "input",
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.UserCLK"
+    }
+  },
+  "variant_pin_map": {
+    "NF_SINGLE": {},
+    "NF_LEFT": {
+      "e": {
+        "direction": "output",
+        "reference": "E[0]"
+      }
+    },
+    "NF_MID": {
+      "e": {
+        "direction": "output",
+        "reference": "E[0]"
+      },
+      "w": {
+        "direction": "input",
+        "reference": "W[0]"
+      }
+    },
+    "NF_RIGHT": {
+      "w": {
+        "direction": "input",
+        "reference": "W[0]"
+      }
+    }
+  },
+  "config_map": [
+    {
+      "feature": "init",
+      "logical_index": 0,
+      "tile_config_bit": 0,
+      "primitive_bit": 0,
+      "frame": 0,
+      "data_bit": 12
+    },
+    {
+      "feature": "init",
+      "logical_index": 1,
+      "tile_config_bit": 1,
+      "primitive_bit": 1,
+      "frame": 0,
+      "data_bit": 13
+    },
+    {
+      "feature": "init",
+      "logical_index": 2,
+      "tile_config_bit": 2,
+      "primitive_bit": 2,
+      "frame": 0,
+      "data_bit": 14
+    },
+    {
+      "feature": "init",
+      "logical_index": 3,
+      "tile_config_bit": 3,
+      "primitive_bit": 3,
+      "frame": 0,
+      "data_bit": 15
+    },
+    {
+      "feature": "init",
+      "logical_index": 4,
+      "tile_config_bit": 4,
+      "primitive_bit": 4,
+      "frame": 0,
+      "data_bit": 16
+    },
+    {
+      "feature": "init",
+      "logical_index": 5,
+      "tile_config_bit": 5,
+      "primitive_bit": 5,
+      "frame": 0,
+      "data_bit": 17
+    },
+    {
+      "feature": "init",
+      "logical_index": 6,
+      "tile_config_bit": 6,
+      "primitive_bit": 6,
+      "frame": 0,
+      "data_bit": 18
+    },
+    {
+      "feature": "init",
+      "logical_index": 7,
+      "tile_config_bit": 7,
+      "primitive_bit": 7,
+      "frame": 0,
+      "data_bit": 19
+    },
+    {
+      "feature": "init",
+      "logical_index": 8,
+      "tile_config_bit": 8,
+      "primitive_bit": 8,
+      "frame": 0,
+      "data_bit": 20
+    },
+    {
+      "feature": "init",
+      "logical_index": 9,
+      "tile_config_bit": 9,
+      "primitive_bit": 9,
+      "frame": 0,
+      "data_bit": 21
+    },
+    {
+      "feature": "init",
+      "logical_index": 10,
+      "tile_config_bit": 10,
+      "primitive_bit": 10,
+      "frame": 0,
+      "data_bit": 22
+    },
+    {
+      "feature": "init",
+      "logical_index": 11,
+      "tile_config_bit": 11,
+      "primitive_bit": 11,
+      "frame": 0,
+      "data_bit": 23
+    },
+    {
+      "feature": "init",
+      "logical_index": 12,
+      "tile_config_bit": 12,
+      "primitive_bit": 12,
+      "frame": 0,
+      "data_bit": 24
+    },
+    {
+      "feature": "init",
+      "logical_index": 13,
+      "tile_config_bit": 13,
+      "primitive_bit": 13,
+      "frame": 0,
+      "data_bit": 25
+    },
+    {
+      "feature": "init",
+      "logical_index": 14,
+      "tile_config_bit": 14,
+      "primitive_bit": 14,
+      "frame": 0,
+      "data_bit": 26
+    },
+    {
+      "feature": "init",
+      "logical_index": 15,
+      "tile_config_bit": 15,
+      "primitive_bit": 15,
+      "frame": 0,
+      "data_bit": 27
+    },
+    {
+      "feature": "ff",
+      "tile_config_bit": 16,
+      "primitive_bit": 16,
+      "frame": 0,
+      "data_bit": 28
+    },
+    {
+      "feature": "carry_i0",
+      "tile_config_bit": 17,
+      "primitive_bit": 17,
+      "frame": 0,
+      "data_bit": 29,
+      "constraint": 0
+    },
+    {
+      "feature": "reset_value",
+      "tile_config_bit": 18,
+      "primitive_bit": 18,
+      "frame": 0,
+      "data_bit": 30
+    },
+    {
+      "feature": "source",
+      "tile_config_bit": 19,
+      "switch_bit": 0,
+      "frame": 0,
+      "data_bit": 31
+    }
+  ],
+  "aliases_policy": "Aliases shown here are transparent wiring signal names, not overlapping configurable fields. No configuration feature aliases exist. Leaf reference pin names map once, except declared transparent-signal aliases.",
+  "exclusions": [
+    {
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.Co / L_Co",
+      "reason": "Carry arithmetic is outside matched subset; never assumed constant."
+    },
+    {
+      "reference": "Inst_L_LUT4c_frame_config_dffesr.cus_mux21_I0mux",
+      "reason": "Carry source select is physically present but fixed to normal I0 by ConfigBits[17]=0."
+    },
+    {
+      "reference": "Inst_P_nf_tiny_io",
+      "reason": "Transparent authored I/O plumbing; explicitly represented through signal aliases, not an independent behavioral oracle."
+    },
+    {
+      "reference": "FrameData_O, FrameStrobe_O, UserCLKo and my_buf/clk_buf instances",
+      "reason": "Transport/clock wiring only, digital equality preserved. No electrical or timing equivalence asserted."
+    },
+    {
+      "reference": "ConfigBits_N and complementary mux-select inputs",
+      "reason": "Complementary physical wires for the same feature; no independent writable bits. models_pack ignores complement pins in behavioral mux models."
+    },
+    {
+      "reference": "P_ALT/P_XA in NF_MID and NF_RIGHT",
+      "reason": "Present, observable as stimulus only and intentionally unused; no graph edge to any sink."
+    }
+  ],
+  "totality_checks": [
+    "Every common/variant semantic pin has exactly one primary mapping and correct direction.",
+    "Each shape instance substitutes x,y,type without collision; every declared intertile edge binds an output to the next present tile input.",
+    "All 20 config bits are represented once, with no hidden alias, omission, or reversal.",
+    "Every user output and every selected mux input remains represented; unused/excluded reference resources must exactly match this list.",
+    "Clock relation is UserCLK shared across all matched registers; no configuration strobe substitutes for it.",
+    "Reject swapped/omitted/duplicated mappings before comparing functional traces."
+  ],
+  "obligations": [
+    "FND06-GRAPH",
+    "FND06-MUT-CORRESPONDENCE",
+    "FND06-MUT-ENDPOINT",
+    "FND06-MUT-FIELD-ALIAS"
+  ]
+}
