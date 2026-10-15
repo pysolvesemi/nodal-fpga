@@ -1,6 +1,12 @@
 {
-  "schema": 1,
-  "core_members": ["core/rust/bootstrap"],
-  "core_registry_allowlist": [],
-  "scope": "FND-01 bootstrap; extend explicitly when an owning increment adds a module"
+  "schema": 2,
+  "core_packages": [
+    {"name": "nf-bootstrap", "path": "core/rust/bootstrap", "version": "0.1.0"},
+    {"name": "nf-types", "path": "core/rust/types", "version": "0.1.0"},
+    {"name": "nf-arch-ir", "path": "core/rust/arch-ir", "version": "0.1.0"}
+  ],
+  "core_dependencies": [
+    {"from": "nf-arch-ir", "to": "nf-types", "kind": "normal", "target": null, "alias": "nf-types", "path": "../types"}
+  ],
+  "scope": "FND-04 reviewed Rust core DAG; no registry dependencies or native/SDK hooks; extend only with explicit ownership review"
 }

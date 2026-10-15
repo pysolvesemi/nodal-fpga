@@ -226,15 +226,38 @@ def check(profile: str, root: Path = ROOT) -> None:
         run(["cargo", "test", "--locked", "--offline", "--workspace", "--doc"], root)
         output = run(["cargo", "metadata", "--locked", "--offline", "--format-version", "1"], root)
         data = json.loads(output)
-        if len(data["packages"]) != 1 or data["packages"][0]["dependencies"]:
-            raise BootstrapError("NF-CORE-GRAPH: bootstrap must have one dependency-free crate")
+        from check_boundaries import check_metadata
+        check_metadata(root, data)
     else:
         doctor("scala", pins(root))
         sbt(["scalafmtCheckAll", "scalafmtSbtCheck", "clean", "compile", "show scalaVersion", "show sbtVersion"] , root)
 
 
+def rust_smoke(root: Path) -> dict[str, str]:
+    """Build and execute both reviewed Rust examples; retain exact UTF-8 bytes."""
+    outputs = {}
+    for package, example in [("nf-bootstrap", "identity"), ("nf-arch-ir", "model")]:
+        run(["cargo", "build", "--locked", "--offline", "-p", package, "--example", example], root)
+        binary = root / "target/debug/examples" / example
+        result = subprocess.run([str(binary)], cwd=root, capture_output=True, check=True)
+        # Decode directly rather than text=True's universal-newline conversion:
+        # deterministic output means identical bytes, including line endings.
+        output = result.stdout.decode("utf-8")
+        run(["ldd", str(binary)], root)
+        if example == "identity":
+            if output != "nodal-fpga/bootstrap/1\nprofile=build-only\n":
+                raise BootstrapError("NF-SMOKE: unexpected Rust bootstrap output")
+        elif (not output.startswith("nodal-fpga/arch-ir/1\n")
+              or "profile=structural-selection\n" not in output.splitlines(keepends=True)
+              or "rejected=value\n" not in output.splitlines(keepends=True)):
+            raise BootstrapError("NF-SMOKE: missing ArchIR model identity/profile/rejection witness")
+        outputs[example] = output
+    return outputs
+
+
 def reproduce(profile: str) -> None:
     outputs = []
+    model_outputs = []
     p = pins()
     doctor(profile, p)
     with tempfile.TemporaryDirectory(prefix="nf-reproduce-") as temporary:
@@ -242,13 +265,9 @@ def reproduce(profile: str) -> None:
             copy = Path(temporary) / f"checkout-{index}"
             shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns(".git", ".cache", "target", "artifacts", "__pycache__"))
             if profile == "rust":
-                run(["cargo", "build", "--locked", "--offline", "--example", "identity"], copy)
-                binary = copy / "target/debug/examples/identity"
-                result = subprocess.run([str(binary)], cwd=copy, capture_output=True, text=True, check=True)
-                output = result.stdout
-                run(["ldd", str(binary)], copy)
-                if output != "nodal-fpga/bootstrap/1\nprofile=build-only\n":
-                    raise BootstrapError("NF-SMOKE: unexpected Rust output")
+                examples = rust_smoke(copy)
+                output = examples["identity"]
+                model_outputs.append(examples["model"])
             else:
                 raw = sbt(["clean", "compile", "run"], copy)
                 lines = raw.splitlines()
@@ -261,8 +280,14 @@ def reproduce(profile: str) -> None:
             outputs.append(output)
     if outputs[0] != outputs[1]:
         raise BootstrapError("NF-NONDETERMINISTIC: repeated smoke output differs")
-    print(json.dumps({"profile": profile, "clean_builds": 2, "stdout": outputs[0],
-                      "stdout_sha256": hashlib.sha256(outputs[0].encode()).hexdigest()}, indent=2))
+    report = {"profile": profile, "clean_builds": 2, "stdout": outputs[0],
+              "stdout_sha256": hashlib.sha256(outputs[0].encode()).hexdigest()}
+    if profile == "rust":
+        if model_outputs[0] != model_outputs[1]:
+            raise BootstrapError("NF-NONDETERMINISTIC: repeated ArchIR model output differs")
+        report["model_stdout"] = model_outputs[0]
+        report["model_stdout_sha256"] = hashlib.sha256(model_outputs[0].encode()).hexdigest()
+    print(json.dumps(report, indent=2))
 
 
 def main() -> int:

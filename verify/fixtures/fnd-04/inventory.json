@@ -1,0 +1,317 @@
+{
+  "format": "fnd04-independent-fixture-inventory/1",
+  "expectation_author": "independent FND-04 fixture author",
+  "expectation_basis": "FND-02 accepted contracts plus FND-04 readiness profile; never validator output",
+  "profile": "structural-types-direct-alias-u64/1",
+  "seed": "0xF0041D3E5EED",
+  "tests": [
+    {
+      "id": "FND04-ARITHMETIC",
+      "source": "core/rust/types/tests/independent_contract.rs",
+      "oracle": "u128 sum/product over 11x11 boundary inputs; explicit width 1..64 maxima",
+      "assumptions": [
+        "ASM-0008"
+      ],
+      "rejections": [
+        "overflow",
+        "invalid_range",
+        "bounds",
+        "width"
+      ]
+    },
+    {
+      "id": "FND04-INTERVALS",
+      "source": "core/rust/types/tests/independent_contract.rs",
+      "oracle": "81 small intervals and all 6561 pairs, enumerated integer bit sets",
+      "rejections": [
+        "overflow",
+        "invalid_range"
+      ],
+      "positive_witnesses": [
+        "empty-byte-range-at-u64-max",
+        "adjacent-ranges",
+        "last-3-bits"
+      ]
+    },
+    {
+      "id": "FND04-IDENTITY",
+      "source": "core/rust/types/tests/independent_contract.rs",
+      "assumptions": [
+        "ASM-0008",
+        "ASM-0010"
+      ],
+      "rejections": [
+        "build_mismatch",
+        "partition_mismatch",
+        "wrong_kind",
+        "bounds",
+        "correspondence"
+      ],
+      "positive_witnesses": [
+        "u32-max-local-id-with-2^32-table-count",
+        "one-to-one-map-across-two-partitions",
+        "exact-structured-unicode-keys"
+      ]
+    },
+    {
+      "id": "FND04-GRAPH",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "assumptions": [
+        "ASM-0009",
+        "ASM-0010"
+      ],
+      "oracle": "literal one/three/sparse owner and edge lists; no implicit wrap or bypass",
+      "rejections": [
+        "missing",
+        "direction",
+        "wrong_kind",
+        "width",
+        "duplicate",
+        "template_cycle",
+        "connection"
+      ],
+      "positive_witnesses": [
+        "one-instance-zero-links",
+        "three-instances-two-links",
+        "sparse-two-instances-zero-links",
+        "explicit-bypass-one-link",
+        "routing-cycle",
+        "one-local-one-cross-partition-link"
+      ],
+      "mutation_witnesses": [
+        "lost-cross-partition-edge",
+        "invented-bypass",
+        "swapped-endpoint",
+        "wrong-width",
+        "recursive-template",
+        "competing-local-and-top-driver",
+        "competing-parent-and-child-driver",
+        "competing-resource-alias-driver"
+      ]
+    },
+    {
+      "id": "FND04-MUX",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "assumptions": [
+        "ASM-0003"
+      ],
+      "oracle": "ordered [A,B,C], 2 selects C, 3 invalid",
+      "rejections": [
+        "value",
+        "domain"
+      ],
+      "mutation_witnesses": [
+        "swapped-input-order",
+        "reserved-select-3",
+        "overbroad-selector-domain"
+      ]
+    },
+    {
+      "id": "FND04-SHARING",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "assumptions": [
+        "ASM-0004"
+      ],
+      "oracle": "six literal mode masks, four complete choices, bit-by-bit agreement over all 16 two-bit value pairs",
+      "selection_cases": 2304,
+      "expected_accepted": 172,
+      "expected_conflict": 516,
+      "expected_inactive": 1616,
+      "overlap_cases": 64,
+      "rejections": [
+        "overlap",
+        "conflict",
+        "inactive",
+        "missing_selection",
+        "mode",
+        "guard",
+        "alias_mismatch",
+        "alias_chain",
+        "alias_cycle",
+        "wrong_scope",
+        "missing"
+      ],
+      "positive_witnesses": [
+        "alias-only-active-write",
+        "exclusive-different-values",
+        "independent-groups-coexist",
+        "inactive-owner-active-alias",
+        "fully-inactive-class-no-write",
+        "finite-set-order-invariance",
+        "distinct-instance-values",
+        "huge-offset-width-64"
+      ]
+    },
+    {
+      "id": "FND04-DOMAIN-REFERENCES",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "assumptions": [
+        "ASM-0011"
+      ],
+      "oracle": "t0=C0/P0/Q0, t1=C0/P1/Q0",
+      "rejections": [
+        "wrong_kind",
+        "missing"
+      ],
+      "limit": "Membership declaration and reference legality only; no isolation, CDC, power or reconfiguration safety proof"
+    },
+    {
+      "id": "FND04-SEEDED-DEFECTS",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "cases": 128,
+      "mutations_per_category": 32,
+      "rejections": [
+        "missing",
+        "direction",
+        "wrong_kind",
+        "partition_mismatch"
+      ],
+      "oracle": "bounded generated legal line with one chosen defect; exact category required"
+    },
+    {
+      "id": "FND04-DETERMINISM-BOUNDS",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "rejections": [
+        "limit"
+      ],
+      "axes": {
+        "instances": [
+          1,
+          16,
+          256,
+          4096
+        ],
+        "hierarchy_depth": [
+          1,
+          8,
+          32,
+          64
+        ],
+        "rejected_depth": 65,
+        "partitions": [
+          1,
+          2,
+          4
+        ]
+      },
+      "observations": [
+        "retained-template-count",
+        "shallow-instance-vector-capacity-bytes",
+        "instance-name-payload-bytes",
+        "elapsed-nanoseconds",
+        "validation-work-counters"
+      ],
+      "limit": "Bounded local observations; shallow/payload bytes are not complete allocator accounting or peak RSS"
+    },
+    {
+      "id": "FND04-SOURCE-DIAGNOSTICS",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "positive_witnesses": [
+        "reordered-missing-endpoints-identical-full-diagnostics",
+        "reordered-conflicting-alias-writes-identical-full-diagnostics",
+        "reordered-duplicate-domains-both-origins",
+        "reordered-contradictory-guards-both-origins",
+        "missing-selected-field-selection-stage-instance-qualified-key"
+      ],
+      "rejections": [
+        "duplicate",
+        "guard",
+        "missing",
+        "limit"
+      ],
+      "limit": "FND-03 source/profile receipt integrity remains a separate parent qualification check, not a Rust semantic-validation claim."
+    },
+    {
+      "id": "FND04-REVIEW-BOUNDARIES",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "rejections": [
+        "duplicate",
+        "limit",
+        "template_cycle"
+      ],
+      "positive_witnesses": [
+        "Field-resource-versus-Feature-typed-identity-collision",
+        "Pip-resource-versus-Connection-typed-identity-collision",
+        "Storage-and-ModeGroup-distinct-diagnostic-key-kinds",
+        "cycle-primary-is-real-back-edge-with-related-target-source",
+        "permuted-competing-architecture-and-selection-limits",
+        "definition-and-instance-qualified-complete-key-bounds",
+        "oversized-reference-path-preflight"
+      ],
+      "compressed_hierarchy": {
+        "templates": 7,
+        "child_declarations": 48,
+        "leaf_instances_if_expanded": 262144,
+        "max_work": 10000,
+        "expected": "singleton-limit"
+      },
+      "limit": "These review-driven regressions refine source-aware diagnostics and boundedness; they do not change initially frozen topology, mode or alias legality."
+    },
+    {
+      "id": "FND04-MODE-BUDGET-DETERMINISM",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "oracle": "Nonsemantic mode-name and mode-group declaration permutations preserve complete validation results, including which resource-limit diagnostic is reported.",
+      "normal_bound_rejections": [
+        "mode",
+        "duplicate"
+      ],
+      "work_budgets": {
+        "first": 1,
+        "last": 2000,
+        "max_diagnostics": 1,
+        "permutation_cases": 4000
+      },
+      "fixtures": [
+        "legal type modes x/y with declared group modes x/z1/z2",
+        "group g0 modes x/x and distinct-resource group g1 modes x/y"
+      ],
+      "limit": "Metamorphic diagnostic invariance follows the contract; no production result is used to regenerate literal semantic expectations."
+    },
+    {
+      "id": "FND04-MODE-MEMBERSHIP-BUDGET-DETERMINISM",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "oracle": "A single group listing an owner and its direct alias repeats one physical resource and rejects as mode; nonsemantic membership order preserves full diagnostics.",
+      "normal_bound_rejections": [
+        "mode"
+      ],
+      "work_budgets": {
+        "first": 1,
+        "last": 2000,
+        "max_diagnostics": 1,
+        "permutation_cases": 2000
+      },
+      "limit": "Structural canonical ownership only; no device occupancy or customer configuration qualification."
+    },
+    {
+      "id": "FND04-ARCHITECTURE-CONNECTION-KEY-BOUND",
+      "source": "core/rust/arch-ir/tests/independent_contract.rs",
+      "portable_key": {
+        "kind": "Pip",
+        "namespace": "independent",
+        "scope": [],
+        "local": "abcdefghijklmnopqrstuvwxy"
+      },
+      "component_bytes": {
+        "namespace": 11,
+        "local": 25,
+        "total": 36
+      },
+      "positive_exact_bound": 36,
+      "negative_one_byte_overflow_bound": 35,
+      "expected_rejection": "singleton architecture-stage limit",
+      "permutation": "Reverse architecture connections and roots; preserve successful exact-bound validation and full failing diagnostics.",
+      "identity_witness": "Duplicate top-level connection name reports the literal Pip key with empty scope."
+    }
+  ],
+  "not_claimed": [
+    "RTL simulation",
+    "primitive behavior proof",
+    "Scala interoperability",
+    "serialization",
+    "physical allocation",
+    "DeviceDB",
+    "configuration loader",
+    "timing or PDK qualification",
+    "production-scale performance"
+  ]
+}

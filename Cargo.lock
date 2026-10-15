@@ -3,5 +3,16 @@
 version = 4
 
 [[package]]
+name = "nf-arch-ir"
+version = "0.1.0"
+dependencies = [
+ "nf-types",
+]
+
+[[package]]
 name = "nf-bootstrap"
+version = "0.1.0"
+
+[[package]]
+name = "nf-types"
 version = "0.1.0"
