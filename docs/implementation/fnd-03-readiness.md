@@ -51,3 +51,19 @@ archive completion evidence and close authoritative checklist only on verified
 integration. Main remains untouched.
 
 This increment does not affect generated Verilog.
+
+## Implementation clarification and affected checks
+
+Executable requirement tags now bind already-required Foundation execution
+leaves and the FND-03 profile. They preserve every ID, task wording and checkbox
+state; this is enforcement metadata, not a scope reduction or execution claim.
+Historical FND-01/02 reports gain linked evidence sidecars describing unchanged
+raw evidence. Their remote-versus-local qualification histories stay distinct.
+
+Affected checks: existing bootstrap/contract tests, new roadmap/evidence fixtures,
+source/profile/merge-ancestry checks, docs/links, and conservative Rust/Scala
+regression lanes. The existing workflow's contracts checkout now fetches full
+history because receipt ancestry cannot be verified from a depth-one clone.
+No triggers, lane conditions, permissions or protection requirements changed.
+No remote CI was launched; the combined final Foundation run remains required.
+All FND-03 checkboxes remain open for coordinator qualification and closure.

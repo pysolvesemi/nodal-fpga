@@ -1,0 +1,85 @@
+{
+  "format_version": 1,
+  "increment": "ID",
+  "source": {
+    "commit": "EXACT_TESTED_COMMIT_40_HEX",
+    "tree": "EXACT_TESTED_TREE_40_HEX"
+  },
+  "profile": "DECLARED_PROFILE/VERSION",
+  "report": "docs/completion/ID.md",
+  "artifacts": {
+    "docs/completion/ID.md": "REPORT_SHA256_64_HEX",
+    "docs/completion/evidence/id/source.json": "SOURCE_RECORD_SHA256_64_HEX",
+    "docs/completion/evidence/id/checks.log": "LOG_SHA256_64_HEX",
+    "docs/implementation/id-independent-review.md": "REVIEW_SHA256_64_HEX"
+  },
+  "observations": {
+    "actual-check": {
+      "kind": "execution",
+      "result": "passed",
+      "source": {
+        "commit": "EXACT_TESTED_COMMIT_40_HEX",
+        "tree": "EXACT_TESTED_TREE_40_HEX"
+      },
+      "profile": "DECLARED_PROFILE/VERSION",
+      "command": "EXACT_ACTUALLY_EXECUTED_COMMAND",
+      "source_record": "docs/completion/evidence/id/source.json",
+      "artifacts": [
+        "docs/completion/evidence/id/source.json",
+        "docs/completion/evidence/id/checks.log"
+      ]
+    },
+    "review": {
+      "kind": "review",
+      "result": "accepted",
+      "source": {
+        "commit": "EXACT_TESTED_COMMIT_40_HEX",
+        "tree": "EXACT_TESTED_TREE_40_HEX"
+      },
+      "profile": "DECLARED_PROFILE/VERSION",
+      "artifacts": [
+        "docs/implementation/id-independent-review.md"
+      ]
+    }
+  },
+  "items": {
+    "ID.a.1": [
+      "actual-check"
+    ],
+    "ID.e.1": [
+      "review"
+    ]
+  },
+  "context": {
+    "tools": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "device": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "configuration": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "schemas": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "seeds": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "assumptions": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "reference_corpus": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "correspondence": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "mutations": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "loading_mode": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "coverage": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "limitations": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE",
+    "examples": "REPLACE_WITH_ACTUAL_IDENTITY_RESULT_OR_REASONED_PROFILE_ABSENCE"
+  },
+  "review": {
+    "kind": "agent",
+    "artifact": "docs/implementation/id-independent-review.md"
+  },
+  "integration": {
+    "state": "pending"
+  },
+  "ci": {
+    "qualification": "not-run",
+    "reason": "REPLACE_WITH_ACTUAL_AUTHORIZED_DISPOSITION",
+    "runs": [],
+    "post_merge": {
+      "state": "pending",
+      "reason": "Integration has not occurred",
+      "runs": []
+    }
+  }
+}

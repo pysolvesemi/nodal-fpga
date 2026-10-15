@@ -49,6 +49,13 @@ Assessment, prototype and adoption are separate deliverables. A completed assess
 
 Labs/manufacturing partners may produce the evidence externally. This repository records requirements, portable artifacts, correlation and qualification decisions; it does not require equipment ownership or factory operation. Missing samples, access or partner evidence keeps the affected gate open, but does not block earlier software/generator releases that do not depend on it. Per-profile absent hardware must be explicitly declared and its applicability checked; do not silently mark an unsupported required feature complete. The ordinary nested-checklist and regression rules still apply.
 
-## Planned enforcement
+## Executable enforcement
 
-FND-03 will add a roadmap validator that ignores fenced examples, checks unique increment/sub-item IDs, indentation, parent/descendant state consistency, dependency existence and cycles, and required completion evidence. It must include negative fixtures with an incorrectly closed parent. This planning commit does not claim that validator already exists.
+FND-03 implements `./nf roadmap` and integrates it into `./nf check contracts`.
+See the [validator contract](../development/roadmap-validator.md) for Markdown,
+evidence receipts, source/profile binding, bounded inputs, deterministic derived
+views and the narrow final-documentation source-anchor check. Required execution
+annotations express existing obligations; a review/N/A result cannot replace
+an executed check. Authoritative checkbox state stays in owning-track Markdown.
+The validator's existence alone does not complete FND-03; its required checks,
+review, actual integration and evidence closure remain separate acceptance gates.

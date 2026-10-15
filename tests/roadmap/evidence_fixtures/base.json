@@ -1,0 +1,85 @@
+{
+  "format_version": 1,
+  "increment": "FND-01",
+  "source": {
+    "commit": "@COMMIT@",
+    "tree": "@TREE@"
+  },
+  "profile": "fixture/1",
+  "report": "docs/completion/FND-01.md",
+  "artifacts": {
+    "docs/completion/FND-01.md": "@REPORT_HASH@",
+    "witness.txt": "@WITNESS_HASH@",
+    "source.json": "@SOURCE_HASH@"
+  },
+  "observations": {
+    "run": {
+      "kind": "execution",
+      "result": "passed",
+      "source": {
+        "commit": "@COMMIT@",
+        "tree": "@TREE@"
+      },
+      "profile": "fixture/1",
+      "command": "printf fixture-witness",
+      "artifacts": [
+        "witness.txt",
+        "source.json"
+      ],
+      "source_record": "source.json"
+    },
+    "review": {
+      "kind": "review",
+      "result": "accepted",
+      "source": {
+        "commit": "@COMMIT@",
+        "tree": "@TREE@"
+      },
+      "profile": "fixture/1",
+      "artifacts": [
+        "docs/completion/FND-01.md"
+      ]
+    }
+  },
+  "items": {
+    "FND-01.a": [
+      "run"
+    ]
+  },
+  "context": {
+    "tools": {
+      "shell": "test fixture only"
+    },
+    "device": "not applicable: text validator fixture",
+    "configuration": "not applicable: text validator fixture",
+    "schemas": "evidence format 1",
+    "seeds": "not applicable: deterministic fixture",
+    "assumptions": "independently hand-authored fixture expectation",
+    "reference_corpus": "tests/roadmap/evidence_fixtures",
+    "correspondence": "not applicable: no hardware",
+    "mutations": "hand-authored rejection cases",
+    "loading_mode": "not applicable: no hardware",
+    "coverage": "one checked execution obligation",
+    "limitations": [
+      "This is a validator test fixture, not project acceptance evidence."
+    ],
+    "examples": "This increment does not affect generated Verilog."
+  },
+  "review": {
+    "kind": "agent",
+    "artifact": "docs/completion/FND-01.md"
+  },
+  "integration": {
+    "state": "pending"
+  },
+  "ci": {
+    "qualification": "not-run",
+    "reason": "Local validator fixture only",
+    "runs": [],
+    "post_merge": {
+      "state": "pending",
+      "reason": "No integration yet",
+      "runs": []
+    }
+  }
+}

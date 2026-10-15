@@ -1,0 +1,233 @@
+{
+  "artifacts": {
+    "docs/completion/FND-02.md": "8645138ab661e4c1fb36b3006f85c6f20f22f78096e94308e5ebe97b2e90f6e2",
+    "docs/completion/evidence/fnd-02/contracts.log": "53fdbaece8ee98e68f2529c127e84a453e6b41d4b8f98b5f58d6eb25e245da96",
+    "docs/completion/evidence/fnd-02/index.json": "fbc518bc0fe3f71ae3293a9c3f9ae5a89c4bedb05f414e998a7a7b21d825d040",
+    "docs/completion/evidence/fnd-02/rust.log": "299eb1c8fd2ad53eed1eef21a28bcc371794f4012939252a56b4423e2296f122",
+    "docs/completion/evidence/fnd-02/scala.log": "f938320e6453e63960a9d8e6b1bdfa6925b36b15c93a51732728f7c59440c8a4",
+    "docs/completion/evidence/fnd-02/source.json": "1be9b675c56deb2726155ab12590b1a311d9b86895e78a466541b1c03a5604d7",
+    "docs/implementation/fnd-02-independent-review.md": "39e097116d7d7fbb607805a078fbfe19bab83447c9a297e0d39db8cb432eb0c7"
+  },
+  "ci": {
+    "post_merge": {
+      "reason": "user-directed-local-qualification-identical-tree-merge",
+      "runs": [],
+      "state": "skipped"
+    },
+    "qualification": "not-run",
+    "reason": "Explicit user instruction: local tests per increment, full combined Foundation CI at end.",
+    "runs": []
+  },
+  "context": {
+    "assumptions": {
+      "ids": [
+        "ASM-0001",
+        "ASM-0002",
+        "ASM-0003",
+        "ASM-0004",
+        "ASM-0005",
+        "ASM-0006",
+        "ASM-0007",
+        "ASM-0008",
+        "ASM-0009",
+        "ASM-0010",
+        "ASM-0011",
+        "ASM-0012"
+      ],
+      "ledger_sha256": "d99d066bb836de9600ae4cecf24ad0cd91dce43c71946419329196f86dccb7f8",
+      "state": "accepted contract; required FND-06 executions remain not-run"
+    },
+    "configuration": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "correspondence": {
+      "sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+      "state": "accepted-for-profile"
+    },
+    "coverage": {
+      "scope": "20 bootstrap plus 43 Foundation contract controls; no RTL execution"
+    },
+    "device": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "examples": {
+      "artifact": "docs/completion/FND-02.md",
+      "generated_verilog": "This increment does not affect generated Verilog."
+    },
+    "limitations": [
+      "Historical accepted evidence; source is the tested implementation, not later evidence-closure documentation.",
+      "No hardware, saved-package runtime, or final combined Foundation CI claim."
+    ],
+    "loading_mode": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "mutations": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-02/scala.log",
+        "docs/completion/evidence/fnd-02/contracts.log",
+        "docs/completion/evidence/fnd-02/rust.log"
+      ],
+      "count": 43,
+      "state": "passed metadata/build-policy negative controls only"
+    },
+    "reference_corpus": {
+      "sha256": "649716da9d708e509ab2437cf9b4976da5468ed471fe1ef822bd0cf9fe4e4738",
+      "state": "reviewed input, no generated reference execution"
+    },
+    "schemas": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "seeds": {
+      "reason": "Deterministic metadata and smoke fixtures use no randomness.",
+      "state": "not-applicable"
+    },
+    "tools": {
+      "JDK": "21.0.12.1+1-LTS",
+      "Rust": "1.98.1",
+      "Scala": "3.3.8",
+      "pins_sha256": "c07b5abd45439ecee724e96a866d86e869d704f2cf2119f9553f73dca426aea3",
+      "sbt": "1.12.11"
+    }
+  },
+  "format_version": 1,
+  "increment": "FND-02",
+  "integration": {
+    "commit": "c8920b77f1d96d9cc47ab41047c9d6b353fadd0a",
+    "parents": [
+      "83394f265499c4158e22d9a2014552091db0eb1b",
+      "d312b58ea53d62b5c396b8355c5f2bda8e2afe62"
+    ],
+    "state": "merged",
+    "tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc"
+  },
+  "items": {
+    "FND-02.a.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.a.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.b.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.b.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.b.3": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.c.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.c.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.d.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.d.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.d.3": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.e.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.e.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-02.e.3": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.f.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.f.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.g.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-02.g.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ]
+  },
+  "observations": {
+    "qualified-checks": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-02/scala.log",
+        "docs/completion/evidence/fnd-02/contracts.log",
+        "docs/completion/evidence/fnd-02/rust.log",
+        "docs/completion/evidence/fnd-02/source.json"
+      ],
+      "command": "./nf check contracts; ./nf check rust; ./nf check scala",
+      "kind": "execution",
+      "profile": "nf-tiny-foundation-contract-review/1",
+      "result": "passed",
+      "source": {
+        "commit": "d312b58ea53d62b5c396b8355c5f2bda8e2afe62",
+        "tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc"
+      },
+      "source_record": "docs/completion/evidence/fnd-02/source.json"
+    },
+    "retained-deliverables": {
+      "artifacts": [
+        "docs/completion/FND-02.md",
+        "docs/completion/evidence/fnd-02/index.json"
+      ],
+      "kind": "artifact",
+      "profile": "nf-tiny-foundation-contract-review/1",
+      "result": "inspected",
+      "source": {
+        "commit": "d312b58ea53d62b5c396b8355c5f2bda8e2afe62",
+        "tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc"
+      }
+    },
+    "reviewed-contract": {
+      "artifacts": [
+        "docs/implementation/fnd-02-independent-review.md",
+        "docs/completion/FND-02.md"
+      ],
+      "kind": "review",
+      "profile": "nf-tiny-foundation-contract-review/1",
+      "result": "accepted",
+      "source": {
+        "commit": "d312b58ea53d62b5c396b8355c5f2bda8e2afe62",
+        "tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc"
+      }
+    }
+  },
+  "profile": "nf-tiny-foundation-contract-review/1",
+  "report": "docs/completion/FND-02.md",
+  "review": {
+    "artifact": "docs/implementation/fnd-02-independent-review.md",
+    "kind": "agent"
+  },
+  "source": {
+    "commit": "d312b58ea53d62b5c396b8355c5f2bda8e2afe62",
+    "tree": "1a3409535dd9de99619bcee47822ea9c544ef6dc"
+  }
+}

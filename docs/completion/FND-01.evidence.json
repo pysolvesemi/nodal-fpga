@@ -1,0 +1,248 @@
+{
+  "artifacts": {
+    "docs/completion/FND-01.md": "d1777d642ee8e3907ea9654f5b1a6e1483fee672bb3fc836f1a316a404ceef69",
+    "docs/completion/evidence/fnd-01/contracts/contracts-source.json": "51697688918b76582b496252136f0e452b59b53c6262ca7aaef301d3cfd574ea",
+    "docs/completion/evidence/fnd-01/contracts/contracts.log": "a6357bb2edc5bb44f0195316cb48b38df8617b9f0ddf39da00461c715aac9a08",
+    "docs/completion/evidence/fnd-01/index.json": "0d79016cd4d11383d5b65d81c447164d741c5592443ad1af0c93f5bfbd241e17",
+    "docs/completion/evidence/fnd-01/rust/rust-base-image.json": "8b272ebf4208c3826d495003f9509abc005cb14ca41894af0fd6195ade8cac31",
+    "docs/completion/evidence/fnd-01/rust/rust-base-pull.log": "fb57390580df86dcc6bd0cf87004164a5cb0148c63c50024ffc4e4910516753b",
+    "docs/completion/evidence/fnd-01/rust/rust-build-image.json": "061af47556e654b8cb658b1dc77b5ff490d22439629133be086b6eb8807caf20",
+    "docs/completion/evidence/fnd-01/rust/rust-image-build.log": "086556d87b4f2af9aa360618f357e58d3eb44d8642577fd4bd36a6ee73e78c61",
+    "docs/completion/evidence/fnd-01/rust/rust-source.json": "65f110bc54309d809787c2b5af467c918249addc0a7c9dd99015e038e0eb66a5",
+    "docs/completion/evidence/fnd-01/rust/rust.log": "914dfc37af55413c791fad2db13fbf90e753908ca0dc597eae0ba56d99ac78f4",
+    "docs/completion/evidence/fnd-01/scala/scala-reproduce.log": "4ded3b0e5fee264f150db73acb7a051803c87d4fa6d7035e62fceeb5681e7aa6",
+    "docs/completion/evidence/fnd-01/scala/scala-setup.log": "d7e2029e44e49a017213922f1ab63562ab287969eac63d256898c2bf57a89d76",
+    "docs/completion/evidence/fnd-01/scala/scala-source.json": "51697688918b76582b496252136f0e452b59b53c6262ca7aaef301d3cfd574ea",
+    "docs/completion/evidence/fnd-01/scala/scala.log": "7703e0049c49007d93c518526e65e89c32e177a825c193aefdf5ce53526304c8",
+    "docs/implementation/fnd-01-local-review.md": "4958f118fc1417c9d6a14232430d38b1c8fd17c732d91e35983962ac7c3eb5a3"
+  },
+  "ci": {
+    "post_merge": {
+      "reason": "qualified-identical-tree-merge",
+      "runs": [],
+      "state": "skipped"
+    },
+    "qualification": "executed",
+    "reason": "Historical exact-head remote qualification retained unchanged.",
+    "runs": [
+      "https://github.com/pysolvesemi/nodal-fpga/actions/runs/36226115767",
+      "https://github.com/pysolvesemi/nodal-fpga/actions/runs/36226119663",
+      "https://github.com/pysolvesemi/nodal-fpga/actions/runs/36226124675"
+    ]
+  },
+  "context": {
+    "assumptions": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "configuration": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "correspondence": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "coverage": {
+      "scope": "20 independent bootstrap contract tests and build/reproduce checks"
+    },
+    "device": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "examples": {
+      "artifact": "docs/completion/FND-01.md",
+      "generated_verilog": "This increment does not affect generated Verilog."
+    },
+    "limitations": [
+      "Historical accepted evidence; source is the tested implementation, not later evidence-closure documentation.",
+      "No hardware, saved-package runtime, or final combined Foundation CI claim."
+    ],
+    "loading_mode": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "mutations": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-01/contracts/contracts.log",
+        "docs/completion/evidence/fnd-01/rust/rust-base-pull.log",
+        "docs/completion/evidence/fnd-01/rust/rust.log",
+        "docs/completion/evidence/fnd-01/rust/rust-image-build.log",
+        "docs/completion/evidence/fnd-01/scala/scala.log",
+        "docs/completion/evidence/fnd-01/scala/scala-setup.log",
+        "docs/completion/evidence/fnd-01/scala/scala-reproduce.log"
+      ],
+      "count": 20,
+      "state": "passed metadata/build-policy negative controls only"
+    },
+    "reference_corpus": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "schemas": {
+      "reason": "Build/contract tooling only; no manufactured device or RTL generator in this increment.",
+      "state": "not-applicable"
+    },
+    "seeds": {
+      "reason": "Deterministic metadata and smoke fixtures use no randomness.",
+      "state": "not-applicable"
+    },
+    "tools": {
+      "JDK": "21.0.12.1+1-LTS",
+      "Rust": "1.98.1",
+      "Scala": "3.3.8",
+      "pins_sha256": "c07b5abd45439ecee724e96a866d86e869d704f2cf2119f9553f73dca426aea3",
+      "sbt": "1.12.11"
+    }
+  },
+  "format_version": 1,
+  "increment": "FND-01",
+  "integration": {
+    "commit": "15485fbf1a90c56ecc574d18e389e9c65de86347",
+    "parents": [
+      "cd6ec64e7f25e60ac4277159b76279c08d5d8210",
+      "c3e2a789db06c90bc1534f0483b100810b4e7a8b"
+    ],
+    "state": "merged",
+    "tree": "31ad3cf3767020c584066d9d133b606ea91b6826"
+  },
+  "items": {
+    "FND-01.a.1": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.a.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.b.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.b.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.c.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.c.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.c.3": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.d.1": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.d.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.d.3": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.e.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.e.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ],
+    "FND-01.e.3": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.f.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.f.2": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.g.1": [
+      "reviewed-contract",
+      "retained-deliverables"
+    ],
+    "FND-01.g.2": [
+      "reviewed-contract",
+      "retained-deliverables",
+      "qualified-checks"
+    ]
+  },
+  "observations": {
+    "qualified-checks": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-01/contracts/contracts.log",
+        "docs/completion/evidence/fnd-01/rust/rust-base-pull.log",
+        "docs/completion/evidence/fnd-01/rust/rust.log",
+        "docs/completion/evidence/fnd-01/rust/rust-image-build.log",
+        "docs/completion/evidence/fnd-01/scala/scala.log",
+        "docs/completion/evidence/fnd-01/scala/scala-setup.log",
+        "docs/completion/evidence/fnd-01/scala/scala-reproduce.log",
+        "docs/completion/evidence/fnd-01/contracts/contracts-source.json"
+      ],
+      "command": "./nf check contracts; ./nf check rust; ./nf check scala; ./nf reproduce rust; ./nf reproduce scala",
+      "kind": "execution",
+      "profile": "foundation-build-only/1",
+      "result": "passed",
+      "source": {
+        "commit": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826"
+      },
+      "source_record": "docs/completion/evidence/fnd-01/contracts/contracts-source.json"
+    },
+    "retained-deliverables": {
+      "artifacts": [
+        "docs/completion/FND-01.md",
+        "docs/completion/evidence/fnd-01/index.json"
+      ],
+      "kind": "artifact",
+      "profile": "foundation-build-only/1",
+      "result": "inspected",
+      "source": {
+        "commit": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826"
+      }
+    },
+    "reviewed-contract": {
+      "artifacts": [
+        "docs/implementation/fnd-01-local-review.md",
+        "docs/completion/FND-01.md"
+      ],
+      "kind": "review",
+      "profile": "foundation-build-only/1",
+      "result": "accepted",
+      "source": {
+        "commit": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+        "tree": "31ad3cf3767020c584066d9d133b606ea91b6826"
+      }
+    }
+  },
+  "profile": "foundation-build-only/1",
+  "report": "docs/completion/FND-01.md",
+  "review": {
+    "artifact": "docs/implementation/fnd-01-local-review.md",
+    "kind": "agent"
+  },
+  "source": {
+    "commit": "c3e2a789db06c90bc1534f0483b100810b4e7a8b",
+    "tree": "31ad3cf3767020c584066d9d133b606ea91b6826"
+  }
+}

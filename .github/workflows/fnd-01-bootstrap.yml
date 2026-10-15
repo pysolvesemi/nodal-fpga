@@ -38,6 +38,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          # Roadmap receipts verify historical source and actual integration ancestry.
+          fetch-depth: 0
       - name: Source identity and ownership controls
         shell: bash
         run: |

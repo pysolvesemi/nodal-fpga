@@ -100,3 +100,10 @@ No production Scala DSL, Rust architecture compiler, device database, generated
 Nodal fabric, CAD, PPA, silicon or all-configuration proof is claimed.
 
 This increment does not affect generated Verilog.
+
+## Machine-checkable evidence references
+
+[Evidence metadata](FND-02.evidence.json) maps the existing accepted
+leaf evidence to source/profile-bound observations for FND-03 validation.
+It adds no execution claim and does not alter the original retained logs or
+acceptance. Checkbox status remains solely in the owning Markdown track.
