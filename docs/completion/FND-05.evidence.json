@@ -1,0 +1,549 @@
+{
+  "artifacts": {
+    "docs/completion/FND-05.md": "2ba2d79da979adcc7599034494d9460220bf6b37ea72ac51da87a14db6b989e8",
+    "docs/implementation/fnd-05-corpus-review.md": "df477bbeb19b49fd160be1d2f387e26d1a3604cb653e79275d068ac790fa5b3f",
+    "docs/implementation/fnd-05-dependencies.md": "c27a71cfd4aea57be3dfaeb7c353b79b02bf915f431e68a5aa26f6a3265b0195",
+    "docs/implementation/fnd-05-example.md": "dbd358ba1984e00d8dd6b5e8740844ca6b4702a95f81c9229a02f958693c58ce",
+    "docs/implementation/fnd-05-implementation-review.md": "438d5f8f18fdd9755988c7dc47589bd5a2a274fee123bdff07d2fd89d49515f5",
+    "frontend/scala/src/main/scala/nodalfpga/exchange/FixtureWriter.scala": "3a2d58dc56cbb5728c8dce3bda64c606ee8eae3be4942725f6ff6cb499e96722",
+    "schemas/exchange/0.1/README.md": "8fde6604cba5f4b1d36ffc820a96629436ab9ae99c58b41db3502bff7e232249",
+    "verify/fixtures/exchange/goldens/EXPECTED.md": "87c35485cf0ff11a9dbfa1653c16804fb5b5292c590ed5f12faa69ab04e242dc",
+    "verify/fixtures/exchange/goldens/IDENTITIES.md": "792cf1513662fe533628999bb737018d5b35de5c47976021dc355d3ecef1f7f2"
+  },
+  "ci": {
+    "post_merge": {
+      "reason": "Actual implementation merge includes skip-ci; live merge workflow inventory contains zero runs. Identical tested tree and ordered source-parent ancestry verified without bypass.",
+      "runs": [],
+      "state": "skipped"
+    },
+    "qualification": "not-run",
+    "reason": "User requested required local checks and independent review for incremental merges, with full combined remote CI after Foundation implementation. Live dev protection was disabled with no required contexts; candidate had zero workflow runs. No remote qualification is claimed.",
+    "runs": []
+  },
+  "context": {
+    "assumptions": "Risk-selected FND-04 identity/unit/domain/sharing/Selection interactions; no hardware-equivalence or full FND-06 assumption-execution credit.",
+    "configuration": {
+      "limit_policy": "Positive caller-lowered limits only; exact maximum/adjacent rejections are tested; counters are not hard real-time or peak-memory guarantees.",
+      "reader_ceilings": {
+        "aggregate_artifact_bytes": 33554432,
+        "collection_entries": 16384,
+        "core_declarations": 100000,
+        "core_references": 200000,
+        "core_work": 1000000,
+        "decoded_string_bytes": 65536,
+        "input_bytes": 8388608,
+        "nesting": 64,
+        "nodes": 200000,
+        "package_artifacts": 256
+      },
+      "scope": "FND-04 logical feature/storage/Selection boundaries; no physical bitstream or hardware loader."
+    },
+    "correspondence": "Typed portable keys, exact target-package identity and semantic projections; no physical or CAD mapping claim.",
+    "coverage": {
+      "actual_authoring_runs": 2,
+      "conformance_groups_per_run": 83,
+      "contracts_suites": {
+        "bootstrap": 74,
+        "foundation": 43,
+        "roadmap": 109
+      },
+      "contracts_tests": 226,
+      "required_leaves": 17,
+      "runtime_cases": 6,
+      "runtime_controls": 4,
+      "rust_doctests": 4,
+      "rust_unit_integration": 69,
+      "scale_axes": "Repeated roots 1/16/256/4096; hierarchy depth 1/2/16/64 with 65 rejected; bounded annotation/provenance/option payloads and deterministic identities.",
+      "selected_receipt_controls": 5,
+      "writer_groups": 17
+    },
+    "device": "No production device; only the actual saved structural software-package fixture is in scope.",
+    "examples": {
+      "actual_example": "docs/implementation/fnd-05-example.md",
+      "actual_frontend": "Executable pinned Scala fixture writer",
+      "generated_verilog": "This increment does not affect generated Verilog.",
+      "source": "frontend/scala/src/main/scala/nodalfpga/exchange/FixtureWriter.scala"
+    },
+    "limitations": [
+      "Summary-only acceptance records verified outcomes; raw logs and machine/process observations are not included or claimed to be repository-retained.",
+      "Loader/procfs/process-denial demonstrates scoped saved-package dependencies, not exhaustive file-syscall or same-process exec-attempt tracing, a network namespace or hostile-code sandbox certification.",
+      "Local Rust compilation is not a fresh JVM-absent default-build-profile replay. FND-08 must replay all three release-candidate profiles and applicable full CI.",
+      "Jackson 2.21.5 is accepted only for the reviewed bounded trusted-source generator APIs; known advisories and FND-07 re-review triggers remain.",
+      "Bounded debug-process scale observations are not production throughput, exact peak-memory or real-time guarantees.",
+      "No production DSL, DeviceDB/full-device inspection, RTL emission, physical configuration loader, CAD legality, timing, PDK or silicon result is claimed.",
+      "Final documentation-candidate checks, narrow source-anchor verification, independent closure review and actual closure integration remain separate; no future identity is asserted."
+    ],
+    "loading_mode": "Actual prebuilt reader consumed actual saved Scala bytes in the separately reviewed minimal dependency profile.",
+    "mutations": "Malformed, truncated, duplicate, closed/nullable, feature/version, budget, resolver, identity and Selection cases require their intended failures; runtime rejection cases are intended outcomes.",
+    "reference_corpus": "Independently authored algorithm/full-envelope/package/semantic literals remain source-controlled; actual generated results did not replace expectations.",
+    "schemas": {
+      "exchange": "0.1",
+      "mode": "summary",
+      "profile": "portable-exchange/0.1",
+      "receipt": 2
+    },
+    "seeds": [
+      0,
+      1,
+      17,
+      365,
+      65535
+    ],
+    "tools": "Pinned Rust/Scala/sbt/JDK and reviewed dependency inventories from the tested source; actual checks passed."
+  },
+  "evidence_mode": "summary",
+  "format_version": 2,
+  "increment": "FND-05",
+  "integration": {
+    "commit": "f3f26b895beb07da2255c9977213e929e35ae487",
+    "parents": [
+      "c508401afb3bc172a28163b84375157e1ce2ac2d",
+      "546b869e38a5741407fe2a57934432a120ff221c"
+    ],
+    "state": "merged",
+    "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+  },
+  "items": {
+    "FND-05.a.1": [
+      "contracts",
+      "deliverables",
+      "review"
+    ],
+    "FND-05.a.2": [
+      "deliverables",
+      "review"
+    ],
+    "FND-05.b.1": [
+      "scala",
+      "exchange-1",
+      "exchange-2",
+      "review"
+    ],
+    "FND-05.b.2": [
+      "exchange-1",
+      "exchange-2",
+      "authoring-repeat",
+      "review"
+    ],
+    "FND-05.c.1": [
+      "exchange-1",
+      "exchange-2",
+      "deliverables",
+      "review"
+    ],
+    "FND-05.c.2": [
+      "rust",
+      "exchange-1",
+      "exchange-2",
+      "review"
+    ],
+    "FND-05.c.3": [
+      "rust",
+      "contracts",
+      "review"
+    ],
+    "FND-05.d.1": [
+      "exchange-1",
+      "exchange-2",
+      "authoring-repeat",
+      "review"
+    ],
+    "FND-05.d.2": [
+      "rust",
+      "exchange-1",
+      "exchange-2",
+      "review"
+    ],
+    "FND-05.d.3": [
+      "rust",
+      "exchange-1",
+      "exchange-2",
+      "review"
+    ],
+    "FND-05.e.1": [
+      "deliverables",
+      "authoring-repeat",
+      "saved-runtime"
+    ],
+    "FND-05.e.2": [
+      "contracts",
+      "rust",
+      "scala",
+      "reproduce-rust",
+      "exchange-1",
+      "exchange-2",
+      "saved-runtime",
+      "runtime-controls",
+      "receipt-controls",
+      "review",
+      "integration-record"
+    ],
+    "FND-05.e.3": [
+      "deliverables",
+      "integration-record",
+      "review"
+    ],
+    "FND-05.f.1": [
+      "deliverables",
+      "review"
+    ],
+    "FND-05.f.2": [
+      "saved-runtime",
+      "runtime-controls",
+      "review"
+    ],
+    "FND-05.g.1": [
+      "review",
+      "deliverables"
+    ],
+    "FND-05.g.2": [
+      "exchange-1",
+      "exchange-2",
+      "authoring-repeat",
+      "review"
+    ]
+  },
+  "observations": {
+    "authoring-repeat": {
+      "checks": {
+        "executed": 7,
+        "failed": 0,
+        "passed": 7,
+        "required": 7,
+        "skipped": 0
+      },
+      "command": "python3 - \"$QUALIFICATION_OUTPUT\" <<'PY'\nfrom pathlib import Path\nimport sys\nout=Path(sys.argv[1]); a,b=[Path((out/f'scala-{i}.path').read_text().strip()) for i in [1,2]]\nfor name in ['architecture.json','package.json','design.json','architecture.projection.json','package.projection.json','design.projection.json','identities.txt']:\n assert (a/name).read_bytes()==(b/name).read_bytes(),name\nprint('Two actual Scala authoring and Rust conformance runs agree byte-for-byte.')\nPY",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "All three full envelopes, all three projections and the identity record agree byte-for-byte; source binding was separately checked."
+    },
+    "contracts": {
+      "checks": {
+        "executed": 226,
+        "failed": 0,
+        "passed": 226,
+        "required": 226,
+        "skipped": 0
+      },
+      "command": "./nf check contracts",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "All 226 tests passed: bootstrap 74, Foundation 43, roadmap 109; documentation, ownership and evidence-policy checks also passed."
+    },
+    "deliverables": {
+      "artifacts": [
+        "frontend/scala/src/main/scala/nodalfpga/exchange/FixtureWriter.scala",
+        "schemas/exchange/0.1/README.md",
+        "docs/implementation/fnd-05-example.md",
+        "docs/implementation/fnd-05-dependencies.md",
+        "docs/implementation/fnd-05-implementation-review.md",
+        "docs/implementation/fnd-05-corpus-review.md",
+        "verify/fixtures/exchange/goldens/EXPECTED.md",
+        "verify/fixtures/exchange/goldens/IDENTITIES.md"
+      ],
+      "kind": "artifact",
+      "limitations": "Structural exchange and software-package inspection only.",
+      "observer": "summary-contract-and-exact-head-reviewer",
+      "profile": "portable-exchange/0.1",
+      "result": "inspected",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Inspected versioned compatibility/schema contract, actual executable Scala example, independent corpus and concise dependency/review conclusions."
+    },
+    "exchange-1": {
+      "checks": {
+        "executed": 83,
+        "failed": 0,
+        "passed": 83,
+        "required": 83,
+        "skipped": 0
+      },
+      "command": "./nf check exchange",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Actual authoring run 1 and all 83 independent Rust-consumer conformance groups passed against authored expectations."
+    },
+    "exchange-2": {
+      "checks": {
+        "executed": 83,
+        "failed": 0,
+        "passed": 83,
+        "required": 83,
+        "skipped": 0
+      },
+      "command": "./nf check exchange",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Actual authoring run 2 and all 83 independent Rust-consumer conformance groups passed against authored expectations."
+    },
+    "integration-record": {
+      "kind": "review",
+      "limitations": "Implementation integration is distinct from subsequent documentation-closure integration.",
+      "observer": "summary-contract-and-exact-head-reviewer",
+      "profile": "portable-exchange/0.1",
+      "result": "accepted",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Actual source-parent integration and identical tested/merge tree verified; required protection contexts were satisfied without bypass, under the authorized local-qualification cadence."
+    },
+    "receipt-controls": {
+      "checks": {
+        "executed": 5,
+        "failed": 0,
+        "passed": 5,
+        "required": 5,
+        "skipped": 0
+      },
+      "command": "PYTHONPATH=tests/roadmap python3 -m unittest -v test_evidence.EvidenceTests.test_hand_authored_negative_evidence test_evidence.EvidenceTests.test_explicit_expected_candidate_rejects_stale_receipt test_evidence.EvidenceTests.test_authoritative_profile_required test_evidence.EvidenceTests.test_stale_raw_execution_identity_cannot_be_relabelled test_evidence.EvidenceTests.test_dirty_execution_cannot_qualify",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Negative evidence, expected-source freshness, authoritative profile, stale execution identity and dirty-source rejection controls passed; full summary-mode controls also ran in the contracts suite."
+    },
+    "reproduce-rust": {
+      "checks": {
+        "executed": 2,
+        "failed": 0,
+        "passed": 2,
+        "required": 2,
+        "skipped": 0
+      },
+      "command": "./nf reproduce rust",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Current-host reproducibility; not a new JVM-absent build-profile replay.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Two clean-copy Rust builds produced identical bootstrap/model outputs."
+    },
+    "review": {
+      "kind": "review",
+      "limitations": [
+        "Actual source-parent implementation integration and identical tested/merge tree are verified. Final documentation qualification, narrow source anchoring and actual documentation-closure integration remain separate pending gates.",
+        "Loader/procfs/process-denial demonstrates scoped saved-package dependencies, not exhaustive file-syscall or same-process executable-replacement tracing, a network namespace or hostile-code sandbox certification.",
+        "Current-host Rust compilation and repeated bootstrap/model examples are not a fresh JVM-absent default-build-profile replay or repeated clean builds of every exchange target; FND-08 retains the full three-profile release-candidate replay and applicable CI.",
+        "The reviewed Jackson 2.21.5 pin is confined to bounded trusted-source generator APIs; known advisory limits and FND-07 re-review triggers remain.",
+        "Bounded roots, hierarchy, payload and deterministic-output observations do not establish production throughput, peak-memory guarantees, complete DeviceDB operations, RTL, physical configuration, CAD, timing or silicon qualification.",
+        "This is an independently inspected result attestation. Raw captures and machine details remain local and are not represented as published proof. No human approval or remote-CI execution is claimed."
+      ],
+      "observer": "summary-contract-and-exact-head-reviewer",
+      "profile": "portable-exchange/0.1",
+      "result": "accepted",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Independent source and actual-result review accepted architecture, independent expectations and proportional quality/scale decisions; no blocking finding remains in the declared profile."
+    },
+    "runtime-controls": {
+      "checks": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "required": 4,
+        "skipped": 0
+      },
+      "command": "python3 -m unittest discover -s tests/runtime -v",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "All four runtime harness/negative-control tests passed."
+    },
+    "rust": {
+      "checks": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "required": 1,
+        "skipped": 0
+      },
+      "command": "./nf check rust",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Complete Rust suite passed: locked/offline dependency/source gates, formatting, warnings-denied Clippy, 69 unit/integration tests and four doctests. Count is one complete required suite."
+    },
+    "saved-runtime": {
+      "checks": {
+        "executed": 6,
+        "failed": 0,
+        "passed": 6,
+        "required": 6,
+        "skipped": 0
+      },
+      "command": "./nf saved-runtime --binary \"$PREBUILT_READER\" --scala-artifacts \"$SAVED_SCALA_FIXTURE\" --output \"$RUNTIME_OUTPUT\" --observation-profile loader-procfs",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Loader/procfs/process-denial demonstrates scoped saved-package dependencies, not exhaustive file-syscall or same-process exec-attempt tracing, a network namespace or hostile-code sandbox certification. Named parameters stand for the actual locally inspected input/output locations; they are not new executions.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "Verification harness exited 0 after checking six intended cases: four actual saved-package consumers exited 0, identity-mismatch rejection exited 1 with no output, and x32 denial exited 159/SIGSYS with no output. Actual reader and admitted dependencies were independently observed."
+    },
+    "scala": {
+      "checks": {
+        "executed": 17,
+        "failed": 0,
+        "passed": 17,
+        "required": 17,
+        "skipped": 0
+      },
+      "command": "./nf check scala",
+      "dirty": false,
+      "executed": true,
+      "exit_code": 0,
+      "kind": "execution",
+      "limitations": "Bounded local qualification on the exact source; no remote-CI credit.",
+      "observer": "integration-coordinator",
+      "profile": "portable-exchange/0.1",
+      "result": "passed",
+      "source": {
+        "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+        "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+      },
+      "summary": "All 17 executable writer groups passed with pinned authoring tools and reviewed dependency classpaths."
+    }
+  },
+  "profile": "portable-exchange/0.1",
+  "report": "docs/completion/FND-05.md",
+  "review": {
+    "authors": [
+      "exchange-implementation",
+      "runtime-implementation",
+      "summary-evidence-implementation",
+      "integration-coordinator"
+    ],
+    "dimensions": {
+      "architecture": {
+        "result": "accepted",
+        "summary": "Published source matches the reviewed bounded exchange, checked FND-04 representations, flat immutable package admission, explicit compatibility and dependency ownership. Actual Scala output was consumed by the source-bound reader in the separate saved-package runtime; unsupported later operations remain explicit."
+      },
+      "independence": {
+        "result": "accepted",
+        "summary": "All original literal manifests and expected bytes remain independent of production outputs. Exact clean-source commands, local captures, repeated authoring, negative outcomes, actual reader, isolated-root, loader and process records and source hashes were independently inspected; source-bound prior production review and the separately reviewed summary validator remain unchanged."
+      },
+      "quality": {
+        "result": "accepted",
+        "summary": "Hierarchy and templates remain retained; positive caller-lowered budgets, bounded parser/resolver work, stable canonical identities and negative controls were exercised. Formatting, warnings-denied Clippy, predecessor regressions and measured finite scale axes passed without golden refresh, lint suppression or production-scale claims."
+      }
+    },
+    "identity": "summary-contract-and-exact-head-reviewer",
+    "kind": "agent",
+    "limitations": [
+      "Actual source-parent implementation integration and identical tested/merge tree are verified. Final documentation qualification, narrow source anchoring and actual documentation-closure integration remain separate pending gates.",
+      "Loader/procfs/process-denial demonstrates scoped saved-package dependencies, not exhaustive file-syscall or same-process executable-replacement tracing, a network namespace or hostile-code sandbox certification.",
+      "Current-host Rust compilation and repeated bootstrap/model examples are not a fresh JVM-absent default-build-profile replay or repeated clean builds of every exchange target; FND-08 retains the full three-profile release-candidate replay and applicable CI.",
+      "The reviewed Jackson 2.21.5 pin is confined to bounded trusted-source generator APIs; known advisory limits and FND-07 re-review triggers remain.",
+      "Bounded roots, hierarchy, payload and deterministic-output observations do not establish production throughput, peak-memory guarantees, complete DeviceDB operations, RTL, physical configuration, CAD, timing or silicon qualification.",
+      "This is an independently inspected result attestation. Raw captures and machine details remain local and are not represented as published proof. No human approval or remote-CI execution is claimed."
+    ],
+    "observations": [
+      "contracts",
+      "rust",
+      "scala",
+      "reproduce-rust",
+      "exchange-1",
+      "exchange-2",
+      "authoring-repeat",
+      "saved-runtime",
+      "runtime-controls",
+      "receipt-controls",
+      "review",
+      "deliverables",
+      "integration-record"
+    ],
+    "result": "accepted",
+    "source": {
+      "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+      "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+    }
+  },
+  "source": {
+    "commit": "546b869e38a5741407fe2a57934432a120ff221c",
+    "tree": "8682ec0d859610418c29273d08526bd2ae2a94d9"
+  }
+}

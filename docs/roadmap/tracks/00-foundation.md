@@ -201,32 +201,33 @@ must not claim later emission, loader, device inspection or physical validation.
     - [x] FND-04.e.2 Complete affected correctness/regression checks, targeted/full CI, review and verified integration under AGENTS.md; audit pointer and file-layout assumptions at public boundaries. <!-- requires: execution -->
     - [x] FND-04.e.3 Check FND-04 only after every required descendant and FND-03 are complete; retain explicit limits on hardware-generation and device-compiler claims.
 
-- [ ] FND-05 — Establish cross-language serialization and compatibility
+- [x] FND-05 — Establish cross-language serialization and compatibility
   Depends on: FND-04.
-  - [ ] FND-05.a Define initial versioned ArchIR, mapped-design and package-manifest envelopes with units, feature flags and explicit identity fields.
-    - [ ] FND-05.a.1 Define versioned ArchIR, mapped-design and package-manifest envelopes with units, required/optional feature flags and explicit identity fields.
-    - [ ] FND-05.a.2 Document compatibility and ownership of each envelope, keeping customer-design state distinct from immutable device identity.
-  - [ ] FND-05.b Implement a minimal Scala fixture writer and Rust reader plus canonical text dumps; retain hierarchy instead of fully expanding arrays.
-    - [ ] FND-05.b.1 Implement the minimal executable Scala fixture writer in the pinned authoring profile and a Rust reader over the same schema contract.
-    - [ ] FND-05.b.2 Provide canonical inspectable dumps and semantic comparison without flattening repeated templates or hierarchy into production routing graphs.
-  - [ ] FND-05.c Specify canonical hashing, unknown-version behavior, bounded reads, error paths and migration rules; do not serialize Rust memory layouts.
-    - [ ] FND-05.c.1 Specify canonical hashing and semantic versus incidental ordering, excluding machine paths/timestamps from semantic identity.
-    - [ ] FND-05.c.2 Implement bounded reads, version/feature negotiation and actionable errors for unsupported inputs; define explicit migration behavior.
-    - [ ] FND-05.c.3 Keep the wire representation independent of Rust memory layout, endianness/alignment assumptions and unchecked integer conversions.
-  - [ ] FND-05.d Test round trips, truncated/malformed inputs, unsupported required features, field ordering and cross-language semantic equality.
-    - [ ] FND-05.d.1 Test Scala-to-Rust semantic equality, supported round trips and canonical field-order permutations against independent fixture expectations. <!-- requires: execution -->
-    - [ ] FND-05.d.2 Reject truncated/malformed inputs, excessive declared sizes, incompatible identities/versions and unsupported required features before unsafe allocation or interpretation. <!-- requires: execution -->
-    - [ ] FND-05.d.3 Exercise FND-04 ID/unit/diagnostic boundaries and preserve hierarchy/provenance across serialization. <!-- requires: execution -->
-  - [ ] FND-05.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-05.f.1 Retain hand-authored known inputs/semantic expectations so a shared writer/reader bug cannot be hidden by round-trip agreement alone.
-    - [ ] FND-05.f.2 Generate the fixture with pinned Scala tools, then consume it with prebuilt Rust tools in the separate saved-package runtime profile without Scala/JVM, Rust build tools or optional compiler SDK/application dependencies. <!-- requires: execution -->
-  - [ ] FND-05.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
-    - [ ] FND-05.g.1 Review canonical dump readability, duplicate payload and premature expansion; record justified no-change decisions or preservation evidence for introduced transformations.
-    - [ ] FND-05.g.2 Vary nesting, repeated-template count and bounded payload lengths; compare stable semantic hashes and supported compatibility behavior while recording size/time limits. <!-- requires: execution -->
-  - [ ] FND-05.e Record the conformance corpus and compatibility matrix; generate the Scala fixture in its pinned authoring environment, then demonstrate consumption by prebuilt Rust tools without Scala/JVM, Rust build tools or LLVM/MLIR/CIRCT application dependencies in the separate saved-package runtime profile.
-    - [ ] FND-05.e.1 Publish the conformance corpus, compatibility matrix, source/schema/artifact hashes and actual Scala-input/canonical-output example with executable commands.
-    - [ ] FND-05.e.2 Retain authoring and runtime isolation evidence as separate results, complete applicable qualification/review, and verify integration under AGENTS.md. <!-- requires: execution -->
-    - [ ] FND-05.e.3 Check FND-05 only after every required descendant and FND-04 are complete; do not claim later RTL emission or full device inspection from the bootstrap reader.
+  Evidence: [Accepted portable exchange and local qualification](../../completion/FND-05.md), profile `portable-exchange/0.1`; summary-only verified checklist, final combined Foundation CI remains at FND-08.
+  - [x] FND-05.a Define initial versioned ArchIR, mapped-design and package-manifest envelopes with units, feature flags and explicit identity fields.
+    - [x] FND-05.a.1 Define versioned ArchIR, mapped-design and package-manifest envelopes with units, required/optional feature flags and explicit identity fields.
+    - [x] FND-05.a.2 Document compatibility and ownership of each envelope, keeping customer-design state distinct from immutable device identity.
+  - [x] FND-05.b Implement a minimal Scala fixture writer and Rust reader plus canonical text dumps; retain hierarchy instead of fully expanding arrays.
+    - [x] FND-05.b.1 Implement the minimal executable Scala fixture writer in the pinned authoring profile and a Rust reader over the same schema contract.
+    - [x] FND-05.b.2 Provide canonical inspectable dumps and semantic comparison without flattening repeated templates or hierarchy into production routing graphs.
+  - [x] FND-05.c Specify canonical hashing, unknown-version behavior, bounded reads, error paths and migration rules; do not serialize Rust memory layouts.
+    - [x] FND-05.c.1 Specify canonical hashing and semantic versus incidental ordering, excluding machine paths/timestamps from semantic identity.
+    - [x] FND-05.c.2 Implement bounded reads, version/feature negotiation and actionable errors for unsupported inputs; define explicit migration behavior.
+    - [x] FND-05.c.3 Keep the wire representation independent of Rust memory layout, endianness/alignment assumptions and unchecked integer conversions.
+  - [x] FND-05.d Test round trips, truncated/malformed inputs, unsupported required features, field ordering and cross-language semantic equality.
+    - [x] FND-05.d.1 Test Scala-to-Rust semantic equality, supported round trips and canonical field-order permutations against independent fixture expectations. <!-- requires: execution -->
+    - [x] FND-05.d.2 Reject truncated/malformed inputs, excessive declared sizes, incompatible identities/versions and unsupported required features before unsafe allocation or interpretation. <!-- requires: execution -->
+    - [x] FND-05.d.3 Exercise FND-04 ID/unit/diagnostic boundaries and preserve hierarchy/provenance across serialization. <!-- requires: execution -->
+  - [x] FND-05.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
+    - [x] FND-05.f.1 Retain hand-authored known inputs/semantic expectations so a shared writer/reader bug cannot be hidden by round-trip agreement alone.
+    - [x] FND-05.f.2 Generate the fixture with pinned Scala tools, then consume it with prebuilt Rust tools in the separate saved-package runtime profile without Scala/JVM, Rust build tools or optional compiler SDK/application dependencies. <!-- requires: execution -->
+  - [x] FND-05.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
+    - [x] FND-05.g.1 Review canonical dump readability, duplicate payload and premature expansion; record justified no-change decisions or preservation evidence for introduced transformations.
+    - [x] FND-05.g.2 Vary nesting, repeated-template count and bounded payload lengths; compare stable semantic hashes and supported compatibility behavior while recording size/time limits. <!-- requires: execution -->
+  - [x] FND-05.e Record the conformance corpus and compatibility matrix; generate the Scala fixture in its pinned authoring environment, then demonstrate consumption by prebuilt Rust tools without Scala/JVM, Rust build tools or LLVM/MLIR/CIRCT application dependencies in the separate saved-package runtime profile.
+    - [x] FND-05.e.1 Publish the conformance corpus, compatibility matrix, source/schema/artifact hashes and actual Scala-input/canonical-output example with executable commands.
+    - [x] FND-05.e.2 Retain authoring and runtime isolation evidence as separate results, complete applicable qualification/review, and verify integration under AGENTS.md. <!-- requires: execution -->
+    - [x] FND-05.e.3 Check FND-05 only after every required descendant and FND-04 are complete; do not claim later RTL emission or full device inspection from the bootstrap reader.
 
 - [ ] FND-06 — Bootstrap independent verification before generator development
   Depends on: FND-05.
