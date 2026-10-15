@@ -1,0 +1,82 @@
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/jdk/bin/java -XshowSettings:properties -version
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/home -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dsbt.server.forcestart=true -Dsbt.server.autostart=false
+Property settings:
+    file.encoding = UTF-8
+    file.separator = /
+    java.class.path = 
+    java.class.version = 65.0
+    java.home = /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/jdk
+    java.io.tmpdir = /tmp
+    java.library.path = /usr/java/packages/lib
+        /usr/lib64
+        /lib64
+        /lib
+        /usr/lib
+    java.runtime.name = OpenJDK Runtime Environment
+    java.runtime.version = 21.0.12.1+1-LTS
+    java.specification.name = Java Platform API Specification
+    java.specification.vendor = Oracle Corporation
+    java.specification.version = 21
+    java.vendor = Eclipse Adoptium
+    java.vendor.url = https://adoptium.net/
+    java.vendor.url.bug = https://github.com/adoptium/adoptium-support/issues
+    java.vendor.version = Temurin-21.0.12.1+1
+    java.version = 21.0.12.1
+    java.version.date = 2026-08-18
+    java.vm.compressedOopsMode = Zero based
+    java.vm.info = mixed mode, sharing
+    java.vm.name = OpenJDK 64-Bit Server VM
+    java.vm.specification.name = Java Virtual Machine Specification
+    java.vm.specification.vendor = Oracle Corporation
+    java.vm.specification.version = 21
+    java.vm.vendor = Eclipse Adoptium
+    java.vm.version = 21.0.12.1+1-LTS
+    javax.net.ssl.trustStore = /etc/ssl/certs/java/cacerts
+    jdk.debug = release
+    line.separator = \n 
+    native.encoding = UTF-8
+    os.arch = amd64
+    os.name = Linux
+    os.version = 6.18.44
+    path.separator = :
+    sbt.server.autostart = false
+    sbt.server.forcestart = true
+    stderr.encoding = UTF-8
+    stdout.encoding = UTF-8
+    sun.arch.data.model = 64
+    sun.boot.library.path = /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/jdk/lib
+    sun.cpu.endian = little
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.java.launcher = SUN_STANDARD
+    sun.jnu.encoding = UTF-8
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    user.dir = /workspace/scratch/b1740b7ae4cf/nodal-fpga
+    user.home = /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/home
+    user.language = en
+    user.name = agent
+
+openjdk version "21.0.12.1" 2026-08-18 LTS
+OpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)
+elapsed_seconds=0.029
+sbt_launcher_sha256=b4c0c55d68f11b1510d884641cb1b1456191dac40ddc958bf86c825adc344e16
++ /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/jdk/bin/java -XX:ActiveProcessorCount=4 -Xmx2g -Dsbt.supershell=false -Dsbt.color=false -Dsbt.log.noformat=true -Dsbt.override.build.repos=true -Dsbt.repository.config=/workspace/scratch/b1740b7ae4cf/nodal-fpga/tools/repositories -jar /workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/sbt-launch.jar scalafmtCheckAll scalafmtSbtCheck clean compile show scalaVersion show sbtVersion
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/workspace/scratch/b1740b7ae4cf/nodal-fpga/.cache/toolchains/home -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dsbt.server.forcestart=true -Dsbt.server.autostart=false
+[warn] [launcher] could not parse ftp_proxy setting: java.net.MalformedURLException: unknown protocol: socks5h
+[info] welcome to sbt 1.12.11 (Eclipse Adoptium Java 21.0.12.1)
+[info] loading settings for project scala-build from plugins.sbt...
+[info] loading project definition from /workspace/scratch/b1740b7ae4cf/nodal-fpga/frontend/scala/project
+[info] loading settings for project root from build.sbt...
+[info] set current project to nf-frontend-bootstrap (in build file:/workspace/scratch/b1740b7ae4cf/nodal-fpga/frontend/scala/)
+[info] Executing in batch mode. For better performance use sbt's shell
+[info] scalafmt: Checking 1 Scala sources (/workspace/scratch/b1740b7ae4cf/nodal-fpga/frontend/scala)...
+[success] Total time: 1 s, completed Oct 15, 2026, 7:27:22 AM
+[info] scalafmt: Checking 2 Scala sources (/workspace/scratch/b1740b7ae4cf/nodal-fpga/frontend/scala)...
+[success] Total time: 0 s, completed Oct 15, 2026, 7:27:22 AM
+[success] Total time: 0 s, completed Oct 15, 2026, 7:27:22 AM
+[info] compiling 1 Scala source to /workspace/scratch/b1740b7ae4cf/nodal-fpga/frontend/scala/target/scala-3.3.8/classes ...
+[info] done compiling
+[success] Total time: 3 s, completed Oct 15, 2026, 7:27:25 AM
+[info] 3.3.8
+[info] 1.12.11
+elapsed_seconds=7.543

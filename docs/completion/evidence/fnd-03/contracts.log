@@ -1,0 +1,181 @@
+ownership_members=1 core_external_dependencies=0
+documentation_files=43 local_links=205; no hardware test credit
++ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests/bootstrap -v
+test_corrupt_cached_launcher_is_never_executed_or_silently_replaced (test_contracts.CommandTests.test_corrupt_cached_launcher_is_never_executed_or_silently_replaced) ... ok
+test_declared_tool_pins_match_build_files (test_contracts.CommandTests.test_declared_tool_pins_match_build_files) ... ok
+test_document_changes_only_select_contracts (test_contracts.CommandTests.test_document_changes_only_select_contracts) ... ok
+test_invalid_command_fails (test_contracts.CommandTests.test_invalid_command_fails) ... ok
+test_invalid_scope_path_is_rejected (test_contracts.CommandTests.test_invalid_scope_path_is_rejected) ... ok
+test_missing_offline_launcher_is_reported (test_contracts.CommandTests.test_missing_offline_launcher_is_reported) ... ok
+test_missing_rust_prerequisite_has_actionable_failure (test_contracts.CommandTests.test_missing_rust_prerequisite_has_actionable_failure) ... ok
+test_source_identity_mismatch_is_rejected (test_contracts.CommandTests.test_source_identity_mismatch_is_rejected) ... ok
+test_toolchain_drift_is_rejected (test_contracts.CommandTests.test_toolchain_drift_is_rejected) ... ok
+test_workflow_or_unknown_change_selects_both_languages (test_contracts.CommandTests.test_workflow_or_unknown_change_selects_both_languages) ... ok
+test_actual_dependency_free_core_is_accepted (test_contracts.OwnershipTests.test_actual_dependency_free_core_is_accepted) ... ok
+test_build_script_is_rejected (test_contracts.OwnershipTests.test_build_script_is_rejected) ... ok
+test_core_cannot_import_application_device_or_adapter (test_contracts.OwnershipTests.test_core_cannot_import_application_device_or_adapter) ... ok
+test_dev_dependency_cannot_bypass_ownership (test_contracts.OwnershipTests.test_dev_dependency_cannot_bypass_ownership) ... ok
+test_include_or_native_link_requires_review (test_contracts.OwnershipTests.test_include_or_native_link_requires_review) ... ok
+test_publishing_is_disabled (test_contracts.OwnershipTests.test_publishing_is_disabled) ... ok
+test_renamed_optional_target_dependency_is_not_hidden (test_contracts.OwnershipTests.test_renamed_optional_target_dependency_is_not_hidden) ... ok
+test_symlink_to_device_source_is_rejected (test_contracts.OwnershipTests.test_symlink_to_device_source_is_rejected) ... ok
+test_unregistered_core_manifest_is_rejected (test_contracts.OwnershipTests.test_unregistered_core_manifest_is_rejected) ... ok
+test_unsafe_policy_cannot_be_removed (test_contracts.OwnershipTests.test_unsafe_policy_cannot_be_removed) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.138s
+
+OK
+ownership_members=1 core_external_dependencies=0
+elapsed_seconds=0.254
+{"assumptions": 12, "config_bits": 20, "contract_review_only": true, "hardware_execution": "not-run", "lut_addresses": 16, "mux_cases": 8, "reference_inputs": 22, "shapes": 4}
++ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests/foundation -v
+test_current_contracts (test_contracts.LedgerControls.test_current_contracts) ... ok
+test_duplicate_assumption (test_contracts.LedgerControls.test_duplicate_assumption) ... ok
+test_duplicate_json_key (test_contracts.LedgerControls.test_duplicate_json_key) ... ok
+test_duplicate_obligation (test_contracts.LedgerControls.test_duplicate_obligation) ... ok
+test_execution_not_implied_by_acceptance (test_contracts.LedgerControls.test_execution_not_implied_by_acceptance) ... ok
+test_formal_claim_not_invented (test_contracts.LedgerControls.test_formal_claim_not_invented) ... ok
+test_future_obligation_not_passed (test_contracts.LedgerControls.test_future_obligation_not_passed) ... ok
+test_missing_claim (test_contracts.LedgerControls.test_missing_claim) ... ok
+test_missing_expected_examples (test_contracts.LedgerControls.test_missing_expected_examples) ... ok
+test_pending_review_cannot_close (test_contracts.LedgerControls.test_pending_review_cannot_close) ... ok
+test_proposal_cannot_close (test_contracts.LedgerControls.test_proposal_cannot_close) ... ok
+test_unknown_superseded_id (test_contracts.LedgerControls.test_unknown_superseded_id) ... ok
+test_corrupt_input_hash (test_contracts.ReferenceControls.test_corrupt_input_hash) ... ok
+test_escape_input (test_contracts.ReferenceControls.test_escape_input) ... ok
+test_hash_inventory (test_contracts.ReferenceControls.test_hash_inventory) ... ok
+test_missing_input (test_contracts.ReferenceControls.test_missing_input) ... ok
+test_proposed_reference_not_accepted (test_contracts.ReferenceControls.test_proposed_reference_not_accepted) ... ok
+test_ambiguous_pin (test_contracts.SubsetControls.test_ambiguous_pin) ... ok
+test_empty_negatives (test_contracts.SubsetControls.test_empty_negatives) ... ok
+test_empty_obligations (test_contracts.SubsetControls.test_empty_obligations) ... ok
+test_empty_register_witnesses (test_contracts.SubsetControls.test_empty_register_witnesses) ... ok
+test_empty_shapes (test_contracts.SubsetControls.test_empty_shapes) ... ok
+test_illegal_legal_configuration (test_contracts.SubsetControls.test_illegal_legal_configuration) ... ok
+test_independent_vectors (test_contracts.SubsetControls.test_independent_vectors) ... ok
+test_missing_hole (test_contracts.SubsetControls.test_missing_hole) ... ok
+test_missing_link (test_contracts.SubsetControls.test_missing_link) ... ok
+test_missing_lut_address (test_contracts.SubsetControls.test_missing_lut_address) ... ok
+test_missing_pin (test_contracts.SubsetControls.test_missing_pin) ... ok
+test_mux_polarity (test_contracts.SubsetControls.test_mux_polarity) ... ok
+test_nonexistent_output (test_contracts.SubsetControls.test_nonexistent_output) ... ok
+test_overlap_field (test_contracts.SubsetControls.test_overlap_field) ... ok
+test_reset_priority (test_contracts.SubsetControls.test_reset_priority) ... ok
+test_reverse_link (test_contracts.SubsetControls.test_reverse_link) ... ok
+test_swapped_lut_bit (test_contracts.SubsetControls.test_swapped_lut_bit) ... ok
+test_swapped_pin_map (test_contracts.SubsetControls.test_swapped_pin_map) ... ok
+test_unaccepted_subset (test_contracts.SubsetControls.test_unaccepted_subset) ... ok
+test_unknown_assumption (test_contracts.SubsetControls.test_unknown_assumption) ... ok
+test_variant_direction (test_contracts.SubsetControls.test_variant_direction) ... ok
+test_variant_reference (test_contracts.SubsetControls.test_variant_reference) ... ok
+test_wrong_address (test_contracts.SubsetControls.test_wrong_address) ... ok
+test_wrong_config_vector (test_contracts.SubsetControls.test_wrong_config_vector) ... ok
+test_wrong_logical_index (test_contracts.SubsetControls.test_wrong_logical_index) ... ok
+test_wrong_output_direction (test_contracts.SubsetControls.test_wrong_output_direction) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.018s
+
+OK
+elapsed_seconds=0.087
+{"checked_increments": 2, "checked_nodes": 50, "derived_sha256": "491b806332efee68404103d7824eaa88758546c4ba99aaa5b87a5e3bbe5f46ab", "hardware_execution": "not-claimed", "increments": 82, "nodes": 648}
++ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -m unittest discover -s tests/roadmap -v
+test_actual_closed_increment (test_evidence.EvidenceTests.test_actual_closed_increment) ... ok
+test_artifact_bytes_are_bounded (test_evidence.EvidenceTests.test_artifact_bytes_are_bounded) ... ok
+test_authoritative_profile_required (test_evidence.EvidenceTests.test_authoritative_profile_required) ... ok
+test_closed_increment_cannot_use_pending_merge (test_evidence.EvidenceTests.test_closed_increment_cannot_use_pending_merge) ... ok
+test_derived_json_cannot_be_edited_as_status (test_evidence.EvidenceTests.test_derived_json_cannot_be_edited_as_status) ... ok
+test_derived_writer_cannot_overwrite_authoritative_inputs (test_evidence.EvidenceTests.test_derived_writer_cannot_overwrite_authoritative_inputs) ... ok
+test_dirty_execution_cannot_qualify (test_evidence.EvidenceTests.test_dirty_execution_cannot_qualify) ... ok
+test_duplicate_json_keys (test_evidence.EvidenceTests.test_duplicate_json_keys) ... ok
+test_escaping_artifact_path (test_evidence.EvidenceTests.test_escaping_artifact_path) ... ok
+test_explicit_expected_candidate_rejects_stale_receipt (test_evidence.EvidenceTests.test_explicit_expected_candidate_rejects_stale_receipt) ... ok
+test_explicit_source_expectation_checks_even_unchecked_increment (test_evidence.EvidenceTests.test_explicit_source_expectation_checks_even_unchecked_increment) ... ok
+test_hand_authored_negative_evidence (test_evidence.EvidenceTests.test_hand_authored_negative_evidence) ... ok
+test_manifest_is_bounded_before_json_parse (test_evidence.EvidenceTests.test_manifest_is_bounded_before_json_parse) ... ok
+test_merge_parent_mismatch (test_evidence.EvidenceTests.test_merge_parent_mismatch) ... ok
+test_missing_artifact (test_evidence.EvidenceTests.test_missing_artifact) ... ok
+test_missing_report_link (test_evidence.EvidenceTests.test_missing_report_link) ... ok
+test_open_ancestor_profile_applies_to_checked_descendants (test_evidence.EvidenceTests.test_open_ancestor_profile_applies_to_checked_descendants) ... ok
+test_positive_partial_execution (test_evidence.EvidenceTests.test_positive_partial_execution) ... ok
+test_prospective_unintegrated_merge_cannot_count (test_evidence.EvidenceTests.test_prospective_unintegrated_merge_cannot_count) ... ok
+test_real_roadmap_and_historical_profiles (test_evidence.EvidenceTests.test_real_roadmap_and_historical_profiles) ... ok
+test_reopened_leaf_does_not_invalidate_other_checked_leaf (test_evidence.EvidenceTests.test_reopened_leaf_does_not_invalidate_other_checked_leaf) ... ok
+test_reopened_regression_retains_immutable_old_receipt_without_credit (test_evidence.EvidenceTests.test_reopened_regression_retains_immutable_old_receipt_without_credit) ... ok
+test_report_and_manifest_source_must_agree (test_evidence.EvidenceTests.test_report_and_manifest_source_must_agree) ... ok
+test_source_commit_cannot_be_tree_object (test_evidence.EvidenceTests.test_source_commit_cannot_be_tree_object) ... ok
+test_source_object_missing_is_explicit (test_evidence.EvidenceTests.test_source_object_missing_is_explicit) ... ok
+test_stale_raw_execution_identity_cannot_be_relabelled (test_evidence.EvidenceTests.test_stale_raw_execution_identity_cannot_be_relabelled) ... ok
+test_symlink_escape (test_evidence.EvidenceTests.test_symlink_escape) ... ok
+test_total_artifact_bytes_are_bounded (test_evidence.EvidenceTests.test_total_artifact_bytes_are_bounded) ... ok
+test_unknown_source_expectation_is_not_ignored (test_evidence.EvidenceTests.test_unknown_source_expectation_is_not_ignored) ... ok
+test_wrong_metadata_types_report_structured_diagnostics (test_evidence.EvidenceTests.test_wrong_metadata_types_report_structured_diagnostics) ... ok
+test_completion_evidence_only_anchor_is_accepted (test_evidence.SourceAnchorTests.test_completion_evidence_only_anchor_is_accepted) ... ok
+test_implementation_change_needs_fresh_execution (test_evidence.SourceAnchorTests.test_implementation_change_needs_fresh_execution) ... ok
+test_qualification_contract_changes_need_fresh_execution (test_evidence.SourceAnchorTests.test_qualification_contract_changes_need_fresh_execution) ... ok
+test_status_and_evidence_link_only_anchor_is_accepted (test_evidence.SourceAnchorTests.test_status_and_evidence_link_only_anchor_is_accepted) ... ok
+test_workflow_change_needs_fresh_execution (test_evidence.SourceAnchorTests.test_workflow_change_needs_fresh_execution) ... ok
+test_deep_supported_nesting (test_independent.BoundedTraversalTests.test_deep_supported_nesting) ... ok
+test_explicit_depth_limit_rejects_instead_of_truncating (test_independent.BoundedTraversalTests.test_explicit_depth_limit_rejects_instead_of_truncating) ... ok
+test_explicit_node_limit_rejects_instead_of_truncating (test_independent.BoundedTraversalTests.test_explicit_node_limit_rejects_instead_of_truncating) ... ok
+test_explicit_utf8_byte_limit_counts_bytes (test_independent.BoundedTraversalTests.test_explicit_utf8_byte_limit_counts_bytes) ... ok
+test_many_increment_chain_and_determinism (test_independent.BoundedTraversalTests.test_many_increment_chain_and_determinism) ... ok
+test_artifacts_directory_symlink_cannot_broaden_output_scope (test_independent.IndependentEvidenceBoundaryTests.test_artifacts_directory_symlink_cannot_broaden_output_scope) ... ok
+test_command_must_be_nonempty_string (test_independent.IndependentEvidenceBoundaryTests.test_command_must_be_nonempty_string) ... ok
+test_context_booleans_are_not_identity_or_applicability (test_independent.IndependentEvidenceBoundaryTests.test_context_booleans_are_not_identity_or_applicability) ... ok
+test_designated_view_symlink_cannot_overwrite_evidence (test_independent.IndependentEvidenceBoundaryTests.test_designated_view_symlink_cannot_overwrite_evidence) ... ok
+test_embedded_nul_path_has_structured_rejection (test_independent.IndependentEvidenceBoundaryTests.test_embedded_nul_path_has_structured_rejection) ... ok
+test_format_version_boolean_is_not_integer_one (test_independent.IndependentEvidenceBoundaryTests.test_format_version_boolean_is_not_integer_one) ... ok
+test_observation_artifacts_must_be_array (test_independent.IndependentEvidenceBoundaryTests.test_observation_artifacts_must_be_array) ... ok
+test_open_intermediate_profile_constrains_checked_leaf (test_independent.IndependentEvidenceBoundaryTests.test_open_intermediate_profile_constrains_checked_leaf) ... ok
+test_open_root_profile_constrains_checked_leaf (test_independent.IndependentEvidenceBoundaryTests.test_open_root_profile_constrains_checked_leaf) ... ok
+test_retained_execution_profile_cannot_disagree (test_independent.IndependentEvidenceBoundaryTests.test_retained_execution_profile_cannot_disagree) ... ok
+test_single_parent_commit_cannot_claim_actual_merge (test_independent.IndependentEvidenceBoundaryTests.test_single_parent_commit_cannot_claim_actual_merge) ... ok
+test_symlink_cycle_has_structured_rejection (test_independent.IndependentEvidenceBoundaryTests.test_symlink_cycle_has_structured_rejection) ... ok
+test_implementation_renamed_into_completion_is_not_docs_only (test_independent.IndependentSourceAnchorTests.test_implementation_renamed_into_completion_is_not_docs_only) ... ok
+test_leading_whitespace_path_is_not_reclassified_as_documentation (test_independent.IndependentSourceAnchorTests.test_leading_whitespace_path_is_not_reclassified_as_documentation) ... ok
+test_roadmap_symlink_mode_change_is_not_status_only (test_independent.IndependentSourceAnchorTests.test_roadmap_symlink_mode_change_is_not_status_only) ... ok
+test_tag_object_cannot_stand_in_for_exact_candidate_commit (test_independent.IndependentSourceAnchorTests.test_tag_object_cannot_stand_in_for_exact_candidate_commit) ... ok
+test_tag_object_cannot_stand_in_for_exact_source_commit (test_independent.IndependentSourceAnchorTests.test_tag_object_cannot_stand_in_for_exact_source_commit) ... ok
+test_checked_group_cannot_have_open_descendants (test_independent.IndependentStructureTests.test_checked_group_cannot_have_open_descendants) ... ok
+test_checked_root_cannot_have_open_descendants (test_independent.IndependentStructureTests.test_checked_root_cannot_have_open_descendants) ... ok
+test_closure_cannot_be_checked_while_required_task_is_open (test_independent.IndependentStructureTests.test_closure_cannot_be_checked_while_required_task_is_open) ... ok
+test_closure_child_must_follow_review_groups (test_independent.IndependentStructureTests.test_closure_child_must_follow_review_groups) ... ok
+test_dependency_cycle (test_independent.IndependentStructureTests.test_dependency_cycle) ... ok
+test_distinct_requirement_and_profile_annotations (test_independent.IndependentStructureTests.test_distinct_requirement_and_profile_annotations) ... ok
+test_document_mapping_insertion_order_does_not_change_output (test_independent.IndependentStructureTests.test_document_mapping_insertion_order_does_not_change_output) ... ok
+test_duplicate_id (test_independent.IndependentStructureTests.test_duplicate_id) ... ok
+test_duplicate_increment_across_files (test_independent.IndependentStructureTests.test_duplicate_increment_across_files) ... ok
+test_duplicate_profile_across_annotations (test_independent.IndependentStructureTests.test_duplicate_profile_across_annotations) ... ok
+test_duplicate_profile_in_single_annotation (test_independent.IndependentStructureTests.test_duplicate_profile_in_single_annotation) ... ok
+test_duplicate_requires_across_annotations (test_independent.IndependentStructureTests.test_duplicate_requires_across_annotations) ... ok
+test_duplicate_requires_in_single_annotation (test_independent.IndependentStructureTests.test_duplicate_requires_in_single_annotation) ... ok
+test_explicit_open_dependency_blocks_checked_increment (test_independent.IndependentStructureTests.test_explicit_open_dependency_blocks_checked_increment) ... ok
+test_fences_ignore_invalid_states_duplicates_and_dependency_text (test_independent.IndependentStructureTests.test_fences_ignore_invalid_states_duplicates_and_dependency_text) ... ok
+test_global_blocker_blocks_checked_leaf_under_open_parent (test_independent.IndependentStructureTests.test_global_blocker_blocks_checked_leaf_under_open_parent) ... ok
+test_inherited_global_blocker_participates_in_cycle_detection (test_independent.IndependentStructureTests.test_inherited_global_blocker_participates_in_cycle_detection) ... ok
+test_invalid_checkbox_state (test_independent.IndependentStructureTests.test_invalid_checkbox_state) ... ok
+test_literal_partial_state_ownership_and_dependencies (test_independent.IndependentStructureTests.test_literal_partial_state_ownership_and_dependencies) ... ok
+test_literal_render_contract_and_source_locations (test_independent.IndependentStructureTests.test_literal_render_contract_and_source_locations) ... ok
+test_literal_valid_structural_closure (test_independent.IndependentStructureTests.test_literal_valid_structural_closure) ... ok
+test_malformed_stable_id (test_independent.IndependentStructureTests.test_malformed_stable_id) ... ok
+test_missing_final_closure_child (test_independent.IndependentStructureTests.test_missing_final_closure_child) ... ok
+test_nested_increment (test_independent.IndependentStructureTests.test_nested_increment) ... ok
+test_nonfoundation_preserves_existing_final_f_closure (test_independent.IndependentStructureTests.test_nonfoundation_preserves_existing_final_f_closure) ... ok
+test_numeric_nesting_uses_stable_ownership_not_display_order (test_independent.IndependentStructureTests.test_numeric_nesting_uses_stable_ownership_not_display_order) ... ok
+test_odd_indent (test_independent.IndependentStructureTests.test_odd_indent) ... ok
+test_reopened_regression_keeps_unaffected_progress (test_independent.IndependentStructureTests.test_reopened_regression_keeps_unaffected_progress) ... ok
+test_self_dependency_cycle (test_independent.IndependentStructureTests.test_self_dependency_cycle) ... ok
+test_skipped_nesting_level (test_independent.IndependentStructureTests.test_skipped_nesting_level) ... ok
+test_tab_indent (test_independent.IndependentStructureTests.test_tab_indent) ... ok
+test_unindented_child (test_independent.IndependentStructureTests.test_unindented_child) ... ok
+test_unknown_dependency (test_independent.IndependentStructureTests.test_unknown_dependency) ... ok
+test_wrong_increment_owner (test_independent.IndependentStructureTests.test_wrong_increment_owner) ... ok
+test_wrong_numeric_owner (test_independent.IndependentStructureTests.test_wrong_numeric_owner) ... ok
+
+----------------------------------------------------------------------
+Ran 92 tests in 0.884s
+
+OK
+elapsed_seconds=1.005

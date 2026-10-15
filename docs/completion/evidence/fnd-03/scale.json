@@ -1,0 +1,31 @@
+{
+  "limits": {
+    "bytes": 16777216,
+    "depth": 256,
+    "nodes": 100000
+  },
+  "many_increments": {
+    "elapsed_seconds_traced": 0.5176032159997703,
+    "identical_repeats": 2,
+    "increments": 2000,
+    "input_bytes": 215604,
+    "nodes": 6000,
+    "output_bytes": 1129373,
+    "output_sha256": "8aa903db399549526ad295425a82c6a31ecae2637d55eea523bfc8b00e8ac9f0",
+    "peak_python_traced_bytes": 11358496
+  },
+  "nested": {
+    "elapsed_seconds_traced": 0.015707870999904117,
+    "identical_repeats": 2,
+    "increments": 1,
+    "input_bytes": 79178,
+    "nodes": 194,
+    "output_bytes": 145499,
+    "output_sha256": "6e1d6d161e781fd46dccefec61d008aed4aee9043e54479587d08a86cf779fd5",
+    "peak_python_traced_bytes": 595272
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "scope": "roadmap structure only; no execution or hardware credit",
+  "validator_sha256": "e97709a5926d7447374fa2a1df0ed31e469b214e7fa90968d6817c64edccb704"
+}

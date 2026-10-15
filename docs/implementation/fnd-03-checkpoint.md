@@ -1,8 +1,9 @@
 # FND-03 implementation checkpoint
 
-Phase: local implementation and independent review complete; coordinator still
-owns clean-source qualification, publication, actual integration and accepted
-evidence/checklist closure. All FND-03 checkboxes remain open.
+Phase: clean-source local qualification and actual implementation integration are
+complete. This branch prepares accepted evidence and the 25 checked FND-03 nodes;
+its separate final-document qualification, review/publication and actual closure
+integration remain coordinator obligations. See the [completion report](../completion/FND-03.md).
 
 Review/development base: `3ccf9ff8cd74f3dfc72feb463e9d4f69a289448b`.
 Development checks ran over an uncommitted tree; these are not clean final-head
@@ -39,7 +40,8 @@ IDs, task text or historical remote-versus-local evidence.
   parents; every FND-03 node remains open
 - `python3 tools/roadmap_scale.py --increments 2000 --depth 192` passed repeated
   deterministic output, with observations below
-- `git diff --check`: passed
+- `git diff --check`: passed for tracked unstaged development changes only;
+  this did not inspect then-untracked closure files
 
 Local raw development logs and dirty-source metadata are under the ignored
 `artifacts/fnd03-development/` directory. They are deliberately not relabelled as
@@ -65,7 +67,10 @@ These are development-byte hashes, not a commit or final acceptance claim.
 - `tests/roadmap/test_evidence.py`: `8bea26309ba0cb4e2ab02ae31d3b7503123a94541db69ccdeb6367ee53441a60`
 - `tests/roadmap/test_independent.py`: `fa8caa02c37aee5ee808e2f24de74489597c9fe0c5b85be85893f0702ae72e5f`
 
-## Remaining acceptance steps
+## Original implementation acceptance plan
+
+The following plan preceded the exact-source qualification and merge recorded in
+the next section. Only separate evidence-closure qualification/integration remains.
 
 Publish the reviewed candidate on the existing increment branch without remote
 CI; run clean exact-source required local qualification and preserve source/tree,
@@ -76,3 +81,30 @@ anchor and new documentation checks. Full combined Foundation CI remains due at
 FND-08. Main and later increment implementations remain untouched here.
 
 This increment does not affect generated Verilog.
+
+## Exact-source implementation integration and closure candidate
+
+The coordinator qualified clean source `10c8e7f1304bc2ea06ca789e116c9555a029e371`,
+tree `2508b015fd671b78105d39ef479db4177ef1b2f4`, with contracts/Rust/Scala,
+roadmap/view and scale checks. Original raw source/logs are retained verbatim in
+`docs/completion/evidence/fnd-03/`; the earlier development observations above
+remain labelled as development rather than being relabelled.
+
+PR #5 actually merged as `d928c0009119728d87a6ca25a8487739a784bb4e`, with parents
+`8902cf29b104e27c66ffbbb58f566eddbe33c1f1` then the tested source. Its tree is
+identical to the tested tree. The merge title includes `[skip ci]`; the integration
+coordinator reported zero actual merge-head runs. No remote CI execution credit.
+
+The current closure changes only evidence/report/checkpoint and checkbox/Evidence
+lines. Source, tests, requirement/profile annotations and workflow remain unchanged.
+No future closure commit or merge identity is claimed. Next: independent closure
+review, clean published-document contracts/expected-source/source-anchor checks,
+then verified closure integration by the coordinator. FND-04–08 remain open.
+
+Closure staging exposed exactly two raw Scala-log trailing-whitespace warnings:
+`docs/completion/evidence/fnd-03/scala.log` lines 6 (`java.class.path`) and 36
+(`line.separator`). The original capture bytes and hashes are preserved.
+Unrestricted staged whitespace checking therefore reports these warnings;
+`git diff --cached --check -- . ':!docs/completion/evidence/fnd-03/*.log'`
+passes for authored source/documents. The earlier unstaged check did not cover
+new files and must not be read as an all-closure-files whitespace pass.

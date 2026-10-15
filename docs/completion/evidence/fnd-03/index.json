@@ -1,0 +1,123 @@
+{
+  "commands": [
+    "./nf identity",
+    "./nf check contracts",
+    "./nf check rust",
+    "./nf check scala",
+    "./nf roadmap --write-view artifacts/fnd03-qualified/roadmap.json",
+    "./nf roadmap --check-view artifacts/fnd03-qualified/roadmap.json",
+    "python3 tools/roadmap_scale.py --increments 2000 --depth 192",
+    "git diff --exit-code"
+  ],
+  "environment": {
+    "clean_tree_verification": "git diff --exit-code passed; coordinator verified git status clean",
+    "setup": "source .cache/toolchains/env.sh",
+    "timezone": "TZ=UTC"
+  },
+  "fixture_file_sha256": {
+    "tests/roadmap/evidence_fixtures/base.json": "5ff13019db8f56b7e3919d9d1a1a4ed2a6785315636c39fab097edfbcdf4d0d2",
+    "tests/roadmap/evidence_fixtures/partial.md": "96672757d7914d50d82a372e84a87a98ac94cbd48c485d097da0c78be71ab90f",
+    "tests/roadmap/evidence_fixtures/rejections.json": "b39853547b243f286d809d23de9c795130397c9bd4ed89db2586272e2e9fdda3",
+    "tests/roadmap/fixtures/README.md": "e961c4ba7dcbc87c309db75eb8e6b7eaa3ae1ecb83123b5cfb8ae2b5aedb8918",
+    "tests/roadmap/fixtures/annotations.md": "4839bee0b3342cac30d4bc174428f32c7aff42910a8480b16df4468df1992b7e",
+    "tests/roadmap/fixtures/checked-closure-open-task.md": "74c2e5361d6a5954f574461e336b315a2412a7271474568820cd2937a3fbc757",
+    "tests/roadmap/fixtures/checked-group-open-descendant.md": "6164cab941e19a2cd92195fb8592263c4cf8a188bf70a3880a4006c78e810ad1",
+    "tests/roadmap/fixtures/checked-root-open-descendant.md": "e9507556bea689780040df5d10411df464b5acf80b73eac1d691daf5adda0ac8",
+    "tests/roadmap/fixtures/closed.md": "571d38683bf235a2628b4d5bdefe39b640fd810d1655b87171eb5f5f37a30134",
+    "tests/roadmap/fixtures/dependency-cycle.md": "eed141571601e1563878220c541c2684763878c1f1ff2b5d6b525372decc4d2e",
+    "tests/roadmap/fixtures/dependency-open.md": "fdd3a9bf3207fbc59e6b342e63feedb0b8fb68c857f83e40476d6791fb1ea980",
+    "tests/roadmap/fixtures/downstream-open.md": "acfe092487168987db8ec9245a530896600a88de68b85d88a0fe0ffa282f18c0",
+    "tests/roadmap/fixtures/duplicate-id.md": "f26eb3b27ae79ec9bcd6005898eac75003f58f98a6f91c610bf16b12d0ac4059",
+    "tests/roadmap/fixtures/duplicate-profile-comments.md": "f386f35d3372411ae7793f60925f749a90c031b2c0b3d54662fe81ff744d98c4",
+    "tests/roadmap/fixtures/duplicate-profile.md": "f08559978ef1828c149b120e266930b160c223317ab35b2078defbe211398633",
+    "tests/roadmap/fixtures/duplicate-requires-comments.md": "b70e5fe1e4e21725206b2e7992c423fb79b85898df6696941f4e395dc3d0ed04",
+    "tests/roadmap/fixtures/duplicate-requires.md": "a87e0625210b92f4b2d35edb9b2bed398fce6a19c0b7d4d1c6695394d3690a61",
+    "tests/roadmap/fixtures/fences.md": "c14cf1d7cc85e2dd31916847fdacaebb3964106077f67c2a79e57962a5242d6a",
+    "tests/roadmap/fixtures/global-blocker-leaf.md": "f8ba7cc3ad731815c6dba9f4cbe49ccaecfd1cb8fd78b2225f0f765e05185786",
+    "tests/roadmap/fixtures/global-blocker-scala.md": "fc8471eb5798e75fc0aef87e7f436cdd15d4d2fce8fd6746c545bb3cd3cef4c4",
+    "tests/roadmap/fixtures/global-cycle-scala.md": "6f0e639eb10941f9df84f62da7844a06d637b914da3d9f76d0a269c9d37b85d6",
+    "tests/roadmap/fixtures/global-cycle.md": "4df8d7a9009d40074c4127d89ff8559ba3a569b070282c329e6efee5009f9bf0",
+    "tests/roadmap/fixtures/invalid-checkbox.md": "3645e5d858c2b411d4c9ae1398b61e38295ef85828b747924ee3addfccdd6954",
+    "tests/roadmap/fixtures/invalid-id.md": "99db373475a4346297ecad82983e6015ab9425a8df38bf63d3650a7b1ad6978d",
+    "tests/roadmap/fixtures/missing-closure.md": "747957b1e64a0d83dda0c8641bd0b82b5efaa4704f85f2b3ce0d5058d47cd7af",
+    "tests/roadmap/fixtures/nested-increment.md": "826d529d0820aa7caa287318127c1073d9caafd8a4e03c89c46c4100def3ab80",
+    "tests/roadmap/fixtures/nonfinal-closure.md": "777f1b012acc48174f222b2915b2e43424ff3cced9231c732c3f7e40dd83d604",
+    "tests/roadmap/fixtures/nonfoundation-f-closure-foundation.md": "7336660b5549e20c7c12d88fd8b9973731476d4c073da37637bf128265a09d24",
+    "tests/roadmap/fixtures/nonfoundation-f-closure.md": "1d813560ca5fc3de5c21f540ab5cec453c14b59f28bcdc78015cc2fd46eda9ef",
+    "tests/roadmap/fixtures/numeric-depth.md": "43f5d467f281bce5d1ed1b129694a364c2e6c9daee8ca32ed220a279096f94cd",
+    "tests/roadmap/fixtures/odd-indent.md": "68de8505188778c96f263142b7e4c23c8c049d0f95ba63cbee43dbf2bf3db418",
+    "tests/roadmap/fixtures/partial.md": "51d3e3858d7e29b986ea96e4aab283766d520609d22edbe9969c4b11a65c5425",
+    "tests/roadmap/fixtures/reopened.md": "4fcbe1ddebf20592af7012f801d6ef6304663ad53311064bff2d43c8f3434ab9",
+    "tests/roadmap/fixtures/self-cycle.md": "a9ab4bccab58a3c3be379c7b82100e0e03c6c0386bb39a2a6c2a57572a8fb0d2",
+    "tests/roadmap/fixtures/skipped-level.md": "fe30bd7d6e197115d1f4682a5ec25b174b603318bdb74541b5f0101e9a2fdde7",
+    "tests/roadmap/fixtures/tab-indent.md": "1b4236bf90f69dac637df820ab3a504ccd6623cf1751f863327b7db2c9fa1233",
+    "tests/roadmap/fixtures/unindented-child.md": "0ad79d4df9394c4929e9bf70fc745c9820ce6cfc1051c67429e8801d81bf9450",
+    "tests/roadmap/fixtures/unknown-dependency.md": "834b0c1432283ddebfc4acaf51c24447712cb461a3147a72aac586a621cb58cb",
+    "tests/roadmap/fixtures/wrong-numeric-owner.md": "fd0fef736b4244a476bf410f02d8c6f8449840d2ab3791999e5b33b0a0eba801",
+    "tests/roadmap/fixtures/wrong-owner.md": "03905ae1537bff95f05c37ac3256e9342bddf26460e74bc211d52d5f4705d1cd",
+    "tests/roadmap/test_evidence.py": "8bea26309ba0cb4e2ab02ae31d3b7503123a94541db69ccdeb6367ee53441a60",
+    "tests/roadmap/test_independent.py": "fa8caa02c37aee5ee808e2f24de74489597c9fe0c5b85be85893f0702ae72e5f"
+  },
+  "format_version": 1,
+  "increment": "FND-03",
+  "integration": {
+    "commit": "d928c0009119728d87a6ca25a8487739a784bb4e",
+    "parents": [
+      "8902cf29b104e27c66ffbbb58f566eddbe33c1f1",
+      "10c8e7f1304bc2ea06ca789e116c9555a029e371"
+    ],
+    "state": "merged",
+    "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+  },
+  "limitations": [
+    "Preclosure roadmap.json is an immutable snapshot at the tested source, not current editable status.",
+    "Index source-file hashes bind the tested source; later live source may legitimately change.",
+    "Final documentation candidate qualification/merge is recorded separately; no future identity invented.",
+    "No hardware or remote-CI execution credit."
+  ],
+  "post_merge_ci": {
+    "observation_owner": "integration coordinator; exact actual merge verified remotely",
+    "observed_merge_head_runs": 0,
+    "reason": "user-directed-local-qualification-identical-tree-merge",
+    "state": "skipped"
+  },
+  "profile": "foundation-progress/1",
+  "qualification_mode": "local-tests-per-explicit-user-instruction",
+  "raw_artifact_sha256": {
+    "contracts.log": "791721cb6dcddaa741de13d6d91319f2f14095e98cab050f71d4ecc08dff6fa2",
+    "roadmap.json": "491b806332efee68404103d7824eaa88758546c4ba99aaa5b87a5e3bbe5f46ab",
+    "roadmap.log": "cfaf8ae443843d28bce056ac774f49f1258433155c1a73a4bfac1f15f0859f62",
+    "rust.log": "cbd08c6bf06ea2319c5236f7880d4861b11b6b636e108f9a74428a77cc1700f5",
+    "scala.log": "d0ef65a1614484ea059293f7ec5ab5366e10b35dd2cb2c7ff2d42a7e34711711",
+    "scale.json": "6851780e2153e37a1499f1c467e0e837d8d97e06f03b8b425923e6ec709c5b6e",
+    "source.json": "1b680eb71db160fbc0e3eece3a7e9648683c04c9883ea29b80bfb752176493f5"
+  },
+  "results": {
+    "actual_roadmap": "82 increments, 648 nodes, 50 checked nodes, two checked parents at tested source",
+    "bootstrap_tests": 20,
+    "companion_roadmap_tests": 35,
+    "foundation_tests": 43,
+    "hardware_execution": "not-claimed",
+    "independent_roadmap_tests": 57,
+    "remote_ci": "not-run; user-directed final combined Foundation gate",
+    "roadmap_tests": 92,
+    "rust": "passed",
+    "scala": "passed",
+    "scale": "two deterministic renders each for 6000-node chain and depth192"
+  },
+  "source": {
+    "commit": "10c8e7f1304bc2ea06ca789e116c9555a029e371",
+    "tree": "2508b015fd671b78105d39ef479db4177ef1b2f4"
+  },
+  "source_file_sha256": {
+    ".github/workflows/fnd-01-bootstrap.yml": "6cb05112e8ecc1c69ff6125ee71b270ac6dd4ea8786582ce6887f57c9d32f7f3",
+    "docs/completion/templates/evidence.json": "1bdde166f83bcbfa66e9698b2c583f6e33325b478ca8d1fc06de38b4f189ae18",
+    "docs/completion/templates/report.md": "e580640232ba53f5a58ee3d7cca3aec75a5673ec4cd445a230ea899078f148b4",
+    "docs/development/roadmap-validator.md": "40f23f3840ecca44759ee8828edc72043e0a3b71956a4b16745b2ab9f267bb7f",
+    "docs/implementation/fnd-03-independent-review.md": "1d84e08f5b8a482b7578ca65e8016bd77ed4f859dbef97eb82ad8aa37f83401f",
+    "toolchains/versions.json": "c07b5abd45439ecee724e96a866d86e869d704f2cf2119f9553f73dca426aea3",
+    "tools/nf.py": "4fdf6871dfac233d1f0ff1742c0ee2d61d7b1ba4f76cc5015034ad17bda35330",
+    "tools/roadmap.py": "e97709a5926d7447374fa2a1df0ed31e469b214e7fa90968d6817c64edccb704",
+    "tools/roadmap_scale.py": "3eff494975b3dba8385fe440b85e1731739d11691d736da1f0571e9af05a3ffc"
+  }
+}
