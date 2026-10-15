@@ -118,32 +118,33 @@ must not claim later emission, loader, device inspection or physical validation.
     - [x] FND-01.e.2 Complete applicable targeted-first/full-CI qualification, review and verified integration under AGENTS.md; distinguish executed checks from suppressed post-merge CI.
     - [x] FND-01.e.3 Confirm every required descendant and closure obligation is complete before checking FND-01; report the actual Scala smoke example and the absence of generated-Verilog effects.
 
-- [ ] FND-02 — Freeze the initial architecture and project contracts
+- [x] FND-02 — Freeze the initial architecture and project contracts
   Depends on: FND-01.
-  - [ ] FND-02.a Write ADRs for Scala-to-Rust exchange, ArchIR versus DeviceDB versus customer DesignDB, and external-CAD-first ownership; apply [ADR 0001](../../adr/0001-optional-circt-backend.md) without treating its optional backend as implemented.
-    - [ ] FND-02.a.1 Review and accept the Scala-to-Rust exchange and ownership ADRs, distinguishing ArchIR, immutable DeviceDB and per-job customer DesignDB/CAD state.
-    - [ ] FND-02.a.2 Apply ADR 0001 to the external-CAD-first/default-emitter boundary; record optional CIR evaluation as future work rather than a Foundation dependency or adopted implementation.
-  - [ ] FND-02.b Specify primitive/mode semantics, hierarchical templates, shared routing/configuration resources and the explicit unsupported-feature policy; create the stable-ID assumption ledger defined in the early-baseline contract, including owners, affected consumers and stage-specific verification obligations.
-    - [ ] FND-02.b.1 Specify primitives, modes, hierarchy/templates, shared resources and explicit unsupported-feature diagnostics without depending on production generators.
-    - [ ] FND-02.b.2 Create the stable-ID assumption ledger with claim/profile, owner/reviewer, consumers, independent expected examples, owning test/proof/mutation obligations and invalidation policy.
-    - [ ] FND-02.b.3 Separate accepted contract decisions from not-run execution status; resolve critical semantic ambiguity rather than labeling it a harmless future test.
-  - [ ] FND-02.c Specify overlapping clock/power/configuration domains, technology bindings and device-package identity without implementing advanced devices.
-    - [ ] FND-02.c.1 Specify overlapping clock/power/configuration memberships and process-independent technology bindings, including identity/version rules.
-    - [ ] FND-02.c.2 Define package identity and incompatible-change behavior without implementing advanced devices, physical signoff or PDK-specific algorithms.
-  - [ ] FND-02.d Define the nf-tiny profile and hand-calculated boundary fixtures, including legal and illegal configuration examples; independently review a pinned FABulous-compatible subset, its reference input and the intended Nodal-side mapping, with explicit LUT/pin ordering, register controls, routing/configuration semantics and intentional differences. This contract review does not require the later executable Scala DSL.
-    - [ ] FND-02.d.1 Define nf-tiny legal/illegal configurations and asymmetric hand-calculated boundary fixtures with explicit resource, pin, LUT and register-control semantics.
-    - [ ] FND-02.d.2 Pin the intended FABulous reference subset and independently authored input/correspondence contract, including routing, configuration, aliases, exclusions and intentional differences.
-    - [ ] FND-02.d.3 Review correspondence for totality and ambiguity over the matched subset; identify unsupported modes/shapes and their separate Nodal verification obligations.
-  - [ ] FND-02.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-02.f.1 Independently review expected examples, assumptions and pin/resource correspondence against their written semantics; retain decisions and unresolved nonblocking questions.
-    - [ ] FND-02.f.2 Assign FND-06 execution IDs/owners for the reference witnesses while explicitly recording that contract review has not run RTL simulation, formal proof or a production Nodal flow.
-  - [ ] FND-02.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
-    - [ ] FND-02.g.1 Review contract duplication and unnecessary representation constraints; preserve hierarchy, semantic identity and reusable core ownership without adding a general compiler framework.
-    - [ ] FND-02.g.2 Walk the contracts through small/boundary and repeated-template examples; document compatibility and expected scaling boundaries without claiming measured compiler performance.
-  - [ ] FND-02.e Review contracts against all later track boundaries; record accepted ADRs, the assumption ledger and the common-subset correspondence contract. Resolve critical semantic ambiguities before closing; label scheduled execution evidence as not run and retain genuinely nonblocking choices without claiming implementation.
-    - [ ] FND-02.e.1 Audit all later track boundaries and retain accepted ADRs, ledger revision, independent fixture specification and correspondence hashes with rationale.
-    - [ ] FND-02.e.2 Resolve critical semantic ambiguities, qualify applicable contract/document checks, and complete review and verified integration under AGENTS.md; scheduled executions remain not run.
-    - [ ] FND-02.e.3 Check FND-02 only after every required descendant and FND-01 are complete; deliver the bounded architecture-contract completion report without invented generated output.
+  Evidence: [FND-02 completion report](../../completion/FND-02.md); exact-head local checks and independent contract review, verified implementation integration; full combined Foundation CI remains due under the user-directed cadence.
+  - [x] FND-02.a Write ADRs for Scala-to-Rust exchange, ArchIR versus DeviceDB versus customer DesignDB, and external-CAD-first ownership; apply [ADR 0001](../../adr/0001-optional-circt-backend.md) without treating its optional backend as implemented.
+    - [x] FND-02.a.1 Review and accept the Scala-to-Rust exchange and ownership ADRs, distinguishing ArchIR, immutable DeviceDB and per-job customer DesignDB/CAD state.
+    - [x] FND-02.a.2 Apply ADR 0001 to the external-CAD-first/default-emitter boundary; record optional CIR evaluation as future work rather than a Foundation dependency or adopted implementation.
+  - [x] FND-02.b Specify primitive/mode semantics, hierarchical templates, shared routing/configuration resources and the explicit unsupported-feature policy; create the stable-ID assumption ledger defined in the early-baseline contract, including owners, affected consumers and stage-specific verification obligations.
+    - [x] FND-02.b.1 Specify primitives, modes, hierarchy/templates, shared resources and explicit unsupported-feature diagnostics without depending on production generators.
+    - [x] FND-02.b.2 Create the stable-ID assumption ledger with claim/profile, owner/reviewer, consumers, independent expected examples, owning test/proof/mutation obligations and invalidation policy.
+    - [x] FND-02.b.3 Separate accepted contract decisions from not-run execution status; resolve critical semantic ambiguity rather than labeling it a harmless future test.
+  - [x] FND-02.c Specify overlapping clock/power/configuration domains, technology bindings and device-package identity without implementing advanced devices.
+    - [x] FND-02.c.1 Specify overlapping clock/power/configuration memberships and process-independent technology bindings, including identity/version rules.
+    - [x] FND-02.c.2 Define package identity and incompatible-change behavior without implementing advanced devices, physical signoff or PDK-specific algorithms.
+  - [x] FND-02.d Define the nf-tiny profile and hand-calculated boundary fixtures, including legal and illegal configuration examples; independently review a pinned FABulous-compatible subset, its reference input and the intended Nodal-side mapping, with explicit LUT/pin ordering, register controls, routing/configuration semantics and intentional differences. This contract review does not require the later executable Scala DSL.
+    - [x] FND-02.d.1 Define nf-tiny legal/illegal configurations and asymmetric hand-calculated boundary fixtures with explicit resource, pin, LUT and register-control semantics.
+    - [x] FND-02.d.2 Pin the intended FABulous reference subset and independently authored input/correspondence contract, including routing, configuration, aliases, exclusions and intentional differences.
+    - [x] FND-02.d.3 Review correspondence for totality and ambiguity over the matched subset; identify unsupported modes/shapes and their separate Nodal verification obligations.
+  - [x] FND-02.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
+    - [x] FND-02.f.1 Independently review expected examples, assumptions and pin/resource correspondence against their written semantics; retain decisions and unresolved nonblocking questions.
+    - [x] FND-02.f.2 Assign FND-06 execution IDs/owners for the reference witnesses while explicitly recording that contract review has not run RTL simulation, formal proof or a production Nodal flow.
+  - [x] FND-02.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
+    - [x] FND-02.g.1 Review contract duplication and unnecessary representation constraints; preserve hierarchy, semantic identity and reusable core ownership without adding a general compiler framework.
+    - [x] FND-02.g.2 Walk the contracts through small/boundary and repeated-template examples; document compatibility and expected scaling boundaries without claiming measured compiler performance.
+  - [x] FND-02.e Review contracts against all later track boundaries; record accepted ADRs, the assumption ledger and the common-subset correspondence contract. Resolve critical semantic ambiguities before closing; label scheduled execution evidence as not run and retain genuinely nonblocking choices without claiming implementation.
+    - [x] FND-02.e.1 Audit all later track boundaries and retain accepted ADRs, ledger revision, independent fixture specification and correspondence hashes with rationale.
+    - [x] FND-02.e.2 Resolve critical semantic ambiguities, qualify applicable contract/document checks, and complete review and verified integration under AGENTS.md; scheduled executions remain not run.
+    - [x] FND-02.e.3 Check FND-02 only after every required descendant and FND-01 are complete; deliver the bounded architecture-contract completion report without invented generated output.
 
 - [ ] FND-03 — Enforce resumable nested progress and evidence
   Depends on: FND-02.

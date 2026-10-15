@@ -25,8 +25,9 @@ MLIR/CIRCT is not a foundational dependency. A separate [optional evaluation tra
 
 FND-01's build-only Rust/Scala bootstrap is qualified and integrated on `dev`.
 See the [completion evidence](docs/completion/FND-01.md) and authoritative
-Foundation checklist. No production frontend, backend, fabric or silicon
-implementation is claimed.
+Foundation checklist. FND-02's [reviewed architecture/reference contracts](docs/completion/FND-02.md)
+are integrated with local qualification; full combined Foundation CI remains
+due. No production frontend, backend, fabric or silicon implementation is claimed.
 
 Development planning is on `dev`. Do not modify or merge into `main` without explicit authorization.
 
