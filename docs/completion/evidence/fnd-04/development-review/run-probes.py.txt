@@ -1,0 +1,39 @@
+import hashlib, json, platform, resource, subprocess, sys, time
+from pathlib import Path
+consumer = Path(sys.argv[1])
+output = Path(sys.argv[2])
+output.mkdir(parents=True, exist_ok=True)
+start = time.monotonic()
+p = subprocess.run([str(consumer / 'target/debug/fnd04-review-probe')], text=True, capture_output=True, check=True)
+elapsed = time.monotonic() - start
+rss = resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss
+assert not p.stderr, p.stderr
+out = p.stdout
+(output / 'probe-output.log').write_text(out)
+for name in ['mode alias membership', 'selection preflight', 'preflight', 'domain', 'guard', 'set']:
+    assert name + ' permutation same=true' in out, name
+for prefix, expected in [('field resource-feature collision=', 'code: Duplicate'), ('cycle primary=', 'code: TemplateCycle'), ('missing selection field=', 'stage: Selection'), ('qualified limit4 result=', 'code: Limit'), ('highfanout ', 'code: Limit')]:
+    line = next(line for line in out.splitlines() if line.startswith(prefix))
+    assert expected in line, (prefix, line)
+assert 'scope: [Name("i")], local: Name("missing")' in out
+high = next(line for line in out.splitlines() if line.startswith('highfanout '))
+assert 'expected: Some("1000000")' in high
+assert high.count('code: Limit') == 1
+stats = {'platform': platform.platform(), 'python': platform.python_version(),
+         'binary_process_wall_seconds': elapsed, 'binary_process_peak_rss_kib_linux': rss,
+         'high_fanout_output': high,
+         'probe_source_sha256': hashlib.sha256((consumer/'src/main.rs').read_bytes()).hexdigest(),
+         'probe_manifest_sha256': hashlib.sha256((consumer/'Cargo.toml').read_bytes()).hexdigest(),
+         'output_sha256': hashlib.sha256(out.encode()).hexdigest()}
+(output / 'probe-measurements.json').write_text(json.dumps(stats, indent=2) + '\n')
+for binary in ['mode_order', 'group_order']:
+    p = subprocess.run([str(consumer/'target/debug'/binary)], text=True, capture_output=True, check=True)
+    assert not p.stderr, p.stderr
+    (output/(binary + '.log')).write_text(p.stdout)
+    assert p.stdout == 'all invariant\n', (binary, p.stdout)
+p = subprocess.run([str(consumer/'target/debug/top_connection_key')], text=True, capture_output=True, check=True)
+assert not p.stderr, p.stderr
+(output/'top-connection-after.log').write_text(p.stdout)
+assert 'accepted=false' in p.stdout and 'top_level_connection_key_limit=correctly_rejected' in p.stdout
+print(json.dumps(stats, indent=2))
+print('Six main permutations and both 1,999-work-cap sweeps pass; expected categories, selected-field identity and singleton high-fanout limit pass; top-level connection whole-key regression passes.')

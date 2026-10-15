@@ -1,0 +1,528 @@
+{
+  "artifacts": {
+    "docs/completion/FND-04.md": "8f933b261ab6f06d0be404017c008a90c2001a115a01a5db7b9b04fb6d0396f2",
+    "docs/completion/evidence/fnd-04/binaries.sha256.txt": "fb321d81096dc81be131c8b9b135e78aafbf32b6046a0ad038196419ec7b7273",
+    "docs/completion/evidence/fnd-04/contracts.log": "909c9da72d92a610a35fb7d8fef2842530514356f6d5c34b0f64185e5bdfc65c",
+    "docs/completion/evidence/fnd-04/development-review/Cargo.lock.txt": "f72b3635dfdbe89e51f17567f1fb1856d5a1f1cf07af4a37aaaf1f6db9118cf1",
+    "docs/completion/evidence/fnd-04/development-review/Cargo.toml.txt": "f739bee3ceb726c782f4249ff2f9f52a587406105d476df87ed6056a03233c76",
+    "docs/completion/evidence/fnd-04/development-review/capture.sha256.txt": "6bcdeb796e7c2e90b4446725cb07f4ee4b03b90ed82b50670ae9340a8b9769ee",
+    "docs/completion/evidence/fnd-04/development-review/docs-check.log": "aa19a7fcb52de6ac28556f621ff4983101f16999c03dc7dcfaf459d9160fea98",
+    "docs/completion/evidence/fnd-04/development-review/final-run.sh.txt": "f57de0c7b35a63f0f69da7ee3522dff2a88acdc272024ee2bba0b90147412321",
+    "docs/completion/evidence/fnd-04/development-review/final-tests.log": "e446ba18980bc49d95e09d810624cf412b0d16bf523f1f47b081e97d3da85292",
+    "docs/completion/evidence/fnd-04/development-review/fmt-tools.log": "bacc1e6218c7049485137cf30fa11c1eb5b00a2c4b52de5c38cccc6095083b46",
+    "docs/completion/evidence/fnd-04/development-review/group_order.log": "f9eef68a6c091264b385b6d411b00138868b185197d23809c21a5ec9551c5220",
+    "docs/completion/evidence/fnd-04/development-review/metadata-check.log": "84924a6d5b9a63536e7c600acb2226efbbd113fb3f6974926e97336bcdbfb684",
+    "docs/completion/evidence/fnd-04/development-review/metadata.json": "847670d9f65c13fe7469f086a550ee03fd1cb54fa6c4f0ec72a6e732bf86010e",
+    "docs/completion/evidence/fnd-04/development-review/mode_order.log": "f9eef68a6c091264b385b6d411b00138868b185197d23809c21a5ec9551c5220",
+    "docs/completion/evidence/fnd-04/development-review/model-check.log": "00d0700711bc1d44a937e593fa077542beb1704bd3a6f50e22df9994d9383ca8",
+    "docs/completion/evidence/fnd-04/development-review/model.stdout.txt": "1615356294a3728c68d2bb9fe76c296dfd5c4ecd3daa73340cdc76ccd4868bd2",
+    "docs/completion/evidence/fnd-04/development-review/pre-top-key-repair-source.sha256.txt": "07cba540b93d0e48d8d5ef44685089e53cd765dbe13a43411566d2236a592b11",
+    "docs/completion/evidence/fnd-04/development-review/probe-build.log": "493b23fde65b6cea52ad78c82b6dd6634591d23b2245a748a46cd4b633053c9e",
+    "docs/completion/evidence/fnd-04/development-review/probe-check.log": "067a22a4593e845fc3e75acf02db4a08962e2615275ce07089a87c2b261101b5",
+    "docs/completion/evidence/fnd-04/development-review/probe-measurements.json": "8abd08919d2534cf736fc66dc67223dbcc1bcc182c2a3244a9ad4d01c041fbdc",
+    "docs/completion/evidence/fnd-04/development-review/probe-output.log": "a71b60ff3e60f9d74abe9646b07ce94d2e9f47c285b9c72607884d829b8bd78a",
+    "docs/completion/evidence/fnd-04/development-review/run-probes.py.txt": "7ef331ba183c7b0484bbc2a73f3d426aea25d3ad869d5ac604827d131ce61933",
+    "docs/completion/evidence/fnd-04/development-review/source-after-check.log": "4805a6fa097097b3c6c9e91ed10968c31edcb8d5943e7f398ece589734cb5c83",
+    "docs/completion/evidence/fnd-04/development-review/source-before.sha256.txt": "8fb5709635347a68344682fd8eca6917f5861885867f0d6d8f505050de009d96",
+    "docs/completion/evidence/fnd-04/development-review/src/bin/group_order.rs.txt": "e41a61adbf25851b264566743fe262c57bd6ef2095f288816bc621292e94f0dd",
+    "docs/completion/evidence/fnd-04/development-review/src/bin/mode_order.rs.txt": "5604c0630f1e926840fffd6c9fef427316afaa8aa75ff7fc5cc0186a90a6e11f",
+    "docs/completion/evidence/fnd-04/development-review/src/bin/top_connection_key.rs.txt": "e463623b530a3749cb671a3020666eddc808ac1f575d016122183e8997b65a38",
+    "docs/completion/evidence/fnd-04/development-review/src/main.rs.txt": "e98b56497aa18cd2582a3c67ce53316de5e4242fd6dc301a06de5b444785f9ea",
+    "docs/completion/evidence/fnd-04/development-review/top-connection-after.log": "a4d044a85ce41778ac239ec6a0e1ea320543b1dca6ec6a2a0185665ff30ed65d",
+    "docs/completion/evidence/fnd-04/development-review/top-connection-before.log": "5d9c72dc757ee7387196a953651f12148b7e4070ad898c679d6dca7a3e8fa633",
+    "docs/completion/evidence/fnd-04/index.json": "b4f388b0622592248eba3727b68b8bb4bbd8acb91c1388eb8dcd6785792e9bee",
+    "docs/completion/evidence/fnd-04/model-1.stdout.txt": "1615356294a3728c68d2bb9fe76c296dfd5c4ecd3daa73340cdc76ccd4868bd2",
+    "docs/completion/evidence/fnd-04/model-1.time.txt": "885a639d4ddd090051cb16a9a9f076502fe81c4c4b67c1ca7f3375615e4f1808",
+    "docs/completion/evidence/fnd-04/model-2.stdout.txt": "1615356294a3728c68d2bb9fe76c296dfd5c4ecd3daa73340cdc76ccd4868bd2",
+    "docs/completion/evidence/fnd-04/model-2.time.txt": "1b629a867e6deed72f6feab1248b5bf62923c3ed116dd2899c4b312a02661293",
+    "docs/completion/evidence/fnd-04/model-build.log": "23b9a21bbaf189889e08dc27ed8eba521021280c5852db22205f721db08b2c7c",
+    "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt": "38b6594153e368cbb025767d228aa492e43e9d72d9619ae6c932f17d39980b59",
+    "docs/completion/evidence/fnd-04/receipt-controls.log": "2e1d04edf5277bf3bcd39668c9b3e95058b30e375d0e09b6bc22ce2f34dbdb60",
+    "docs/completion/evidence/fnd-04/reproduce-rust.log": "c4f737f44f2590be8344886afb8e8b3440a5ffdd1a170e6cedcf07715f863fe6",
+    "docs/completion/evidence/fnd-04/rust.log": "11b516178551a1667626136eed0ad72e2e79ea0d4e2694a38c1b597af4726b4e",
+    "docs/completion/evidence/fnd-04/scala.log": "26ae0a8ecb74fe89b2ed14de69fd9ef81e3bd7173d779ca0e2fd4764dcfbc22e",
+    "docs/completion/evidence/fnd-04/scale-1.log": "69963f989ac344c2fe8166415f17378a12a71e8a82bb88157a5e810ffc1fddbd",
+    "docs/completion/evidence/fnd-04/scale-1.stable.txt": "c151341afef02fdd58babf954c003485e7e8367d90ffcc35411bb6e797bff948",
+    "docs/completion/evidence/fnd-04/scale-1.time.txt": "edfd442e0c48c13da8f17d95b7738755c1ec3d21ba3bd7e03a97b9fbef2f0d8e",
+    "docs/completion/evidence/fnd-04/scale-2.log": "287478dd3116ea22cd98c26f775455ed1a5a51eca9591fbad0fe36819380bdc7",
+    "docs/completion/evidence/fnd-04/scale-2.stable.txt": "c151341afef02fdd58babf954c003485e7e8367d90ffcc35411bb6e797bff948",
+    "docs/completion/evidence/fnd-04/scale-2.time.txt": "1c8226c6c89bdd0224445a4f6103122c3bdac1b06a403127c87fe1a4ee7ecd2e",
+    "docs/completion/evidence/fnd-04/source-after.json": "1fc6aec08c4885a95206ffc98be30019332f7912d415494bf5a26208666154f6",
+    "docs/completion/evidence/fnd-04/source.json": "1fc6aec08c4885a95206ffc98be30019332f7912d415494bf5a26208666154f6",
+    "docs/completion/evidence/fnd-04/test-build.jsonl.txt": "8d60f5980d4728b2298df7c64f5ad97cceb3e2f158d0437ae58bf7b6fdc56389",
+    "docs/completion/evidence/fnd-04/test-build.stderr.txt": "f2255e993bb15deccd32e10b261c870c47a400e0a85642ae35c2ce1d03e84f31",
+    "docs/implementation/fnd-04-closure-local-review.md": "efd60b56b5c1b3282e19c79091362fbd7c29829ee2315afb3bf5f2598bf777f9",
+    "docs/implementation/fnd-04-independent-review.md": "4ff115cde8b2a346ef150c3684faa1c360d85fd09c329fe4b69b0eb693beebfd"
+  },
+  "ci": {
+    "post_merge": {
+      "reason": "user-directed-local-qualification-identical-tree-merge",
+      "runs": [],
+      "state": "skipped"
+    },
+    "qualification": "not-run",
+    "reason": "Explicit user instruction: required local checks before increment merge; final combined Foundation CI at FND-08. No required protection check bypassed.",
+    "runs": []
+  },
+  "context": {
+    "assumptions": {
+      "limited": "ASM-0002 unsupported-mode rejection only; no LUT/register execution.",
+      "reason": "Feature-risk-selected sharing/mode, bounds, topology/ownership and domain-reference interactions; no all-feature Cartesian product. FND-06 hardware execution remains not-run.",
+      "selected": [
+        "ASM-0003",
+        "ASM-0004",
+        "ASM-0008",
+        "ASM-0009",
+        "ASM-0010",
+        "ASM-0011"
+      ]
+    },
+    "configuration": {
+      "limits": {
+        "max_collection": 16384,
+        "max_declarations": 100000,
+        "max_depth": 64,
+        "max_diagnostics": 128,
+        "max_key_bytes": 4096,
+        "max_key_component_bytes": 128,
+        "max_provenance_bytes": 1024,
+        "max_references": 200000,
+        "max_work": 1000000
+      },
+      "profile": "structural-selection/1",
+      "scope": "Logical storage/features and complete mode/value selections, widths 1..64; no customer bitstream or loader."
+    },
+    "correspondence": {
+      "hardware_map": "No real device, CAD or RTL correspondence claimed.",
+      "scope": "Explicit build/partition/kind portable-key to dense-slot mapping; total one-to-one validation exercised with boundaries and malformed mappings."
+    },
+    "coverage": {
+      "arithmetic_pairs": 121,
+      "contracts_tests": 195,
+      "expectations_sha256": "b33d80f70272393474ec8583c479acdd488de39d43ee039ca2ab94a0aebd1581",
+      "interval_pairs": 6561,
+      "intervals": 81,
+      "owner_overlap_pairs": 64,
+      "permanent_budget_permutation_comparisons": 6000,
+      "rejected_depth": 65,
+      "required_leaves": 16,
+      "rust_doctests": 4,
+      "rust_unit_integration_tests": 49,
+      "scale_depths": [
+        1,
+        8,
+        32,
+        64
+      ],
+      "scale_instances": [
+        1,
+        16,
+        256,
+        4096
+      ],
+      "scale_partitions": [
+        1,
+        2,
+        4
+      ],
+      "seed": "0xF0041D3E5EED",
+      "selected_receipt_controls": 5,
+      "sharing_accepted": 172,
+      "sharing_conflict": 516,
+      "sharing_inactive": 1616,
+      "sharing_selections": 2304,
+      "single_defect_mutations": 128,
+      "top_connection_key_boundary": {
+        "earlier_red_green_bound": 30,
+        "exact_accept_bytes": 36,
+        "one_byte_overflow_reject_bound": 35
+      }
+    },
+    "device": {
+      "reason": "Generic Rust structural/selection profile; no concrete device, manufactured hardware or runtime loader.",
+      "state": "not-applicable"
+    },
+    "examples": {
+      "actual_frontend": "Rust builder",
+      "artifact": "docs/completion/evidence/fnd-04/model-1.stdout.txt",
+      "generated_verilog": "This increment does not affect generated Verilog.",
+      "stdout_sha256": "1615356294a3728c68d2bb9fe76c296dfd5c4ecd3daa73340cdc76ccd4868bd2"
+    },
+    "limitations": [
+      "No hardware, RTL, fabric equivalence, production DeviceDB, configuration-loader, timing, PDK or remote-CI execution credit.",
+      "Development review/probe captures have matching content hashes, not clean-commit execution identities; they are never execution observations in the receipt.",
+      "Qualified source records are verbatim and have no profile field; structural-selection/1 is the acceptance receipt profile, distinct from unchanged example/fixture inventory labels.",
+      "Retained runner/probe .txt files are inert source evidence; absolute paths may need adjustment when copied elsewhere. They are not installed executable tools.",
+      "The final closure commit, final-document qualification and closure merge are separate coordinator obligations; no future identity is asserted.",
+      "Scale timings are single-machine debug-build observations, not thresholds. Qualified repeated scale runs do not measure peak RSS; retained capacity/name bytes omit other allocations.",
+      "Reviewer process RSS is development evidence for the entire prebuilt consumer, not the validator alone, and excludes compilation.",
+      "Conservative work counters do not meter every allocation/tree comparison/instruction; input admission and process quotas remain caller responsibilities.",
+      "Renderer/stable-output equality is not FND-05 semantic canonicalization or a portable wire format.",
+      "Raw JVM trailing whitespace is deliberately preserved; unrestricted staged whitespace checking is not claimed to pass.",
+      "Independent agent review is retained; independent human review is not claimed."
+    ],
+    "loading_mode": {
+      "reason": "Generic Rust structural/selection profile; no concrete device, manufactured hardware or runtime loader.",
+      "state": "not-applicable"
+    },
+    "mutations": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/rust.log",
+        "docs/completion/evidence/fnd-04/receipt-controls.log"
+      ],
+      "receipt_controls": "Five selected FND-03 controls separately executed on clean tested source.",
+      "scope": "128 seeded single-defect cases, hand-authored malformed sharing/reference/ownership and review-repaired source/limit/ordering cases; 6000 budget-permutation comparisons."
+    },
+    "reference_corpus": {
+      "basis": "Hand-authored literal topology/mode/source expectations, u128 arithmetic and enumerated tiny bitsets; not production validator-generated expectations.",
+      "inventory": "verify/fixtures/fnd-04/inventory.json",
+      "preimplementation_expectations_sha256": "b33d80f70272393474ec8583c479acdd488de39d43ee039ca2ab94a0aebd1581",
+      "source_hash_inventory": "docs/completion/evidence/fnd-04/index.json"
+    },
+    "schemas": {
+      "evidence_format": 1,
+      "ownership_registry": 2,
+      "profile_labels": "Receipt structural-selection/1; historical API/example structural-selection and corpus structural-types-direct-alias-u64/1 preserved.",
+      "wire_schema": "Not implemented; FND-05 owns cross-language serialization."
+    },
+    "seeds": {
+      "other_oracles": "Deterministic literal cases, finite arithmetic/bitsets and budget permutations.",
+      "single_defect_mutations": "0xF0041D3E5EED"
+    },
+    "tools": {
+      "hash_scope": "Tool distribution/launcher checksums and version-pin source hash; no newly invented executable hash at qualification time.",
+      "observed": {
+        "JDK": "Eclipse Adoptium Temurin 21.0.12.1+1-LTS",
+        "Python": "3.12.14",
+        "Rust/Cargo": "1.98.1",
+        "Scala": "3.3.8",
+        "clippy": "0.1.98",
+        "rustfmt": "1.9.0-stable",
+        "sbt": "1.12.11"
+      },
+      "pins": {
+        "actions": {
+          "checkout": "11d5960a326750d5838078e36cf38b85af677262",
+          "upload_artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        "jdk": {
+          "platform": "linux-x86_64",
+          "release": "jdk-21.0.12.1+1",
+          "runtime": "21.0.12.1+1-LTS",
+          "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94",
+          "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz",
+          "vendor": "Eclipse Adoptium"
+        },
+        "rust": "1.98.1",
+        "sbt": "1.12.11",
+        "sbt_launcher": {
+          "sha256": "b4c0c55d68f11b1510d884641cb1b1456191dac40ddc958bf86c825adc344e16",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-sbt/sbt-launch/1.12.11/sbt-launch-1.12.11.jar"
+        },
+        "sbt_scalafmt": "2.5.5",
+        "scala": "3.3.8",
+        "scalafmt": "3.11.5",
+        "schema": 1
+      },
+      "pins_sha256": "c07b5abd45439ecee724e96a866d86e869d704f2cf2119f9553f73dca426aea3"
+    }
+  },
+  "format_version": 1,
+  "increment": "FND-04",
+  "integration": {
+    "commit": "f9fdd8cf8363104bfa0f4063fd851016eb462bec",
+    "parents": [
+      "d4948096e16e7299ef02a90363f90491ebe9790d",
+      "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e"
+    ],
+    "state": "merged",
+    "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+  },
+  "items": {
+    "FND-04.a.1": [
+      "rust",
+      "deliverables",
+      "review"
+    ],
+    "FND-04.a.2": [
+      "rust",
+      "contracts",
+      "review"
+    ],
+    "FND-04.b.1": [
+      "rust",
+      "review",
+      "deliverables"
+    ],
+    "FND-04.b.2": [
+      "rust",
+      "review"
+    ],
+    "FND-04.c.1": [
+      "model",
+      "deliverables",
+      "review"
+    ],
+    "FND-04.c.2": [
+      "rust",
+      "review"
+    ],
+    "FND-04.d.1": [
+      "rust",
+      "review"
+    ],
+    "FND-04.d.2": [
+      "rust",
+      "review"
+    ],
+    "FND-04.d.3": [
+      "rust",
+      "receipt-controls",
+      "deliverables"
+    ],
+    "FND-04.e.1": [
+      "model",
+      "deliverables"
+    ],
+    "FND-04.e.2": [
+      "contracts",
+      "rust",
+      "scala",
+      "reproducibility",
+      "receipt-controls",
+      "review",
+      "closure"
+    ],
+    "FND-04.e.3": [
+      "closure"
+    ],
+    "FND-04.f.1": [
+      "rust",
+      "review"
+    ],
+    "FND-04.f.2": [
+      "deliverables",
+      "review"
+    ],
+    "FND-04.g.1": [
+      "review",
+      "deliverables"
+    ],
+    "FND-04.g.2": [
+      "rust",
+      "scale",
+      "review"
+    ]
+  },
+  "observations": {
+    "closure": {
+      "artifacts": [
+        "docs/completion/FND-04.md",
+        "docs/completion/evidence/fnd-04/index.json",
+        "docs/implementation/fnd-04-closure-local-review.md"
+      ],
+      "kind": "artifact",
+      "profile": "structural-selection/1",
+      "result": "inspected",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      }
+    },
+    "contracts": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/contracts.log",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "./nf check contracts",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "deliverables": {
+      "artifacts": [
+        "docs/completion/FND-04.md",
+        "docs/completion/evidence/fnd-04/index.json"
+      ],
+      "kind": "artifact",
+      "profile": "structural-selection/1",
+      "result": "inspected",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      }
+    },
+    "model": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/model-build.log",
+        "docs/completion/evidence/fnd-04/model-1.stdout.txt",
+        "docs/completion/evidence/fnd-04/model-2.stdout.txt",
+        "docs/completion/evidence/fnd-04/model-1.time.txt",
+        "docs/completion/evidence/fnd-04/model-2.time.txt",
+        "docs/completion/evidence/fnd-04/binaries.sha256.txt",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "cargo build --locked --offline -p nf-arch-ir --example model; prebuilt target/debug/examples/model twice with Bash time; cmp both stdout captures",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "receipt-controls": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/receipt-controls.log",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "PYTHONPATH=tests/roadmap python3 -m unittest -v test_evidence.EvidenceTests.test_hand_authored_negative_evidence test_evidence.EvidenceTests.test_explicit_expected_candidate_rejects_stale_receipt test_evidence.EvidenceTests.test_authoritative_profile_required test_evidence.EvidenceTests.test_stale_raw_execution_identity_cannot_be_relabelled test_evidence.EvidenceTests.test_dirty_execution_cannot_qualify",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "reproducibility": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/reproduce-rust.log",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "./nf reproduce rust",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "review": {
+      "artifacts": [
+        "docs/implementation/fnd-04-independent-review.md",
+        "docs/completion/evidence/fnd-04/index.json",
+        "docs/completion/evidence/fnd-04/development-review/Cargo.lock.txt",
+        "docs/completion/evidence/fnd-04/development-review/Cargo.toml.txt",
+        "docs/completion/evidence/fnd-04/development-review/capture.sha256.txt",
+        "docs/completion/evidence/fnd-04/development-review/docs-check.log",
+        "docs/completion/evidence/fnd-04/development-review/final-run.sh.txt",
+        "docs/completion/evidence/fnd-04/development-review/final-tests.log",
+        "docs/completion/evidence/fnd-04/development-review/fmt-tools.log",
+        "docs/completion/evidence/fnd-04/development-review/group_order.log",
+        "docs/completion/evidence/fnd-04/development-review/metadata-check.log",
+        "docs/completion/evidence/fnd-04/development-review/metadata.json",
+        "docs/completion/evidence/fnd-04/development-review/mode_order.log",
+        "docs/completion/evidence/fnd-04/development-review/model-check.log",
+        "docs/completion/evidence/fnd-04/development-review/model.stdout.txt",
+        "docs/completion/evidence/fnd-04/development-review/pre-top-key-repair-source.sha256.txt",
+        "docs/completion/evidence/fnd-04/development-review/probe-build.log",
+        "docs/completion/evidence/fnd-04/development-review/probe-check.log",
+        "docs/completion/evidence/fnd-04/development-review/probe-measurements.json",
+        "docs/completion/evidence/fnd-04/development-review/probe-output.log",
+        "docs/completion/evidence/fnd-04/development-review/run-probes.py.txt",
+        "docs/completion/evidence/fnd-04/development-review/source-after-check.log",
+        "docs/completion/evidence/fnd-04/development-review/source-before.sha256.txt",
+        "docs/completion/evidence/fnd-04/development-review/src/bin/group_order.rs.txt",
+        "docs/completion/evidence/fnd-04/development-review/src/bin/mode_order.rs.txt",
+        "docs/completion/evidence/fnd-04/development-review/src/bin/top_connection_key.rs.txt",
+        "docs/completion/evidence/fnd-04/development-review/src/main.rs.txt",
+        "docs/completion/evidence/fnd-04/development-review/top-connection-after.log",
+        "docs/completion/evidence/fnd-04/development-review/top-connection-before.log"
+      ],
+      "kind": "review",
+      "profile": "structural-selection/1",
+      "result": "accepted",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      }
+    },
+    "rust": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/rust.log",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "./nf check rust",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "scala": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/scala.log",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "./nf check scala",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    },
+    "scale": {
+      "artifacts": [
+        "docs/completion/evidence/fnd-04/test-build.jsonl.txt",
+        "docs/completion/evidence/fnd-04/test-build.stderr.txt",
+        "docs/completion/evidence/fnd-04/scale-1.log",
+        "docs/completion/evidence/fnd-04/scale-2.log",
+        "docs/completion/evidence/fnd-04/scale-1.stable.txt",
+        "docs/completion/evidence/fnd-04/scale-2.stable.txt",
+        "docs/completion/evidence/fnd-04/scale-1.time.txt",
+        "docs/completion/evidence/fnd-04/scale-2.time.txt",
+        "docs/completion/evidence/fnd-04/binaries.sha256.txt",
+        "docs/completion/evidence/fnd-04/source.json",
+        "docs/completion/evidence/fnd-04/source-after.json",
+        "docs/completion/evidence/fnd-04/qualify-fnd04.sh.txt"
+      ],
+      "command": "cargo test --locked --offline -p nf-arch-ir --test independent_contract --no-run --message-format=json; execute the resulting prebuilt binary twice with bounded_count_depth_partition_observations_preserve_compact_declarations --exact --nocapture; compare projections excluding elapsed_ns (full exact command in retained runner)",
+      "kind": "execution",
+      "profile": "structural-selection/1",
+      "result": "passed",
+      "source": {
+        "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+        "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+      },
+      "source_record": "docs/completion/evidence/fnd-04/source.json"
+    }
+  },
+  "profile": "structural-selection/1",
+  "report": "docs/completion/FND-04.md",
+  "review": {
+    "artifact": "docs/implementation/fnd-04-independent-review.md",
+    "kind": "agent"
+  },
+  "source": {
+    "commit": "bc6e3264d5ee8489b8a606d9e7de568ad0f99a7e",
+    "tree": "44474e04e37de6cfa293e5a580685edc1e3c1c16"
+  }
+}

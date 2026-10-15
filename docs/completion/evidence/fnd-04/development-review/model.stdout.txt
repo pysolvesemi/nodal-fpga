@@ -1,0 +1,15 @@
+nodal-fpga/arch-ir/1
+profile=structural-selection
+templates=1 instances=3 connections=2
+instance=t0 template=tile partition=0 mode=normal setting=0
+instance=t1 template=tile partition=0 mode=alternate setting=1
+instance=t2 template=tile partition=0 mode=normal setting=2
+link=edge0 source=t0/cell.O destination=t1/cell.I
+link=edge1 source=t1/cell.O destination=t2/cell.I
+selection=valid
+rejected=value
+stage=selection namespace=example scope=t1 field=setting
+primary=selection-input:61..62 actual=3
+related=architecture-input:40..41
+message=feature value is outside its width or legal domain
+This increment does not affect generated Verilog.

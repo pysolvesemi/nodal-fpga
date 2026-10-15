@@ -1,0 +1,26 @@
+use nf_arch_ir::*;
+use nf_types::{Name, Key, Provenance, PartitionId};
+fn n(s:&str)->Name { Name::new(s).unwrap() }
+fn p(s:&str)->Provenance { Provenance::new(None,Some(s.into())).unwrap() }
+fn rr()->ResourceRef { ResourceRef { path:vec![], name:n("r"),kind:ResourceKind::Bel,provenance:p("ref")} }
+fn base()->Architecture {
+ let mut a=Architecture::new(n("a"));
+ a.partitions.push(PartitionId::new(0));
+ a.resource_types.push(ResourceType{key:Key::new("a",vec![],"R").unwrap(),kind:ResourceKind::Bel,pins:vec![],modes:vec![n("x"),n("y")],provenance:p("type")});
+ let mut t=Template::new(Key::new("a",vec![],"TTT").unwrap());
+ t.resources.push(Resource{name:n("r"),kind:ResourceKind::Bel,resource_type:a.resource_types[0].key.clone(),alias_of:None,domains:vec![],provenance:p("resource")});
+ a.roots.push(Instance{name:n("i"),template:t.key.clone(),partition:Some(PartitionId::new(0)),domains:vec![],provenance:p("instance")});
+ a.templates.push(t);a
+}
+fn main() {
+ let mut a=base();
+ a.templates[0].mode_groups.push(ModeGroup{name:n("g"),resources:vec![rr()],modes:vec![n("x"),n("z1"),n("z2")],provenance:p("group")});
+ let mut b=a.clone();b.templates[0].mode_groups[0].modes.reverse();
+ for work in 1..2000 {
+ let limits=ValidationLimits{max_work:work,max_diagnostics:1,..ValidationLimits::default()};
+ let x=validate_architecture(&a,&limits).map(|_|());
+ let y=validate_architecture(&b,&limits).map(|_|());
+ if x!=y { println!("work={work} first={x:?} reversed={y:?}"); return; }
+ }
+ println!("all invariant");
+}

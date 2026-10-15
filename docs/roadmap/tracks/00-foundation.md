@@ -174,31 +174,32 @@ must not claim later emission, loader, device inspection or physical validation.
     - [x] FND-03.e.2 Publish reproducible source/artifact and diagnostic evidence, qualify affected checks, and complete review and verified integration under AGENTS.md. <!-- requires: execution -->
     - [x] FND-03.e.3 Check FND-03 only after every required descendant and FND-02 are complete; document enforcement limits and avoid claiming semantic validation of hardware.
 
-- [ ] FND-04 — Implement foundational types and semantic validation
+- [x] FND-04 — Implement foundational types and semantic validation
   Depends on: FND-03.
-  - [ ] FND-04.a Implement typed IDs, integer/unit bounds, structured diagnostics and source/provenance references in `core/rust/types`.
-    - [ ] FND-04.a.1 Implement distinct resource IDs, checked integer/unit bounds and source/provenance references in the minimal core types layer.
-    - [ ] FND-04.a.2 Expose structured source-aware diagnostics and test their use through public core APIs without concrete-device or adapter imports.
-  - [ ] FND-04.b Define schema-level identities separately from package-local dense IDs; use checked conversions and extensible partition addressing.
-    - [ ] FND-04.b.1 Keep portable schema identities separate from package-local dense IDs, including explicit identity/correspondence rules.
-    - [ ] FND-04.b.2 Implement checked local/cross-partition and length/offset conversions; exercise near-limit values without giant allocations or unchecked layout assumptions.
-  - [ ] FND-04.c Add an initial `arch-ir` model with resource types, interfaces, references, legal modes and configuration-feature declarations.
-    - [ ] FND-04.c.1 Implement the initial ArchIR resources, interfaces, references, legal modes and logical configuration-feature declarations needed by the Foundation fixtures.
-    - [ ] FND-04.c.2 Verify ownership, type/reference legality and declared sharing/mode constraints while retaining hierarchy and source provenance. <!-- requires: execution -->
-  - [ ] FND-04.d Property-test invalid references, overflow, illegal modes, undeclared shared-bit conflicts and deterministic diagnostics on tiny fixtures.
-    - [ ] FND-04.d.1 Property-test valid/boundary tiny models, invalid references, overflow and illegal modes against independently stated expectations. <!-- requires: execution -->
-    - [ ] FND-04.d.2 Reject undeclared shared-bit conflicts and malformed ownership with stable diagnostics; preserve legal explicitly declared sharing. <!-- requires: execution -->
-    - [ ] FND-04.d.3 Exercise selected FND-02 semantic and FND-03 evidence/diagnostic interactions, recording selection rationale rather than an all-features Cartesian product. <!-- requires: execution -->
-  - [ ] FND-04.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
-    - [ ] FND-04.f.1 Cross-check tiny model legality and conversions with hand-calculated expectations independent of the implementation validator. <!-- requires: execution -->
-    - [ ] FND-04.f.2 Record the structural/type-validation acceptance profile and later DB/RTL consumers; no RTL simulator, production DeviceDB or fabric-equivalence result is implied.
-  - [ ] FND-04.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
-    - [ ] FND-04.g.1 Review unnecessary model duplication, hierarchy expansion and lost provenance; any normalization added must preserve declared resource/configuration meaning.
-    - [ ] FND-04.g.2 Vary resource counts, reference depth and partition boundaries in bounded fixtures; retain deterministic diagnostics and measured size/time observations. <!-- requires: execution -->
-  - [ ] FND-04.e Publish the tested core contracts and final-head evidence; no unchecked pointer/file-layout assumptions may enter public APIs.
-    - [ ] FND-04.e.1 Publish core API/contracts, supported/rejected cases, reproduction commands and exact source/artifact identities; show actual model/diagnostic examples.
-    - [ ] FND-04.e.2 Complete affected correctness/regression checks, targeted/full CI, review and verified integration under AGENTS.md; audit pointer and file-layout assumptions at public boundaries. <!-- requires: execution -->
-    - [ ] FND-04.e.3 Check FND-04 only after every required descendant and FND-03 are complete; retain explicit limits on hardware-generation and device-compiler claims.
+  Evidence: [Accepted core contracts and local qualification](../../completion/FND-04.md), profile `structural-selection/1`; final combined Foundation CI remains at FND-08.
+  - [x] FND-04.a Implement typed IDs, integer/unit bounds, structured diagnostics and source/provenance references in `core/rust/types`.
+    - [x] FND-04.a.1 Implement distinct resource IDs, checked integer/unit bounds and source/provenance references in the minimal core types layer.
+    - [x] FND-04.a.2 Expose structured source-aware diagnostics and test their use through public core APIs without concrete-device or adapter imports.
+  - [x] FND-04.b Define schema-level identities separately from package-local dense IDs; use checked conversions and extensible partition addressing.
+    - [x] FND-04.b.1 Keep portable schema identities separate from package-local dense IDs, including explicit identity/correspondence rules.
+    - [x] FND-04.b.2 Implement checked local/cross-partition and length/offset conversions; exercise near-limit values without giant allocations or unchecked layout assumptions.
+  - [x] FND-04.c Add an initial `arch-ir` model with resource types, interfaces, references, legal modes and configuration-feature declarations.
+    - [x] FND-04.c.1 Implement the initial ArchIR resources, interfaces, references, legal modes and logical configuration-feature declarations needed by the Foundation fixtures.
+    - [x] FND-04.c.2 Verify ownership, type/reference legality and declared sharing/mode constraints while retaining hierarchy and source provenance. <!-- requires: execution -->
+  - [x] FND-04.d Property-test invalid references, overflow, illegal modes, undeclared shared-bit conflicts and deterministic diagnostics on tiny fixtures.
+    - [x] FND-04.d.1 Property-test valid/boundary tiny models, invalid references, overflow and illegal modes against independently stated expectations. <!-- requires: execution -->
+    - [x] FND-04.d.2 Reject undeclared shared-bit conflicts and malformed ownership with stable diagnostics; preserve legal explicitly declared sharing. <!-- requires: execution -->
+    - [x] FND-04.d.3 Exercise selected FND-02 semantic and FND-03 evidence/diagnostic interactions, recording selection rationale rather than an all-features Cartesian product. <!-- requires: execution -->
+  - [x] FND-04.f Independent validation and applicability. Keep independent review/execution results and current-profile limits separate from implementation claims.
+    - [x] FND-04.f.1 Cross-check tiny model legality and conversions with hand-calculated expectations independent of the implementation validator. <!-- requires: execution -->
+    - [x] FND-04.f.2 Record the structural/type-validation acceptance profile and later DB/RTL consumers; no RTL simulator, production DeviceDB or fabric-equivalence result is implied.
+  - [x] FND-04.g Optimization review, scale, determinism and compatibility. Apply proportionate feature-specific checks without importing later production or PERF obligations.
+    - [x] FND-04.g.1 Review unnecessary model duplication, hierarchy expansion and lost provenance; any normalization added must preserve declared resource/configuration meaning.
+    - [x] FND-04.g.2 Vary resource counts, reference depth and partition boundaries in bounded fixtures; retain deterministic diagnostics and measured size/time observations. <!-- requires: execution -->
+  - [x] FND-04.e Publish the tested core contracts and final-head evidence; no unchecked pointer/file-layout assumptions may enter public APIs.
+    - [x] FND-04.e.1 Publish core API/contracts, supported/rejected cases, reproduction commands and exact source/artifact identities; show actual model/diagnostic examples.
+    - [x] FND-04.e.2 Complete affected correctness/regression checks, targeted/full CI, review and verified integration under AGENTS.md; audit pointer and file-layout assumptions at public boundaries. <!-- requires: execution -->
+    - [x] FND-04.e.3 Check FND-04 only after every required descendant and FND-03 are complete; retain explicit limits on hardware-generation and device-compiler claims.
 
 - [ ] FND-05 — Establish cross-language serialization and compatibility
   Depends on: FND-04.

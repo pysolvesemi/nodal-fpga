@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd /workspace/scratch/b1740b7ae4cf/nodal-fpga
+source .cache/toolchains/env.sh
+export TZ=UTC
+export NF_EXPECT_SHA="${1:?exact published candidate required}"
+test "$(git rev-parse HEAD)" = "$NF_EXPECT_SHA"
+test -z "$(git status --porcelain)"
+out=artifacts/fnd04-qualified
+mkdir -p "$out"
+./nf identity > "$out/source.json"
+./nf check contracts > "$out/contracts.log" 2>&1
+./nf check rust > "$out/rust.log" 2>&1
+./nf check scala > "$out/scala.log" 2>&1
+./nf reproduce rust > "$out/reproduce-rust.log" 2>&1
+PYTHONPATH=tests/roadmap python3 -m unittest -v \
+ test_evidence.EvidenceTests.test_hand_authored_negative_evidence \
+ test_evidence.EvidenceTests.test_explicit_expected_candidate_rejects_stale_receipt \
+ test_evidence.EvidenceTests.test_authoritative_profile_required \
+ test_evidence.EvidenceTests.test_stale_raw_execution_identity_cannot_be_relabelled \
+ test_evidence.EvidenceTests.test_dirty_execution_cannot_qualify > "$out/receipt-controls.log" 2>&1
+cargo build --locked --offline -p nf-arch-ir --example model > "$out/model-build.log" 2>&1
+cargo test --locked --offline -p nf-arch-ir --test independent_contract --no-run --message-format=json > "$out/test-build.jsonl" 2> "$out/test-build.stderr"
+binary=$(python3 - "$out/test-build.jsonl" <<'PY'
+import json,sys
+records=[json.loads(line) for line in open(sys.argv[1])]
+paths=[r['executable'] for r in records if r.get('reason')=='compiler-artifact' and r.get('executable') and r['target']['name']=='independent_contract']
+assert len(paths)==1,paths
+print(paths[0])
+PY
+)
+TIMEFORMAT='wall_seconds=%R user_seconds=%U sys_seconds=%S'
+for i in 1 2; do
+ { time target/debug/examples/model > "$out/model-$i.stdout"; } 2> "$out/model-$i.time"
+ { time "$binary" bounded_count_depth_partition_observations_preserve_compact_declarations --exact --nocapture > "$out/scale-$i.log"; } 2> "$out/scale-$i.time"
+ sed -n '/^FND04-SCALE /p' "$out/scale-$i.log" | sed -E 's/ elapsed_ns=[0-9]+//g' > "$out/scale-$i.stable"
+done
+cmp "$out/model-1.stdout" "$out/model-2.stdout"
+cmp "$out/scale-1.stable" "$out/scale-2.stable"
+sha256sum target/debug/examples/model "$binary" > "$out/binaries.sha256"
+git diff --exit-code
+test -z "$(git status --porcelain)"
+./nf identity > "$out/source-after.json"
+cmp "$out/source.json" "$out/source-after.json"
+printf 'FND04 exact-head local qualification passed: %s\n' "$NF_EXPECT_SHA"
