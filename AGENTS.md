@@ -376,6 +376,13 @@ mapped customer RTL. Identify the backend, source/output paths and generation
 commands. Never present illustrative pseudocode or a test-status summary as the
 generated-output demonstration.
 
+New completion records may use the explicitly authorized
+[concise summary mode](docs/development/roadmap-validator.md#concise-summary-mode-version-2).
+The independent reviewer inspects actual local observations; required raw logs
+may stay local, with no claim of repository retention or public access. Preserve
+required generated artifacts, actual tests, source/merge anchoring and review
+gates. Historical receipts and CI cadence are unchanged.
+
 If Scala is not involved, identify the actual frontend. A schema-only increment
 may show its actual IR/database diff. When an increment does not affect Verilog,
 retain the project's required statement:

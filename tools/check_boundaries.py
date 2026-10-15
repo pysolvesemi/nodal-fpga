@@ -61,11 +61,12 @@ def _policy(root: Path) -> tuple[dict, set]:
     _plain_path(path, root, "NF-OWN-POLICY")
     try:
         policy = json.loads(path.read_text(), object_pairs_hook=_unique_object)
-        if (set(policy) != {"schema", "core_packages", "core_dependencies", "scope"}
-                or policy["schema"] != 2 or not isinstance(policy["scope"], str)
+        if (set(policy) != ({"schema", "core_packages", "core_dependencies", "scope"}
+                                   | ({"registry_dependencies"} if policy.get("schema") == 3 else set()))
+                or policy["schema"] not in {2, 3} or not isinstance(policy["scope"], str)
                 or not isinstance(policy["core_packages"], list)
                 or not isinstance(policy["core_dependencies"], list)):
-            reject("NF-OWN-POLICY", "expected ownership registry schema 2")
+            reject("NF-OWN-POLICY", "expected ownership registry schema 2 or 3")
         packages = {}
         paths = set()
         for record in policy["core_packages"]:
@@ -98,6 +99,22 @@ def _policy(root: Path) -> tuple[dict, set]:
                 reject("NF-OWN-POLICY", "duplicate or mismatched dependency path")
             edges.add(edge)
         _acyclic(packages, edges)
+        if policy["schema"] == 3:
+            registry = policy["registry_dependencies"]
+            seen = set()
+            if not isinstance(registry, list):
+                reject("NF-OWN-POLICY", "registry dependencies must be a list")
+            for edge in registry:
+                if (set(edge) != {"from", "to", "kind", "target", "alias", "declaration"}
+                        or edge["from"] != "nf-exchange" or edge["from"] not in packages
+                        or edge["to"] not in {"serde", "serde_json", "serde_path_to_error", "sha2"}
+                        or edge["kind"] != "normal" or edge["target"] is not None
+                        or edge["alias"] != edge["to"] or edge["to"] in seen
+                        or not isinstance(edge["declaration"], dict)
+                        or not set(edge["declaration"]) <= {"version", "default-features", "features"}
+                        or not re.fullmatch(r"=\d+\.\d+\.\d+", edge["declaration"].get("version", ""))):
+                    reject("NF-OWN-POLICY", "invalid registry dependency registration")
+                seen.add(edge["to"])
         return packages, edges
     except (KeyError, TypeError, json.JSONDecodeError) as exc:
         reject("NF-OWN-POLICY", f"malformed ownership registry: {exc}")
@@ -190,6 +207,9 @@ def _review(root: Path) -> tuple[dict, set]:
             observed.append(str(Path(directory).relative_to(root)))
     if sorted(observed) != sorted(registered):
         reject("NF-OWN-UNREGISTERED", "core manifests differ from reviewed package membership")
+    policy = json.loads((root / "tools/ownership.json").read_text())
+    direct = policy.get("registry_dependencies", [])
+    registry_actual = []
     actual = set()
     for name, registration in packages.items():
         member = registration["path"]
@@ -219,6 +239,13 @@ def _review(root: Path) -> tuple[dict, set]:
                 if table_name.replace("-", "_") != table_name and table_name.replace("-", "_") in table:
                     reject("NF-OWN-DEPENDENCY", "unreviewed legacy dependency section")
                 for alias, dep in table.get(table_name, {}).items():
+                    registry_edge = {"from": name, "to": alias, "kind": kind, "target": target,
+                                     "alias": alias, "declaration": {"version": dep} if isinstance(dep, str) else dep}
+                    if registry_edge in direct:
+                        if registry_edge in registry_actual:
+                            reject("NF-OWN-DEPENDENCY", "duplicate direct registry edge")
+                        registry_actual.append(registry_edge)
+                        continue
                     if not isinstance(dep, dict) or set(dep) != {"path"} or not _relative(dep["path"]):
                         reject("NF-OWN-DEPENDENCY", f"{member}: unreviewed {table_name} {alias}")
                     destination = (directory / dep["path"]).resolve()
@@ -261,6 +288,11 @@ def _review(root: Path) -> tuple[dict, set]:
     if actual != expected:
         reject("NF-OWN-DEPENDENCY", "required reviewed dependency edge is missing")
     _acyclic(packages, actual)
+    if registry_actual != direct:
+        reject("NF-OWN-DEPENDENCY", "required registry dependency declaration is missing or reordered")
+    if policy["schema"] == 3:
+        from dependency_inventory import check_lock
+        check_lock(root, packages, actual, direct)
     return packages, actual
 
 
@@ -275,7 +307,8 @@ def _checked_review(root: Path) -> tuple[dict, set]:
 
 def check(root: Path) -> None:
     packages, edges = _checked_review(root.resolve())
-    print(f"ownership_members={len(packages)} core_internal_dependencies={len(edges)} core_external_dependencies=0")
+    policy = json.loads((root / "tools/ownership.json").read_text())
+    print(f"ownership_members={len(packages)} core_internal_dependencies={len(edges)} core_external_dependencies={len(policy.get('registry_dependencies', []))}")
 
 
 def check_metadata(root: Path, data: dict) -> None:
@@ -289,6 +322,10 @@ def check_metadata(root: Path, data: dict) -> None:
 
     try:
         require(data["version"] == 1 and data["workspace_root"] == str(root), "metadata workspace identity")
+        policy = json.loads((root / "tools/ownership.json").read_text())
+        if policy["schema"] == 3:
+            from dependency_inventory import check_metadata as registry_metadata, load
+            data = registry_metadata(root, data, packages, policy["registry_dependencies"], load(root))
         items = data["packages"]
         require(len(items) == len(packages), "unreviewed or missing resolved package")
         ids = {}
@@ -360,7 +397,7 @@ def check_metadata(root: Path, data: dict) -> None:
         if isinstance(exc, BoundaryError):
             raise
         reject("NF-CORE-GRAPH", f"malformed Cargo metadata: {exc}")
-    print(f"resolved_core_packages={len(packages)} resolved_core_edges={len(edges)} core_external_dependencies=0")
+    print(f"resolved_core_packages={len(packages)} resolved_core_edges={len(edges)} local_subgraph_only=true")
 
 
 if __name__ == "__main__":

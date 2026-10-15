@@ -1,0 +1,123 @@
+{
+  "format_version": 2,
+  "increment": "FND-01",
+  "source": {
+    "commit": "@COMMIT@",
+    "tree": "@TREE@"
+  },
+  "profile": "fixture/1",
+  "report": "docs/completion/FND-01.md",
+  "artifacts": {
+    "docs/completion/FND-01.md": "@REPORT_HASH@"
+  },
+  "observations": {
+    "run": {
+      "source": {
+        "commit": "@COMMIT@",
+        "tree": "@TREE@"
+      },
+      "profile": "fixture/1",
+      "kind": "execution",
+      "result": "passed",
+      "observer": "fixture-executor",
+      "summary": "The command checked the exact committed witness contents successfully.",
+      "limitations": [
+        "One bounded text check; no project or hardware qualification."
+      ],
+      "command": "python3 -c \"from pathlib import Path; assert Path('witness.txt').read_text() == 'fixture-witness\\n'\"",
+      "executed": true,
+      "dirty": false,
+      "exit_code": 0,
+      "checks": {
+        "required": 1,
+        "executed": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "review": {
+      "source": {
+        "commit": "@COMMIT@",
+        "tree": "@TREE@"
+      },
+      "profile": "fixture/1",
+      "kind": "review",
+      "result": "accepted",
+      "observer": "fixture-independent-reviewer",
+      "summary": "Reviewed the literal witness expectation independently of the checker.",
+      "limitations": "Test fixture review only; not project acceptance."
+    }
+  },
+  "items": {
+    "FND-01.a": [
+      "run"
+    ]
+  },
+  "context": {
+    "tools": {
+      "shell": "test fixture only"
+    },
+    "device": "not applicable: text validator fixture",
+    "configuration": "not applicable: text validator fixture",
+    "schemas": "summary evidence format 2",
+    "seeds": "not applicable: deterministic fixture",
+    "assumptions": "independently hand-authored fixture expectation",
+    "reference_corpus": "tests/roadmap/evidence_fixtures",
+    "correspondence": "not applicable: no hardware",
+    "mutations": "hand-authored rejection cases",
+    "loading_mode": "not applicable: no hardware",
+    "coverage": "one checked execution obligation",
+    "limitations": [
+      "This is a validator test fixture, not project acceptance evidence."
+    ],
+    "examples": "This increment does not affect generated Verilog."
+  },
+  "review": {
+    "kind": "agent",
+    "identity": "fixture-independent-reviewer",
+    "authors": [
+      "fixture-author"
+    ],
+    "source": {
+      "commit": "@COMMIT@",
+      "tree": "@TREE@"
+    },
+    "result": "accepted",
+    "observations": [
+      "run",
+      "review"
+    ],
+    "dimensions": {
+      "architecture": {
+        "result": "accepted",
+        "summary": "The bounded text check uses no hardware or production dependencies."
+      },
+      "independence": {
+        "result": "accepted",
+        "summary": "The literal expected witness is hand-authored, not derived from the checker."
+      },
+      "quality": {
+        "result": "accepted",
+        "summary": "The fixture has one explicit bounded check and no scale claim."
+      }
+    },
+    "limitations": [
+      "Validator fixture only, with no real project acceptance claim."
+    ]
+  },
+  "integration": {
+    "state": "pending"
+  },
+  "ci": {
+    "qualification": "not-run",
+    "reason": "Local validator fixture only",
+    "runs": [],
+    "post_merge": {
+      "state": "pending",
+      "reason": "No integration yet",
+      "runs": []
+    }
+  },
+  "evidence_mode": "summary"
+}

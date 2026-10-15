@@ -1,0 +1,2 @@
+nodal-fpga.package.build.v1
+{"sources":["west","local","east"],"value":"0"}

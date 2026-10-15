@@ -74,7 +74,7 @@ All reachable PIPs being exercised once is useful but does not prove all combina
 | Tier | Required scope | Evidence |
 | --- | --- | --- |
 | Documentation change | Links, IDs, dependency graph, nested completion and evidence consistency | Documentation validation; no claim of hardware tests |
-| Code PR | Affected Rust/Scala tests, schema conformance, negative tests, applicable primitive formal and tiny end-to-end tests | Exact head/tree, commands, logs and artifacts |
+| Code PR | Affected Rust/Scala tests, schema conformance, negative tests, applicable primitive formal and tiny end-to-end tests | Exact head/tree, commands, observed results and required artifacts; retained receipts or explicit reviewed summary mode |
 | Scheduled regression | Seeded random architectures/designs, differential baselines, fuzzing, scale and available board tests | Corpus/tool hashes, failures, minimized reproducers and coverage |
 | Device release | All supported profiles, tool/version matrix, complete logical obligations and applicable emulation | Immutable verification dossier with limitations |
 | Tapeout readiness | Process-specific DRC/LVS/PEX/STA, power/IR/EM, CDC/RDC, DFT/test, macro and package integration | Qualified signoff evidence and independent review |
@@ -91,3 +91,11 @@ Reuse immutable corpus identities across original RTL, fabric RTL, gate netlists
 ## Acceptance artifacts
 
 Each completion report records source and generated-artifact hashes, architecture/library/technology identity, simulator/formal/CAD versions, solver/depth/assumptions, seeds and worker policy, exact commands, positive and negative results, coverage ledger and limits. Store large artifacts by content hash, not as unverifiable statements in a PR body. Archive enough information to reproduce historical device releases even after core/library refactoring. Include the applicable assumption-ledger revision, reference specification and correspondence hashes, both generated fabric artifacts, configuration-loading method and evidence of replay after relevant baseline changes.
+
+For new completion records, [explicit summary mode](development/roadmap-validator.md#concise-summary-mode-version-2)
+allows concise, independently reviewed results without publishing raw logs or
+private machine details. Review actual local observations and retain required
+raw records locally; publish no claim that those records are in the repository.
+This changes the reporting/storage form, not execution, source identity, review,
+required generated deliverables, physical measurement provenance or integration
+gates. Historical retained-evidence receipts stay unchanged.

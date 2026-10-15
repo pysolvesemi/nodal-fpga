@@ -19,7 +19,7 @@ The same rule applies recursively. Do not use `[~]`, percentages, or prose sayin
 
 ## Closing an increment
 
-The parent may change to `[x]` only when all required descendants are `[x]`, every declared dependency is complete, applicable final-head checks pass, and a completion report exists. The report must identify the exact implementation commit/tree, device-package hash and schema versions, tool versions, seeds, commands, results, test coverage, unresolved limitations, and evidence artifact paths.
+The parent may change to `[x]` only when all required descendants are `[x]`, every declared dependency is complete, applicable final-head checks pass, and a completion report exists. The report must identify the exact tested implementation commit/tree, device-package hash and schema versions, tool versions, seeds, commands, results, test coverage, unresolved limitations, review and actual integration identities. Record applicable artifact identities and the published evidence location using either supported receipt mode below.
 
 An implementation sub-item does not imply its later verification sub-item passed. Conversely, a passing test does not establish that undocumented requirements were implemented. A timeout, skipped job, unsupported model, stale green run or missing artifact is not a pass.
 
@@ -27,11 +27,38 @@ The final child of every increment in this plan is a closure gate. Until that ch
 
 ## Evidence locations
 
-Use `docs/completion/<increment-id>.md` for small reports and a content-addressed external artifact store for large logs, generated RTL, databases and waveforms. The report links immutable artifact hashes and CI run IDs. Do not commit proprietary PDK/model content or secret configuration keys.
+Use `docs/completion/<increment-id>.md` for concise reports. Historical version-1
+receipts retain their original hashed artifacts and raw execution-source records;
+do not rewrite or weaken them. New records may explicitly select version 2,
+`evidence_mode: summary`, under the [validator contract](../development/roadmap-validator.md#concise-summary-mode-version-2).
+This publishes a checked-obligation summary with actual clean-source commands,
+complete passing results, coverage, limitations and independent review, without
+uploading raw logs, private workspace paths or host identifiers. The report is
+hashed and names the exact tested commit/tree and actual source merge.
+
+Actual tests must run and the independent reviewer must inspect their local
+observations before accepting a summary. Keep required raw observations locally;
+do not claim that they are retained in the repository or remotely accessible.
+An unchecked claim, partial suite, skipped required case or stale/dirty run is
+not completion evidence. Neither a summary nor an arbitrary log authenticates
+itself. Applicable generated RTL, portable fixtures and other required
+deliverables remain real artifacts with reproducible identities; summary mode
+does not replace them with prose or remove silicon/raw-measurement requirements.
+
+When retained external artifacts are needed, use a content-addressed store and
+link immutable hashes and actual CI run IDs. Summary mode requires no new raw-log
+upload. Do not commit proprietary PDK/model content, secret configuration keys
+or private machine details. Existing CI cadence and required checks are unchanged.
 
 For a code-bearing increment, include executable Scala source and its actual generated fabric Verilog when applicable, with generation commands and hashes. Do not reuse illustrative examples as evidence. If Scala is not involved, report the actual frontend used. For an increment with no RTL effect, write: `This increment does not affect generated Verilog.`
 
 A final documentation-only commit may refer to an immediately preceding tested implementation source anchor only if the report demonstrates the implementation tree is unchanged and all applicable documentation checks also pass. Otherwise rerun affected checks at the new head. Never claim all checks passed solely because a prior implementation commit was green.
+
+A summary receipt binds the tested implementation source and its actual merge,
+not its own future documentation commit. After publication, record final
+documentation candidate/check identities and the existing narrow
+`--check-anchor` result in the PR or integration summary, then verify the actual
+closure merge. Receipt validation alone does not qualify that final head.
 
 ## Blockers, changes and regressions
 

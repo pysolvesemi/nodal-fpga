@@ -1,12 +1,108 @@
 {
-  "schema": 2,
+  "schema": 3,
   "core_packages": [
-    {"name": "nf-bootstrap", "path": "core/rust/bootstrap", "version": "0.1.0"},
-    {"name": "nf-types", "path": "core/rust/types", "version": "0.1.0"},
-    {"name": "nf-arch-ir", "path": "core/rust/arch-ir", "version": "0.1.0"}
+    {
+      "name": "nf-bootstrap",
+      "path": "core/rust/bootstrap",
+      "version": "0.1.0"
+    },
+    {
+      "name": "nf-types",
+      "path": "core/rust/types",
+      "version": "0.1.0"
+    },
+    {
+      "name": "nf-arch-ir",
+      "path": "core/rust/arch-ir",
+      "version": "0.1.0"
+    },
+    {
+      "name": "nf-exchange",
+      "path": "core/rust/exchange",
+      "version": "0.1.0"
+    }
   ],
   "core_dependencies": [
-    {"from": "nf-arch-ir", "to": "nf-types", "kind": "normal", "target": null, "alias": "nf-types", "path": "../types"}
+    {
+      "from": "nf-arch-ir",
+      "to": "nf-types",
+      "kind": "normal",
+      "target": null,
+      "alias": "nf-types",
+      "path": "../types"
+    },
+    {
+      "from": "nf-exchange",
+      "to": "nf-types",
+      "kind": "normal",
+      "target": null,
+      "alias": "nf-types",
+      "path": "../types"
+    },
+    {
+      "from": "nf-exchange",
+      "to": "nf-arch-ir",
+      "kind": "normal",
+      "target": null,
+      "alias": "nf-arch-ir",
+      "path": "../arch-ir"
+    }
   ],
-  "scope": "FND-04 reviewed Rust core DAG; no registry dependencies or native/SDK hooks; extend only with explicit ownership review"
+  "scope": "FND-05 reviewed core DAG and exact registry graph; nf-types and nf-arch-ir retain no registry edges; registry build scripts/proc macros are separately reviewed, not covered by project unsafe lints",
+  "registry_dependencies": [
+    {
+      "from": "nf-exchange",
+      "to": "serde",
+      "kind": "normal",
+      "target": null,
+      "alias": "serde",
+      "declaration": {
+        "version": "=1.0.229",
+        "default-features": false,
+        "features": [
+          "std",
+          "derive"
+        ]
+      }
+    },
+    {
+      "from": "nf-exchange",
+      "to": "serde_json",
+      "kind": "normal",
+      "target": null,
+      "alias": "serde_json",
+      "declaration": {
+        "version": "=1.0.154",
+        "default-features": false,
+        "features": [
+          "std"
+        ]
+      }
+    },
+    {
+      "from": "nf-exchange",
+      "to": "serde_path_to_error",
+      "kind": "normal",
+      "target": null,
+      "alias": "serde_path_to_error",
+      "declaration": {
+        "version": "=0.1.20"
+      }
+    },
+    {
+      "from": "nf-exchange",
+      "to": "sha2",
+      "kind": "normal",
+      "target": null,
+      "alias": "sha2",
+      "declaration": {
+        "version": "=0.10.9",
+        "default-features": false,
+        "features": [
+          "std",
+          "force-soft"
+        ]
+      }
+    }
+  ]
 }
