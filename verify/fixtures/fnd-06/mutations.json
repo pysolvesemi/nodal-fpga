@@ -1,0 +1,370 @@
+{
+  "format_version": 1,
+  "profile": "nf-tiny-foundation/1",
+  "status": "planned-independent-oracle",
+  "mutations": [
+    {
+      "id": "M-MUX-INDEX",
+      "obligation": "FND06-MUT-MUX-INDEX",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/mux_witness/rows/2",
+      "harness": "mutations.json",
+      "label": "M_MUX_INDEX",
+      "dut": "one/Tile/NF_SINGLE/NF_SINGLE_switch_matrix.v:inst_cus_mux21_L_I0",
+      "condition": "Swap A0 and A1 connections at this mux only; preserve S and output",
+      "expected_category": "semantic-mismatch",
+      "multiplicity": 1,
+      "patch": "Swap A0 and A1 connections at this mux only; preserve S and output",
+      "required_failing_witnesses": [
+        "UNIT-MUX/NF_SINGLE/2"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits."
+    },
+    {
+      "id": "M-LUT-BIT",
+      "obligation": "FND06-MUT-LUT-BIT",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/lut_witness/rows",
+      "harness": "mutations.json",
+      "label": "M_LUT_BIT",
+      "dut": "one/BEL/LUT4c_frame_config_dffesr.v:inst_cus_mux161",
+      "condition": "Exchange only .A1 (LUT_values[1]) and .A8 (LUT_values[8]) signal bindings",
+      "expected_category": "semantic-mismatch",
+      "multiplicity": 1,
+      "patch": "Exchange only .A1 (LUT_values[1]) and .A8 (LUT_values[8]) signal bindings",
+      "required_failing_witnesses": [
+        "UNIT-LUT/A6D3/1",
+        "UNIT-LUT/A6D3/8"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits."
+    },
+    {
+      "id": "M-CONFIG-ADDRESS",
+      "obligation": "FND06-MUT-CONFIG-ADDRESS",
+      "oracle": "verify/fixtures/nf-tiny/correspondence.json#/config_map/0",
+      "harness": "mutations.json",
+      "label": "M_CONFIG_ADDRESS",
+      "dut": "one/Tile/NF_SINGLE/NF_SINGLE_ConfigMem.v:Inst_frame0_bit12.D",
+      "condition": "Change only D connection FrameData[12] to FrameData[13]",
+      "expected_category": "semantic-mismatch",
+      "multiplicity": 1,
+      "patch": "Change only D connection FrameData[12] to FrameData[13]",
+      "required_failing_witnesses": [
+        "UNIT-CONFIG/NF_SINGLE/one/j0"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits."
+    },
+    {
+      "id": "M-PRIORITY",
+      "obligation": "FND06-MUT-PRIORITY",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/register_witnesses",
+      "harness": "mutations.json",
+      "label": "M_PRIORITY",
+      "dut": "one/BEL/LUT4c_frame_config_dffesr.v:always @(posedge UserCLK)",
+      "condition": "Replace if (EN) begin if (SR) LUT_flop <= c_reset_value; else LUT_flop <= LUT_out; end with if (SR) LUT_flop <= c_reset_value; else if (EN) LUT_flop <= LUT_out;",
+      "expected_category": "semantic-mismatch",
+      "multiplicity": 1,
+      "patch": "Replace if (EN) begin if (SR) LUT_flop <= c_reset_value; else LUT_flop <= LUT_out; end with if (SR) LUT_flop <= c_reset_value; else if (EN) LUT_flop <= LUT_out;",
+      "required_failing_witnesses": [
+        "REG-R0/one/t00/step5",
+        "REG-R1/one/t00/step3"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits."
+    },
+    {
+      "id": "M-CORR-SWAP",
+      "obligation": "FND06-MUT-CORRESPONDENCE",
+      "oracle": "verify/fixtures/nf-tiny/correspondence.json#/pin_map",
+      "harness": "mutations.json",
+      "label": "M_CORR_SWAP",
+      "dut": "derived-correspondence.json#/pin_map",
+      "condition": "Swap only lut.i0.reference and lut.i3.reference",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Swap only lut.i0.reference and lut.i3.reference",
+      "required_failing_witnesses": [
+        "PIN/one/t00/lut.i0",
+        "PIN/one/t00/lut.i3"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "pin-order-mismatch"
+    },
+    {
+      "id": "M-CORR-OMIT",
+      "obligation": "FND06-MUT-CORRESPONDENCE",
+      "oracle": "verify/fixtures/nf-tiny/correspondence.json#/pin_map/y",
+      "harness": "mutations.json",
+      "label": "M_CORR_OMIT",
+      "dut": "derived-correspondence.json#/pin_map/y",
+      "condition": "Remove only y primary mapping",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Remove only y primary mapping",
+      "required_failing_witnesses": [
+        "PIN/one/t00/y"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "missing-primary-mapping"
+    },
+    {
+      "id": "M-CORR-DUPLICATE",
+      "obligation": "FND06-MUT-CORRESPONDENCE",
+      "oracle": "verify/fixtures/nf-tiny/correspondence.json#/pin_map",
+      "harness": "mutations.json",
+      "label": "M_CORR_DUPLICATE",
+      "dut": "derived-correspondence.json#/pin_map/lut.i3/reference",
+      "condition": "Set lut.i3.reference equal to lut.i0.reference, retaining both logical keys",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Set lut.i3.reference equal to lut.i0.reference, retaining both logical keys",
+      "required_failing_witnesses": [
+        "PIN/one/t00/lut.i3"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "duplicate-primary-mapping"
+    },
+    {
+      "id": "M-ENDPOINT-OMIT",
+      "obligation": "FND06-MUT-ENDPOINT",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/shapes/2/intertile_edges/0",
+      "harness": "mutations.json",
+      "label": "M_ENDPOINT_OMIT",
+      "dut": "odd/Fabric/eFPGA.v:Tile_X1Y0_NF_MID.W",
+      "condition": "Replace only receiving W[0] connection for t00.e->t10.w by defined binary 0",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Replace only receiving W[0] connection for t00.e->t10.w by defined binary 0",
+      "required_failing_witnesses": [
+        "LINK/odd/t00.e->t10.w",
+        "ROW-ODD/1"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "missing-intertile-edge",
+      "additional_required_result": {
+        "category": "semantic-mismatch",
+        "witness": "ROW-ODD/1",
+        "expected": {
+          "t10.y": 0,
+          "t20.y": 0
+        },
+        "mutant": {
+          "t10.y": 1,
+          "t20.y": 1
+        }
+      }
+    },
+    {
+      "id": "M-ENDPOINT-REVERSE",
+      "obligation": "FND06-MUT-ENDPOINT",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/shapes/2/intertile_edges/0",
+      "harness": "mutations.json",
+      "label": "M_ENDPOINT_REVERSE",
+      "dut": "derived-candidate-graph.json:odd/t00.e->t10.w",
+      "condition": "Replace directed edge t00.e->t10.w with t10.w->t00.e in structural-control input only",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Replace directed edge t00.e->t10.w with t10.w->t00.e in structural-control input only",
+      "required_failing_witnesses": [
+        "LINK/odd/t00.e->t10.w"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "edge-direction-mismatch"
+    },
+    {
+      "id": "M-FIELD-ALIAS",
+      "obligation": "FND06-MUT-FIELD-ALIAS",
+      "oracle": "verify/fixtures/nf-tiny/correspondence.json#/config_map/19",
+      "harness": "mutations.json",
+      "label": "M_FIELD_ALIAS",
+      "dut": "derived-correspondence.json#/config_map/19/tile_config_bit",
+      "condition": "Change source tile_config_bit from 19 to 16; no alias declaration",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Change source tile_config_bit from 19 to 16; no alias declaration",
+      "required_failing_witnesses": [
+        "CONFIG/one/t00/19"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "config-field-overlap"
+    },
+    {
+      "id": "M-ALIAS-CONFLICT",
+      "obligation": "FND06-MUT-FIELD-ALIAS",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/nodal_only_obligations/alias_consistency",
+      "harness": "mutations.json",
+      "label": "M_ALIAS_CONFLICT",
+      "dut": "derived-semantic-input:test-alias",
+      "condition": "Explicitly declare ff/source alias at physical bit16, then request ff=0 and source=1",
+      "expected_category": "invalid-input",
+      "multiplicity": 1,
+      "patch": "Explicitly declare ff/source alias at physical bit16, then request ff=0 and source=1",
+      "required_failing_witnesses": [
+        "N-ALIAS-CONFLICT"
+      ],
+      "compile_required": false,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "inconsistent-alias-requests",
+      "generic_diagnostic": "Code::Conflict"
+    },
+    {
+      "id": "M-CONFIG-CONSUMER",
+      "obligation": "FND06-MUT-CONFIG-CONSUMER",
+      "oracle": "verify/fixtures/fnd-06/semantic_cases.json#/config_consumer_mutation",
+      "harness": "mutations.json",
+      "label": "M_CONFIG_CONSUMER",
+      "dut": "one/Tile/NF_SINGLE/NF_SINGLE.v:Inst_NF_SINGLE_switch_matrix.ConfigBits",
+      "condition": "Connect switch ConfigBits[0] to tile ConfigBits[16], replacing bit19 only",
+      "expected_category": "mapping-mismatch",
+      "multiplicity": 1,
+      "patch": "Connect switch ConfigBits[0] to tile ConfigBits[16], replacing bit19 only",
+      "required_failing_witnesses": [
+        "CONFIG/one/t00/19"
+      ],
+      "compile_required": true,
+      "baseline_must_pass": true,
+      "baseline_sha256": null,
+      "derived_sha256": null,
+      "patch_sha256": null,
+      "hash_binding_state": "Bind exact baseline and derived bytes after generation, before executing this mutation; no oracle edits.",
+      "diagnostic": "config-consumer-mismatch",
+      "additional_required_result": {
+        "category": "semantic-mismatch",
+        "witness": "M-CONFIG-CONSUMER/behavior",
+        "oracle": "verify/fixtures/fnd-06/semantic_cases.json#/config_consumer_mutation",
+        "expected_y": 1,
+        "mutant_y": 0
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "A-CONTROL-FALSE",
+      "obligation": "FND06-COVER-STATE",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/obligations/6",
+      "harness": "formal/controls.sv",
+      "label": "A_CONTROL_FALSE",
+      "dut": "false_control",
+      "condition": "One always-false assertion, zero assumes/covers; solver normally exits 1 with FAILED at step0",
+      "expected_category": "assertion-counterexample",
+      "multiplicity": 1,
+      "asserts": 1,
+      "assumes": 0,
+      "covers": 0,
+      "bound": 1,
+      "required_exit": 1
+    },
+    {
+      "id": "X-CONTROL-ZERO-EXPORT",
+      "obligation": "FND06-COVER-STATE",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/obligations/6",
+      "harness": "formal/controls.sv",
+      "label": "X_CONTROL_ZERO_EXPORT",
+      "dut": "zero_export_control",
+      "condition": "Deliberately omit/unlower assertion; count guard rejects BEFORE proof execution",
+      "expected_category": "zero-or-wrong-obligation-count",
+      "multiplicity": 1,
+      "required_asserts": 1,
+      "exported_asserts": 0,
+      "solver_must_not_run": true
+    },
+    {
+      "id": "H-CONTROL-SELECT0",
+      "obligation": "FND06-COVER-STATE",
+      "oracle": "verify/fixtures/nf-tiny/specification.json#/mux_witness",
+      "harness": "formal/controls.sv",
+      "label": "H_CONTROL_SELECT0",
+      "dut": "switch-NF_SINGLE",
+      "condition": "Add explicit select==0 assumption; preserve both original covers; local reached, secondary unreachable with normal complete one-step solver run",
+      "expected_category": "cover-unreachable",
+      "multiplicity": 1,
+      "asserts": 1,
+      "assumes": 1,
+      "covers": 2,
+      "bound": 1,
+      "required_reached": [
+        "C-MUX-LOCAL/NF_SINGLE"
+      ],
+      "required_unreachable": [
+        "C-MUX-SECONDARY/NF_SINGLE"
+      ]
+    }
+  ],
+  "forbidden_detection_credit": [
+    "provenance-mismatch",
+    "compile-error",
+    "tool-error",
+    "timeout/unknown",
+    "missing-artifact",
+    "parser-error",
+    "crash"
+  ],
+  "execution_contract": [
+    "Fresh labelled derivative for each mutation; prove clean baseline first.",
+    "Bind baseline/derived/patch SHA-256 and exact unique source span before execution.",
+    "Only the explicitly declared derived bytes bypass baseline provenance checks; do not disable ordinary provenance validation.",
+    "Compile applicable mutant successfully, then require the named witness and intended semantic category.",
+    "Never count missing IDs, a status string, a digest guard or aggregate count alone as mutation detection.",
+    "Endpoint omit and config-consumer require BOTH structural and behavioral failures."
+  ],
+  "receipt_negative_controls": [
+    "missing-shape",
+    "zero-assertions",
+    "removed-cover",
+    "absent-mutant",
+    "wrong-source-hash",
+    "wrong-artifact-hash",
+    "substituted-compile-error"
+  ]
+}

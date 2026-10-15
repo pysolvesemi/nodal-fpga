@@ -1,0 +1,14 @@
+--- baseline/BEL/LUT4c_frame_config_dffesr.v
++++ derived/BEL/LUT4c_frame_config_dffesr.v
+@@ -113,10 +113,7 @@
+     assign Co = (Ci & I[1]) | (Ci & I[2]) | (I[1] & I[2]);
+ 
+     always @(posedge UserCLK) begin
+-        if (EN) begin
+-            if (SR) LUT_flop <= c_reset_value;
+-            else LUT_flop <= LUT_out;
+-        end
++        if (SR) LUT_flop <= c_reset_value; else if (EN) LUT_flop <= LUT_out;
+     end
+ 
+ endmodule

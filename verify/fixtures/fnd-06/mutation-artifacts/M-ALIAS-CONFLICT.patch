@@ -1,0 +1,10 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -13,6 +13,6 @@
+   ],
+   "requests": {
+     "ff": 0,
+-    "source": 0
++    "source": 1
+   }
+ }

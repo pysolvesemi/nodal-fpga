@@ -235,6 +235,11 @@ def check(profile: str, root: Path = ROOT) -> None:
         data = json.loads(output)
         from check_boundaries import check_metadata
         check_metadata(root, data)
+    elif profile == "reference":
+        # Optional Foundation reference environment only; never a reusable-core
+        # build or saved-package consumer dependency.
+        from reference_checks import check_reference
+        print(json.dumps(check_reference(root), sort_keys=True))
     elif profile == "exchange":
         doctor("rust", pins(root))
         from check_boundaries import check as boundaries, check_metadata
@@ -327,7 +332,7 @@ def main() -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     for name in ["bootstrap", "doctor", "reproduce"]:
         sub.add_parser(name).add_argument("profile", choices=["rust", "scala"])
-    sub.add_parser("check").add_argument("profile", choices=["contracts", "rust", "scala", "exchange"])
+    sub.add_parser("check").add_argument("profile", choices=["contracts", "rust", "scala", "exchange", "reference"])
     runtime = sub.add_parser("saved-runtime", help="inspect actual saved Scala bytes with a prebuilt reader in an allowlisted root")
     runtime.add_argument("--binary", type=Path, default=ROOT / "target/debug/nf-exchange")
     runtime.add_argument("--scala-artifacts", type=Path, required=True)

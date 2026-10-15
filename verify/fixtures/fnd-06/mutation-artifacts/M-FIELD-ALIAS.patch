@@ -1,0 +1,11 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -320,7 +320,7 @@
+     },
+     {
+       "feature": "source",
+-      "tile_config_bit": 19,
++      "tile_config_bit": 16,
+       "switch_bit": 0,
+       "frame": 0,
+       "data_bit": 31

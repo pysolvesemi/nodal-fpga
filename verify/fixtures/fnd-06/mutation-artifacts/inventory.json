@@ -1,0 +1,251 @@
+[
+  {
+    "baseline_sha256": "8c5954493de3e91108a9a0575004a55ef8ed99194d7782cf5f1ccd16be5149aa",
+    "derived_bytes": 1515,
+    "derived_sha256": "14a556643f6117e30a4cf1b19d06a7bf4935a07fb3ad02e989da093d7996223a",
+    "expected_category": "semantic-mismatch",
+    "id": "M-MUX-INDEX",
+    "location": {
+      "end": 1068,
+      "instance": "inst_cus_mux21_L_I0",
+      "occurrences": 1,
+      "ports": [
+        "A0",
+        "A1"
+      ],
+      "start": 981
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 1515,
+    "patch_sha256": "58a6f99293f4fd9c4dc8edffe13c123d63b309afc95b6fb27dd143f1b658506c",
+    "required_failing_witnesses": [
+      "UNIT-MUX/NF_SINGLE/2"
+    ],
+    "target": "Tile/NF_SINGLE/NF_SINGLE_switch_matrix.v"
+  },
+  {
+    "baseline_sha256": "0fa68bcff99930a0337aa0667db914d9eee597c6e5d5dc2613443a4c3685c8f1",
+    "derived_bytes": 3409,
+    "derived_sha256": "d08f9045641abfe3dfee7c1912f15e7a9c296fcaf7d3ac7ba32eb72dfadcbd71",
+    "expected_category": "semantic-mismatch",
+    "id": "M-LUT-BIT",
+    "location": {
+      "end": 2930,
+      "instance": "inst_cus_mux161",
+      "occurrences": 1,
+      "ports": [
+        "A1",
+        "A8"
+      ],
+      "start": 2205
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 3409,
+    "patch_sha256": "0645b80fac42810fecfe14135c89c751bf6e746cb96b892749e08d6d9c63b3fc",
+    "required_failing_witnesses": [
+      "UNIT-LUT/A6D3/1",
+      "UNIT-LUT/A6D3/8"
+    ],
+    "target": "BEL/LUT4c_frame_config_dffesr.v"
+  },
+  {
+    "baseline_sha256": "0f96793657f93a88064a30848558a81eb246aa61c726071e8b4c4ffda6095a69",
+    "derived_bytes": 4100,
+    "derived_sha256": "69f8f5f81b46f115aebf84b7b7fdd78c43dd781c7b315c703bacc590a3349d8f",
+    "expected_category": "semantic-mismatch",
+    "id": "M-CONFIG-ADDRESS",
+    "location": {
+      "end": 4080,
+      "instance": "Inst_frame0_bit12",
+      "occurrences": 1,
+      "ports": [
+        "D"
+      ],
+      "start": 3984
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 4100,
+    "patch_sha256": "b2cc4497aeab69fffb28ced03017758b38661bc0b52f29f20f4e0cea6d9e261d",
+    "required_failing_witnesses": [
+      "UNIT-CONFIG/NF_SINGLE/one/j0"
+    ],
+    "target": "Tile/NF_SINGLE/NF_SINGLE_ConfigMem.v"
+  },
+  {
+    "baseline_sha256": "0fa68bcff99930a0337aa0667db914d9eee597c6e5d5dc2613443a4c3685c8f1",
+    "derived_bytes": 3367,
+    "derived_sha256": "5de21b8a03a15dcc19b7863bdb6bb5f6702d58560219a45bf74d930816b42724",
+    "expected_category": "semantic-mismatch",
+    "id": "M-PRIORITY",
+    "location": {
+      "end": 3367,
+      "instance": "LUT4c_frame_config_dffesr",
+      "occurrences": 1,
+      "start": 3257
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 3409,
+    "patch_sha256": "a66c567bd0cb3e6bbeca1882f4d6bb417ac4190fe847ba8197ca8072a130f697",
+    "required_failing_witnesses": [
+      "REG-R0/one/t00/step5",
+      "REG-R1/one/t00/step3"
+    ],
+    "target": "BEL/LUT4c_frame_config_dffesr.v"
+  },
+  {
+    "baseline_sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+    "derived_bytes": 9305,
+    "derived_sha256": "3da2f29534a075e50b574a80b01e5e73a672c4cb0591ba8be111b8f5c6136eb3",
+    "expected_category": "mapping-mismatch",
+    "id": "M-CORR-SWAP",
+    "location": {
+      "json_pointer": "/pin_map/{lut.i0,lut.i3}/reference",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 9305,
+    "patch_sha256": "342d7cfe5692657de2f28c8257ce12cfe5f7ec634b2cf9f61b1b2e1186108646",
+    "required_failing_witnesses": [
+      "PIN/one/t00/lut.i0",
+      "PIN/one/t00/lut.i3"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+    "derived_bytes": 9140,
+    "derived_sha256": "ecda96d42346faeed4968004bc21be94a3f435f0f8eeb6bca23344f8c763c2d6",
+    "expected_category": "mapping-mismatch",
+    "id": "M-CORR-OMIT",
+    "location": {
+      "json_pointer": "/pin_map/y",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 9305,
+    "patch_sha256": "eecc05eb9a0f8c58d2dabf06569d160c9c10d6eadb22b518a0ef4aa13801fbf6",
+    "required_failing_witnesses": [
+      "PIN/one/t00/y"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+    "derived_bytes": 9305,
+    "derived_sha256": "fb6381fdde91b3c042fa10306569f70f40dd48a8537941c6847e9ecad3442011",
+    "expected_category": "mapping-mismatch",
+    "id": "M-CORR-DUPLICATE",
+    "location": {
+      "json_pointer": "/pin_map/lut.i3/reference",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 9305,
+    "patch_sha256": "db2cb335e0764758f44fbf19ea3e7fbc5499748230949f0fd7f6de5488815548",
+    "required_failing_witnesses": [
+      "PIN/one/t00/lut.i3"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "8c32cc6484317eb44c0646d4b2eaba94abc6563627b721a53e5a6cbf971857b9",
+    "derived_bytes": 7649,
+    "derived_sha256": "caedab925fef9eab48f8002de9c4033cf5d40fa807dbe61b0863d01262d6d52a",
+    "expected_category": "mapping-mismatch",
+    "id": "M-ENDPOINT-OMIT",
+    "location": {
+      "end": 5308,
+      "instance": "Tile_X1Y0_NF_MID",
+      "occurrences": 1,
+      "ports": [
+        "W"
+      ],
+      "start": 4799
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 7656,
+    "patch_sha256": "739fba5bd4826b771b8f04c94f197cdc3d5ad634f09b3d71c59daf5e3ce727c8",
+    "required_failing_witnesses": [
+      "LINK/odd/t00.e->t10.w",
+      "ROW-ODD/1"
+    ],
+    "target": "Fabric/eFPGA.v"
+  },
+  {
+    "baseline_sha256": "5b9b9fc8cf7d6a07979ed789d9d10093aa3c6d38de3420581840f83f9c00f8d5",
+    "derived_bytes": 139,
+    "derived_sha256": "52635fd1a21f53377fa7e73a70e987646a1092621a20821b752f4783da9789d4",
+    "expected_category": "mapping-mismatch",
+    "id": "M-ENDPOINT-REVERSE",
+    "location": {
+      "json_pointer": "/0",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 139,
+    "patch_sha256": "11d5aad2d3d51cc2e4ac74ff83c41dbbb316137cfa1073d2ac3b4be125cf66c7",
+    "required_failing_witnesses": [
+      "LINK/odd/t00.e->t10.w"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe",
+    "derived_bytes": 9305,
+    "derived_sha256": "3172993b5b1835cddbe8b09280ee19e82f4e59b1a4290a45645a6d6e948bb59c",
+    "expected_category": "mapping-mismatch",
+    "id": "M-FIELD-ALIAS",
+    "location": {
+      "json_pointer": "/config_map/19/tile_config_bit",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 9305,
+    "patch_sha256": "dd44d278f998119bcb38c11c39af756805dfe8a7e68de91c611ced6ef221db84",
+    "required_failing_witnesses": [
+      "CONFIG/one/t00/19"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "5346e5f7368b7ff55fd8b43781387e4c58f733c96a7b0584697bf3bf1d3c01c9",
+    "derived_bytes": 243,
+    "derived_sha256": "201c538e1323c013cc5a849505b4d13b34bbd04200959dce82ff20b486e2e196",
+    "expected_category": "invalid-input",
+    "id": "M-ALIAS-CONFLICT",
+    "location": {
+      "json_pointer": "/requests/source",
+      "occurrences": 1
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 243,
+    "patch_sha256": "8f02442223ee585e295d2aecb1c1821d23b612c91e4a6e4ee3592b28bb5c8639",
+    "required_failing_witnesses": [
+      "N-ALIAS-CONFLICT"
+    ],
+    "target": "candidate.json"
+  },
+  {
+    "baseline_sha256": "a0ef608e9e3d8c122000ec1337c6b56836a0aead8da32cbf117f8b4f326bc3b6",
+    "derived_bytes": 10874,
+    "derived_sha256": "cc300c668d08d00f44f025585824234452a97edb897f62a2cccb33c844db4807",
+    "expected_category": "mapping-mismatch",
+    "id": "M-CONFIG-CONSUMER",
+    "location": {
+      "end": 10866,
+      "instance": "Inst_NF_SINGLE_switch_matrix",
+      "occurrences": 1,
+      "ports": [
+        "ConfigBits"
+      ],
+      "start": 10491
+    },
+    "manifest_sha256": "3b3db216281c9179e2eee27a1b89d7629dae999d73bd52d6cbba45db2ac70ee9",
+    "parent_bytes": 10879,
+    "patch_sha256": "9a0f8370c1c67ccdd055de7d16c054e0ce6bdfd5250c65fc22040f3610297424",
+    "required_failing_witnesses": [
+      "CONFIG/one/t00/19"
+    ],
+    "target": "Tile/NF_SINGLE/NF_SINGLE.v"
+  }
+]
