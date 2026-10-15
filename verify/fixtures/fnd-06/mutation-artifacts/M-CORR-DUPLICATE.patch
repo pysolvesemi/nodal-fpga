@@ -1,0 +1,11 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -115,7 +115,7 @@
+     },
+     "lut.i3": {
+       "direction": "input",
+-      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[3]"
++      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[0]"
+     },
+     "lut.ci": {
+       "direction": "input",

@@ -1,0 +1,231 @@
+{
+  "execution_adjustments": [
+    "create-official-project-marker-before-init-context"
+  ],
+  "format_version": 1,
+  "generator_sources": {
+    "adapter": {
+      "path": "verify/fixtures/fnd-06/generate.py",
+      "sha256": "bf39126784f4357cbc58071c4422bd52334c04541123b1eb02dc478b6af2a039"
+    },
+    "historical": {
+      "path": "verify/fixtures/nf-tiny/fabulous/generate.py",
+      "sha256": "158197e2fcd82ea8fbdcf11115a26e425113e2a91d5fc73574d1006443d3e0cd"
+    }
+  },
+  "license": {
+    "bytes": 11357,
+    "path": "LICENSE.FABulous",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "original_input_manifest": {
+    "bytes": 12830,
+    "path": "verify/fixtures/nf-tiny/reference.json",
+    "sha256": "649716da9d708e509ab2437cf9b4976da5468ed471fe1ef822bd0cf9fe4e4738"
+  },
+  "original_inputs": [
+    {
+      "bytes": 9305,
+      "path": "verify/fixtures/nf-tiny/correspondence.json",
+      "sha256": "9aff8b60474fa6b04b07691ebe63421c8ae89df31f90f8d5f55189376fc294fe"
+    },
+    {
+      "bytes": 793,
+      "path": "verify/fixtures/nf-tiny/fabulous/BEL/nf_tiny_io.v",
+      "sha256": "b115310a513f2a39ac33cfa8f22631653d88d2da06d7ccc8c9976fb2b0629482"
+    },
+    {
+      "bytes": 11357,
+      "path": "verify/fixtures/nf-tiny/fabulous/LICENSE.FABulous",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "bytes": 150,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_LEFT/NF_LEFT.csv",
+      "sha256": "1405e8bc9ab8f3dae6c8e302fe8d7e5e01257387ebc405d11e6466d2dd5a1a6b"
+    },
+    {
+      "bytes": 1254,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_LEFT/NF_LEFT_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd"
+    },
+    {
+      "bytes": 284,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_LEFT/NF_LEFT_switch_matrix.csv",
+      "sha256": "89957143ca688caa1104457bf86d33f72385d609e6197e52fd32d4f68855a287"
+    },
+    {
+      "bytes": 145,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_MID/NF_MID.csv",
+      "sha256": "6d49ec3bf656287b9f600cc0695b4c25a72345e13c54b4afda0395df9dc4ba6a"
+    },
+    {
+      "bytes": 1254,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_MID/NF_MID_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd"
+    },
+    {
+      "bytes": 304,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_MID/NF_MID_switch_matrix.csv",
+      "sha256": "23a70fd35e8161dd746c9beea78637019b3b76619b899aa6156568802c7f43ee"
+    },
+    {
+      "bytes": 152,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_RIGHT/NF_RIGHT.csv",
+      "sha256": "2cd2ae3e51d41b47e271e404be4b8e50da857116854d52e71ecddf9ffd66ee5c"
+    },
+    {
+      "bytes": 1254,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_RIGHT/NF_RIGHT_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd"
+    },
+    {
+      "bytes": 281,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_RIGHT/NF_RIGHT_switch_matrix.csv",
+      "sha256": "80b870a14c856b02342582bad298d6c740ad962c753dc7f47e94894ba609567d"
+    },
+    {
+      "bytes": 135,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_SINGLE/NF_SINGLE.csv",
+      "sha256": "d325de5bebb4b15fba56f5936bc11468b59e8fdb3e9d77cd946283b9c2353d5c"
+    },
+    {
+      "bytes": 1254,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_SINGLE/NF_SINGLE_ConfigMem.csv",
+      "sha256": "000f6cd55643dfc771e1240c0133d545cea02422078fda326c13b9f356cbbedd"
+    },
+    {
+      "bytes": 263,
+      "path": "verify/fixtures/nf-tiny/fabulous/Tile/NF_SINGLE/NF_SINGLE_switch_matrix.csv",
+      "sha256": "53e210a2a902c85895d5b96bae8cd40cfc40fa5b051c1fd5975752cdcd0e8c2f"
+    },
+    {
+      "bytes": 1264,
+      "path": "verify/fixtures/nf-tiny/fabulous/UPSTREAM.md",
+      "sha256": "ab97a968b7d4cc497713d063e195a27e71750f51f5d2daad2c2cac11aaaf7912"
+    },
+    {
+      "bytes": 6569,
+      "path": "verify/fixtures/nf-tiny/fabulous/generate.py",
+      "sha256": "158197e2fcd82ea8fbdcf11115a26e425113e2a91d5fc73574d1006443d3e0cd"
+    },
+    {
+      "bytes": 393,
+      "path": "verify/fixtures/nf-tiny/fabulous/odd.csv",
+      "sha256": "ca3c13ea714249246938bd4eec4b86a7c905d67f4342aa163323e82fea7e73e4"
+    },
+    {
+      "bytes": 355,
+      "path": "verify/fixtures/nf-tiny/fabulous/one.csv",
+      "sha256": "2c7394405754475eec9c8f9c2f23c21ad5c5fd6fdbfd3c1e8a7523fd7efb0803"
+    },
+    {
+      "bytes": 414,
+      "path": "verify/fixtures/nf-tiny/fabulous/sparse.csv",
+      "sha256": "e2631dc1067f219970807099bd08a2e361d9d43d7333fadbfa4e282e19ea8180"
+    },
+    {
+      "bytes": 379,
+      "path": "verify/fixtures/nf-tiny/fabulous/square.csv",
+      "sha256": "32aae8759435a75903faa3d8eae46495b5d7a55c7757bc51b2657ea9a81ca2d9"
+    },
+    {
+      "bytes": 21249,
+      "path": "verify/fixtures/nf-tiny/specification.json",
+      "sha256": "0e58761faed7d2d3ea6154ed605262a9fd4a8d6a13ca7de33d06f70a7a88ef32"
+    }
+  ],
+  "rtl": [
+    {
+      "bytes": 3409,
+      "kind": "source_rtl",
+      "path": "BEL/LUT4c_frame_config_dffesr.v",
+      "sha256": "0fa68bcff99930a0337aa0667db914d9eee597c6e5d5dc2613443a4c3685c8f1"
+    },
+    {
+      "bytes": 793,
+      "kind": "source_rtl",
+      "path": "BEL/nf_tiny_io.v",
+      "sha256": "b115310a513f2a39ac33cfa8f22631653d88d2da06d7ccc8c9976fb2b0629482"
+    },
+    {
+      "bytes": 8230,
+      "kind": "generated_rtl",
+      "path": "Fabric/eFPGA.v",
+      "sha256": "871e36d08124c9b3941a6818a453ca930f9a5a855242c1863207ba39ad2588bf"
+    },
+    {
+      "bytes": 3369,
+      "kind": "source_rtl",
+      "path": "Fabric/models_pack.v",
+      "sha256": "9df107b9169d334faece5f52ce98e4e47a6d963122c280ce6eb9b3d731c08a69"
+    },
+    {
+      "bytes": 10985,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_LEFT/NF_LEFT.v",
+      "sha256": "5906ecc254897cac263eab0eb804ec81f4cccd0a59f739289292fb60d4ac2831"
+    },
+    {
+      "bytes": 4098,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_LEFT/NF_LEFT_ConfigMem.v",
+      "sha256": "44fa001ebd0fb618e8a7884a138cfb5a31a728b25ca903ac9cb846560e3c5827"
+    },
+    {
+      "bytes": 1589,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_LEFT/NF_LEFT_switch_matrix.v",
+      "sha256": "3ffdcd75db7a85fafae8aa4f7054019cfea75f958f3f7cd3da86ac6c97d94fc5"
+    },
+    {
+      "bytes": 10988,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_RIGHT/NF_RIGHT.v",
+      "sha256": "9070a9548ea25174305a4617a323c487d68b03d298c125b61781bcd73d705ac3"
+    },
+    {
+      "bytes": 4099,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_RIGHT/NF_RIGHT_ConfigMem.v",
+      "sha256": "ec8ef68d27f6c2c1dd7cd6d10f21cf10637a0ec09ee08213a728761dabfb0138"
+    },
+    {
+      "bytes": 1531,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_RIGHT/NF_RIGHT_switch_matrix.v",
+      "sha256": "26de03f2dc40b34be201ae51248a7f719229b0978004e5565e06ce0babd4d641"
+    },
+    {
+      "bytes": 10879,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_SINGLE/NF_SINGLE.v",
+      "sha256": "a0ef608e9e3d8c122000ec1337c6b56836a0aead8da32cbf117f8b4f326bc3b6"
+    },
+    {
+      "bytes": 4100,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_SINGLE/NF_SINGLE_ConfigMem.v",
+      "sha256": "0f96793657f93a88064a30848558a81eb246aa61c726071e8b4c4ffda6095a69"
+    },
+    {
+      "bytes": 1515,
+      "kind": "generated_rtl",
+      "path": "Tile/NF_SINGLE/NF_SINGLE_switch_matrix.v",
+      "sha256": "8c5954493de3e91108a9a0575004a55ef8ed99194d7782cf5f1ccd16be5149aa"
+    }
+  ],
+  "scope": "Actual external reference RTL bytes; not independent expected semantics or Nodal-emitted RTL.",
+  "shape": "sparse",
+  "sources": {
+    "bytes": 382,
+    "path": "sources.f",
+    "sha256": "55569ccdd21f63e43ea222b80e24adb6f2cc9a5b96588c589712681d7e348bff"
+  },
+  "upstream": {
+    "commit": "d2fc49dade524a4f78062a3a38b213e9c08d6b04",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/FPGA-Research/FABulous",
+    "tree": "6af48dacbfaf6a77617e11ab00ab4966f77711ba"
+  }
+}

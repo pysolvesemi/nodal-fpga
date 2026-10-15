@@ -1,0 +1,11 @@
+--- baseline/Fabric/eFPGA.v
++++ derived/Fabric/eFPGA.v
+@@ -121,7 +121,7 @@
+ 
+  //tile IO port will get directly connected to top-level tile module
+ NF_MID Tile_X1Y0_NF_MID (
+-    .W(Tile_X0Y0_E),
++    .W(1'b0),
+     .E(Tile_X1Y0_E),
+     .P_A0(Tile_X1Y0_P_A0),
+     .P_A1(Tile_X1Y0_P_A1),

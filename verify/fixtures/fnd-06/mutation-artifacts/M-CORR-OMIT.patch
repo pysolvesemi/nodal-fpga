@@ -1,0 +1,17 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -77,14 +77,6 @@
+         "Inst_{type}_switch_matrix.P_XR"
+       ]
+     },
+-    "y": {
+-      "direction": "output",
+-      "reference": "P_Y",
+-      "aliases": [
+-        "P_RESULT",
+-        "Inst_{type}_switch_matrix.P_RESULT"
+-      ]
+-    },
+     "const0": {
+       "direction": "source",
+       "reference": "Inst_{type}_switch_matrix.GND0"

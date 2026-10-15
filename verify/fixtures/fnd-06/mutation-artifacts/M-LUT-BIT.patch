@@ -1,0 +1,19 @@
+--- baseline/BEL/LUT4c_frame_config_dffesr.v
++++ derived/BEL/LUT4c_frame_config_dffesr.v
+@@ -76,14 +76,14 @@
+     // The LUT is just a multiplexer
+     cus_mux161 inst_cus_mux161 (
+         .A0 (LUT_values[0]),
+-        .A1 (LUT_values[1]),
++        .A1 (LUT_values[8]),
+         .A2 (LUT_values[2]),
+         .A3 (LUT_values[3]),
+         .A4 (LUT_values[4]),
+         .A5 (LUT_values[5]),
+         .A6 (LUT_values[6]),
+         .A7 (LUT_values[7]),
+-        .A8 (LUT_values[8]),
++        .A8 (LUT_values[1]),
+         .A9 (LUT_values[9]),
+         .A10(LUT_values[10]),
+         .A11(LUT_values[11]),

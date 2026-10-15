@@ -1,0 +1,11 @@
+--- baseline/Tile/NF_SINGLE/NF_SINGLE_ConfigMem.v
++++ derived/Tile/NF_SINGLE/NF_SINGLE_ConfigMem.v
+@@ -172,7 +172,7 @@
+ );
+ 
+ config_latch Inst_frame0_bit12 (
+-    .D(FrameData[12]),
++    .D(FrameData[13]),
+     .E(FrameStrobe[0]),
+     .Q(ConfigBits[0]),
+     .QN(ConfigBits_N[0])

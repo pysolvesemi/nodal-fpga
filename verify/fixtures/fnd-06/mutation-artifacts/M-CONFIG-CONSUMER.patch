@@ -1,0 +1,11 @@
+--- baseline/Tile/NF_SINGLE/NF_SINGLE.v
++++ derived/Tile/NF_SINGLE/NF_SINGLE.v
+@@ -650,7 +650,7 @@
+     .L_SR(L_SR),
+     .L_EN(L_EN),
+     .P_RESULT(P_RESULT),
+-    .ConfigBits(ConfigBits[20-1:19]),
++    .ConfigBits(ConfigBits[16]),
+     .ConfigBits_N(ConfigBits_N[20-1:19])
+ );
+ 

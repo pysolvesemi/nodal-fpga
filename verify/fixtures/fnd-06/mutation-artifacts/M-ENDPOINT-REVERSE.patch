@@ -1,0 +1,12 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -1,7 +1,7 @@
+ [
+   [
+-    "t00.e",
+-    "t10.w"
++    "t10.w",
++    "t00.e"
+   ],
+   [
+     "t10.e",

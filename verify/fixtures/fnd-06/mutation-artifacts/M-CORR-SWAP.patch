@@ -1,0 +1,34 @@
+--- baseline/candidate.json
++++ derived/candidate.json
+@@ -103,19 +103,19 @@
+     },
+     "lut.i0": {
+       "direction": "input",
++      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[3]"
++    },
++    "lut.i1": {
++      "direction": "input",
++      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[1]"
++    },
++    "lut.i2": {
++      "direction": "input",
++      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[2]"
++    },
++    "lut.i3": {
++      "direction": "input",
+       "reference": "Inst_L_LUT4c_frame_config_dffesr.I[0]"
+-    },
+-    "lut.i1": {
+-      "direction": "input",
+-      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[1]"
+-    },
+-    "lut.i2": {
+-      "direction": "input",
+-      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[2]"
+-    },
+-    "lut.i3": {
+-      "direction": "input",
+-      "reference": "Inst_L_LUT4c_frame_config_dffesr.I[3]"
+     },
+     "lut.ci": {
+       "direction": "input",

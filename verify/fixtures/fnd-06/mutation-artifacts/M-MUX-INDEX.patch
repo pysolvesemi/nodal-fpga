@@ -1,0 +1,13 @@
+--- baseline/Tile/NF_SINGLE/NF_SINGLE_switch_matrix.v
++++ derived/Tile/NF_SINGLE/NF_SINGLE_switch_matrix.v
+@@ -38,8 +38,8 @@
+  //switch matrix multiplexer L_I0 MUX-2
+ assign L_I0_input = {P_XA,P_X0};
+ cus_mux21 inst_cus_mux21_L_I0 (
+-    .A0(L_I0_input[0]),
+-    .A1(L_I0_input[1]),
++    .A0(L_I0_input[1]),
++    .A1(L_I0_input[0]),
+     .S(ConfigBits[0+0]),
+     .X(L_I0)
+ );
